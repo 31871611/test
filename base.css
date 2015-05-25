@@ -47,6 +47,7 @@ a{text-decoration:none;}
 .pf{position:fixed;}
 .hidden{visibility:hidden;}
 .hide{display:none;}
+.ov{overflow:hidden;}
 
 /*长度高度*/
 .w{width:100%;}
