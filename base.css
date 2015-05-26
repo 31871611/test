@@ -65,6 +65,24 @@ a{text-decoration:none;}
 .ml20{margin-left:20px;}
 .ml25{margin-left:25px;}
 .ml30{margin-left:30px;}
+.mt5{margin-top:5px;}
+.mt10{margin-top:10px;}
+.mt15{margin-top:15px;}
+.mt20{margin-top:20px;}
+.mt25{margin-top:25px;}
+.mt30{margin-top:30px;}
+.mr5{margin-right:5px;}
+.mr10{margin-right:10px;}
+.mr15{margin-right:15px;}
+.mr20{margin-right:20px;}
+.mr25{margin-right:25px;}
+.mr30{margin-right:30px;}
+.mb5{margin-bottom:5px;}
+.mb10{margin-bottom:10px;}
+.mb15{margin-bottom:15px;}
+.mb20{margin-bottom:20px;}
+.mb25{margin-bottom:25px;}
+.mb30{margin-bottom:30px;}
 .mn{margin:0;}
 .p10{padding:10px;}
 .pn{padding:0;}
@@ -78,6 +96,9 @@ a{text-decoration:none;}
 .nowrap{white-space:nowrap;word-break:keep-all}
 .wrap{white-space:normal;word-break:break-all}
 .ellipsis{overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis;white-space:nowrap;word-break:keep-all;word-wrap:normal}
+
+/*css三角形(箭头方向为空与相反方向为透明)*/
+.arrow{display:inline-block;height:0;width:0;overflow:hidden;border-color:#f00 transparent;border-style:solid;border-width:0 60px 60px 60px;}
 
 /*css精灵图片(修改图片是相关css文件中重置)*/
 .sprites{background:url(png.png);}
