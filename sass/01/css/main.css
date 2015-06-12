@@ -1,4 +1,39 @@
 body { font: 100% Helvetica, sans-serif; color: #333; }
 
 ul { list-style: none; }
+ul li { height: 30px; }
 ul a { color: #66c00f; }
+
+nav a { color: red; }
+div nav a { color: green; }
+
+.box { font-size: 12px; font-weight: bold; }
+
+a { color: #66c00f; }
+a:hover { color: #ff0000; }
+
+div { -webkit-border-radius: 5px; border-radius: 5px; }
+
+button { -webkit-border-radius: 5px; border-radius: 5px; -webkit-border-radius: 10px; border-radius: 10px; }
+
+.box-center { width: 500px; height: 300px; position: absolute; top: 50%; left: 50%; margin-top: -150px; margin-left: -250px; }
+
+.box { -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.5), 0 0 2px rgba(0, 0, 0, 0.2); box-shadow: 0 0 1px rgba(0, 0, 0, 0.5), 0 0 2px rgba(0, 0, 0, 0.2); }
+
+.btn, .btn-primary { border: 1px solid #ccc; padding: 6px 10px; font-size: 14px; }
+
+.btn-primary { background-color: #f36; color: #fff; }
+
+.btn, .btn-primary { margin-top: 5px; }
+
+body { font-size: 10px; }
+
+.ib { display: inline-block; *display: inline; *zoom: 1; }
+
+p { color: green; }
+
+.item-1 { width: 2em; }
+
+.item-2 { width: 4em; }
+
+.item-3 { width: 6em; }
