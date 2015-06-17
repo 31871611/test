@@ -1,0 +1,153 @@
+@charset "UTF-8";
+@import "reset";
+@import "common";
+
+$main_color:#ff9000 #fe7701;
+
+.bc-auto{
+  @include bc-auto(1024px);
+}
+.clearfix{
+  @extend %clearfix;
+}
+body{
+  background-color:#f6f6f6;
+}
+//头部1024
+.top{
+  $h:34px;
+  $color:#fff;
+  height:$h;
+  line-height:$h;
+  background:nth($main_color,1);
+  color:$color;
+  span{
+    @extend %fl;
+  }
+  ul{
+    @extend %fr;
+    @extend %pt10;
+  }
+  li{
+    $h:16px;
+    @extend %fl;
+    height:$h;
+    line-height:$h;
+    a{
+      color:$color;
+    }
+  }
+  li.tel{
+    @extend %mr15;
+  }
+  li.line{
+    width:1px;
+    height:16px;
+    background:$color;
+    margin:0 10px;
+  }
+}
+//logo
+.header{
+  height:91px;
+  color:#fefefe;
+  border-bottom:1px solid #eaeaea;
+  @extend %bf;
+}
+.nav{
+  @extend %fr;
+  li{
+    @extend %fl;
+  }
+  a{
+    $h:91px;
+    @extend %f18;
+    height:$h;
+    line-height:$h;
+    @extend %t333;
+    margin-left:40px;
+  }
+}
+//面包屑
+.path{
+  $h:46px;
+  height:$h;
+  line-height:$h;
+  $color:#7f7f7f;
+  color:$color;
+  .fl{
+    @extend %fl;
+  }
+  .fr{
+    @extend %fr;
+  }
+  b{
+    @extend %pr5;
+
+  }
+  a{
+    @extend %pl5;
+    @extend %pr5;
+    color:$color;
+  }
+}
+//主体内容
+.main{
+  width:795px;
+  @extend %fl;
+
+}
+//侧边
+.side{
+  width:222px;
+  @extend %fr;
+
+}
+%border{
+  border:1px solid #eaeaea;
+}
+%bf{
+  background:#fff;
+}
+.info-show{
+  height:430px;
+  @extend %border;
+  padding-left:19px;
+  @extend %bf;
+  h1{
+    font-size:22px;
+    @extend %t333;
+    height:75px;
+    line-height:75px;
+  }
+}
+.carousel{
+  @extend %fl;
+  $w:335px;
+  width:$w;
+  @extend %ov;
+  img{
+    width:$w;
+    height:262px;
+    @extend %block;
+  }
+  ul{
+    $h:56px;
+    height:$h + 2;
+    @extend %pt5;
+    li{
+      @extend %fl;
+      border:1px solid #fff;
+      @extend %mr5;
+      &:hover{
+        border:1px solid nth($main_color,2);
+      }
+    }
+    img{
+      width:78px;
+      height:$h;
+    }
+  }
+}
+
+
