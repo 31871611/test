@@ -100,9 +100,10 @@ a{text-decoration:none;}
 /*css三角形(箭头方向为空与相反方向为透明)*/
 .arrow{display:inline-block;height:0;width:0;overflow:hidden;border-color:#f00 transparent;border-style:solid;border-width:0 60px 60px 60px;}
 
-/*css精灵图片(修改图片是相关css文件中重置)*/
-.sprites{background:url(png.png);}
-.sprites_x{background:url(x.png) repeat-x;}
+/*css精灵图片*/
+.pic_base{background:url(png.png);}
+.pic{background:url(png.png);}
+.pic_x{background:url(x.png) repeat-x;}
 
 /*xy居中*/
 .xycenter{display:-webkit-box;-webkit-box-align:center;-webkit-box-pack:center;}

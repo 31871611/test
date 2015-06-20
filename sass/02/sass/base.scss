@@ -150,4 +150,11 @@ body{
   }
 }
 
+.arrow{
+  @include arrow(top,20px);
+}
+.box-center {
+  @include center(500px,300px);
+  background:#f00;
+}
 
