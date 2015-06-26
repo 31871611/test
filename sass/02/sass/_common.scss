@@ -147,3 +147,9 @@
   margin-top: -($height) / 2;
   margin-left: -($width) / 2;
 }
+
+//透明度
+@mixin opacity($opacity:50) {
+  opacity: $opacity / 100;
+  filter: alpha(opacity=$opacity);
+}
