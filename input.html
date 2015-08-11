@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<title>表单的处理</title>
+<script src="jquery-1.10.2.js"></script>
+<script>
+$(function(){
+    //点击得到焦点时清空输入窗，失去焦点时还原输入窗内容
+    $("input:text").focus(function(){
+        var val=$(this).val();
+        if(val == this.defaultValue){
+            $(this).val("");
+        }
+    }).blur(function(){
+        var val=$(this).val();
+        if(val == ""){
+           $(this).val(this.defaultValue);
+        }
+    });
+
+    //设置为选中true
+    $("input:checkbox").attr("checked",false);
+    //判断选中个数
+    if($("input:checked").length != 0){
+        alert("选中");
+    }
+    //判断是否选中
+    if($("input:checkbox").is(":checked")){
+        alert("选中");
+    }
+    //全选
+    $("input:button").click(function(){
+        /**
+         * 方法1全选
+         */
+        if($("input:checked").length == 0){
+            $("input:checkbox").attr("checked",true);
+        }
+        /**
+         * 方法2反选
+         * 如果一个都没被选中就是全选
+         * 双击是反选
+         */
+        $("input:checkbox").each(function(){
+            this.checked=!this.checked;
+        })
+    });
+    /**
+     * 方法3全选
+     */
+    $("#checkedAll").click(function(){
+        if(this.checked){ //当前单击的复选框被选中
+            $("[name=items]:checkbox").attr("checked",true);
+        }else{
+            $("[name=items]:checkbox").attr("checked",false);
+        }
+    });
+    /**
+     * 方法4全选
+     */
+    $("#checkedAll").click(function(){
+        $("[name=items]:checkbox").attr("checked",this.checked);
+    });
+    /**
+     * 方法5全选
+     * 当把复选框全选上后全选也被选中
+     */
+    $("[name=items]:checkbox").click(function(){
+        var flag=true;
+        $("[name=items]:checkbox").each(function(){     //这里不能使用$(this)f
+            if(!this.checked){
+                flag=false;
+            }
+        });
+        $("#checkedAll").attr("checked",flag);
+    });
+    /**
+     * 方法6
+     * 当把复选框全选上后全选也被选中
+     */
+    $("[name=items]:checkbox").click(function(){
+        var $tmp=$("[name=items]:checkbox");
+        $("#checkedAll").attr("checked",$tmp.length==$tmp.filter(":checked").length);
+    });
+    //下拉框选中
+    $("select").children("option:eq(2)").attr("selected",true);
+    //上传
+    $("#upfile").click(function(){
+        $("input:file").click();
+    });
+})
+</script>
+</head>
+<body>
+<input type="text" value="默认值"/>
+<br/>
+<input type="checkbox" value="复选1" name="items" id=""/>
+<input type="checkbox" value="复选2" name="items" id=""/>
+<input type="checkbox" value="复选3" name="items" id=""/>
+<input type="checkbox" name="" id="checkedAll"/>全选
+<input type="button" value="全选"/>
+<br/>
+<select>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+</select>
+<input type="file" name="" id=""/>
+<div id="upfile">上传文件</div>
+</body>
+</html>
