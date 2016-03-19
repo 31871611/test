@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>avalon</title>
+    <script src="../jquery-1.10.2.js"></script>
+    <script src="js/avalon.modern.js"></script>
+    <script src="js/test.js"></script>
+</head>
+<body>
+
+<div ms-controller="wrap" ms-include-src="tpl" data-include-replace="true"></div>
+
+<div ms-controller="wrap1">
+    {{a}}
+    {{b}}
+</div>
+<div ms-controller="wrap2">
+    {{a}}
+    <span ms-text="b"></span>
+    {{c}}
+    <span ms-html="d">转成html格式</span>
+    {{d}}
+</div>
+<div ms-controller="wrap3">
+    <span>{{a}}</span>
+    <input type="text" ms-duplex="a" />
+    双向同步绑定，只对表单元素生效ms-duplex
+</div>
+
+<div ms-important="">
+    ms-important的用法与ms-controller差不多，担它不会向上查找
+</div>
+
+<div ms-controller="AAA">
+    <div>{{name}}:{{color}}</div>
+    <div ms-controller="BBB">
+        <div>{{name}}:{{color}}</div>
+        <div ms-controller="CCC">
+            <div>{{name}}:{{color}}</div>
+        </div>
+        <div ms-important="DDD">
+            ms-important不继承父级
+            <div>{{name}}:{{color}}</div>
+        </div>
+    </div>
+</div>
+
+<div ms-skip="">
+    ms-skip注明这块区域不应用作保的viewModel的属性，它里面的任何指令都会失效
+</div>
+
+<div>
+    ms-html等同与{{a | html}}可是没效果
+</div>
+
+<div ms-controller="wrap4">
+    ms-value
+    <input type="text" ms-value="text" />
+    <textarea ms-value="xxx{{text+'!!'}}yyy"></textarea>
+</div>
+
+<div>
+    {{"abc" | uppercase}}
+</div>
+
+<div ms-controller="wrap5">
+    <div>
+        radio要求prop为一个布尔
+    </div>
+    <input type="radio" ms-duplex="isSure" />
+    <div ms-visible="isSure">
+        {{isSure}}
+    </div>
+</div>
+
+<div ms-controller="wrap6">
+    <div>
+        checkbox时要求prop为一个数组，当修改它的内容地，avalon会将些元素的checked值赋给prop
+    </div>
+    <input type="checkbox" ms-duplex="hobbies" value="football" />足球
+    <input type="checkbox" ms-duplex="hobbies" value="basketball" />篮球
+    <input type="checkbox" ms-duplex="hobbies" value="baseball" />棒球
+    <div>
+        {{hobbies}}
+    </div>
+</div>
+
+<div ms-controller="wrap7">
+    <div>
+        select时，要求prop为一个字符串或数组
+    </div>
+    <select ms-duplex="flight">
+        <option value="北京-天津">北京-天津</option>
+        <option value="北京-成都">北京-成都</option>
+        <option value="北京-上海">北京-上海</option>
+        <option value="北京-广州">北京-广州</option>
+    </select>
+    <select multiple="true" ms-duplex="hotel">>
+        <option value="广州南站旅馆">广州南站旅馆</option>
+        <option value="广州怡东酒店">广州怡东酒店</option>
+        <option value="广州泊逸精品酒店">广州泊逸精品酒店</option>
+        <option value="嘉立连锁酒店红星国际店">嘉立连锁酒店红星国际店</option>
+    </select>
+    <div>{{flight}}</div>
+    <div>{{hotel}}</div>
+</div>
+
+<div ms-controller="wrap8">
+    ms-duplex-text只能用于radio，用于模拟text控件的行为
+    <div>
+        <input type="radio" ms-duplex-text="gender" value="男" />男
+        <input type="radio" ms-duplex-text="gender" value="女" />女
+    </div>
+    <div>
+        性别：{{gender}}
+    </div>
+</div>
+
+<div ms-controller="wrap9">
+    ms-duplex-boolean中能用于radio，要求为一个布尔
+    <div>
+        <input type="radio" ms-duplex-boolean="onlinePayment" name="op" value="true" />是
+        <input type="radio" ms-duplex-boolean="onlinePayment" name="op" value="false" />否
+    </div>
+    {{onlinePayment}}
+</div>
+
+<div ms-controller="wrap10">
+    ms-data-duplex-observe="false"禁止双向同步
+    <div>
+        <input type="text" ms-duplex="username" ms-data-duplex-observe="false" />
+        <input type="password" ms-duplex="password" />
+        <textarea ms-duplex="profile"></textarea>
+    </div>
+    <ul>
+        <li>{{username}}</li>
+        <li>{{password}}</li>
+        <li>{{profile}}</li>
+    </ul>
+</div>
+
+<div ms-controller="wrap11">
+    显示隐藏ms-visible为真显示
+    <input type="button" ms-click="toggle(1)" value="点击显示1" />
+    <input type="button" ms-click="toggle(2)" value="点击显示2" />
+    <input type="button" ms-click="toggle(3)" value="点击显示3" />
+    <div ms-visible="currentIndex === 1">1</div>
+    <div ms-visible="currentIndex === 2">2</div>
+    <div ms-visible="currentIndex === 3">3</div>
+</div>
+
+<div ms-controller="wrap12">
+    ms-if插入移除处理
+    <div ms-if="true">
+        根据条件显示内容
+    </div>
+    <div ms-visible="object.id != null">
+        这是visible的：<span>{{object.message}}</span>
+    </div>
+    <div ms-if="object.id != null">
+        这是if的：<span>{{object.message}}</span>
+    </div>
+</div>
+
+<div ms-controller="wrap13">
+    <div ms-data-number="number"
+         ms-data-number2="number2"
+         ms-data-bool="bool"
+         ms-data-bool2="bool2"
+         ms-data-null="nn"
+         ms-data-void="vv"
+         ms-data-array="array"
+         ms-data-date="date"
+         ms-data-object="object"
+         ms-data-fn="show"
+         ms-click="show">ms-data-*数据缓存</div>
+</div>
+
+<div ms-controller="wrap14">
+    属性操作
+    <div>类名操作ms-class</div>
+    <div>表单value属性操作ms-duplex</div>
+    <div>元素固有属性处理ms-attr</div>
+    <div>元素自定义属性管理ms-href</div>
+    <div>元素布尔属性操作ms-src</div>
+    <form>
+        <h2>布尔属性绑定(ms-attr-disabled,ms-attr-readonly)</h2>
+        <label>姓名</label>
+        <input type="text" ms-duplex="textModel" ms-attr-disabled="t1" />
+        <label>年龄</label>
+        <input type="text" ms-duplex="age" ms-attr-readonly="r1" />
+        <div>
+            <label><input type="radio" ms-duplex-string="sex" value="男" />男</label>
+            <label><input type="radio" ms-duplex-string="sex" value="女" />女</label>
+        </div>
+        <div>
+            <label>工作</label>
+            <select>
+                <option value="it">it</option>
+                <option value="销售" ms-attr-selected="s1">销售</option>
+                <option value="产品">产品</option>
+            </select>
+        </div>
+        <div>
+            <label>兴趣爱好</label>
+            <input type="checkbox" value="option1" ms-attr-checked="c1" />篮球
+            <input type="checkbox" value="option2" />足球
+            <input type="checkbox" value="option3" />羽毛球
+        </div>
+        <div>
+            <h2>字符串属性绑定(ms-attr-id,ms-attr-name,ms-attr-title,ms-src,ms-href,ms-attr-data-url)</h2>
+            <a ms-attr-id="{{id}}" ms-attr-name="{{name}}" ms-href="{{path}}/city/">重庆酒店</a>
+            <img ms-src="{{src}}" ms-title="{{title}}" alt="">
+        </div>
+    </form>
+</div>
+
+<div ms-controller="wrap15">
+    ms-class类名操作
+    <div ms-class="active:isOK">为true显示</div>
+    <div ms-class="width{{w}}:isOK">插值表达式</div>
+    <div ms-class="red:1+1">根据计算决定添加或删除</div>
+    <div ms-class="aaa bbb ccc">添加多个样式</div>
+    <div ms-class-1="aaa" ms-class-2="bbb">添加多个样式，根据ms-class后的数值大小决定顺序</div>
+    <div ms-class="xxx yyy zzz:true">添加多个样式，结果是xxx yyy zzz</div>
+    <div ms-class="aaa:toggle" ms-click="click">点击改变toggle</div>
+</div>
+
+<div>
+    ms-active,ms-hover用来模拟:active，:hover效果
+</div>
+
+<div ms-controller="wrap20">
+    <div>ms-duplex-checked<input type="checkbox" ms-duplex-checked="a" />{{a}} {{typeof a}}</div>
+    <div>ms-duplex-checked<input type="radio" ms-duplex-checked="b" />{{b}} {{typeof b}}</div>
+    <div>ms-duplex-string<input type="text" ms-duplex="c" />{{c}} {{typeof c}}</div>
+    <div>ms-duplex-string<input type="text" ms-duplex-string="d" />{{d}} {{typeof d}}</div>
+    <div>ms-duplex-number<input type="text" ms-duplex-number="e" />{{e}} {{typeof e}}</div>
+    <div>ms-duplex-boolean<input type="text" ms-duplex-boolean="f" />{{f}} {{typeof f}}</div>
+    <div>
+        ms-duplex-string
+        <input ms-duplex-string="g" type="checkbox" value="a" />
+        <input ms-duplex-string="g" type="checkbox" value="b" />
+        <input ms-duplex-string="g" type="checkbox" value="c" />
+        <input ms-duplex-string="g" type="checkbox" value="d" />
+        {{g}}
+    </div>
+    <div>
+        ms-duplex-number
+        <input ms-duplex-number="h" type="checkbox" value="1" />
+        <input ms-duplex-number="h" type="checkbox" value="2" />
+        <input ms-duplex-number="h" type="checkbox" value="3" />
+        <input ms-duplex-number="h" type="checkbox" value="4" />
+        {{h}}
+    </div>
+    <div>
+        ms-duplex-boolean
+        <input ms-duplex-boolean="i" type="checkbox" value="false" />
+        <input ms-duplex-boolean="i" type="checkbox" value="true" />
+        {{i}}
+    </div>
+    <div>
+        ms-duplex-string/ms-duplex
+        <select ms-duplex-string="j">
+            <option value="aa">111</option>
+            <option value="bb">222</option>
+            <option value="cc">333</option>
+        </select>
+        {{j}}
+    </div>
+    <div>
+        ms-duplex-number
+        <select ms-duplex-number="k">
+            <option>111</option>
+            <option>222</option>
+            <option>333</option>
+        </select>
+        {{k}}
+    </div>
+    <div>
+        <p>ms-data-duplex-observe只支持数字或某类型</p>
+        <p>data-duplex-focus</p>
+        <input ms-duplex="o" ms-data-duplex-observe="false" data-duplex-focus="true" type="text" />
+        {{o}}
+    </div>
+    <div>
+        data-duplex-changed
+        <input ms-duplex="p" data-duplex-changed="changedCallback" type="text" />
+        {{p}}
+    </div>
+    <div>
+        data-duplex-event
+        <input ms-duplex="q" data-duplex-event="blur" type="text" />
+        {{q}}
+    </div>
+</div>
+
+<div ms-controller="wrap21">
+    验证插件,字符个数
+    <input type="text" ms-duplex-limit="aaa" data-duplex-limit="10" />{{aaa}}
+</div>
+
+<div ms-controller="wrap16">
+    <p>样式操作</p>
+    <p>内联样式操作ms-css</p>
+    <p ms-css-width="width">ms-css-width="width"</p>
+    <p ms-css-background-color="backgroundColor">ms-css-background-color="backgroundColor"</p>
+    <select ms-duplex="backgroundColor">
+        <option value="red">红</option>
+        <option value="yellow">黄</option>
+        <option value="green">绿</option>
+    </select>
+    <p>类名操作ms-class</p>
+</div>
+
+<div>
+    <p>事件绑定</p>
+    <p>ms-click=fn、ms-click-1=fn2、ms-click-2=fn3</p>
+    <p>ms-on-click=fn、ms-on-click-1=fn2、ms-on-click-2=fn3</p>
+    <fieldset ms-controller="wrap17">
+        <legend>有关事件回调传参</legend>
+        <div ms-mouseenter="callback" ms-mouseleave="callback">{{status}}</div>
+        <input type="text" ms-on-input="check" />{{field}}
+        <div ms-click="argsClick($event,100,firstName)">点击</div>
+        <div ms-each-el="array">
+            <p ms-click="loopClick(el,$event)">{{el}}</p>
+        </div>
+        <div ms-click="submit">提交</div>
+    </fieldset>
+</div>
+
+<div ms-controller="wrap18">
+    <div ms-click-1="click0" ms-click-2="click1" ms-click-3="click2">请点我</div>
+    <div>{{str1}}</div>
+    <div>{{str2}}</div>
+    <div>{{str3}}</div>
+</div>
+
+<div ms-controller="wrap19" ms-click-3="fn" ms-click-2="fn1" ms-click-1="fn2">
+ms-click-1并没有按数字1-3进行运行，而是按绑定顺序运行
+</div>
+
+<div ms-controller="wrap25">
+    <p>ms-include="expr"嵌入到页面的模板</p>
+
+    <script type="avalon" id="tpl">
+        herd,{{3+6*5}}
+    </script>
+    <script type="avalon" id="lala">
+        <strong>{{name}}</strong>
+    </script>
+    <script type="avalon" id="hehe">
+        <em>{{content}}</em>
+    </script>
+    <button ms-click="change">切换子模板</button>
+    <div ms-include="'tpl'"></div>
+    <div ms-include="eee"></div>
+    <br />
+    <p>ms-include-src="expr"独立成子页面的模板</p>
+    <div ms-include-src="'x.html'"></div>
+    <select ms-duplex="url">
+        <option>temlate1</option>
+        <option>temlate2</option>
+        <option>temlate3</option>
+    </select>
+    <div ms-include-src="{{url}}.html"></div>
+</div>
+
+<div ms-controller="wrap26">
+    <p>data-include-loaded、data-include-rendered、data-include-replace模板操作回调属性</p>
+    <p>avalon.templateCache模板缓存对象</p>
+    <div ms-include-src="aaa" data-include-loaded="adjust"></div>
+    <button ms-click="change">点击切换模板</button>
+</div>
+
+<div ms-controller="wrap27">
+    <div ms-include-src="'teml.html'" data-include-rendered="render"></div>
+</div>
+
+<div ms-controller="wrap28">
+    data-include-replace,为true时不显示父元素
+    <div>
+        <button type="button" ms-click="change">change</button>
+        <div ms-include-src="aaa"></div>
+        <div ms-include-src="aaa" data-include-replace="true"></div>
+    </div>
+</div>
+
+<div ms-controller="wrap29">
+    $watch、$unwatch、$fire属性监听与模块通信
+    <div ms-click="click('aaa')">{{aaa}}</div>
+    <div ms-click="click('$ccc')">{{$ccc}}</div>
+</div>
+
+
+<div ms-controller="list">
+    <span ms-mouseover="changeUI(1)">公告</span>
+    <span ms-mouseover="changeUI(0)">媒体报道</span>
+    <a ms-href="'#!/'+more_name">{{more_text}}</a>
+    <ul>
+        <li ms-repeat="infoList">
+            <a ms-href="'#!/'+more_name+'/'+el.id" ms-title="el.title">{{el.title}}</a>
+        </li>
+    </ul>
+</div>
+
+<div ms-controller="ajax">
+    <p>ajax</p>
+    <ul>
+        <li ms-repeat="list">
+            {{el.id}}-----{{el.title}}
+        </li>
+    </ul>
+</div>
+
+</body>
+
+</html>
