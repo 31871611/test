@@ -281,6 +281,47 @@ avalon.duplexHooks.limit={
     }
 };
 
+var wrap22Index=0;
+var wrap22=avalon.define({
+    $id:"wrap22",
+    array:["葡萄","椰子","火龙果","橙子"],
+    data:{
+        aaa:111,
+        bbb:222,
+        ccc:333,
+        ddd:444
+    },
+    getIndex:function(){
+        return wrap22Index++;
+    },
+    array2:[["a","b","c","d"],["aa","bb","cc","dd"],["aaa","bbb","ccc","ddd"]],
+    array3:["a","b","c"],
+    array4:[
+        {text:"a"},
+        {text:"b"},
+        {text:"c"}
+    ]
+});
+//对象数据-键值的更新
+setTimeout(function(){
+    wrap22.data.aaa=77777;  //没更新成功
+},2000);
+//对象数据-键值对的更新
+setTimeout(function(){
+    wrap22.data={
+        ccc:777,
+        eee:888,
+        fff:999
+    };
+},4000);
+//数组数据-简单值的更新
+setTimeout(function(){
+    wrap22.array.set(0,"西瓜");
+},6000);
+//数组数据-对象值的更新
+setTimeout(function(){
+    wrap22.array4[0].text="aaaaa"
+},8000);
 
 var wrap25=avalon.define({
     $id:"wrap25",

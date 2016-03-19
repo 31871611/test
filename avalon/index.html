@@ -341,6 +341,74 @@
 ms-click-1并没有按数字1-3进行运行，而是按绑定顺序运行
 </div>
 
+<div ms-controller="wrap22">
+    <dl>
+        <dt>循环过程中的临时变量</dt>
+        <dd>ms-repeat，ms-each</dd>
+        <dd>el，ms-repeat-*，ms-each-*这个*所代表的全小写单词，不存在默认为el，引用着当前循环的元素</dd>
+        <dd>$index，当前循环对应的索引值</dd>
+        <dd>$first，boolean当前循环元素是否为数组第一个元素</dd>
+        <dd>$last，boolean当前循环元素是否为数组最后一个元素</dd>
+        <dd>$remove，从数组中删除当前循环</dd>
+        <dd>$outer，内层循环访问外层循环的变量</dd>
+        <dd>$key，ms-repeat，ms-with当前循环中的某一个键名，此为一个不可监控的属性</dd>
+        <dd>$val，ms-repeat，ms-with当前循环某一个键值</dd>
+    </dl>
+    <p>ms-repeat</p>
+    <ul>
+        <li ms-repeat="array">{{el}}</li>
+    </ul>
+    <ul>
+        <li ms-repeat-item="array" ms-click="$remove">{{item}}、{{getIndex()}}、{{$index}}、{{$first}}、{{$last}}</li>
+    </ul>
+    <p>ms-each专门循环数组元素</p>
+    <ul ms-each="array">
+        <li>{{el}}</li>
+    </ul>
+    <ul>
+        <li ms-repeat="data">{{$key}}--{{$val}}</li>
+    </ul>
+    <ul ms-with="data">
+        <li>{{$key}}--{{$val}}</li>
+    </ul>
+    <table>
+        <thead>
+            <tr>
+                <td colspan="3">二维数组</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ms-repeat="array2">
+                <td ms-repeat-elem="el">{{$outer.$index}}.{{$index}}.{{elem}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <h2>数据的更新</h2>
+        <dl>
+            <dt>数组数据的更新</dt>
+            <dd>array.set(1,"香蕉");简单值的更新</dd>
+        </dl>
+        <ul>
+            <li ms-repeat="array3">{{el}}</li>
+        </ul>
+        <dl>
+            <dt>对象数据的更新</dt>
+            <dd>array[0].text="c";</dd>
+        </dl>
+        <ul>
+            <li ms-repeat="array4">{{el.text}}</li>
+        </ul>
+    </div>
+    <dl>
+        <dt>回调绑定属性</dt>
+        <dd>data-repeat-rendered，当前操作名("add","del","move","append","clear")用ms-repeat绑定，当监控数组发生添加，删除，重排等操作时触发</dd>
+        <dd>data-with-sorted，原对象的所有键名构成的数组，用ms-repeat,ms-with绑定，该对象渲染之前触发，要求输出一个字符串数组，对象的键值对会根据它依次输出</dd>
+        <dd>data-with-rendered，当前操作名("append")用ms-with绑定，当目标对象输出页面后触发</dd>
+        <dd>data-each-rendered，，当前操作名("add","del","move")用ms-each绑定，当监控数组发生添加，删除，重排等操作时触发</dd>
+    </dl>
+</div>
+
 <div ms-controller="wrap25">
     <p>ms-include="expr"嵌入到页面的模板</p>
 
