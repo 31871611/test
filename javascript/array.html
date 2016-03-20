@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组</title>
+</head>
+<body>
+
+</body>
+<script>
+
+/************************************/
+
+    //创建数组
+    var numbers=[];     //推荐使用
+    var numbers2=[1,2,3,4,5];
+    var numbers3=new Array();
+    var numbers4=new Array(1,2,3,4,5);
+
+    //(Array.isArray()判断个个对象是否是数组
+    console.log(Array.isArray(numbers));
+
+
+    //字符串生成数组String.splice();
+    var sentence="the quick brown fox jumped over the lazy dog";
+    var words=sentence.split(" ");
+    for(var i=0;i<words.length;i++){
+        console.log(words[i]);
+    }
+
+
+    //复制数组。浅复制、深复制
+
+
+    //查找元素
+    //indexOf()查找传进去的参数在目标数组中是否存在
+    var names=["David","Cynthia","Raymond","Clayton","Jennifer"];
+    var name=prompt("Enter a name to search for:");
+    var position=names.indexOf(name);
+    if(position >= 0){
+        console.log("Found "+name+" at position "+position);    //输出数组索引
+    }else{
+        console.log(name+" not found in array");
+    }
+
+
+    //将数组转换为字符串：toString()、join()默认使用逗号分隔
+    console.log(names.toString());      //没有参数
+    console.log(names.join(";"));
+
+
+    //通过已有数组创建新数组
+    //concat();合并多个数组创建一个新数组
+    //splice();截取一个数组的子集创建一个新数组，参1截取的起始索引；参2截取的长度
+    var cisDept=["Mike","Clayton","Terrill","Danny","Jennifer"];
+    var dmpDept=["Raymond","Cynthia","Bryan"];
+    var itDiv=cisDept.concat(dmpDept);
+    console.log(itDiv);
+
+    var dmpSplice=itDiv.splice(3,3);
+    console.log(dmpSplice);
+
+    //从数组中间位置添加和删除元素
+    //添加
+    var numsAddSplice=[1,2,3,7,8,9];
+    var newElementsArray=[4,5,6];
+    numsAddSplice.splice(3,0,newElementsArray);
+//    numsAddSplice.splice(3,0,4,5,6);   //方法2
+    console.log(numsAddSplice);
+
+    //删除
+    var numsDel=[1,2,3,100,200,300,400,4,5,0];
+    numsDel.splice(3,4);
+    console.log(numsDel);
+
+
+    //数组中添加元素
+    //push();将一个元素添加数组末尾
+    //unshift();向数组的开头添加一个或更多元素,并返回新的长度
+    var numsPush=[1,2,3];
+    numsPush.push(4);
+    console.log(numsPush);
+
+    //在数组开关添加元素
+    var firstPush=[2,3,4,5];
+    var Npush=firstPush.length;
+    for(var i=Npush;i>=0;i--){
+        firstPush[i]=firstPush[i-1];
+    }
+    firstPush[0]=1;
+    console.log(firstPush);
+
+    var numsUnshift=[2,3,4,5];
+    numsUnshift.unshift(1,2);
+    console.log(numsUnshift);
+
+
+    //从数组中删除元素
+    //pop();删除数组末尾的元素
+    //shift();删除数组第一个元素
+    var numsPop=[1,2,3,4,5,6,9];
+    numsPop.pop();
+    console.log(numsPop);
+
+    var numsShift=[9,0,1,2,3,4,5];
+    numsShift.shift();
+    console.log(numsShift);
+
+
+    //为数组排序
+    //reverse();将数组中元素的顺序进行翻转
+    //sort();按照字母顺序对元素进行排序
+
+
+    numbers.forEach();
+    numbers.every();
+    numbers.some();
+    numbers.reduce();
+    numbers.add();
+    numbers.reduceRight();
+    numbers.map();
+    numbers.filter();
+
+
+
+/************************************/
+
+</script>
+</html>

@@ -51,13 +51,13 @@
 </div>
 
 <div>
-    ms-html等同与{{a | html}}可是没效果
+    ms-html等同与{{"a" | html}}可是没效果
 </div>
 
 <div ms-controller="wrap4">
-    ms-value
-    <input type="text" ms-value="text" />
-    <textarea ms-value="xxx{{text+'!!'}}yyy"></textarea>
+    请改用ms-attr-value代替ms-value
+    <input type="text" ms-attr-value="text" />
+    <textarea ms-attr-value="xxx{{text+'!!'}}yyy"></textarea>
 </div>
 
 <div>
@@ -107,10 +107,10 @@
 </div>
 
 <div ms-controller="wrap8">
-    ms-duplex-text只能用于radio，用于模拟text控件的行为
+    ms-duplex-text已经更名为ms-duplex-string，只能用于radio，用于模拟text控件的行为
     <div>
-        <input type="radio" ms-duplex-text="gender" value="男" />男
-        <input type="radio" ms-duplex-text="gender" value="女" />女
+        <input type="radio" ms-duplex-string="gender" value="男" />男
+        <input type="radio" ms-duplex-string="gender" value="女" />女
     </div>
     <div>
         性别：{{gender}}
@@ -182,8 +182,8 @@
     <div>类名操作ms-class</div>
     <div>表单value属性操作ms-duplex</div>
     <div>元素固有属性处理ms-attr</div>
-    <div>元素自定义属性管理ms-href</div>
-    <div>元素布尔属性操作ms-src</div>
+    <div>元素自定义属性管理，请改用ms-attr-href代替ms-href</div>
+    <div>元素布尔属性操作ms-src，请改用ms-attr-src代替ms-src</div>
     <form>
         <h2>布尔属性绑定(ms-attr-disabled,ms-attr-readonly)</h2>
         <label>姓名</label>
@@ -210,8 +210,8 @@
         </div>
         <div>
             <h2>字符串属性绑定(ms-attr-id,ms-attr-name,ms-attr-title,ms-src,ms-href,ms-attr-data-url)</h2>
-            <a ms-attr-id="{{id}}" ms-attr-name="{{name}}" ms-href="{{path}}/city/">重庆酒店</a>
-            <img ms-src="{{src}}" ms-title="{{title}}" alt="">
+            <a ms-attr-id="{{id}}" ms-attr-name="{{name}}" ms-attr-href="{{path}}/city/">重庆酒店</a>
+            <img ms-attr-src="{{src}}" ms-attr-title="{{title}}" alt="">
         </div>
     </form>
 </div>
@@ -405,9 +405,70 @@ ms-click-1并没有按数字1-3进行运行，而是按绑定顺序运行
         <dd>data-repeat-rendered，当前操作名("add","del","move","append","clear")用ms-repeat绑定，当监控数组发生添加，删除，重排等操作时触发</dd>
         <dd>data-with-sorted，原对象的所有键名构成的数组，用ms-repeat,ms-with绑定，该对象渲染之前触发，要求输出一个字符串数组，对象的键值对会根据它依次输出</dd>
         <dd>data-with-rendered，当前操作名("append")用ms-with绑定，当目标对象输出页面后触发</dd>
-        <dd>data-each-rendered，，当前操作名("add","del","move")用ms-each绑定，当监控数组发生添加，删除，重排等操作时触发</dd>
+        <dd>data-each-rendered，当前操作名("add","del","move")用ms-each绑定，当监控数组发生添加，删除，重排等操作时触发</dd>
     </dl>
+    <ul ms-each="array" data-each-rendered="changArray">
+        <li>{{el}}</li>
+    </ul>
+    <ul ms-with="data" data-with-rendered="changeData">
+        <li>{{$key}}--{{$val}}</li>
+    </ul>
+    <div>
+        <p>获得数组的长度使用size方法</p>
+        <p>循环分支判断ms-if-loop</p>
+    </div>
 </div>
+
+<div ms-controller="wrap23">
+    <p>案例一：全选</p>
+    <ul>
+        <li>
+            <input type="checkbox" ms-duplex-checked="allchecked" data-duplex-changed="checkAll" />全选
+        </li>
+        <li ms-repeat="data"><input type="checkbox" ms-duplex-checked="el.checked" data-duplex-changed=" " />xxxxx</li>
+    </ul>
+</div>
+
+<div ms-controller="wrap24">
+    <p>案例二：tab切换</p>
+    <button ms-repeat="array" ms-click="toggle($index)">{{$index+1}}</button>
+    <div ms-repeat="array" ms-if-loop="$index === currentIndex" style="border:1px solid #ccc;height: 100px;">{{el.text}}</div>
+</div>
+
+<div ms-controller="wrap30">
+    <p>案例三：监控数组方法演示</p>
+    <p>监控数组方法使用的案例，介绍了push,unshift,remove,ensure,removeAt,pop,shift,sort,reverse等方法</p>
+
+</div>
+
+
+<div ms-controller="wrap31">
+    <p>案例四：表格排序</p>
+    <select ms-duplex="selected">
+        <option ms-repeat="options">{{el}}</option>
+    </select>
+    <select ms-duplex="trend">
+        <option value="1">up</option>
+        <option value="-1">down</option>
+    </select>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>name</td>
+                <td>size</td>
+                <td>date</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ms-repeat="data">
+                <td>{{el.name}}</td>
+                <td>{{el.size}}</td>
+                <td>{{el.date}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 
 <div ms-controller="wrap25">
     <p>ms-include="expr"嵌入到页面的模板</p>
@@ -465,10 +526,10 @@ ms-click-1并没有按数字1-3进行运行，而是按绑定顺序运行
 <div ms-controller="list">
     <span ms-mouseover="changeUI(1)">公告</span>
     <span ms-mouseover="changeUI(0)">媒体报道</span>
-    <a ms-href="'#!/'+more_name">{{more_text}}</a>
+    <a ms-attr-href="'#!/'+more_name">{{more_text}}</a>
     <ul>
         <li ms-repeat="infoList">
-            <a ms-href="'#!/'+more_name+'/'+el.id" ms-title="el.title">{{el.title}}</a>
+            <a ms-attr-href="'#!/'+more_name+'/'+el.id" ms-attr-title="el.title">{{el.title}}</a>
         </li>
     </ul>
 </div>

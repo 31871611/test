@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+
+</body>
+<script>
+
+
+
+
+/**
+ *
+ * typeof可以看到变量的具体数据类型时什么。typeof "a";typeof 1
+ *
+ * js中非0的数都为真，包括小数1.1、负数在逻辑运算中，0、""、false、null、undefined、NaN均表示false
+ *
+ * 命名规则：在变量名前加上三个字符组成的前缀来表示变量的类型。整型变量，前缀为int；浮点型变量，前缀为flt；字符串型变量，前缀为str
+ *
+ * %(取模)是计算两个数的余数。通常用于判断两个数是否整数，主要用于整数
+ *
+ * myVar++：myVar=myVar+1
+ * myVar--：myVar=myVar-1
+ * ++myVar：
+ * --myVar：
+ * myVar = myNumber++ - 20;先从变量myNumber减去20得到一个结题，然后再把myNumber加1
+ * myVar = ++myNumber - 20;先把变量myNumber加1，然后再从中减去20
+ * ++作为后缀，放在变量的后面。变量将先被使用，然后再进行自增操作
+ * +=：myVar+=6，myVar=myVar+6
+ * -=
+ * /=
+ * %=
+ *
+ *
+ * parseInt()把一个字符串转换成对应的整数
+ * parseFloat()返回浮点数
+ * Number()显式地将该字符串转换为数值
+ * isNaN()检查某个值是否是NaN值
+ *
+ * return：终止程序(函数)并返回一个值
+ * break：跳出(中断)当前循环语句
+ * continue：跳出(中断)循环语句中的当次循环，进入下一次(断续)循环
+ *
+ * 单个的&或|符号是二进制的位运算符
+ *
+ *
+ * window浏览器的窗体
+ * alert()
+ * prompt()函数
+ *
+ * location包含了浏览器所加载的当前页面的url的详细信息
+ * replace()
+ *
+ * history包含了用户所访问过的页面历史信息
+ * length：能获得浏览器历史栈中页面的个数
+ * back()
+ * forward()
+ * go()接受一个参数，go(-1)等于back()，go(1)等于forward()
+ *
+ * document用于代表web页面
+ * write()
+ * document.images：页面上所用images的集合
+ *
+ <img src="images/face.jpg" onclick="return changeImg(0)" alt="">
+ <img src="images/face.jpg" onclick="return changeImg(1)" alt="">
+ //页面加载时随机地显示一张图片
+ var myImages=["images/face.jpg","images/face_bg.jpg","images/logo.png","images/order_list.jpg"];
+
+ function changeImg(imgNumber){
+    var imgClicked=document.images[imgNumber];
+    //设置一个0-3之间的随机数
+    var newImgNumber=Math.round(Math.random()*3);
+    //确保随机选出的图片不是当前被单击的那幅图片
+    while (imgClicked.src.indexOf(myImages[newImgNumber]) != -1){
+        newImgNumber=Math.round(Math.random()*3);
+    }
+    imgClicked.src=myImages[newImgNumber];
+    return false;
+ }
+ *
+ * document.links：表示页面上所有A对象的集合
+ * forms：表示页面上form对象的集合
+ * elements[]
+ * name属性
+ * value属性
+ * type属性
+ * checked属性，checkbox多选是否选中
+ * radio单选具有length属性
+ *
+ <form name="form1">
+    <input type="button" name="myButton" value="按钮">
+ </form>
+ document.form1.length;返回form1里的表单长度
+ document.form1.myButton.value与document.form1[0]一样;
+ *
+ <form name="form1">
+     <input type="radio" name="myRadio">
+     <input type="radio" name="myRadio">
+     <input type="radio" name="myRadio">
+     <input type="radio" name="myRadio">
+     <input type="radio" name="myRadio">
+ </form>
+ for(var i=0;i<document.form1.myRadio.length;i++){
+        (function(i){
+            document.form1.myRadio[i].onclick=function(){
+                alert(i);
+            }
+        })(i);
+ };
+ *
+ <form name="form1">
+     <input type="text" name="myText" value="用户名" />
+     multiple多选
+     options[]，具有index属性、text属性、value属性、length
+     <select name="theDay" size="5" multiple>
+     <option value="0" selected>monday</option>
+     <option value="1">tuesday</option>
+     <option value="2">wednesday</option>
+     <option value="3">thursday</option>
+     <option value="4">friday</option>
+     <option value="5">saturday</option>
+     <option value="6">sunday</option>
+     </select>
+ </form>
+ document.form1.myText.select();
+
+ //列表框与下拉列表框具有3个事件：onfocus()、onblur()、onchange()
+ //document.form1.theDay.options.length;
+ //document.form1.theDay.options[0].value;
+ //添加新的列表项
+ //使用new创建一个option对象，然后插入到select对象的option[]数组中元素值为空的索引位置上
+ //新的option对象，需要两个参数。1、列表框显示的标题；2、该项设置的值
+ document.form1.theDay.options[7]=new Option("theText","theValue");
+ //移除一个选项，只需将options[]数组中该项的值设为null
+ document.form1.theDay.options[7]=null;
+ //从中间插入，需要腾出位置
+ //将option所有的选项都按顺序向后移动一个位置，空出索引为2的数组元素，以供插入
+ var len=document.form1.theDay.options.length-1;
+ for(var i=len;i>2;i--){
+        document.form1.theDay.options[i].text=document.form1.theDay.options[i-1].text;
+        document.form1.theDay.options[i].value=document.form1.theDay.options[i-1].value;
+    }
+ document.form1.theDay.options[2]=new Option("new2","new2");
+ //ie中添加新的列表项
+ //add()接受两个参数，1、要插入的option对象；2、该option对象要插入的索引位置。add(new Option("new2","new2"),2)
+ //remove()要删除的索引。remove(2)
+ *
+
+
+ * navigator包含了浏览器自身的相关信息
+ * document.all仅被ie4以上的浏览器支持
+ *
+ * screen包含了客户端计算机显示器显示能力信息
+ *
+ * 事件
+ * onload：页面加载完毕
+ * onunload：当页面所载，关闭浏览器或者打开了其他页面
+ * onload与onunload要放在window下，window.onload
+ * onclick：单击
+ * onfocus()：获得焦点
+ * onblur()：失去焦点
+ * onmousedown()
+ * onmouseup()
+ * onselect()方法，用于选择或加亮文本框中的文本
+ * onchange()内容发生改变
+ * onkeydown()当用户按下键时即触发
+ * onkeypress()当用户按了一个键时将触发
+ * onkeyup()当用户放开一个键时即触发
+ * event对象
+ * type返回事件名称
+ * srcElement|target返回接收当前事件的HTML元素。window.event.srcElement|event.target
+ * bubbles一个逻辑值，表示是否允许事件冒泡（即事件从一个底层元素向上传递给上一层的元素）
+ * cancelable一个逻辑值，表示是否可以取消事件默认行为
+ * currentTarget表示当前事件所指向的元素节点
+ * eventPhase一个表示事件流当前阶段的数字值
+ * fromElement表示鼠标移出的元素
+ * toElement表示产生事件的元素
+ * srcElement表示鼠标移入的元素
+ *
+ *
+ document.getElementsByTagName("a")[0].onclick=function(event){
+    var elementTarget;
+    window.event ? elementTarget=window.event.srcElement : elementTarget=event.target;
+    alert(elementTarget);
+
+    if(document.all){
+        alert(window.event.srcElement);
+        alert(window.event.type);
+    }else{
+        alert(event.target);
+        alert(event.type);
+    }
+ }
+ * MouseEvent对象，鼠标操作所引发的各种事件，如当前鼠标指针的坐标值、或者鼠标从哪一个元素上移开
+ * altKey一个逻辑值，表示当事件发生时，alt键是否被按下
+ * shiftKey一个逻辑值，表示当事件发生时，alt键是否被按下
+ * ctrlKey一个逻辑值，表示当事件发生时，alt键是否被按下
+ * metaKey一个逻辑值，表示当事件发生时，alt键是否被按下
+ * button对于鼠标事件，该属性表示鼠标的哪一个按钮被按下
+ * clientX表示当前事件发生时，鼠标指针在客户端区域中的横坐标，即x坐标
+ * clientY表示当前事件发生时，鼠标指针在客户端区域中的横坐标，即y坐标
+ * screenX表示当前事件发生时，鼠标指针相对于计算机屏幕区域中的横坐标，即x坐标
+ * screenY表示当前事件发生时，鼠标指针相对于计算机屏幕区域中的横坐标，即y坐标
+ *
+ //body里需要有内容
+ document.body.onclick=function(event){
+        if(document.all){
+//            alert(window.event.clientX);
+//            alert(window.event.altKey);
+            alert(window.event.button);
+        }else{
+//            alert(event.clientX);
+//            alert(event.altKey);
+            alert(event.button);
+        }
+    }
+ *
+ *
+ *
+ * 时间日期
+ * 1
+ *
+ *
+ *
+ *
+ * 字符串操作
+ * charAt()方法可返回指定位置的字符。"Hello world!".charAt(1);   //e
+ * charCodeAt()方法可返回指定位置的字符的 Unicode 编码。这个返回值是 0 - 65535 之间的整数。
+ *
+ * indexOf()、lastIndexOf()；对大小写敏感！
+ * indexOf()方法可返回某个指定的字符串值在字符串中首次出现的位置，如果要检索的字符串值没有出现，则该方法返回 -1。"Hello world!".indexOf("world");  //6
+ * lastIndexOf()方法可返回一个指定的字符串值最后出现的位置，在一个字符串中的指定位置从后向前搜索。
+ * substr()方法可在字符串中抽取从 start 下标开始的指定数目的字符。
+ * substring()方法用于提取字符串中介于两个指定下标之间的字符。
+ * toUpperCase()将字符串转换为大写
+ * toLowerCase()将字符串转换小写
+ * split()把字符串分割为字符串数组。
+ * match()找到一个或多个正则表达式的匹配。
+ * replace()替换与正则表达式匹配的子串。
+ * search()检索与正则表达式相匹配的值。
+ *
+ <form name="form1">
+     反转（颠倒）textarea中文本顺序
+     <textarea name="textarea1" rows="20" cols="40">
+     Line 1
+     Line 2
+     Line 3
+     Line 4
+     </textarea>
+     <input type="button" value="反转" name="button" />
+ </form>
+ var form1=document.form1;
+ var textarea=form1.textarea1;
+ var button=form1.button;
+ button.onclick=function(){
+    var textArr=textarea.value.split("\n");     //windowIe下使用\r\n
+    var reversedString="";
+    for(var i = textArr.length - 1;i>=0;i--){
+        reversedString=reversedString+textArr[i];
+        if(i > 0){
+            reversedString=reversedString+"\n";
+        }
+    }
+    textarea.value=reversedString;
+ }
+ *
+ *
+ * js通过dom操作页面
+ * js通过bom操作浏览器
+ *
+ *
+ * 元素样式
+ * document对象
+ * document.documentElement返回根元素<html>
+ * document.getElementById("id");查找id
+ * document.getElementsByTagName("a");查找元素
+ * document.getElementsByName("name");查找name
+ * style修改或获得css属性。e.style.color="#fff";只能获得内联样式属性
+ * className设置或获得class属性。e.className="over";
+ * id设置或获得id属性e.id="over";
+ * element对象
+ * tagName返回当前节点的标记名称。document.documentElement.tagName
+ * node对象
+ * firstChild返回元素子节点列表中的第一个子节点
+ * lastChild返回元素子节点列表中的最后一个子节点
+ * previousSibling在同级子节点中，返回当前子节点的前一个兄弟节点
+ * nextSibling在同级子节点中，返回当前子节点的后一个兄弟节点
+ * ownerDocument返回包含当前节点的文档的根节点
+ * parentNode返回树结构中当前节点的父节点
+ * nodeName返回当前元素节点的名称
+ * nodeType返回一个数字，表示当前节点的类型
+ * nodeValue以纯文本形式返回的当前节点的值
+ *
+ <h1 id="h1">标题</h1>
+ <p id="p">内容</p>
+
+ var htmlElement;
+ var headElement;
+ var bodyElement;
+ var h1Element;
+ var pElement;
+
+ htmlElement=document.documentElement;
+ headElement=htmlElement.firstChild;
+
+ //    alert(headElement.tagName);
+
+ //ie返回1(正常)，剩下3(空白格)
+ //firefox、Opera、safari将把元素间的空格也视为一个子节点
+ if(headElement.nextSibling.nodeType == 3){
+//        alert(headElement.nextSibling.nextSibling.tagName);
+        bodyElement=headElement.nextSibling.nextSibling;
+    }else{
+        bodyElement=headElement.nextSibling;
+    }
+
+ if(bodyElement.firstChild.nodeType == 3){
+        h1Element=bodyElement.firstChild.nextSibling;
+    }else{
+        h1Element=bodyElement.firstChild;
+    }
+
+ alert(h1Element.tagName);
+ *
+ * 添加删除
+ * appendChild将一个新节点添加到子节点列表的末尾。该方法将返回一个对新插入节点对象的引用
+ * cloneNode返回当前节点的一个副本。该方法接收一个布尔值作为参数，如果值为true则克隆当前及其所有的子节点，为false则仅克隆当前节点而不包含其子节点
+ * hasChildNodes检查当前节点是否包含有子节点，如果有子节点，则返回一个true
+ * insertBefore在指定的节点之前，插入一个新节点，该方法将返回一个对新插入节点对象的引用
+ * removeChild从node对象的子节点列表中，删除由参数childNode指定的子节点，该方法将返回一个对所删除节点对象的引用
+ * replaceChild将参数oldChild指定的子节点替换为参数newChild指定的新节点，该方法将返回一个对被替换节点对象的引用
+ * 创建
+ * createElement根据elementName参数指定的标记名称来创建一个新元素。该方法将返回一个对新创建元素对象的引用
+ * createTextNode用参数text指定的文本创建一个文本节点，并返回一个对新创建的文本节点的引用
+ * createAttribute用参数attributeName指定的名称来创建一个属性，并返回一个对新创建的属性节点对象的引用
+ * 获取与设置
+ * getAttribute()返回由参数attributeName指定的属性的值
+ * setAttribute()将attributeName属性的值设置为由参数value指定的值
+ * removeAttribute()移除attributeName属性的值，并将其恢复为默认值
+ *
+ var newText=document.createTextNode("h1");
+ var newElem=document.createElement("h1");
+
+ newElem.setAttribute("style","text-align:center;");
+ //只能从末尾插入？
+ newElem.appendChild(newText);
+ document.body.appendChild(newElem);
+
+ newText=document.createTextNode("p");
+ newElem=document.createElement("p");
+
+ alert(newElem.getAttribute("style"));   //null
+ newElem.setAttribute("style","color:#f00;");
+ alert(newElem.getAttribute("style"));   //color:#f00;
+
+ newElem.appendChild(newText);
+ document.body.appendChild(newElem);
+ *
+ .toolbar{background:#34e2d5;padding:2px;}
+ .toolbar span{display: inline-block;height:24px;width:24px;}
+ .toolbar-button{padding:3px;}
+ .toolbar-button-hover{border:1px solid #316ac5;background:#c1d2ee;padding:2px;cursor: pointer;}
+ .toolbar-icon{height: 24px;width:24px;vertical-align: middle;}
+
+ //使用一个多维数组来保存这些工具栏按钮的相关信息
+ var myToolbar=new Array();
+ //使用myToolbar[x]也声明为一个数组，每一个内容数组将包含一个特定工具栏按钮的信息
+ myToolbar[0]=new Array();
+ myToolbar[0][0]="img/1.jpg";                        //保存按钮图标
+ myToolbar[0][1]="javascript:alert('你点击了!');";     //保存一个url地址或者一段javascript代码
+
+ myToolbar[1]=new Array();
+ myToolbar[1][0]="img/2.jpg";
+ myToolbar[1][1]="javascript:alert('你点击了!');";
+
+ myToolbar[2]=new Array();
+ myToolbar[2][0]="img/3.jpg";
+ myToolbar[2][1]="http://www.baidu.com";
+
+ //创建一个div
+ var toolbar=document.createElement("div");
+ toolbar.id="sName";
+ toolbar.className="toolbar";
+
+ for(var i=0;i<myToolbar.length;i++){
+        var thisButton=myToolbar[i];
+        var button=document.createElement("a");
+        var icon=document.createElement("img");
+
+        button.setAttribute("href",thisButton[1]);
+        button.className="toolbar-button";
+
+        button.onclick=button_mouserHandler;
+        button.onmouseover=button_mouserHandler;
+        button.onmouseout=button_mouserHandler;
+        function button_mouserHandler(event){
+            var eType;
+            var eSrc;
+            if(window.event){
+                eType=window.event.type;
+                eSrc=window.event.srcElement;
+            }else{
+                eType=event.type;
+                eSrc=event.target;
+            }
+            if(eSrc.tagName == "IMG"){
+                eSrc=eSrc.parentNode;
+            }
+            if(eType == "mouseover"){
+                eSrc.className = "toolbar-button-hover"
+            }else if(eType == "mouseout"){
+                eSrc.className = "toolbar-button"
+            }else if(eType == "click"){
+                eSrc.className = "toolbar-button"
+
+            }
+
+        }
+
+        icon.src=thisButton[0];
+        icon.className="toolbar-icon";
+
+        button.appendChild(icon);
+        toolbar.appendChild(button);
+    }
+
+ document.body.appendChild(toolbar);
+ *
+ *
+ *
+ *
+ *
+ * 1
+ * 1
+ *
+ *
+ *	function ie(){
+		var msie,index;
+		if(navigator.userAgent.indexOf("MSIE") >=0 ){
+			msie="MSIE";
+			index=navigator.userAgent.indexOf(msie)+msie.length+1;
+			return parseFloat(navigator.userAgent.substring(index,index+1));
+		}
+	}
+ var ie=ie();
+ if(ie == "6"){
+		alert(6);
+	}
+ *
+ */
+
+
+</script>
+</html>

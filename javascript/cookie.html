@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+
+
+</body>
+<script>
+
+/**************************************************************************/
+
+    //创建cookie
+    //document.cookie="userName=paul;";
+    //cookie字符串中可以包含6个需要设置的子串：
+    //name(名称|必须)、value(值|必须)、expires(过期时间)、path(路径)、domain(域)、secure(安全性)
+    //数值类型数据，也必须按字符串的形式保存在cookie中，分号(;)做分隔符
+    //如果没有设置cookie的过期时间，则当用户关闭浏览器之后，该cookie就将过期
+    //设置过期时间
+    //document.cookie="userName=paul;expires=Tue, 28 dec 2020 00:00:00 gmt;";
+    //设置6个月后过期
+    var expires=new Date();
+    expires.setMonth(expires.getMonth() + 6);
+    document.cookie="userName=paul;expires="+expires.toGMTString()+";";
+
+    //创建cookie并设置相应属性函数
+    function setCookie(cookieName,cookieValue,cookiePath,cookieExpires){
+        //使用escape()、unescape()对特殊字符进行编码和解码
+        //escape()可以将非字母或数字字符转换为Latin-1字符集中对应的十六进制编码，并在该编码之前加上一个百分号(%)字符
+        //cookieValue=escape(cookieValue);
+        if(cookieExpires == ""){
+            //默认6个月后过期
+            var nowDate=new Date();
+            nowDate.setMonth(nowDate.getMonth() + 6);
+            cookieExpires=nowDate.toGMTString();
+        }
+        if(cookiePath != ""){
+            cookiePath=";path="+cookiePath;
+        }
+        document.cookie=cookieName + "="+cookieValue+";expires="+cookieExpires+cookiePath;
+    }
+
+    setCookie("cookieName","cookieValue");
+
+
+    console.log(document.cookie);       //以分号+空格分隔，显示为cookie,userName=paul; cookieName=cookieValue
+
+    //获取cookie的值
+    function getCookieValue(cookieName){
+        var cookieValue=document.cookie;
+        var cookieStartsAt=cookieValue.indexOf(" "+cookieName+"=");
+        if(cookieStartsAt == -1){
+            cookieStartsAt=cookieValue.indexOf(cookieName + "=");
+        }
+        if(cookieStartsAt == -1){
+            cookieValue=null;
+        }else{
+            cookieStartsAt=cookieValue.indexOf("=",cookieStartsAt)+1;
+            var cookieEndsAt=cookieValue.indexOf(";",cookieStartsAt);
+            if(cookieEndsAt == -1){
+                cookieEndsAt=cookieValue.length;
+            }
+            cookieValue=unescape(cookieValue.substring(cookieStartsAt,cookieEndsAt));
+        }
+        return cookieValue;
+    }
+
+    console.log(getCookieValue("cookieName"));     //cookieValue
+
+    //检查用户浏览器是否禁用cookie，设置一个cookie，判断它是否为空
+    setCookie("TestCookie","Yes");
+    if(getCookieValue("TestCookie") == null){
+        alert("已禁用cookie");
+    }
+
+    //一个域（domain）只能保存20个cookie
+    //cookie的名称/值对不能超过4096字节
+    //如果需要保存多个信息可以将这些信息组合成一个以分号分隔的字符串，setCookie("UserDetails","Karen;44;10");
+
+
+
+/**************************************************************************/
+
+
+</script>
+</html>

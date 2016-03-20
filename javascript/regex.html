@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则表达式</title>
+</head>
+<body>
+
+</body>
+<script>
+/**
+ *
+ * exec：方法也用于在字符串中查找指定正则表达式，如果 exec()方法执行成功，则返回包含该查找字符串的相关信息数组。如果执行失败，则返回null。
+ * test：在字符串中测试模式匹配，返回 true 或 false
+ * match(pattern) 返回 pattern 中的子串或 null
+ * replace(pattern, replacement) 用 replacement 替换 pattern，替换
+ * search(pattern) 返回字符串中 pattern 开始位置
+ * split(pattern) 返回字符串按指定 pattern 拆分的数组，字符串拆分成数组
+ *
+ * 匹配单个字符（用.）
+ * 匹配多个字符中的某一个（用[和]）
+ * 取非匹配（用^）
+ * [\r]?在功能上与\r?完全等价，这么做的好处是可以增加可读性和避免产生误解
+ *
+ * 正则表达式用来完成搜索和替换操作
+ * //g（意思是global,全局）标志将返回一个包含着所有匹配的结果数组
+ * //i表示不区分大小写的搜索
+ *
+ * .字符（英文句号）可以匹配任何一个单个的字符
+ * \（反斜杠）对字符进行转义
+ *
+ * []定义一个字符集合
+ * [0-9]等于[0123456789]
+ * [A-Z]匹配从A到Z的所有大写字母
+ * [a-z]匹配从a到z的所有小写字母
+ * [A-F]匹配从A到F的所有大写字母
+ * [A-z]匹配从ASCII字符A到ASCII字符z的所有字母
+ * -（连字符）只能用在[]之间，不需要被转义
+ * ^表明对一个字符集合进行取非匹配
+ * ^如果是出现在一个字符串集合（[]）里并紧跟在左边方括号[的后面是，才能发挥“求非”作用
+ *
+ * [\b]回退（并删除）一个字符（backspace键）
+ * \f换页符
+ * \n换行符
+ * \r回车符
+ * \t制表符（Tab键）
+ * \v垂直制表符
+ * \d任何一个数字字符（等价于[0-9]）
+ * \D任何一个非数字字符（等价于[^0-9]）
+ * \w任何一个字母数字字符（大小写均可）或下划线字符（等价于[a-zA-Z0-9_]）
+ * \W任何一个非字母数字或非下划线字符（等价于[^a-zA-Z0-9_]）
+ * \s任何一个空白字符（等价于[\f\n\r\t\v]）
+ * \S任何一个非空白字符（等价于[^\f\n\r\t\v]）
+ *
+ * +匹配一个或多个字符（至少匹配一个）
+ * *匹配零个或任意多个字符（可以没有匹配）
+ * ?只能匹配一个字符（或字符集合）的零次或一次出现，最多不能超过一次
+ * {}用来匹配重复次数，把数值写在它们之间
+ * {3}意味着模式里的前一个字符（或字符集合）必须在原始文本里连续重复出现3次才算是一个匹配
+ * {2,4}最少重复2次，最多重复4次
+ * {3，}至少重复3次或更多
+ * *和+都是所谓的“贪婪型”元字符
+ * 懒惰型元字符写法很简单，只要给贪婪型元字符加上一个?后缀即可
+ * *?   +?  {n,}?
+ *
+ * 单词边界
+ * \b匹配一个单词的开始或结尾
+ * \B不匹配一个单词边界
+ * 字符串边界
+ * ^用来定义字符串开头
+ * $用来定义字符串结尾
+ * ^如果是在一个字符串集合的外面并位于一个模式的开关，将匹配字符串的开头
+ * (?m)分行匹配模式，必须出现在整个模式的最前面
+ *
+ * ()把子表达式当作一个独立元素来使用
+ * |字符是正则表达式语言里的或操作符
+ * 68
+ *
+ */
+
+console.log();
+//console.log(/^(12|13|14)[0-9]{9}$/.test("13111111111"));
+
+//console.log(/box/i.test("This is a Box"));
+//console.log(/box/i.exec("This is a Box"));  //["Box", index: 10, input: "This is a Box"]
+//console.log("This is a Box!,That is a Box too".match(/box/ig));  //["Box", "Box"]
+//console.log("This is a Box!,That is a Box too".match(/box/ig).length);
+//console.log("This is a Box!,That is a Box too".search(/box/ig));  //10
+//console.log("This is a Box!,That is a Box too".replace(/box/ig,"Tom")); //This is a Tom!,That is a Tom too
+//console.log(/(g)oogle/.test("This is google!"));
+//console.log(/\D{7}/.test("google8"));
+//console.log(/8(.*)8/.test("This is 8google8"));
+//console.log(RegExp.$1);     //// 得到第一个分组里的字符串内容
+//console.log("This is 8google8".replace(/8(.*)8/,"<strong>$1</strong>"));
+//console.log("google baidu".replace(/(.*)\s(.*)/,"$1 $2"));
+//console.log("abcdefjhijklmnopqrstuvwxyz".replace(/[a-z]+?/,"xxx"));
+//console.log("This is 8google8, That is 8google8, There is 8google8".replace(/8(.+?)8/g,"<strong>$1</strong>"));
+//console.log("This is 8google8, That is 8google8, There is 8google8".replace(/8([^8]*)8/g,"<strong>$1</strong>"));
+//console.log(/^[a-z]+\s[0-9]{4}$/i.exec("google 2012"));
+//console.log(/^[a-z]+/i.exec("google 2012"));
+//console.log(/^([a-z]+)\s([0-9]{4})$/i.exec("google 2012"));
+//console.log(/^([a-z]+)\s([0-9]{4})$/i.exec("google 2012")[0]);
+//console.log(/(\d+)([a-z])/.exec("123abc"));
+//console.log(/(\d+)(?:[a-z])/.exec("123abc"));
+//console.log(/(A?(B?(C?)))/.exec("ABC"));
+//console.log(/(goo(?=gle))/.exec("google"));
+//console.log("1.baidu\n2.google\n3.bing".replace(/^\d+/mg,"#"));
+console.log("Hello, ben@forta.com is my email address.".replace(/(\w[\w\.]*@[\w\.]+\.\w+)/,"<a href='mailto:$1'>$1</a>"));
+console.log("313-555-1234\n248-555-999\n135-555-999".replace(/(\d{3})(-)(\d{3})(-)(\d{4})/g,"($1) $3-$5"));  //只匹配一个?
+console.log("313-555-1234\n248-555-999\n135-555-999".replace(/(\d+)(-)(\d+)(-)(\d+)/g,"($1) $3-$5"));        //可以匹配全部
+
+</script>
+</html>

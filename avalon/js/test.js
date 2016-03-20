@@ -50,12 +50,12 @@ var BBB=avalon.define({
 
 var CCC=avalon.define({
     $id:"CCC",
-    name:"CCC"
+    name:"CCC",
 });
 
 var DDD=avalon.define({
     $id:"DDD",
-    name:"DDD"
+    name:"DDD",
 });
 
 var wrap5=avalon.define({
@@ -168,6 +168,7 @@ var wrap15=avalon.define({
     isOK:true,
     toggle:true,
     color:"red",
+    w:true,
     click:function(e){
         wrap15.toggle=!wrap15.toggle;
     }
@@ -300,11 +301,20 @@ var wrap22=avalon.define({
         {text:"a"},
         {text:"b"},
         {text:"c"}
-    ]
+    ],
+    changArray:function(status){
+        console.log(this);
+        console.log(status);
+    },
+    changeData:function(status){
+        console.log(this);
+        console.log(status);
+    }
 });
 //对象数据-键值的更新
 setTimeout(function(){
     wrap22.data.aaa=77777;  //没更新成功
+    wrap22.array.push("桃子");
 },2000);
 //对象数据-键值对的更新
 setTimeout(function(){
@@ -313,6 +323,8 @@ setTimeout(function(){
         eee:888,
         fff:999
     };
+    //删除最后一个
+    wrap22.array.pop();
 },4000);
 //数组数据-简单值的更新
 setTimeout(function(){
@@ -320,8 +332,88 @@ setTimeout(function(){
 },6000);
 //数组数据-对象值的更新
 setTimeout(function(){
-    wrap22.array4[0].text="aaaaa"
+    wrap22.array4[0].text="aaaaa";
+    //反转数组
+    wrap22.array.reverse();
 },8000);
+
+
+var wrap23=avalon.define({
+    $id:"wrap23",
+    data:[
+        {checked:false},
+        {checked:false},
+        {checked:false}
+    ],
+    allchecked:false,
+    checkAll:function(){
+        var bool=wrap23.allchecked=this.checked;
+        wrap23.data.forEach(function(el){
+            el.checked=bool;
+        })
+    },
+    checkOne:function(){
+        if(!this.checked){
+            wrap23.allchecked=false;
+        }else{
+            //every方法为es6中
+            wrap23.allchecked=wrap23.data.every(function(el){
+                return el.checked;
+            });
+        }
+    }
+});
+
+
+var wrap24=avalon.define({
+    $id:"wrap24",
+    array:[
+        {text:"11111"},
+        {text:"22222"},
+        {text:"33333"},
+        {text:"44444"}
+    ],
+    currentIndex:0,
+    toggle:function(i){
+        wrap24.currentIndex=i;
+    }
+});
+
+
+var wrap30=avalon.define({
+    $id:"wrap30"
+});
+
+
+var wrap31=avalon.define({
+    $id:"wrap31",
+    options:["name","size","date"],
+    data:[
+        {name:"aaa",size:213,date:Date.now() + 20},
+        {name:"bbb",size:456,date:Date.now() - 4},
+        {name:"ccc",size:789,date:Date.now() - 7},
+        {name:"ddd",size:3713,date:Date.now() + 9},
+        {name:"eee",size:389,date:Date.now() - 20}
+    ],
+    selected:"name",
+    trend:1
+});
+wrap31.$watch("selected",function(v){
+    var t=parseFloat(wrap31.trend);
+    wrap31.data.sort(function(a,b){
+        var ret=a[v] > b[v] ? 1 : -1;
+        return t * ret;
+    });
+    //alert(v);
+});
+wrap31.$watch("trend",function(t){
+    var v=wrap31.selected,t=parseFloat(t);
+    wrap31.data.sort(function(a,b){
+        var ret=a[v] > b[v] ? 1 : -1;
+        return t * ret;
+    });
+});
+
 
 var wrap25=avalon.define({
     $id:"wrap25",
