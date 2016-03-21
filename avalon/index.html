@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>avalon</title>
-    <script src="../jquery-1.10.2.js"></script>
+    <script src="../public/js/jquery-1.8.3.min.js"></script>
     <script src="js/avalon.modern.js"></script>
     <script src="js/test.js"></script>
 </head>
@@ -520,6 +520,37 @@ ms-click-1并没有按数字1-3进行运行，而是按绑定顺序运行
     $watch、$unwatch、$fire属性监听与模块通信
     <div ms-click="click('aaa')">{{aaa}}</div>
     <div ms-click="click('$ccc')">{{$ccc}}</div>
+</div>
+
+<div ms-controller="wrap32">
+    {{aaa.bbb.ccc}}
+</div>
+
+
+<div ms-controller="wrap33">
+    监测数组
+    <div ms-click="click('array')">
+        <div ms-repeat="array">{{el}}</div>
+    </div>
+</div>
+
+
+<div ms-controller="wrap34">
+    $fire
+    <div ms-click="click('aaa')">{{aaa}}</div>
+    <div ms-click="click('$ccc')">{{$ccc}}</div>
+</div>
+
+<div ms-controller="ancestor">
+    $fire、up!xxx向上冒泡；down!xxx向下冒泡；all!xxx全局广播
+    <h3>avalon vm.$fire的升级版</h3>
+    <button ms-click="click">capture</button>
+    <div ms-controller="parent">
+        <button ms-click="click">broadcast</button>
+        <div ms-controller="son">
+            <button ms-click="click">bubble</button>
+        </div>
+    </div>
 </div>
 
 

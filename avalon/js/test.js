@@ -1,9 +1,20 @@
 /***
  *
+ *
+ 禁用avalon加载器-config方法|r.js
+ avalon.config({
+   loader:false
+ })
+ *
+ avalon.observe.js让avalon只支持chrome最新版
+ *
  默认情况下，我们是使用{{ }} 进行插值，如果有特殊需求，我们还可以配置它们：
  avalon.config({
    interpolate:["[[","]]"]
  })
+ *
+ require.js，domReady.js，text.js，css.js，jQuery.js
+ r.js、rx.js
  *
  */
 
@@ -488,6 +499,94 @@ wrap29.$watch("$all",function(name,a,b){
     //监测全部的值变化
     console.log(name,a,b);
 });
+
+
+var wrap32=avalon.define({
+    $id:"wrap32",
+    aaa:{
+        bbb:{
+            ccc:1
+        }
+    }
+});
+//wrap32.aaa.bbb.$watch("ccc",function(v){      //报错
+wrap32.$watch("ccc",function(v){
+    avalon.log(v);
+});
+setTimeout(function(){
+    wrap32.aaa.bbb.ccc=222;
+},1000);
+
+
+var wrap33=avalon.define({
+    $id:"wrap33",
+    array:[1,2],
+    click:function(a){
+        wrap33.array.push(new Date() - 0);
+    }
+});
+//wrap33.array.$watch("length",function(a,b){   //报错
+wrap33.$watch("length",function(a,b){
+    console.log(a,b)
+});
+
+
+
+var wrap34=avalon.define({
+    $id:"wrap34",
+    aaa:"2",
+    $ccc:"1",               //$开头是监测不到的
+    $skipArray:["ddd"],     //ddd也将监测不到
+    click:function(a){
+        //wrap34[a]=new Date()-0;
+        var old=wrap34[a];
+        wrap34.$fire(a,new Date()-0,old);
+    }
+});
+wrap34.$watch("$all",function(name,a,b){
+    //监测全部的值变化
+    console.log(name,a,b);
+});
+
+
+
+var ancestor=avalon.define({
+    $id:"ancestor",
+    click:function(){
+        avalon.log("向下捕获");
+        ancestor.$fire("down!aaa","capture");
+    }
+});
+ancestor.$watch("aaa",function(v){
+    avalon.log(v);
+    avalon.log("ancestor.aaa事件被触发了");
+});
+
+var parent=avalon.define({
+    $id:"parent",
+    aaa:"3333333",
+    click:function(){
+        avalon.log("全局捕获");
+        ancestor.$fire("all!aaa","parent");
+    }
+});
+parent.$watch("aaa",function(v){
+    avalon.log(v);
+    avalon.log("parent.aaa事件被触发了");
+});
+
+var son=avalon.define({
+    $id:"son",
+    click:function(){
+        console.log("向上冒泡");
+        son.$fire("up!aaa","bubble");
+    }
+});
+son.$watch("aaa",function(v){
+    avalon.log(v);
+    avalon.log("son.aaa事件被触发了");
+});
+
 
 
 var bd=[
