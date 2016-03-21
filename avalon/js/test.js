@@ -16,7 +16,17 @@
  require.js，domReady.js，text.js，css.js，jQuery.js
  r.js、rx.js
  *
+ avalon.history.start({
+    basepath:"/",       //从哪里开始截取要监听的url部分，默认是去掉域名部分
+    html5Mode:true,     //使用html5模式
+    hashPrefix:"!",     //如果是使用Hashbang模式，则在hash后加一个!
+    interval:50,        //在ie6、7，我们需要创建iframe来产生历史，需要用一个定时器来轮询比较
+    domain:''           //如果设置域名，需要iframe也要指定相同的域名
+ });
+ *
  */
+
+
 
 var wrap=avalon.define({
     $id:"wrap",
@@ -170,7 +180,7 @@ var wrap14=avalon.define({
     id:"id",
     name:"name",
     path:"http://hotel.qunar.com",
-    src:"1.jpg",
+    src:"../public/images/1.jpg",
     title:"avalon is great"
 });
 
