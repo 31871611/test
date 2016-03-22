@@ -411,6 +411,18 @@ var wrap24=avalon.define({
 });
 
 
+//<li ms-repeat="array" ms-click="del($index)">{{el}}</li>
+//var test=avalon.define({
+//    $id:"test",
+//    array:[1,2,3,4,5],
+//    del:function(i){
+//        if(confirm("确定要删除！")){
+//            test.array.splice(i,1);
+//        }
+//    }
+//});
+
+
 var wrap30=avalon.define({
     $id:"wrap30"
 });
