@@ -357,6 +357,17 @@ ms-click-1并没有按数字1-3进行运行，而是按绑定顺序运行
         <dd>$key，ms-repeat，ms-with当前循环中的某一个键名，此为一个不可监控的属性</dd>
         <dd>$val，ms-repeat，ms-with当前循环某一个键值</dd>
     </dl>
+    <dl>
+        <dt>监控数组</dt>
+        <dd>pushArray(el), 要求传入一数组，然后将它里面的元素全部到当前数组的末端。</dd>
+        <dd>remove(el), 要求传入一元素，通过全等于比较进行移除。</dd>
+        <dd>removeAt(index), 要求传入一数字，会移除对应位置的元素。</dd>
+        <dd>removeAll(arrayOrFunction), 有三种用法，如果是一个函数，则过滤比较后得到真值的元素， 如果是一数组，则将此数组中与原数组相等于的元素全部移除；如果没有任何参数，则全部清空。</dd>
+        <dd>clear()，相当于removeAll()的第三种方法，清空数组的所有元素。由于需要同步视图的缘故，不能通过vm.array.length = 0的方法来清空元素。</dd>
+        <dd>ensure(el)，只有当数组不存在此元素时，只添加此元素。</dd>
+        <dd>size()，返回数组的长度。由于length属性是固有属性，无法hack，也就无法实现双向绑定，因此请用它来代替length。</dd>
+        <dd>set(index, el)，用于更新某一索引位置中的元素，因为简单数组元素的数组，是不会转换它的元素。</dd>
+    </dl>
     <p>ms-repeat</p>
     <ul>
         <li ms-repeat="array">{{el}}</li>
@@ -424,6 +435,8 @@ ms-click-1并没有按数字1-3进行运行，而是按绑定顺序运行
 
 <div ms-controller="wrap23">
     <p>案例一：全选</p>
+    <p>data-duplex-changed，用于ms-duplex绑定，值改变后触发(不建议使用了，avalon1.3.7使用ms-duplex2的拦截器)
+        参数：当前元素的值</p>
     <ul>
         <li>
             <input type="checkbox" ms-duplex-checked="allchecked" data-duplex-changed="checkAll" />全选
@@ -502,11 +515,13 @@ ms-click-1并没有按数字1-3进行运行，而是按绑定顺序运行
 <div ms-controller="wrap26">
     <p>data-include-loaded、data-include-rendered、data-include-replace模板操作回调属性</p>
     <p>avalon.templateCache模板缓存对象</p>
+    <p>data-include-loaded，用于ms-include-src绑定，模板加载后触发，可以在这里修改模板</p>
     <div ms-include-src="aaa" data-include-loaded="adjust"></div>
     <button ms-click="change">点击切换模板</button>
 </div>
 
 <div ms-controller="wrap27">
+    <p>data-include-rendered，用于ms-include, ms-include-src绑定，模板渲染好后触发；</p>
     <div ms-include-src="'teml.html'" data-include-rendered="render"></div>
 </div>
 

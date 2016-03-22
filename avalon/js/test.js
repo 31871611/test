@@ -8,9 +8,17 @@
  *
  avalon.observe.js让avalon只支持chrome最新版
  *
+ 使用ms-controller绑定时，需要添加一个ms-controller类名，目的是为了防止网速慢时将花括号暴露出来。
+ .ms-controller {visibility: hidden;}
+ *
  默认情况下，我们是使用{{ }} 进行插值，如果有特殊需求，我们还可以配置它们：
  avalon.config({
    interpolate:["[[","]]"]
+ })
+ *
+ avalon默认是在控制台下打印没有调试消息的，上线时我们不愿用户看到它们，可以这样关掉它们。
+ avalon.config({
+    debug: false
  })
  *
  require.js，domReady.js，text.js，css.js，jQuery.js
@@ -23,6 +31,8 @@
     interval:50,        //在ie6、7，我们需要创建iframe来产生历史，需要用一个定时器来轮询比较
     domain:''           //如果设置域名，需要iframe也要指定相同的域名
  });
+ *
+ 可以直接通过$.ajax提交给后端，当然我们 还可以通过JSON.parse(JSON.stringify(vm.$model))干掉里面的所有函数
  *
  */
 
