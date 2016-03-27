@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+</body>
+<script>
+    /**
+     * 基本API
+
+     //require 加载依赖模块，并执行加载完后的回调函数
+     //注意require中的依赖是一个数组
+     //requir API的第二个参数是callback，一个function，是用来处理加载完毕后的逻辑
+     require(["js/a"],function(){
+            alert("完成");
+        });
+
+     **/
+
+    /**
+     * 加载文件
+
+     //加载的JS可能来自本地服务器、其他网站或CDN，以加载一个jquery库为例
+     //require.config是用来配置模块加载位置，简单点说就是给模块起一个更短更好记的名字，比如将百度的jquery库地址标记为jquery，这样在require时只需要写["jquery"]就可以加载该js，本地的js我们也可以这样配置：
+     //通过paths的配置会使我们的模块名字更精炼，paths还有一个重要的功能，就是可以配置多个路径，如果远程cdn库没有加载成功，可以加载本地的库
+     //require.config的参数是一个JS对象，常用的配置有baseUrl，paths等。
+     //使用baseUrl来配置模块根目录，baseUrl可以是绝对路径也可以是相对路径
+     require.config({
+            paths : {
+                //"jquery" : ["http://www.artjzf.com/js_sub/jquery-1.8.3.min"],
+                "jquery" : ["http://www.artjzf.com/js_sub/jquery-1.8.3.min","../public/js/jquery-1.8.3.min"],   //如果失败加载本地
+                "a":["js/a"]
+            }
+        });
+        //callback函数中发现有$参数，这个就是依赖的jquery模块的输出变量，如果你依赖多个模块，可以依次写入多个参数来使用：
+    require(["jquery","a"],function($){
+//        require(["jquery","a","underscore"],function($,_){
+        $(function(){
+            alert("load finished");
+        })
+    });
+    **/
+
+
+    /**
+     * 全局配置
+
+     //例子中重复出现了require.config配置，如果每个页面中都加入配置，必然显得十分不雅，requirejs提供了一种叫"主数据"的功能，我们首先创建一个main.js：
+     //然后再页面中使用下面的方式来使用requirejs：
+     //<script data-main="js/main" src="js/require.js"><\/script>
+
+     */
+
+    /**
+     * 第三方模块
+
+     //有时候需要加载非AMD规范的js，这时候就需要用到另一个功能：shim
+     require.config({
+            shim: {
+                "underscore" : {
+                    exports : "_"
+                },
+                "jquery.form" : {
+                    deps : ["jquery"]       //jQuery插件都依赖于jQuery，即在require插件时得保证jQuery先下载下来
+                }
+            }
+        });
+     require(["jquery", "jquery.form"], function($){
+            $(function(){
+//                $("#form").ajaxSubmit({...});
+            })
+        })
+
+     */
+
+
+</script>
+</html>
