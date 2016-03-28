@@ -15,33 +15,33 @@
         article{padding: 15px;margin-left:200px;min-height: 600px;background: white;}
     </style>
     <script src="../js/avalon.modern.js"></script>
-    <!--<script src="../js/mmRouter.js"></script>-->
-    <!--<script src="../js/mmHistory.js"></script>-->
+    <script src="../js/mmRouter.js"></script>
+    <script src="../js/mmHistory.js"></script>
     <script type="text/javascript">
         //这里给后端提供数据接口
         var conf = {
             username: {"id": "11", "name": "VaJoy"}
         };
         require(["mmRouter"], function() {
-        var vm = avalon.define({
-            $id: "user",
-            username:conf.username,
-            pageUrl:"main.html"
-        });
+            var vm = avalon.define({
+                $id: "user",
+                username:conf.username,
+                pageUrl:"main.html"
+            });
 
 
-        function callback() {
-            if(this.path==="/index"){
-                vm.pageUrl="main.html";
-            }else {
-                var path_tail = this.path.replace(/\//, "");
-                vm.pageUrl = path_tail + ".html";  //动态修改pageUrl属性值
+            function callback() {
+                if(this.path==="/index"){
+                    vm.pageUrl="main.html";
+                }else {
+                    var path_tail = this.path.replace(/\//, "");
+                    vm.pageUrl = path_tail + ".html";  //动态修改pageUrl属性值
+                }
             }
-        }
-        //劫持url hash并触发回调
-        avalon.router.get("/*path",callback);
-        avalon.history.start();     //历史记录堆栈管理
-        avalon.scan();
+            //劫持url hash并触发回调
+            avalon.router.get("/*path",callback);
+            avalon.history.start();     //历史记录堆栈管理
+            avalon.scan();
         })
     </script>
 </head>

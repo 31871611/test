@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>阿当大话西游之WEB组件</title>
+</head>
+<body>
+
+</body>
+<script>
+/**
+ *
+ * http://www.imooc.com/learn/99
+ *
+ */
+
+
+
+/**
+ * tabview.js
+ *
+
+    var abc=5;
+    var TabView=function(cfg){
+        this.a=cfg.a;
+        this.b=cfg.b;
+    };
+
+    TabView.prototype={
+        c:function(){
+            abc++;
+        },
+        d:function(){
+            abc--;
+        }
+    };
+
+
+    var tabView=new TabView();
+
+
+
+    //通过匿名空间隔开公有私有
+    (function(){
+        var abc=5;
+        var TabView=function(cfg){
+            this.a=cfg.a;
+            this.b=cfg.b;
+        };
+
+        TabView.prototype={
+            c:function(){
+                abc++;
+            },
+            d:function(){
+                abc--;
+            }
+        };
+        //把需要公开
+        window.TabView=TabView;
+    })()
+
+*/
+
+
+
+/**
+ *
+
+    //模块化和require.js
+    //define定义模块
+    //mod1.js模块1只暴露a
+    define(function(){
+        return {a:3}
+    });
+
+    //mod2.js模块2暴露a,b
+    define(["mod1"],function(m1){
+        var a,b=2,c=3;
+        a=c*m1.a;
+        return{
+            a:a,
+            b:b
+        }
+    });
+
+    //main.js
+    require(["mod2"],function(m2){
+        alert(m2.a*m2.b);
+    });
+
+    //index.html
+    //<script src="require.js" data-main="main.js"><\/script>
+
+ */
+
+
+/**
+ * 基于require.js重写代码
+
+    //animate.js
+    define(function(){
+        function Animate(){
+            return{
+                Animate:Animate
+            }
+        }
+    });
+
+    //treeview.js
+    define(function(){
+        function TreeView(){
+            return{
+                TreeView:TreeView
+            }
+        }
+    });
+
+    //tabview.js
+    define(["animate"],function(a){
+        function TabView(){
+            this.animate=new a.Animate();
+        }
+
+        return{
+            TabView:TabView
+        }
+    });
+
+    //main.js
+    require(["tabview","treeview"],function(tab,tree){
+        var tabView=new tab.TabView();
+        var treeView=new tree.TreeView();
+    });
+
+*/
+
+
+/**
+ * 制作简单的弹窗组件
+ */
+
+//window.js
+//添加jquery模块依赖["jquery"]$
+define(["jquery"],function($){
+    function Window(){}
+    Window.prototype={
+        alert:function(){},
+        confirm:function(){},
+        prompt:function(){}
+    };
+    return{
+        Window:Window
+    }
+});
+
+//main.js
+//添加jquery模块依赖
+require.config({
+    paths:{
+        jquery:"jquery-1.11.0.min"
+    }
+});
+//添加jquery模块依赖"jquery"、$
+require(["jquery","window"],function($,w){
+    new w.Window().alert();
+});
+
+
+</script>
+</html>

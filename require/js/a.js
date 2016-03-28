@@ -1,6 +1,4 @@
 //define 从名字就可以看出这个api是用来定义一个模块
-
-
 define(function(){
     var dialog=function(){
         alert("dialog");
