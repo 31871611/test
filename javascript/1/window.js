@@ -1,4 +1,4 @@
-define(["jquery","jqueryUI"],function($,$UI){
+define(["widget","jquery","jqueryUI"],function(widget,$,$UI){
     function Window(){
         this.cfg={
             width:500,
@@ -17,26 +17,28 @@ define(["jquery","jqueryUI"],function($,$UI){
         };
         this.handlers={}
     }
-    Window.prototype={
+    //jquery继承
+    Window.prototype= $.extend({},new widget.Widget(),{
         //自定义事件
         //观察者模式
         //优点：跳出原生事件的限制，提高封闭的抽象层级
-        on:function(type,handler){
-            if(typeof this.handlers[type] == "undefined"){
-                this.handlers[type]=[];
-            }
-            this.handlers[type].push(handler);
-            //连缀语法
-            return this;
-        },
-        fire:function(type,data){
-            if(this.handlers[type] instanceof Array){
-                var handlers=this.handlers[type];
-                for(var i= 0,len=handlers.length;i<len;i++){
-                    handlers[i](data);
-                }
-            }
-        },
+        //抽离成widget.js
+        //on:function(type,handler){
+        //    if(typeof this.handlers[type] == "undefined"){
+        //        this.handlers[type]=[];
+        //    }
+        //    this.handlers[type].push(handler);
+        //    //连缀语法
+        //    return this;
+        //},
+        //fire:function(type,data){
+        //    if(this.handlers[type] instanceof Array){
+        //        var handlers=this.handlers[type];
+        //        for(var i= 0,len=handlers.length;i<len;i++){
+        //            handlers[i](data);
+        //        }
+        //    }
+        //},
         alert:function(cfg){
             var CFG=$.extend(this.cfg,cfg);
 
@@ -111,7 +113,7 @@ define(["jquery","jqueryUI"],function($,$UI){
         prompt:function(){
             console.log("prompt");
         }
-    };
+    });
     return{
         Window:Window
     }
