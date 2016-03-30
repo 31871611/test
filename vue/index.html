@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <script data-main="main" src="../public/js/require.js"></script>
+</head>
+<body>
+<div id="app">
+    <dl>
+        <dt>文本</dt>
+        <dd>{{ message }}</dd>
+        <dd>{{ a }}</dd>
+        <dd>{{*msg}}，只处理单次插值，今后的数据变化就不会再引起插值更新了</dd>
+        <dd>{{{span}}}，三大括号不转义为文本</dd>
+        <dd id="{{id}}">id</dd>
+        <dd>
+            {{number+1}}
+            {{ok ? "yes" : "no"}}
+            {{message.split("").reverse().join()}}
+        </dd>
+    </dl>
+    <dl>
+        <dt>过滤器</dt>
+        <dd>{{ message | uppercase }}</dd>
+        <dd>{{ message | filterA | filterB }}串联多个过滤器</dd>
+        <dd>{{ message | lowercase | capitalize }}</dd>
+    </dl>
+    <dl>
+        <dt>指令</dt>
+        <dd>Vue.js的指令api(cn.vuejs.org/api/#指令)</dd>
+        <dd v-if="ok">ok</dd>
+        <dd>v-text，v-html，v-model，v-on，v-else</dd>
+    </dl>
+    <dl>
+        <dt>计算属性</dt>
+        <dd>{{a}}</dd>
+        <dd>{{c}}</dd>
+    </dl>
+    <dl>
+        <dt>Class对象语法</dt>
+        <dd v-bind:class="{'class-a':isA,'class-b':isB}">传给 v-bind:class 一个对象，以动态地切换class</dd>
+        <dd v-bind:class="[classA,classB]">把一个数组传给 v-bind:class，以应用一个 class 列表</dd>
+        <dd v-bind:style="{color:activeColer,fontSize:fontSize+'px'}">v-bind:style的对象语法</dd>
+        <dd v-bind:style="[styleObjectA,styleObjectB]">bind:style的数组语法</dd>
+    </dl>
+    <dl>
+        <dt>渲染指令</dt>
+        <dd v-if="ok">yes</dd>
+        <dd v-else>No</dd>
+        <template v-if="ok">
+            <dd>想切换多个元素</dd>
+            <dd>可以把一个 < template > 元素当做包装元素，并在上面使用 v-if</dd>
+        </template>
+        <template v-else>
+            No
+        </template>
+        <dd v-show="ok">根据条件展示元素v-show指令,会始终渲染并保持在 DOM 中</dd>
+        <dd>用 v-else 指令给 v-if 或 v-show 添加一个 “else 块”</dd>
+        <dd>
+            v-for 指令基于一个数组渲染一个列表
+            <div v-for="item in items">{{$index}}.{{item.list}}</div>
+        </dd>
+        <dd>
+            template v-for
+            <template v-for="item in items">
+                <div>{{item.list}}</div>
+            </template>
+        </dd>
+    </dl>
+    <dl>
+        <dt>表单控件绑定</dt>
+        <dd><input type="text" v-model="msg" placeholder="edit me" />{{msg}}</dd>
+        <dd>
+            多选
+            <input type="checkbox" value="jack" v-model="checkdNames" />
+            <input type="checkbox" value="john" v-model="checkdNames" />
+            <input type="checkbox" value="mike" v-model="checkdNames" />
+            {{checkdNames}}
+        </dd>
+        <dd>
+            当checkbox为true时，值为a；当为fals时，值为b
+            <input type="checkbox" v-model="toggle" v-bind:true-value="a" v-bind:false-value="b" />
+            {{toggle}}
+        </dd>
+        <dd>
+            <input type="radio" value="one" v-model="picked" />
+            <input type="radio" value="two" v-model="picked" />
+            {{picked}}
+        </dd>
+        <dd>
+            用v-bind指令来绑定数据
+            <input type="radio" v-model="pick" v-bind:value="pick" />
+        </dd>
+        <dd>
+            <select v-model="selected">
+                <option>a</option>
+                <option>b</option>
+                <option>c</option>
+            </select>
+            {{selected}}
+            <select v-model="selectedN" multiple>
+                <option>a</option>
+                <option>b</option>
+                <option>c</option>
+            </select>
+            {{selectedN}}
+            <select v-model="selectedFor">
+                <option v-for="option in options" v-bind:value="option.value">{{option.text}}</option>
+            </select>
+            {{selectedFor}}
+        </dd>
+        <dd>
+            lazy，改到在 change 事件中同步
+            <input type="text" v-model="msg" lazy />{{msg}}
+            将用户的输入保持为数字，可以添加一个特性 number
+            <input type="text" v-model="number" number />{{number}}
+            debounce 设置一个最小的延时，在每次敲击之后延时同步输入框的值与数据,不会延迟 input 事件
+            <input type="text" v-model="a" debounce="5000" />{{a}}
+        </dd>
+    </dl>
+    <dl>
+        <dt>自定义指令</dt>
+        <dd>1</dd>
+    </dl>
+    <dl>
+        <dt>自定义过滤器</dt>
+        <dd>1</dd>
+    </dl>
+</div>
+</body>
+</html>
