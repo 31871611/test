@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>vue</title>
+    <link rel="stylesheet" href="css/test.css" />
     <script data-main="main" src="../public/js/require.js"></script>
 </head>
 <body>
@@ -10,6 +11,7 @@
     <dl>
         <dt>文本</dt>
         <dd>{{ message }}</dd>
+        <dd v-text="message"></dd>
         <dd>{{ a }}</dd>
         <dd>{{*msg}}，只处理单次插值，今后的数据变化就不会再引起插值更新了</dd>
         <dd>{{{span}}}，三大括号不转义为文本</dd>
@@ -125,6 +127,55 @@
     </dl>
     <dl>
         <dt>自定义过滤器</dt>
+        <dd>{{msg | split0}}</dd>
+        <dd>{{msg | wrap 'before' 'after'}}</dd>
+        <dd><input type="text" v-model="fontSize | currencyDisplay" />{{fontSize}}</dd>
+        <dd><input type="text" v-bind:value="1" v-model="userInput" />{{fontSize | concat userInput}}</dd>
+    </dl>
+    <dl>
+        <dt>方法与事件处理器</dt>
+        <dd v-on:click="greet">greet</dd>
+        <dd v-on:click="say('hi')">say hi</dd>
+        <dd v-on:click="say('what')">say what</dd>
+        <dd><button v-on:click="say('hello!',$event)">submit</button></dd>
+        <dd>
+            <!-- 阻止单击事件冒泡 -->
+            <a href="" v-on:click.stop="doThis">在事件处理器中经常需要调用 event.preventDefault() 或 event.stopPropagation()</a>
+            <!-- 提交事件不再重载页面 -->
+            <form v-on:submit.prevent="onSubmit">v-on 提供两个事件修饰符：.prevent 与 .stop</form>
+            <!-- 修饰符可以串联 -->
+            <a href="" v-on:click.stop.prevent="doThat">doThat</a>
+            <!-- 只有修饰符 -->
+            <form v-on:submit.prevent>.prevent</form>
+        </dd>
+        <dd>
+            检测 keyCode。为v-on添加按键修饰符
+            <input v-on:keyup.13="onSubmit" type="text" />
+            <!-- 同上 -->
+            <input v-on:keyup.enter="onSubmit">
+            <p>常用按键别名：enter、tab、delete、esc、space、up、down、left、right</p>
+        </dd>
+    </dl>
+    <dl>
+        <dt>过渡效果</dt>
+        <dd>
+            <div v-if="show" transition="expand">hello</div>
+            <button v-on:click="show=!show">toggle</button>
+        </dd>
+        <dd>
+            类名的添加和切换取决于 transition特性的值。比如 transition="fade"，会有三个 CSS 类名：
+        　　1）.fade-transition 始终保留在元素上。
+        　　2）.fade-enter 定义进入过渡的开始状态。只应用一帧然后立即删除。
+        　　3）.fade-leave 定义离开过渡的结束状态。在离开过渡开始时生效，在它结束后删除。
+        　　如果 transition 特性没有值，类名默认是 .v-transition, .v-enter 和 .v-leave。
+        </dd>
+        <dd>
+            <input v-model="query" />
+            <div v-for="item in items | filterBy query" transition="staggered" stagger="100">{{item.list}}</div>
+        </dd>
+    </dl>
+    <dl>
+        <dt>组件</dt>
         <dd>1</dd>
     </dl>
 </div>
