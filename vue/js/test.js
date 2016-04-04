@@ -29,6 +29,50 @@ require(["vue"],function(Vue){
     });
 
 
+    //使用 Vue.directive(id, definition) 的方法传入指令 id 和定义对象来注册一个全局自定义指令
+    Vue.directive('my-directive', {
+        //仅调用一次，当指令第一次绑定元素的时候
+        bind: function () {
+            // 准备工作
+            // 例如，添加事件处理器或只需要运行一次的高耗任务
+            console.log('my-directive');
+        },
+        //第一次是紧跟在 bind 之后调用，获得的参数是绑定的初始值；以后每当绑定的值发生变化就会被调用，获得新值与旧值两个参数
+        update: function (newValue, oldValue) {
+            // 值更新时的工作
+            // 也会以初始值为参数调用一次
+            this.el.innerHTML=newValue+"|"+oldValue;
+        },
+        //仅调用一次，当指令解绑元素的时候
+        unbind: function () {
+            // 清理工作
+            // 例如，删除 bind() 添加的事件监听器
+        }
+    });
+
+    Vue.directive("demo",{
+        bind:function(){
+            console.log("demo");
+        },
+        update:function(value){
+            //this.el.innerHTML=value;
+            this.el.innerHTML=
+            'name-'+this.name+'<br />'+
+            'expression-'+this.expression+'<br />'+
+            'argument-'+this.arg+'<br />'+
+            'modifiers-'+JSON.stringify(this.modifiers)+'<br />'+
+            'value-'+value
+        }
+    });
+
+    //如果指令需要多个值，可以传入一个 JavaScript 对象字面量。记住，指令可以使用任意合法的 JavaScript 表达式
+    Vue.directive("demo2",function(value){
+        this.el.innerHTML=value.color+"|"+value.text;
+    });
+
+    
+
+
     //过渡动画
     Vue.transition("expand",{
         beforeEnter:function (el){
@@ -63,6 +107,11 @@ require(["vue"],function(Vue){
             return Math.min(300, index * 50);
         }
     });
+    //自定义css过渡类名
+    Vue.transition('bounce', {
+        enterClass: 'bounceInLeft',
+        leaveClass: 'bounceOutRight'
+    });
 
     //用 Vue.extend() 创建一个组件构造器
 
@@ -94,6 +143,7 @@ require(["vue"],function(Vue){
             {list:4},
             {list:5}
         ],
+        checkdNames:[],
         toggle:true,
         pick:"pick",
         selected:"a",
@@ -106,7 +156,18 @@ require(["vue"],function(Vue){
         ],
         userInput:1,
         show:true,
-        query:""
+        query:"",
+        newTodo:"",
+        todos:[
+            { text: 'Add some todos' }
+        ],
+        object:{
+            FirstName: 'John',
+            LastName: 'Doe',
+            Age: 30
+        },
+        transitionName:"fade",
+        someValue: 'hello!'
     };
     var vm1=new Vue({
         el:"#app",
@@ -114,8 +175,8 @@ require(["vue"],function(Vue){
         //    message:"hello vue.js"
         //}
         data:data1,
+        //一个计算属性的getter
         computed:{
-            //一个计算属性的getter
             b:function(){
                 return this.a+1;
             },
@@ -142,7 +203,17 @@ require(["vue"],function(Vue){
             onSubmit:function(){
                 alert("onSubmit");
             },
-            doThat:function(){}
+            doThat:function(){},
+            addTodo:function(){
+                var text=this.newTodo.trim();
+                if(text){
+                    this.todos.push({text:text});
+                    this.newTodo="";
+                }
+            },
+            removeTodo:function(index){
+                this.todos.splice(index,1);
+            }
         }
     });
     //设置属性也会影响到原始数据

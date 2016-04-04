@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>路由</title>
+    <script src="../public/js/vue.js"></script>
+    <script src="../public/js/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>路由</h2>
+    <p>当前路径: {{$route.path}}</p>
+    <p>当前路由参数: {{$route.params | json}}</p>
+    <ul>
+        <!-- 使用指令 v-link 进行导航。 -->
+        <li><a v-link="'home'">home</a></li>
+        <li><a v-link="{path:'/foo',exact: true}">exact 内联选项来设置为只有当路径完全一致时才匹配</a></li>
+        <li><a v-link="{path:'/foo',activeClass:'select'}"> class 名称可以通过在创建路由器实例时指定 linkActiveClass 全局选项 来自定义，也可以通过 activeClass 内联选项来单独指定</a></li>
+        <li><a v-link="{path:'/foo',replace:true}">带有 replace: true 的链接被点击时将会触发 router.replace() 而不是 router.go()。由此产生的跳转不会留下历史记录</a></li>
+        <li><a v-link="{path:'/foo',append:true}">带有 append: true 选项的相对路径链接会确保该相对路径始终添加到当前路径之后。举例来说，从 /a 跳转到相对路径 b 时，如果没有 append: true 我们会跳转到 /b，但有 append: true 则会跳转到 /a/b</a></li>
+        <li><a v-link="{path:'/foo'}">go to foo</a></li>
+        <li><a v-link="{path:'/bar'}">go to bar</a></li>
+        <li><a v-link="{path:'/foo/bar'}">go to foo/bar</a></li>
+        <li><a v-link="{path:'/reg'}">reg</a></li>
+        <li><a v-link="{path:'/login/username'}">login/username</a></li>
+        <li><a v-link="{path:'/list/1'}">list/1</a></li>
+        <li><a v-link="{name:'user',params:{userID:123}}">user/123</a></li>
+    </ul>
+    <!-- 路由外链 -->
+    <router-view></router-view>
+</div>
+<dl>
+    <dt>路由选项</dt>
+    <dd>http://vuejs.github.io/vue-router/zh-cn/options.html</dd>
+</dl>
+</body>
+<script>
+
+    // 定义组件
+    var Foo = Vue.extend({
+        template: '<div class="foo">'+
+                '<p>This is foo!</p>'+
+                '<router-view></router-view>'+      //嵌套的外链
+                '</div>'
+    });
+
+    var Bar = Vue.extend({
+        template: '<p>This is bar!</p>'
+    });
+
+
+    // 路由器需要一个根组件。
+    // 出于演示的目的，这里使用一个空的组件，直接使用 HTML 作为应用的模板
+    var App = Vue.extend({});
+
+    // 创建一个路由器实例
+    // 创建实例时可以传入配置参数进行定制，为保持简单，这里使用默认配置
+    var router = new VueRouter();
+
+    // 定义路由规则
+    // 每条路由规则应该映射到一个组件。这里的“组件”可以是一个使用 Vue.extend
+    // 创建的组件构造函数，也可以是一个组件选项对象。
+    // 稍后我们会讲解嵌套路由
+    router.map({
+        'home':{
+            component:{
+                template: '<p>home</p>'
+            }
+        },
+        '/foo': {
+            component: Foo,
+            //在/foo下设置一个路由
+            subRoutes:{
+                "/bar":{
+                    //当匹配到/foo/bar时，会在foo's<router-view>内渲染
+                    component: Bar
+                }
+            }
+        },
+        '/bar': {
+            component: Bar
+        },
+        '/reg':{
+            component:{
+                template: '<p>reg</p>'
+            }
+        },
+        '/login/:username':{    //动态片段
+            component:{
+                template: '<p>用户名是：{{$route.params.username}}</p>'
+            }
+        },
+        '/list/*any':{          //全匹配片段
+            component:{
+                template: '<p>匹配的路径：/user/a/b/c</p>'
+            }
+        },
+        '/user/:userId':{
+            name:"user",    //给这条路径加上一个名字
+            component:{
+                template:"<p>具名路径，路由都会最终切换到 /user/123</p>"
+            }
+        }
+    });
+
+    // 现在我们可以启动应用了！
+    // 路由器会创建一个 App 实例，并且挂载到选择符 #app 匹配的元素上。
+    router.start(App, '#app');
+
+</script>
+</html>

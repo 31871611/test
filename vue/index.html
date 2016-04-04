@@ -14,7 +14,8 @@
         <dd v-text="message"></dd>
         <dd>{{ a }}</dd>
         <dd>{{*msg}}，只处理单次插值，今后的数据变化就不会再引起插值更新了</dd>
-        <dd>{{{span}}}，三大括号不转义为文本</dd>
+        <dd>{{span}}</dd>
+        <dd>{{{span}}}，三大括号输出真的HTML字符串</dd>
         <dd id="{{id}}">id</dd>
         <dd>
             {{number+1}}
@@ -33,6 +34,7 @@
         <dd>Vue.js的指令api(cn.vuejs.org/api/#指令)</dd>
         <dd v-if="ok">ok</dd>
         <dd>v-text，v-html，v-model，v-on，v-else</dd>
+        <dd>v-bind:href</dd>
     </dl>
     <dl>
         <dt>计算属性</dt>
@@ -43,6 +45,7 @@
         <dt>Class对象语法</dt>
         <dd v-bind:class="{'class-a':isA,'class-b':isB}">传给 v-bind:class 一个对象，以动态地切换class</dd>
         <dd v-bind:class="[classA,classB]">把一个数组传给 v-bind:class，以应用一个 class 列表</dd>
+        <dd v-bind:class="[classA, isB ? classB : '']">三元表达式</dd>
         <dd v-bind:style="{color:activeColer,fontSize:fontSize+'px'}">v-bind:style的对象语法</dd>
         <dd v-bind:style="[styleObjectA,styleObjectB]">bind:style的数组语法</dd>
     </dl>
@@ -57,8 +60,8 @@
         <template v-else>
             No
         </template>
-        <dd v-show="ok">根据条件展示元素v-show指令,会始终渲染并保持在 DOM 中</dd>
-        <dd>用 v-else 指令给 v-if 或 v-show 添加一个 “else 块”</dd>
+        <dd v-show="ok">根据条件展示元素v-show指令,会始终渲染并保持在 DOM 中，v-show 不支持 < template > 语法</dd>
+        <dd>用 v-else 指令给 v-if 或 v-show 添加一个 “else 块”，v-else 元素必须立即跟在 v-if 或 v-show 元素的后面——否则它不能被识别。</dd>
         <dd>
             v-for 指令基于一个数组渲染一个列表
             <div v-for="item in items">{{$index}}.{{item.list}}</div>
@@ -69,6 +72,24 @@
                 <div>{{item.list}}</div>
             </template>
         </dd>
+        <dd>
+            v-for 遍历对象,除了$index、还有$key
+            <ul>
+                <li v-for="value in object">
+                    {{ $key }} : {{ value }}
+                </li>
+            </ul>
+        </dd>
+    </dl>
+    <dl>
+        <dt>数组变动检测</dt>
+        <dd>push()</dd>
+        <dd>pop()</dd>
+        <dd>shift()</dd>
+        <dd>unshift()</dd>
+        <dd>splice()</dd>
+        <dd>sort()</dd>
+        <dd>reverse()</dd>
     </dl>
     <dl>
         <dt>表单控件绑定</dt>
@@ -78,7 +99,7 @@
             <input type="checkbox" value="jack" v-model="checkdNames" />
             <input type="checkbox" value="john" v-model="checkdNames" />
             <input type="checkbox" value="mike" v-model="checkdNames" />
-            {{checkdNames}}
+            {{checkdNames | json}}
         </dd>
         <dd>
             当checkbox为true时，值为a；当为fals时，值为b
@@ -120,10 +141,24 @@
             debounce 设置一个最小的延时，在每次敲击之后延时同步输入框的值与数据,不会延迟 input 事件
             <input type="text" v-model="a" debounce="5000" />{{a}}
         </dd>
+        <dd>对于单选按钮，勾选框及选择框选项，v-model 绑定的值通常是静态字符串（对于勾选框是逻辑值）</dd>
     </dl>
     <dl>
         <dt>自定义指令</dt>
-        <dd>1</dd>
+        <dd><div v-my-directive="someValue"></div></dd>
+        <dd><div v-demo:hello.a.b="msg"></div></dd>
+        <dd>
+            <p>el: 指令绑定的元素。</p>
+            <p>vm: 拥有该指令的上下文 ViewModel。</p>
+            <p>expression: 指令的表达式，不包括参数和过滤器。</p>
+            <p>arg: 指令的参数。</p>
+            <p>name: 指令的名字，不包含前缀。</p>
+            <p>modifiers: 一个对象，包含指令的修饰符。</p>
+            <p>descriptor: 一个对象，包含指令的解析结果。</p>
+        </dd>
+        <dd>
+            <div v-demo2="{color:'white',text:'hello!'}"></div>
+        </dd>
     </dl>
     <dl>
         <dt>自定义过滤器</dt>
@@ -135,6 +170,7 @@
     <dl>
         <dt>方法与事件处理器</dt>
         <dd v-on:click="greet">greet</dd>
+        <dd @click="greet">@click为缩写</dd>
         <dd v-on:click="say('hi')">say hi</dd>
         <dd v-on:click="say('what')">say what</dd>
         <dd><button v-on:click="say('hello!',$event)">submit</button></dd>
@@ -147,6 +183,10 @@
             <a href="" v-on:click.stop.prevent="doThat">doThat</a>
             <!-- 只有修饰符 -->
             <form v-on:submit.prevent>.prevent</form>
+            <!-- 添加事件侦听器时使用 capture 模式 -->
+            <div v-on:click.capture="doThis">...</div>
+            <!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->
+            <div v-on:click.self="doThat">...</div>
         </dd>
         <dd>
             检测 keyCode。为v-on添加按键修饰符
@@ -173,10 +213,40 @@
             <input v-model="query" />
             <div v-for="item in items | filterBy query" transition="staggered" stagger="100">{{item.list}}</div>
         </dd>
+        <dd>
+            <div v-if="show" :transition="transitionName">class:fade-transition</div>
+        </dd>
+        <dd>
+            <div v-show="ok" class="animated" transition="bounce">Watch me bounce</div>
+            在过渡的 JavaScript 定义中声明自定义的 CSS 过渡类名。这些自定义类名会覆盖默认的类名。当需要和第三方的 CSS 动画库，比如 Animate.css 配合时会非常有用
+        </dd>
     </dl>
     <dl>
         <dt>组件</dt>
         <dd>1</dd>
+    </dl>
+    <dl>
+        <dt>综合</dt>
+        <dd>
+            <input type="text" v-model="newTodo" v-on:keyup.enter="addTodo" />
+            <ul>
+                <li v-for="todo in todos">
+                    {{todo.text}}
+                    <button v-on:click="removeTodo($index)">x</button>
+                </li>
+            </ul>
+        </dd>
+        <dd>$watch</dd>
+    </dl>
+    <dl>
+        <dt>路由</dt>
+        <dd>
+            <!-- 使用指令 v-link 进行导航。 -->
+            <a v-link="{path:'/foo'}">go to foo</a>
+            <a v-link="{path:'/bar'}">go to bar</a>
+            <!-- 路由外链 -->
+            <router-view></router-view>
+        </dd>
     </dl>
 </div>
 </body>
