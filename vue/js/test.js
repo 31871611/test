@@ -70,7 +70,13 @@ require(["vue"],function(Vue){
         this.el.innerHTML=value.color+"|"+value.text;
     });
 
-    
+    //元素指令。与Angular 的 E 类指令的概念非常相似
+    Vue.elementDirective('my-directive2', {
+        // API 同普通指令
+        bind: function () {
+            // 操作 this.el...
+        }
+    });
 
 
     //过渡动画
@@ -113,9 +119,41 @@ require(["vue"],function(Vue){
         leaveClass: 'bounceOutRight'
     });
 
+
     //用 Vue.extend() 创建一个组件构造器
+    var Mycomponent=Vue.extend({
+        template:"<div>自定义组件my-component</div>"       //选项
+    });
+
+    //要把这个构造器用作组件，需要用 Vue.component(tag, constructor) 注册
+    //全局注册组件，tag为my-component
+    Vue.component('my-component',Mycomponent);
+
+    //Props 传递数据
+    //组件实例的作用域是孤立的。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。
+    //“prop” 是组件数据的一个字段，期望从父组件传下来。子组件需要显式地用 props 选项声明 props
+    Vue.component("child",{
+        // 声明 props
+        props:["msg"],
+        //prop可以用在模板内
+        //可以用this.msg设置
+        template:'<div>{{msg}}</div>'
+    });
+
+    //名字形式为 camelCase 的 prop 用作特性时，需要转为 kebab-case（短横线隔开）
+    Vue.component("child2",{
+        props:["myMessage"],
+        template:'<div>{{myMessage}}</div>'
+    });
+
+    //用 v-bind 绑定动态 Props 到父组件的数据。每当父组件的数据变化时，也会传递给子组件
+    Vue.component("child3",{
+        props:["myMessage2"],
+        template:'<div>{{myMessage2}}</div>'
+    });
 
 
+    //数据
     var data1={
         message:"hello vue.js",
         a:1,

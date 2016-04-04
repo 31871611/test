@@ -159,6 +159,9 @@
         <dd>
             <div v-demo2="{color:'white',text:'hello!'}"></div>
         </dd>
+        <dd>
+            <my-directive2>1</my-directive2>
+        </dd>
     </dl>
     <dl>
         <dt>自定义过滤器</dt>
@@ -223,7 +226,27 @@
     </dl>
     <dl>
         <dt>组件</dt>
-        <dd>1</dd>
+        <dd>
+            <my-component></my-component>
+        </dd>
+        <dd>
+            <child msg="hello"></child>
+        </dd>
+        <dd>
+            <child2 my-message="hello"></child2>
+        </dd>
+        <dd>
+            <input type="text" v-model="parentMsg" />
+            <child3 v-bind:my-message2="parentMsg"></child3>
+        </dd>
+        <dd>
+            <!-- 默认为单向绑定 -->
+            <child3 v-bind:my-message2="parentMsg"></child3>
+            <!-- 双向绑定 -->
+            <child3 v-bind:my-message2.sync="parentMsg"></child3>
+            <!-- 单次绑定 -->
+            <child3 v-bind:my-message2.once="parentMsg"></child3>
+        </dd>
     </dl>
     <dl>
         <dt>综合</dt>
@@ -249,5 +272,6 @@
         </dd>
     </dl>
 </div>
+
 </body>
 </html>
