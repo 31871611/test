@@ -6,6 +6,7 @@ module.exports={
     },
     module:{                    //module：定义了对模块的处理逻辑，这里可以用loaders定义了一系列的加载器，以及一些正则。当需要加载的文件匹配test的正则时，就会调用后面的loader对文件进行处理，这正是webpack强大的原因。
         loaders:[
+            {test: /\.vue$/, loader: 'vue-loader'},
             {test:/\.css$/,loader:"style!css"},
             {test:/\.(png|jpg)$/,loader:"url?limit=4000"}       //limit参数，当你图片大小小于这个限制的时候，会自动启用base64编码图片
         ]
@@ -16,7 +17,7 @@ module.exports={
     ],
     resolve:{
         alias:{
-            jquery:"../test/public/js/jquery-1.8.3.min.js"
+            jquery:"../public/js/jquery-1.8.3.min.js"
         }
     }
 };

@@ -51,7 +51,13 @@
 	__webpack_require__(6);
 	document.write(__webpack_require__(9));
 
-	$("body").css("background","#f00");
+	//$("body").css("background","#f00");
+
+
+
+
+	//app.js
+	//var Vue = require('vue'); var app = new Vue({/*...*/});
 
 /***/ },
 /* 1 */
