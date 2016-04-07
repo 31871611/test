@@ -1,0 +1,735 @@
+@charset "UTF-8";
+@import "reset";
+@import "common";
+@import "css3";
+
+//主色
+$red_c:#cd0817;
+//背景
+$body_bg:#f2f2f2;
+
+html,body{
+  height:100%;
+}
+html {
+  font-size: $browser-default-font-size;
+}
+body{
+  font-size:pxTorem(24px);
+  background-color:$body_bg;
+}
+
+
+//内容居中
+.mw{
+  width:pxTorem(640px);
+  margin:0 auto;
+  min-width:320px;
+}
+.hide{
+  display: none !important;
+}
+.mt20{
+  margin-top: pxTorem(20px) !important;
+}
+.mt25{
+  margin-top: pxTorem(25px) !important;
+}
+.mt80{
+  margin-top: pxTorem(80px) !important;
+}
+.mb10{
+  margin-bottom: pxTorem(10px) !important;
+}
+.mb20{
+  margin-bottom: pxTorem(20px) !important;
+}
+.mb30{
+  margin-bottom: pxTorem(30px) !important;
+}
+
+
+//错误提示
+.error{
+  color:$red_c;
+}
+
+.wrap{
+  overflow: hidden;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-flex-direction:column;
+  -ms-flex-direction:column;
+  flex-direction:column;
+  width:100%;
+  height:100%;
+}
+article.main{
+  //padding:pxTorem(88px + 40) 0 pxTorem(99px) 0;
+  //
+  overflow:scroll;
+  -webkit-overflow-scrolling: touch;
+  @include flex(1);
+  width:100%;
+}
+.scrollHide{
+  overflow:hidden;
+}
+
+//头部
+.header{
+  $h:pxTorem(88px);
+  $top:40px;
+  height:$h;
+  background:#272727;
+  border-bottom: 1px solid #bfbfbf;
+  padding-top:pxTorem(40px);
+  a{
+    height:$h;
+    line-height:$h;
+    position: absolute;
+    top:pxTorem(40px);
+    text-align:center;
+    font-size:pxTorem(16px * 2);
+    color:#ffffff;
+  }
+  //左边
+  .return{
+    padding-left:pxTorem(30px + 30);
+    padding-right:pxTorem(10px);
+    &:after{
+      content: "\20";
+      position: absolute;
+      left:pxTorem(30px);
+      top:50%;
+      width:pxTorem(22px);
+      height:pxTorem(42px);
+      margin-top:pxTorem(-42px / 2);
+      background-image: url("../images/arrowL.png");
+      @extend %ico_rem;
+    }
+  }
+  //右边
+  .right{
+    right:0;
+    padding-right:pxTorem(20px);
+    padding-left:pxTorem(10px);
+  }
+  .edit{
+    @extend %url;
+  }
+  //.save{
+  //  @extend %t333;
+  //}
+  h2{
+    padding:0 $h;
+    line-height:$h;
+    font-size:pxTorem(18px * 2);
+    text-align:center;
+    color:#ffffff;
+  }
+}
+//
+//header{
+//  position: fixed;
+//  left:0;
+//  top:0;
+//  width:100%;
+//  z-index:55;
+//}
+//
+//footer{
+//  position: fixed;
+//  left:0;
+//  bottom: 0;
+//  width:100%;
+//  height: pxTorem(84px);
+//}
+
+//底部
+nav.navapp{
+  //$h:pxTorem(84px);
+  $h:98px;
+  display: -webkit-box;
+  display: box;
+  background: #eeeeee;
+  height: pxTo750($h);
+  border-top:1px solid #ccc;
+  a{
+    padding-top:pxTo750(14px);
+    display: block;
+    @include flex(1);
+    //height:$h;
+    color:#666666;
+    i{
+      display: block;
+      margin: 0 auto;
+      @extend %ico_rem;
+      width:pxTo750(40px);
+      height:pxTo750(42px);
+      &.edit{
+
+        background-image: url("../images/edit.png");
+      }
+      &.search{
+        //width:pxTo750(45px);
+        //height:pxTo750(45px);
+        background-image: url("../images/search.png");
+      }
+      &.user{
+        //width:pxTo750(42px);
+        //height:pxTo750(46px);
+        background-image: url("../images/user.png");
+      }
+    }
+    &.select,&:hover{
+      i{
+        &.edit{
+          background-image: url("../images/edit_sel.png");
+        }
+        &.search{
+          background-image: url("../images/search_sel.png");
+        }
+        &.user{
+          background-image: url("../images/user_sel.png");
+        }
+      }
+      span{
+        color:$red_c;
+      }
+    }
+  }
+  span{
+    display: block;
+    //margin-top:pxTorem(6px);
+    text-align:center;
+    font-size:pxTo750(20px);
+    margin-top:pxTo750(5px);
+  }
+}
+
+//按钮
+.btn{
+  text-align: center;
+  margin-left:pxTorem(20px);
+  margin-right:pxTorem(20px);
+  a{
+    display:block;
+    font-size:pxTorem(16px * 2);
+    height:pxTorem(76px);
+    line-height:pxTorem(76px);
+  }
+  //黑底白字
+  .exit{
+    background:#333333;
+    color:#fff;
+  }
+  //边红背景白红字
+  .border{
+    border: 1px solid $red_c;
+    background: #fff;
+    color: $red_c;
+  }
+  //纯红白字
+  .bg{
+    background:$red_c;
+    border: 1px solid $red_c;
+    color:#fff;
+  }
+}
+//一行2个按钮
+.btnRow{
+  display: -webkit-box;
+  display: box;
+  -webkit-box-pack:center;
+  box-pack:center;
+  a{
+    @include flex(1);
+    &:nth-child(2){
+      margin-left:pxTorem(20px);
+    }
+  }
+}
+
+//弹窗遮罩
+#opacity{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom: 0;
+  top:0;
+  background:#000;
+  @include opacity(50);
+  z-index:98;
+}
+
+//维护提示
+#opacity2{
+  z-index:98;
+  position:fixed;
+  left:0;
+  right:0;
+  bottom: 0;
+  top:0;
+  background: rgba(0,0,0,0.5);
+  @extend %boxcen;
+  color: #fff;
+  ul{
+    text-align:center;
+    line-height:pxTorem(35px);
+  }
+}
+
+
+//等待中|圆圈在行的中间
+.loadmore {
+  z-index:100;
+  //line-height:50px;
+  text-align:center;
+  color:#ccc;
+  font-size:14px;
+  span {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    display: inline-block;
+    margin: 10px;
+    border: 2px solid #003247;
+    border-bottom-color: transparent;
+    vertical-align: middle;
+    @include animation(rotate 0.75s 0 linear infinite);
+  }
+}
+
+//结算等待中|圆圈在屏幕中间
+.waitingfor{
+  background:rgba(0,0,0,.5);
+  position:fixed;
+  left:0;
+  right:0;
+  bottom: 0;
+  top:0;
+  @extend %boxcen;
+}
+
+
+
+//无商品显示
+.noproduct{
+  font-size: pxTorem(28px);
+  text-align:center;
+  padding:pxTorem(10px) 0;
+}
+
+//页面失踪404
+.no404{
+  display:-webkit-box;
+  display:box;
+  -webkit-box-pack:center;
+  box-pack:center;
+  -webkit-box-align:center;
+  box-align:center;
+  background:#fff;
+  text-align:center;
+  img{
+    display: block;
+    width:pxTorem(401px);
+    height:pxTorem(409px);
+  }
+}
+
+
+//返回顶部
+//.returnTop{
+//  position: fixed;
+//  right:pxTorem(10px);
+//  bottom: pxTorem(125px);
+//  @extend %ico_rem;
+//  background-image: url("../images/returnTop.png");
+//  width:pxTorem(66px);
+//  height:pxTorem(66px);
+//}
+
+//修改密码
+//不能使用样式名|.modifypass
+@import "modifypass";
+
+
+//用户中心头像
+.user_face{
+  height:pxTorem(240px - 35);
+  padding-top:pxTorem(35px);
+  text-align:center;
+  background-image: url("../images/face_bg.jpg");
+  @extend %ico_rem;
+  .img,img{
+    width:pxTorem(62px);
+    height:pxTorem(143px);
+    //@include border-radius(50%);
+  }
+  .img{
+    margin:0 auto;
+    //border:pxTorem(5px) solid #fff;
+    //box-shadow: 0 6px 6px rgba(0,0,0,.5);
+  }
+  img{
+    display: block;
+  }
+  b{
+    margin-top:pxTorem(18px);
+    font-weight: normal;
+    color:#333;
+    //    font-size:pxTorem(24px);
+    display: block;
+  }
+}
+
+//用户中心列表
+.user_list{
+  background:#fff;
+  li{
+    position: relative;
+    padding:0 pxTorem(18px);
+    &:last-child{
+      a{
+        border-bottom: 0;
+      }
+    }
+    //&:hover{
+    //  background: #e5e5e5;
+    //}
+  }
+  //li.age{
+  //  position: relative;
+  //  height:pxTorem(91px);
+  //  input[type='text']{
+  //    width: pxTorem(604px - 35);
+  //    height:100%;
+  //    padding-right:pxTorem(35px);
+  //    border:0;
+  //    text-align: right;
+  //  }
+  //  em{
+  //    position: absolute;
+  //    top:pxTorem(30px);
+  //    left:pxTorem(30px);
+  //    color:#333333;
+  //  }
+  //}
+  a{
+    margin:0 pxTorem(18px);
+    display: block;
+    height:pxTorem(90px);
+    line-height:pxTorem(90px);
+    color:#333;
+    padding-left:pxTorem(30px);
+    border-bottom: 1px solid #cccccc;
+  }
+  //帮助标题
+  //.help_title{
+  //  height:pxTorem(90px);
+  //  line-height:pxTorem(90px);
+  //  text-align: center;
+  //  padding:0;
+  //  font-size:pxTorem(32px);
+  //}
+  i,b,.face,.notInfo{
+    position: absolute;
+    right:pxTorem(35px);
+  }
+  i{
+    top:50%;
+    margin-top:pxTorem(-12px);
+    width:pxTorem(13px);
+    height:pxTorem(24px);
+    background-image: url("../images/arrowR.png");
+    @extend %ico_rem;
+  }
+  b{
+    font-weight: normal;
+    top:0;
+    color:#666666;
+  }
+  //未读信息数
+  .notInfo{
+    right: pxTorem(70px);
+    top:0;
+    color:$red_c;
+    height:pxTorem(84px);
+    line-height:pxTorem(84px);
+  }
+  //.modify_face{
+  //  padding:pxTorem(25px) 0;
+  //}
+  //.face{
+  //  width:pxTorem(88px);
+  //  height:pxTorem(88px);
+  //  @include border-radius(50%);
+  //  top:pxTorem(30px);
+  //}
+}
+
+//我的帐户
+//不能使用样式名|.accountList
+@import "accountList";
+
+
+//登录与第一次登录弹窗修改密码
+//不能使用样式名|.login|.loginAlert
+@import "login";
+
+//查询送件
+//不能使用样式名|.order_all|.order_list|.goods_num
+@import "orderList";
+
+
+//添加藏品
+//不能使用样式名|.addGoods
+@import "addgoods";
+
+//上拉按钮
+.slideTopBtn{
+  position: fixed;
+  top:0;
+  right:0;
+  bottom: 0;
+  left:0;
+  background:rgba(0,0,0,.5);
+  z-index:65;
+  .box{
+    position: absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    background:$body_bg;
+    @include animation(SlideBottomToTop .5s);
+    ul{
+
+    }
+    li,a{
+      @extend %f16;
+      color:#333;
+      height:pxTorem(48px * 2);
+      line-height:pxTorem(48px * 2);
+      text-align:center;
+      display: block;
+      background-color:#fff;
+    }
+    li{
+      border-bottom: 1px solid #eee;
+    }
+    a.exit{
+      margin-top:pxTorem(10px);
+    }
+  }
+}
+
+
+//申请成功页面
+//不能使用样式名|.apply-success
+@import "applysuccess";
+
+
+//送件信息页面
+//不能使用样式名|.send_info|.send_info_alert
+@import "sendinfo";
+
+
+//照片列表
+//不能使用样式名|.photoList
+@import "photolist";
+
+
+//动画keyframes
+@import "keyframes";
+
+
+
+
+//结算弹窗确定取消
+.myalert{
+  position: fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  top:0;
+  @extend %boxcen;
+  background: rgba(0,0,0,.3);
+  z-index:100;
+  .content{
+    background:#fff;
+    width:pxTo750(560px);
+  }
+  .myalert-title{
+    $h:80px;
+    border-bottom: 1px solid #dddddd;
+    background: $red_c;
+    height:pxTo750(80px);
+    h2{
+      height:pxTo750(80px);
+      line-height:pxTo750(80px);
+      float: left;
+      font-size:pxTo750(32px);
+      padding-left:pxTo750(20px);
+      color:#fff;
+    }
+    .exit{
+      float: right;
+      color:#fff;
+      font-size:32px;
+      background-image: url("../images/x2.png");
+      width:pxTo750(30px + 37px * 2);
+      height:pxTo750(80px);
+      background-size:pxTo750(30px) pxTo750(30px);
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+  }
+  .myalert-box{
+    padding:pxTo750(30px);
+    p{
+      color:#333333;
+      font-size:pxTo750(28px);
+      line-height:pxTo750(40px);
+      margin-top:pxTo750(10px);
+    }
+    .cen{
+      text-align:center;
+    }
+    .load{
+      height: 20px;
+      width: 20px;
+      border-radius: 100%;
+      display: inline-block;
+      margin: 10px;
+      border: 2px solid #003247;
+      border-bottom-color: transparent;
+      vertical-align: middle;
+      @include animation(rotate 0.75s 0 linear infinite);
+    }
+  }
+  .myalert-btn{
+    display: -webkit-box;
+    display: box;
+    border-top:1px solid #dddddd;
+    a{
+      display: block;
+      text-align: center;
+      height:pxTo750(86px);
+      line-height:pxTo750(86px);
+      width:100%;
+      @include flex(1);
+      color:#333333;
+      font-size:pxTo750(30px);
+    }
+    a:nth-child(2){
+      border-left:1px solid #dddddd;
+      margin-left:0;
+    }
+  }
+}
+
+
+//弹窗（查询送件列表弹窗）
+.creditBind{
+  //.box{
+  //  width:90%;
+  //  background:#fff;
+  //  @include border-radius(pxTorem(4px));
+  //}
+  //.title{
+  //  border-bottom: 1px solid #ccc;
+  //  height:pxTorem(80px);
+  //  line-height:pxTorem(80px);
+  //  position: relative;
+  //  margin-bottom: pxTorem(20px);
+  //  h2{
+  //    @extend %f16;
+  //    color:#333;
+  //    text-indent: pxTorem(10px);
+  //  }
+  //  a{
+  //    position: absolute;
+  //    right:0;
+  //    top:0;
+  //    color:#999;
+  //    width:pxTorem(60px);
+  //    text-align:center;
+  //    font-size:pxTorem(32px);
+  //  }
+  //}
+  //.box{
+  //  p{
+  //    @extend %f16;
+  //    margin-top:pxTorem(20px);
+  //  }
+  //  .ml50{
+  //    margin-left:pxTorem(50px);
+  //    margin-right:pxTorem(50px);
+  //  }
+  //  .ml100{
+  //    margin-left:pxTorem(100px);
+  //  }
+  //  .cen{
+  //    margin-left:pxTorem(20px);
+  //    margin-right:pxTorem(20px);
+  //    text-align:center;
+  //  }
+  //  b{
+  //    color:$red_c;
+  //  }
+  //}
+  .item{
+    @extend %clearfix;
+    //margin-top:pxTorem(20px);
+    label,div{
+      float: left;
+      //height:pxTorem(50px);
+      //line-height:pxTorem(50px);
+      vertical-align: middle;
+      font-size:pxTo750(28px);
+    }
+    label{
+      line-height:pxTo750(60px);
+    }
+    div{
+      position: relative;
+      width:pxTo750(300px);
+      &:after{
+        @extend %bottomArrow;
+        background-image: url("../images/arrowB1.png");
+        width: pxTo750(18px);
+        height: pxTo750(11px);
+        right:pxTo750(7px);
+        margin-top:pxTorem(-8px / 2);
+      }
+    }
+    select{
+      height:pxTo750(60px);
+      -webkit-appearance: none;
+      width:100%;
+      display: block;
+      border:1px solid #bcbcbc;
+      @include border-radius(0);
+    }
+  }
+  .myalert-btn{
+    position: relative;
+    a{
+      &:nth-child(2){
+        margin-left:0;
+      }
+    }
+    select{
+      opacity: 0;
+      position: absolute;
+      top:0;
+      right:0;
+      //height: pxTorem(78px);
+      width:50%;
+    }
+  }
+}

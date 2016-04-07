@@ -3,7 +3,7 @@ var sass = require('gulp-sass');                    //scss
 var minifyCss = require("gulp-minify-css");         //压缩css
 var livereload = require('gulp-livereload');        //gulp-livereload
 var sourcemaps = require('gulp-sourcemaps');        //编译sass时生成额外的.map文件用
-var webpack = require('gulp-webpack');        //webpack
+var webpack = require('gulp-webpack');              //webpack
 
 
 //html
