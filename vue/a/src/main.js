@@ -11,6 +11,7 @@
 
 import Vue from 'vue';
 import Router from 'vue-router';
+import Resource from 'vue-resource';
 //import { domain, fromNow } from './filters';
 import App from './App.vue';
 import home from './components/home.vue';
@@ -18,8 +19,16 @@ import pinlei from './components/pinlei.vue';
 import newpreview from './components/newpreview.vue';
 import shopping from './components/shopping.vue';
 
+
+
+// install vue-resource
+Vue.use(Resource);
+
+
+
 // install router
 Vue.use(Router);
+
 
 // register filters globally
 //Vue.filter('fromNow', fromNow);
@@ -31,6 +40,7 @@ var router = new Router();
 router.map({
     '/':{
         component: home
+        //component:require("components/home.vue")  //还可以直接使用这样的方式也是没问题的。不过会没有import集中引入那么直观
     },
     '/pinlei/': {
         component: pinlei

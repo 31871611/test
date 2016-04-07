@@ -55,230 +55,7 @@
                 </div>
                 <!--商品列表-->
                 <div id="goodsList">
-                    <ul class="goods_list con">
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>1</b>
-                            </div>
-                            <i class="out"><a href=""></a></i>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <span class="red">即将开售</span>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                            <i class="booked"><a href=""></a></i>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                        <li>
-                            <a href=""><img v-bind:src="'src/assets/images/2.jpg'"  alt=""/></a>
-                            <p>A859 郭懋介残荷听雨系列套件章</p>
-                            <strong>￥18,500</strong>
-                            <a href="" class="buy"></a>
-                            <div class="love">
-                                <i></i>
-                                <b>2</b>
-                            </div>
-                        </li>
-                    </ul>
+                    <list></list>
                     <ul class="goods_list con" style="display: none;">
                         <li>1</li>
                     </ul>
@@ -296,15 +73,20 @@
 </template>
 
 <script>
+    import list from './goodslist/list.vue';
     import appnav from './footer/appnav.vue';
 
     export default{
+        ready:function(){
+
+        },
         data(){
             return {
 //                msg:"首页"
             }
         },
         components:{
+            list,
             appnav
         }
     }

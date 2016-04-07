@@ -1,7 +1,17 @@
 
 <template>
-    {{msg}}
-    <appnav></appnav>
+    <div class="wrap">
+        <header>
+
+        </header>
+        <article class="main">
+            {{msg}}
+        </article>
+
+        <footer>
+            <appnav></appnav>
+        </footer>
+    </div>
 </template>
 
 <script>

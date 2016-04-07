@@ -1,4 +1,7 @@
-<style>
+<style scoped>
+/**
+scoped的使用，它表示在该style中定义的样式只会在当前的组件中起到效果，而不会去影响全局的css样式
+**/
     .c{
         background:#f00;
     }
