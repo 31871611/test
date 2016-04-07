@@ -1,11 +1,11 @@
 module.exports={
     entry:"./entry.js",         //entry：指定打包的入口文件，每有一个键值对，就是一个入口文件
-    output:{                    //output：配置打包结果，path定义了输出的文件夹，filename则定义了打包结果文件的名称
-        path:__dirname,
-        filename:"bundle.js"
+    output:{                    //output：配置打包结果
+        path:__dirname,         //path定义了输出的文件夹
+        filename:"bundle.js"    //filename则定义了打包结果文件的名称
     },
-    module:{                    //module：定义了对模块的处理逻辑，这里可以用loaders定义了一系列的加载器，以及一些正则。当需要加载的文件匹配test的正则时，就会调用后面的loader对文件进行处理，这正是webpack强大的原因。
-        loaders:[
+    module:{                    //module：定义了对模块的处理逻辑
+        loaders:[               //loaders定义了一系列的加载器，以及一些正则。当需要加载的文件匹配test的正则时，就会调用后面的loader对文件进行处理，这正是webpack强大的原因。
             {test: /\.vue$/, loader: 'vue-loader'},
             {test:/\.css$/,loader:"style!css"},
             {test:/\.(png|jpg)$/,loader:"url?limit=4000"}       //limit参数，当你图片大小小于这个限制的时候，会自动启用base64编码图片
