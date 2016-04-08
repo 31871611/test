@@ -1,0 +1,70 @@
+@charset "UTF-8";
+@import "../comm/css3";
+@import "../comm/common";
+
+//头部
+.header{
+  $h:87px;
+  $topH:40px;
+  height:pxTo750($h);
+  background:#fff;
+  border-bottom: 1px solid #e5e5e5;
+  padding-top:pxTo750($topH);
+  h2{
+    padding:0 pxTo750(100px);
+    line-height:pxTo750($h);
+    font-size:pxTo750(36px);
+    text-align:center;
+    color:#333333;
+  }
+  a{
+    height:pxTo750($h);
+    line-height:pxTo750($h);
+    position: absolute;
+    top:pxTo750(40px);
+  }
+  //左边
+  .return{
+    left:0;
+    padding:0 pxTo750(30px);
+    width:pxTo750(22px);
+    &:after{
+      content: "\20";
+      position: absolute;
+      left:pxTo750(30px);
+      top:50%;
+      width:pxTo750(22px);
+      height:pxTo750(42px);
+      margin-top:pxTo750(-42px / 2);
+      background-image: url("../images/iconArrowLT.png");
+      @extend %ico_rem;
+    }
+  }
+  //右边
+  .right{
+    right:0;
+    padding:0 pxTo750(30px);
+  }
+  //搜索
+  .iconSearch{
+    width:pxTo750(40px);
+    &:after{
+      content: "\20";
+      position: absolute;
+      right:pxTo750(30px);
+      top:50%;
+      width:pxTo750(40px);
+      height:pxTo750(40px);
+      margin-top:pxTo750(-40px / 2);
+      background-image: url("../images/iconSearchT.png");
+      @extend %ico_rem;
+    }
+  }
+  .edit{
+
+  }
+  //.save{
+  //  @extend %t333;
+  //}
+
+}

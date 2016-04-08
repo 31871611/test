@@ -1,0 +1,103 @@
+@charset "UTF-8";
+@import "../comm/css3";
+@import "../comm/common";
+
+
+nav.appNav{
+  $h:98px;
+  @include display-flex();
+  background: #fff;
+  height: pxTo750($h);
+  border-top:1px solid #999999;
+  a{
+    display: block;
+    @include flex(1);
+    font-size:pxTo750(20px);
+    color:#333333;
+    text-align:center;
+    &:before{
+      content: "\20";
+      display: block;
+      margin:pxTo750(12px) auto 0;
+    }
+    &.appNavHome{
+      //首页
+      &:before {
+        width: pxTo750(44px);
+        height: pxTo750(46px);
+        background-image: url("../images/iconNavHome.png");
+        @extend %ico_rem;
+      }
+    }
+    &.appNavClassify{
+      //分类
+      &:before {
+        width: pxTo750(47px);
+        height: pxTo750(46px);
+        background-image: url("../images/iconNavClassify.png");
+        @extend %ico_rem;
+      }
+    }
+    &.appNavShopping{
+      //购物车
+      &:before {
+        width: pxTo750(49px);
+        height: pxTo750(43px);
+        background-image: url("../images/iconNavShopping.png");
+        @extend %ico_rem;
+      }
+    }
+    &.appNavReg{
+      //注册有礼
+      &:before {
+        width: pxTo750(46px);
+        height: pxTo750(46px);
+        background-image: url("../images/iconNavReg.png");
+        @extend %ico_rem;
+      }
+    }
+    &.appNavUser{
+      //个人
+      &:before {
+        width: pxTo750(42px);
+        height: pxTo750(46px);
+        background-image: url("../images/iconNavUser.png");
+        @extend %ico_rem;
+      }
+    }
+    //当前页
+    &.select{
+      color:$blue-base;
+      &.appNavHome {
+        //首页
+        &:before {
+          background-image: url("../images/iconNavHomeS.png");
+        }
+      }
+      &.appNavClassify{
+        //分类
+        &:before {
+          background-image: url("../images/iconNavClassifyS.png");
+        }
+      }
+      &.appNavShopping{
+        //购物车
+        &:before {
+          background-image: url("../images/iconNavShoppingS.png");
+        }
+      }
+      &.appNavReg{
+        //注册有礼
+        &:before {
+          background-image: url("../images/iconNavRegS.png");
+        }
+      }
+      &.appNavUser{
+        //个人
+        &:before {
+          background-image: url("../images/iconNavUserS.png");
+        }
+      }
+    }
+  }
+}

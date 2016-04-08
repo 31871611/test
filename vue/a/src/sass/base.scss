@@ -1,12 +1,7 @@
 @charset "UTF-8";
-@import "reset";
-@import "common";
-@import "css3";
-
-//主色
-$red_c:#cd0817;
-//背景
-$body_bg:#f2f2f2;
+@import "comm/reset";
+@import "comm/css3";
+@import "comm/common";
 
 html,body{
   height:100%;
@@ -16,9 +11,29 @@ html {
 }
 body{
   font-size:pxTorem(24px);
-  background-color:$body_bg;
+  background-color:$bg-color;
 }
 
+//基础部局
+.wrap{
+  overflow: hidden;
+  @include display-flex();
+  -webkit-box-orient:vertical;
+  -webkit-flex-direction:column;
+  -ms-flex-direction:column;
+  flex-direction:column;
+  width:100%;
+  height:100%;
+}
+article.main{
+  overflow:scroll;
+  -webkit-overflow-scrolling: touch;
+  @include flex(1);
+  width:100%;
+}
+.scrollHide{
+  overflow:hidden;
+}
 
 //内容居中
 .mw{
@@ -53,205 +68,16 @@ body{
 .error{
   color:$red_c;
 }
-
-.wrap{
-  overflow: hidden;
-  display:-webkit-box;
-  display:-webkit-flex;
-  display:-ms-flexbox;
-  display:flex;
-  -webkit-box-orient:vertical;
-  -webkit-flex-direction:column;
-  -ms-flex-direction:column;
-  flex-direction:column;
-  width:100%;
-  height:100%;
-}
-article.main{
-  //padding:pxTorem(88px + 40) 0 pxTorem(99px) 0;
-  overflow:scroll;
-  -webkit-overflow-scrolling: touch;
-  @include flex(1);
-  width:100%;
-}
-.scrollHide{
-  overflow:hidden;
+.clearfix{
+  @extend %clearfix;
 }
 
-//头部
-.header{
-  $h:pxTorem(88px);
-  $top:40px;
-  height:$h;
-  background:#272727;
-  border-bottom: 1px solid #bfbfbf;
-  padding-top:pxTorem(40px);
-  a{
-    height:$h;
-    line-height:$h;
-    position: absolute;
-    top:pxTorem(40px);
-    text-align:center;
-    font-size:pxTorem(16px * 2);
-    color:#ffffff;
-  }
-  //左边
-  .return{
-    padding-left:pxTorem(30px + 30);
-    padding-right:pxTorem(10px);
-    &:after{
-      content: "\20";
-      position: absolute;
-      left:pxTorem(30px);
-      top:50%;
-      width:pxTorem(22px);
-      height:pxTorem(42px);
-      margin-top:pxTorem(-42px / 2);
-      background-image: url("../images/arrowL.png");
-      @extend %ico_rem;
-    }
-  }
-  //右边
-  .right{
-    right:0;
-    padding-right:pxTorem(20px);
-    padding-left:pxTorem(10px);
-  }
-  .edit{
-    @extend %url;
-  }
-  //.save{
-  //  @extend %t333;
-  //}
-  h2{
-    padding:0 $h;
-    line-height:$h;
-    font-size:pxTorem(18px * 2);
-    text-align:center;
-    color:#ffffff;
-  }
-}
-//
-//header{
-//  position: fixed;
-//  left:0;
-//  top:0;
-//  width:100%;
-//  z-index:55;
-//}
-//
-//footer{
-//  position: fixed;
-//  left:0;
-//  bottom: 0;
-//  width:100%;
-//  height: pxTorem(84px);
-//}
+//头部|.header
+@import "components/header";
 
-//底部
-nav.navapp{
-  //$h:pxTorem(84px);
-  $h:98px;
-  display: -webkit-box;
-  display: box;
-  background: #eeeeee;
-  height: pxTo750($h);
-  border-top:1px solid #ccc;
-  a{
-    padding-top:pxTo750(14px);
-    display: block;
-    @include flex(1);
-    //height:$h;
-    color:#666666;
-    i{
-      display: block;
-      margin: 0 auto;
-      @extend %ico_rem;
-      width:pxTo750(40px);
-      height:pxTo750(42px);
-      &.edit{
+//底部导航
+@import "components/navapp";
 
-        background-image: url("../images/edit.png");
-      }
-      &.search{
-        //width:pxTo750(45px);
-        //height:pxTo750(45px);
-        background-image: url("../images/search.png");
-      }
-      &.user{
-        //width:pxTo750(42px);
-        //height:pxTo750(46px);
-        background-image: url("../images/user.png");
-      }
-    }
-    &.select,&:hover{
-      i{
-        &.edit{
-          background-image: url("../images/edit_sel.png");
-        }
-        &.search{
-          background-image: url("../images/search_sel.png");
-        }
-        &.user{
-          background-image: url("../images/user_sel.png");
-        }
-      }
-      span{
-        color:$red_c;
-      }
-    }
-  }
-  span{
-    display: block;
-    //margin-top:pxTorem(6px);
-    text-align:center;
-    font-size:pxTo750(20px);
-    margin-top:pxTo750(5px);
-  }
-}
-
-//按钮
-.btn{
-  text-align: center;
-  margin-left:pxTorem(20px);
-  margin-right:pxTorem(20px);
-  a{
-    display:block;
-    font-size:pxTorem(16px * 2);
-    height:pxTorem(76px);
-    line-height:pxTorem(76px);
-  }
-  //黑底白字
-  .exit{
-    background:#333333;
-    color:#fff;
-  }
-  //边红背景白红字
-  .border{
-    border: 1px solid $red_c;
-    background: #fff;
-    color: $red_c;
-  }
-  //纯红白字
-  .bg{
-    background:$red_c;
-    border: 1px solid $red_c;
-    color:#fff;
-  }
-}
-//一行2个按钮
-.btnRow{
-  display: -webkit-box;
-  display: box;
-  -webkit-box-pack:center;
-  box-pack:center;
-  a{
-    @include flex(1);
-    &:nth-child(2){
-      margin-left:pxTorem(20px);
-    }
-  }
-}
 
 //弹窗遮罩
 #opacity{
@@ -379,8 +205,31 @@ nav.navapp{
 }
 
 //动画keyframes
-@import "keyframes";
+@import "components/keyframes";
 
+//按钮|.btn|.btnRow
+@import "components/btn";
 
+//url连接
+%url{
+  color:#3366cc;
+}
 
+//图片
+%img{
+  width:100%;
+  height:100%;
+}
+//让图片支持响应式布局
+.img-responsive{
+  max-width: 100%;
+  height: auto;
+  //display: block;
+}
+//ico图标
+%ico_rem{
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
 

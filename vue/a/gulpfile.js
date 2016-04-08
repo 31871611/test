@@ -14,17 +14,17 @@ gulp.task('html', function() {
 
 // 编译Sass
 gulp.task('sass', function() {
-    gulp.src('./src/sass/*.scss')
+    gulp.src('./src/sass/**/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(sourcemaps.write('./maps'))
-        .pipe(gulp.dest('./dist/css'))
+        .pipe(gulp.dest('./src/html/css'))
         .pipe(livereload());
 });
 
 //压缩css
 gulp.task('minify-css', function () {
-    gulp.src('./dist/css/*.css')
+    gulp.src('./src/html/css/*.css')
         .pipe(minifyCss())      //压缩css
         .pipe(gulp.dest('./dist/css'));
 });
@@ -46,7 +46,7 @@ gulp.task('default', function() {
     gulp.watch('./src/html/*.html', function(){
         gulp.run('html');
     });
-    gulp.watch('./src/sass/*.scss', function(){
+    gulp.watch('./src/sass/**/*.scss', function(){
         gulp.run('sass');
     });
 
