@@ -8,7 +8,9 @@ form, fieldset, input, textarea, p, blockquote, th, td {
 }
 
 body {
-  font-family: "Microsoft YaHei", Arial, "\5B8B\4F53", Helvetica, sans-serif; -webkit-tap-highlight-color:transparent;
+  font-family: "Microsoft YaHei", Arial, "\5B8B\4F53", Helvetica, sans-serif;
+  //当用户点击iOS的Safari浏览器中的链接或JavaScript的可点击的元素时，覆盖显示的高亮颜色。
+  -webkit-tap-highlight-color:transparent;
 }
 
 html {
@@ -67,34 +69,30 @@ sup {
 sub {
   vertical-align: text-bottom;
 }
-
 input, textarea, select {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
-  //去除下拉三角
-  //-webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
+select{
+  //去除下拉三角
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 input {
   outline: none;
   -webkit-border-radius: 0;
   border-radius: 0;
-}
 
+}
+input[type="submit"],[type="reset"]{
+  //safari浏览器上submit按钮圆角bug
+  -webkit-appearance: none;
+}
 a {
   text-decoration: none;
-}
-
-//body{
-//  //在移动端禁用长按选中文本功能
-//  @include user-select(none);
-//}
-
-a{
   //当你触摸并按住触摸目标时候，禁止或显示系统默认菜单。
   -webkit-touch-callout: none;
 }
@@ -103,58 +101,13 @@ img{
   pointer-events: none;
 }
 
-
-//当用户点击iOS的Safari浏览器中的链接或JavaScript的可点击的元素时，覆盖显示的高亮颜色。
-//-webkit-tap-highlight-color:transparent;
-
-
-
-//word-break:break-all;word-wrap:break-word;
+//body{
+//  //在移动端禁用长按选中文本功能
+//  @include user-select(none);
+//}
 
 //竖屏转横屏字体自动变大的问题
 //1    -webkit-text-size-adjust: none;
 //2    -moz-text-size-adjust:none;
 //3    -ms-text-size-adjust: none;
 //4    text-size-adjust: none;
-
-
-//safari浏览器上submit按钮圆角bug
-//http://www.jb51.net/css/68771.html
-//input{-webkit-appearance: none;}
-
-
-//background:red\9;/*IE6-8*/
-//_background:orange\0;/*IE8*/
-//+background-color:pink; /*ie7*/
-//*background:black;/*IE6-7*/
-//_background:orange;/*IE6*/
-
-
-//忽略将数字变为电话号码：
-//<meta content="telephone=no" name="format-detection">
-
-//关闭Input键盘默认首字母大写：autocapitalize=”off”
-
-//纯css的防止图片撑破页面的代码，图片会自动按比例缩小。(css 图片自动缩放 )
-//完美兼容：IE6、IE7、IE8、Firefox
-//height:auto;
-//max-width:100%;
-
-
-//图片不存在的时候，显示一个默认图片
-//<img src="exist.gif" onerror="this.src='http://www.lanrentuku.com/images/logo.jpg'" />
-
-
-
-//	alert($(document).height()); //4194
-//	alert($(window).height());   //437
-//	alert($("html").height());   //3829
-//	alert($("body").height());   //3829
-
-//使用 @font-family-base、@font-size-base 和 @line-height-base a变量作为排版的基本参数
-//为所有链接设置了基本颜色 @link-color ，并且当链接处于 :hover 状态时才添加下划线
-//.container 类用于固定宽度
-//行（row）与列（column）
-//btn btn-default bth-red btn-block
-//为图片添加 .img-responsive 类可以让图片支持响应式布局。其实质是为图片设置了 max-width: 100%;、 height: auto; 和 display: block; 属性，从而让图片在其父元素中更好的缩放
-//图片水平居中，请使用 .center-block 类

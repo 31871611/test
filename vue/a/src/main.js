@@ -24,7 +24,12 @@ import shopping from './components/shopping.vue';
 // install vue-resource
 Vue.use(Resource);
 
-
+// 不加跨域xhr会发起options请求
+//Vue.http.options.headers={
+//    'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
+//};
+// post的时候会把JSON对象转成formdata
+//Vue.http.options.emulateJSON=true;
 
 // install router
 Vue.use(Router);

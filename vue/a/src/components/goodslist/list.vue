@@ -55,8 +55,9 @@
 //            });
 
             // GET request
-            this.$http.get('src/api/book.json').then(function (response) {
-
+            this.$http.jsonp('http://pan.jizhenfang.com:8211/dataSource/category/listCategory/0').then(function (response) {
+//            this.$http.jsonp('http://192.168.1.165/jizhenfang-php2/test.php',{jsonp:'callback'}).then(function (response) {
+                
                 // get status
                 alert(response.status);
 
@@ -67,8 +68,11 @@
                 //console.log(response.headers('expires'));
 
                 // set data on vm
-                this.$set('lists', response.data)
+//                this.$set('lists', response)
+                console.log(response);
 
+            },{
+//                headers: {'Content-Type': 'Access-Control-Allow-Origin'}
             }, function (response) {
 
                 // error callback
