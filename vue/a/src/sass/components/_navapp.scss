@@ -20,8 +20,8 @@ nav.appNav{
       display: block;
       margin:pxTo750(12px) auto 0;
     }
+    //首页
     &.appNavHome{
-      //首页
       &:before {
         width: pxTo750(44px);
         height: pxTo750(46px);
@@ -29,8 +29,8 @@ nav.appNav{
         @extend %ico_rem;
       }
     }
+    //分类
     &.appNavClassify{
-      //分类
       &:before {
         width: pxTo750(47px);
         height: pxTo750(46px);
@@ -38,8 +38,8 @@ nav.appNav{
         @extend %ico_rem;
       }
     }
+    //购物车
     &.appNavShopping{
-      //购物车
       &:before {
         width: pxTo750(49px);
         height: pxTo750(43px);
@@ -47,8 +47,8 @@ nav.appNav{
         @extend %ico_rem;
       }
     }
+    //注册有礼
     &.appNavReg{
-      //注册有礼
       &:before {
         width: pxTo750(46px);
         height: pxTo750(46px);
@@ -56,8 +56,17 @@ nav.appNav{
         @extend %ico_rem;
       }
     }
+    //我的订单
+    &.appNavOrder{
+      &:before {
+        width: pxTo750(38px);
+        height: pxTo750(46px);
+        background-image: url("../images/iconNavOrder.png");
+        @extend %ico_rem;
+      }
+    }
+    //个人
     &.appNavUser{
-      //个人
       &:before {
         width: pxTo750(42px);
         height: pxTo750(46px);
@@ -68,32 +77,38 @@ nav.appNav{
     //当前页
     &.select{
       color:$blue-base;
+      //首页
       &.appNavHome {
-        //首页
         &:before {
           background-image: url("../images/iconNavHomeS.png");
         }
       }
+      //分类
       &.appNavClassify{
-        //分类
         &:before {
           background-image: url("../images/iconNavClassifyS.png");
         }
       }
+      //购物车
       &.appNavShopping{
-        //购物车
         &:before {
           background-image: url("../images/iconNavShoppingS.png");
         }
       }
+      //注册有礼
       &.appNavReg{
-        //注册有礼
         &:before {
           background-image: url("../images/iconNavRegS.png");
         }
       }
+      //我的订单
+      &.appNavOrder{
+        &:before {
+          background-image: url("../images/iconNavOrderS.png");
+        }
+      }
+      //个人
       &.appNavUser{
-        //个人
         &:before {
           background-image: url("../images/iconNavUserS.png");
         }

@@ -3,6 +3,10 @@ var sass = require('gulp-sass');                    //scss
 var minifyCss = require("gulp-minify-css");         //压缩css
 var livereload = require('gulp-livereload');        //gulp-livereload
 var sourcemaps = require('gulp-sourcemaps');        //编译sass时生成额外的.map文件用
+var base64 = require('gulp-base64');                //把图片转换为base64
+//var config = require('./config').base64;              //base64配置文件
+var cssBase64 = require('gulp-css-base64');
+
 var webpack = require('gulp-webpack');              //webpack
 
 
@@ -28,6 +32,26 @@ gulp.task('minify-css', function () {
         .pipe(minifyCss())      //压缩css
         .pipe(gulp.dest('./dist/css'));
 });
+
+gulp.task('cssBase64', function () {
+    return gulp.src('./src/html/css/*.css')
+        .pipe(cssBase64())
+        .pipe(gulp.dest('./src/html/css'));
+});
+
+
+//转base64
+//gulp.task('base64', ['sass'], function() {
+//    return gulp.src('./src/html/css/*.css')
+//        .pipe(base64({
+//            baseDir: build,
+//            extensions: ['png'],
+//            maxImageSize: 20 * 1024, // bytes
+//            debug: false
+//        }))
+//        .pipe(gulp.dest('./src/html/css'));
+//});
+
 
 //webpack
 gulp.task('webpack', function(){

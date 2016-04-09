@@ -5,10 +5,13 @@ gulp-livereload
 gulp-sourcemaps
 gulp-webpack
 gulp-connect
+
+gulp-css-base64
 https://github.com/DaniloShan/gulp-mock/wiki
 gulp-mock
 
-
+gulp-img64|html上img标签转成base64
+//npm install --save-dev gulp-base64@0.1.2
 //npm install --global webpack
 npm install --save-dev webpack
 npm install --save-dev vue
