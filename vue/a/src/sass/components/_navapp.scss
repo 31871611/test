@@ -19,12 +19,14 @@ nav.appNav{
       content: "\20";
       display: block;
       margin:pxTo750(12px) auto 0;
+      width: pxTo750(44px);
+      height: pxTo750(46px);
     }
     //首页
     &.appNavHome{
       &:before {
-        width: pxTo750(44px);
-        height: pxTo750(46px);
+        //width: pxTo750(44px);
+        //height: pxTo750(46px);
         background-image: url("../images/iconNavHome.png");
         @extend %ico_rem;
       }
@@ -32,8 +34,8 @@ nav.appNav{
     //分类
     &.appNavClassify{
       &:before {
-        width: pxTo750(47px);
-        height: pxTo750(46px);
+        //width: pxTo750(47px);
+        //height: pxTo750(46px);
         background-image: url("../images/iconNavClassify.png");
         @extend %ico_rem;
       }
@@ -41,8 +43,8 @@ nav.appNav{
     //购物车
     &.appNavShopping{
       &:before {
-        width: pxTo750(49px);
-        height: pxTo750(43px);
+        //width: pxTo750(49px);
+        //height: pxTo750(43px);
         background-image: url("../images/iconNavShopping.png");
         @extend %ico_rem;
       }
@@ -50,8 +52,8 @@ nav.appNav{
     //注册有礼
     &.appNavReg{
       &:before {
-        width: pxTo750(46px);
-        height: pxTo750(46px);
+        //width: pxTo750(46px);
+        //height: pxTo750(46px);
         background-image: url("../images/iconNavReg.png");
         @extend %ico_rem;
       }
@@ -59,8 +61,8 @@ nav.appNav{
     //我的订单
     &.appNavOrder{
       &:before {
-        width: pxTo750(38px);
-        height: pxTo750(46px);
+        //width: pxTo750(38px);
+        //height: pxTo750(46px);
         background-image: url("../images/iconNavOrder.png");
         @extend %ico_rem;
       }
@@ -68,8 +70,8 @@ nav.appNav{
     //个人
     &.appNavUser{
       &:before {
-        width: pxTo750(42px);
-        height: pxTo750(46px);
+        //width: pxTo750(42px);
+        //height: pxTo750(46px);
         background-image: url("../images/iconNavUser.png");
         @extend %ico_rem;
       }
