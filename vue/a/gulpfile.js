@@ -3,7 +3,7 @@ var sass = require('gulp-sass');                    //scss
 var minifyCss = require("gulp-minify-css");         //压缩css
 var livereload = require('gulp-livereload');        //gulp-livereload
 var sourcemaps = require('gulp-sourcemaps');        //编译sass时生成额外的.map文件用
-var base64 = require('gulp-base64');                //把图片转换为base64
+//var base64 = require('gulp-base64');                //把图片转换为base64
 //var config = require('./config').base64;              //base64配置文件
 var cssBase64 = require('gulp-css-base64');
 

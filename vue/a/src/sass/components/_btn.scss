@@ -37,7 +37,7 @@
 }
 //一行2个按钮
 .btnRow{
-  @include display-flex();
+  @extend .display-flex;
   @include justify-content();
   a{
     @include flex(1);
