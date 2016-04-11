@@ -75,11 +75,17 @@ body{
 ////基础布局，版面|.wrap|article.main|.scrollHide
 @import "comm/layout";
 
-//头部|.header
+//头部|.header|.topSearch
 @import "components/header";
 
 //底部导航|.appNav
 @import "components/navapp";
+
+//搜索|.searchInfoList
+@import "components/search";
+
+//公告|.bulletinList
+@import "components/bulletin";
 
 //首页|.index*+
 @import "components/index";
@@ -87,8 +93,11 @@ body{
 //商品列表|.goodsList
 @import "components/goodsList";
 
-//品类选择列表
+//品类选择列表|.categoryChoice|.goodsFilterIf
 @import "components/category";
+
+//商品详情页|
+@import "components/detail";
 
 //动画keyframes
 @import "components/keyframes";

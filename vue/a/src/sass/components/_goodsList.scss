@@ -9,6 +9,7 @@
 //放li里right|2|4|6
 %goodsList{
   @extend %clearfix;
+  //列
   li.col{
     width:50%;
     float:left;
@@ -50,7 +51,6 @@
       background:$red-base;
     }
   }
-
   .box{
     position: relative;
     background:#fff;
@@ -141,7 +141,124 @@
 
 //行row
 .goodsListRow{
+  //列row
+  li.row{
+    background: #fff;
+    margin-bottom: pxTorem(20px);
+    height:pxTorem(280px - 20);
+    padding-top:pxTorem(20px);
+    .box{
+      margin:0 pxTorem(30px);
+      position: relative;
+      @extend .display-flex;
+    }
+    //一样
+    .img{
+      display: block;
+      width:pxTorem(240px);   //修改大小
+      height:pxTorem(240px);  //
+      img{
+        @extend .img-auto;
+      }
+      //图标
+      //i.out,i.booked{
+      //  @extend %ico_rem;
+      //  position: absolute;
+      //  bottom:pxTorem(4px);
+      //  a{
+      //    display: block;
+      //    width:100%;
+      //    height:100%;
+      //  }
+      //}
+      ////已售图标
+      //i.out{
+      //  background-image:url("../images/iconOut.png");
+      //  width:pxTorem(141px);
+      //  height:pxTorem(126px);
+      //  right:pxTorem(5px);
+      //}
+      ////已预定图图标
+      //i.booked{
+      //  background-image:url("../images/iconBooked.png");
+      //  width:pxTorem(156px);
+      //  height:pxTorem(140px);
+      //  right:pxTorem(5px);
+      //}
+    }
+    .info{
+      @extend .flex;
+      position: relative;
+      h3{
+        color:#333333;
+        font-size:pxTorem(32px);
+      }
+    }
+    h3{
+      margin-left:pxTorem(55px);
+      font-size:pxTorem(32px);
+      color:#333;
+      margin-top:pxTorem(20px);
+      &:nth-of-type(2){
+        margin-top:pxTorem(10px);
+      }
+    }
+    //尺寸
+    .size{
+      margin-left:pxTorem(55px);
+      display: block;
+      margin-top:pxTorem(20px);
+    }
+    //价格
+    strong{
+      margin-left:pxTorem(55px);
+      display: block;
+      font-size:pxTorem(32px);
+      color:$red-base;
+      margin-top:pxTorem(20px);
+      //font-weight:bold;
+    }
 
+
+    //马上开抢按钮
+    .btnGo{
+      position: absolute;
+      bottom:pxTorem(10px);
+      right:pxTorem(10px);
+      //display: inline-block;
+      padding:0 pxTorem(20px);
+      height:pxTorem(54px);
+      line-height:pxTorem(54px);
+      border:1px solid $red-base;
+      color:$red-base;
+      font-size:pxTorem(26px);
+    }
+    //没修改
+    .love{
+      position: absolute;
+      right:0;
+      top:0;
+      text-align:center;
+      padding:pxTorem(15px) pxTorem(15px);
+      color:#fff;
+      font-size:pxTorem(24px);
+      &:before{
+        content: "\20";
+        width:pxTorem(32px);
+        height:pxTorem(26px);
+        background-image:url("../images/iconLove.png");
+        @extend %ico_rem;
+        display:block;
+        margin:0 auto;
+      }
+      &.select{
+        &:before{
+          background-image:url("../images/iconLoveS.png");
+        }
+      }
+    }
+
+  }
 }
 
 //列col
@@ -228,14 +345,14 @@
         z-index:-1;
       }
       &:before{
-        width:pxTorem(278px);
+        width:80%;
         height:pxTorem(144px);
         left:pxTorem(36px);
         top:-1px;
       }
       &:after{
         width:102%;
-        height:pxTorem(68px);
+        height:50%;
         left:-1px;
         top:pxTorem(36px);
       }

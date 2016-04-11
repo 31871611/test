@@ -1,0 +1,782 @@
+@charset "UTF-8";
+@import "../comm/css3";
+@import "../comm/common";
+
+//详情页
+.detail{
+
+}
+
+
+//详情页图片列表
+.detailImg{
+  img{
+    width: 100%;
+  }
+}
+
+
+//藏品基本信息
+.detailTitle{
+  background:rgba(255,255,255,1);
+  position: relative;
+  padding-top:pxTorem(10px);
+  h1,h3,p{
+    padding-left: pxTorem(20px);
+  }
+  h1{
+    font-size: pxTorem(32px);
+    line-height: 1.5;
+    padding-right:pxTorem(70px);
+    padding-bottom:pxTorem(10px);
+    color:#333;
+  }
+  //价格
+  .price{
+    font-size: pxTorem(42px);
+    color: $red_c;
+    padding-bottom: pxTorem(6px);
+    i{
+      position: relative;
+      top:pxTorem(-5px);
+      margin-right:pxTorem(16px);
+      font-style: normal;
+      background:$red_c;
+      color:#fff;
+      font-size:pxTorem(16px);
+      -webkit-border-radius: pxTorem(4px);
+      border-radius: pxTorem(4px);
+    }
+  }
+  p{
+    color:#666666;
+    font-size: pxTorem(24px);
+    padding-bottom: pxTorem(10px);
+    span{
+      margin-right:0;
+      display: inline-block;
+      &:nth-child(1){
+        width:pxTorem(225px);
+      }
+    }
+  }
+  .love{
+    height: pxTorem(38px);
+    position: absolute;
+    top: pxTorem(15px);
+    right:pxTorem(16px);
+    text-align: center;
+    color: #999;
+    &:before{
+      content: "\20";
+      display: block;
+      margin:0 auto;
+      width:pxTorem(32px);
+      height: pxTorem(26px);
+      background-image: url("../images/iconLoveC.png");
+      @extend %ico_rem;
+    }
+    &.select{
+      &:before {
+        background-image: url("../images/iconLoveS.png");
+      }
+    }
+  }
+  //电话预定
+  .tel{
+    width:pxTorem(162px - 56);
+    padding-left:pxTorem(42px);
+    height:pxTorem(44px);
+    line-height:pxTorem(44px);
+    position: absolute;
+    right:pxTorem(22px);
+    bottom:pxTorem(10px);
+    border:1px solid #b2b2b2;
+    background: #fff;
+    @include border-radius(pxTorem(6px));
+    color:$red_c;
+    box-shadow: inset 0 0 pxTorem(6px) rgba(178,178,178,.35);
+    &:after{
+      content: "\20";
+      width:pxTorem(24px);
+      height:pxTorem(33px);
+      background-image: url("../images/iconTel.png");
+      @extend %ico_rem;
+      position: absolute;
+      left:pxTorem(12px);
+      top:pxTorem(7px);
+    }
+  }
+}
+
+
+
+//藏品详情
+.detailInfo{
+  background: #fff;
+  margin-bottom: pxTorem(10px);
+  margin-top:pxTorem(10px);
+  h2{
+    font-size: pxTorem(24px);
+    padding-top: pxTorem(20px);
+    padding-bottom: pxTorem(20px);
+    border-bottom: 1px solid #d2d2d2;
+    margin: 0 pxTorem(20px);
+    color:#666666;
+  }
+  ul{
+    margin-left: pxTorem(20px);
+    overflow: hidden;
+    padding-top: pxTorem(15px);
+    padding-bottom: pxTorem(15px);
+  }
+  li{
+    line-height: pxTorem(50px);
+    vertical-align: top;
+    float:left;
+    width:50%;
+    font-size:pxTorem(24px);
+    color:#333333;
+  }
+  li:last-child{
+    width:100%;
+  }
+}
+
+
+//线下门店
+.detailList{
+  margin-bottom: pxTorem(10px);
+  background:#fff;
+  li{
+    border-bottom: 1px solid #cccccc;
+    position: relative;
+    margin:0 pxTorem(18px);
+    &:last-child{
+      border-bottom: 0;
+    }
+  }
+  a{
+    font-size:pxTorem(24px);
+    display: block;
+    padding:pxTorem(30px) pxTorem(20px) pxTorem(30px) 0;
+    color:#333;
+  }
+}
+
+
+//右箭头
+.iconArrowR{
+  position: relative;
+  &:after {
+    content: "\20";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: pxTorem(-15px);
+    width: pxTorem(16px);
+    height: pxTorem(30px);
+    background-image: url("../images/iconArrowR.png");
+    @extend %ico_rem;
+  }
+}
+//下箭头
+.iconArrowB{
+  position: relative;
+  &:after{
+    content: "\20";
+    position: absolute;
+    right:0;
+    top:50%;
+    margin-top:pxTorem(-15px);
+    width:pxTorem(30px);
+    height:pxTorem(16px);
+    background-image: url("../images/iconArrowB.png");
+    @extend %ico_rem;
+  }
+}
+
+
+
+.detailExplain{
+  background: #fff;
+  margin-bottom: pxTorem(10px);
+  h2{
+    font-size: pxTorem(24px);
+    padding-top: pxTorem(20px);
+    padding-bottom: pxTorem(20px);
+    border-bottom: 1px solid #d2d2d2;
+    margin: auto pxTorem(20px);
+    color:#333;
+    &.borderBNo{
+      border-bottom: 0;
+    }
+  }
+  p{
+    padding: pxTorem(20px);
+    font-size:pxTorem(24px);
+    color:#333;
+    img{
+      width:100%;
+    }
+  }
+  .f12{
+    font-size:pxTorem(24px);
+  }
+  .cen{
+    text-align:center;
+  }
+}
+
+
+
+//更多详情
+.detailMore{
+  $h:pxTorem(90px);
+  $bc:#e5e5e5;
+  height:$h;
+  background:$bc;
+  color:#999999;
+  position: relative;
+  text-align:center;
+  span{
+    padding:0 pxTorem(20px);
+    height:$h;
+    line-height:$h;
+    z-index: 2;
+    background:$bc;
+    position: relative;
+  }
+  &:after{
+    display:block;
+    font-size:0;
+    content:"\20";
+    height:1px;
+    background:#d2d2d2;
+    position: absolute;
+    left:5%;
+    top:50%;
+    width: 90%;
+    z-index: 1;
+  }
+}
+//作者介绍
+.detailAuthor{
+  padding-top: pxTorem(20px);
+  .face{
+    width:pxTorem(210px);
+    height:pxTorem(210px);
+    @include border-radius(50%);
+    display: block;
+    margin:0 auto;
+  }
+  img{
+    vertical-align: middle;
+    //width:pxTorem(210px);
+    //height:pxTorem(210px);
+    //display: block;
+    //margin:0 auto;
+  }
+  h2,h3{
+    text-align: center;
+    color:#333;
+  }
+  h2{
+    margin-top: pxTorem(18px);
+    font-size: pxTorem(42px);
+  }
+  h3{
+    margin-top: pxTorem(10px);
+    font-size: pxTorem(24px);
+  }
+  p{
+    padding: pxTorem(20px);
+    font-size: pxTorem(26px);
+    color:#666666;
+  }
+}
+
+
+
+
+
+
+//浮动购物车
+.detailCar{
+  position: fixed;
+  width:pxTorem(65px);
+  height:pxTorem(64px);
+  background-image:url("../images/iconDetailCar.png");
+  right:pxTorem(20px);
+  bottom:pxTorem(120px);
+  @extend %ico_rem;
+  z-index:89;
+  em{
+    position: absolute;
+    right: pxTorem(13px);
+    bottom: pxTorem(28px);
+    background: $red_c;
+    width: pxTorem(20px);
+    height: pxTorem(20px);
+    @extend %ib;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    line-height: pxTorem(20px);
+    font-size:pxTorem(18px);
+  }
+}
+
+
+
+
+//底部按钮
+.detailBtn{
+  background: #fff;
+  border-top:1px solid #999999;
+  height:pxTorem(120px - 10);
+  padding:pxTorem(10px) pxTorem(30px) 0 pxTorem(30px);
+  @extend .display-flex;
+  a{
+    width:100%;
+    @extend .flex;
+    text-align: center;
+    display: block;
+    color:#fff;
+    height:pxTorem(100px);
+    line-height:pxTorem(100px);
+    font-size:pxTorem(32px);
+    &:nth-of-type(2){
+      margin-left:pxTorem(10px);
+    }
+  }
+  //倒记时
+  .time{
+    margin-right:pxTorem(30px);
+    color:#333333;
+    font-size:pxTorem(26px);
+    h3{
+      text-align:center;
+      height:pxTorem(50px);
+      line-height:pxTorem(50px);
+      display: block;
+    }
+    b{
+      margin-right:pxTorem(10px);
+      font-weight:normal;
+    }
+  }
+  //电话预定
+  .telReserve{
+    position: relative;
+    text-align: left;
+    text-indent: pxTorem(63px);
+    &:before{
+      content: "\20";
+      position: absolute;
+      left:pxTorem(25px);
+      top:50%;
+      width:pxTorem(30px);
+      height:pxTorem(30px);
+      margin-top:pxTorem(-15px);
+      background-image: url("../images/iconTel.png");
+      @extend %ico_rem;
+    }
+  }
+  //加入购物车
+  .addCar{
+    border: pxTorem(2px) solid $red_c;
+    height:pxTorem(100px - 4);
+    line-height:pxTorem(100px - 4);
+    background: #fff;
+    color: $red_c;
+  }
+  //我要购买
+  .myBuy{
+    width: pxTorem(294px);
+    background:$red_c;
+  }
+  //去结算
+  .balance{
+    background:$red_c;
+    width:pxTorem(608px);
+  }
+  //已售出、已下架
+  .notP{
+    background:#999999;
+    width:pxTorem(608px);
+  }
+}
+
+
+
+
+//确认购买弹窗
+.detailConfirmBuy{
+  z-index: 100;
+  background:rgba(0,0,0,.5);
+  position: fixed;
+  left:0;
+  top:0;
+  right:0;
+  bottom: 0;
+  .box{
+    background:#fff;
+    position: absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    padding-top: pxTorem(40px);
+  }
+  .infoShow,.productNum{
+    margin-left:pxTorem(20px);
+    margin-right:pxTorem(20px);
+  }
+  .infoShow{
+    margin-right:0;
+    @extend .display-flex;
+    .con{
+      @extend .flex;
+    }
+    h2{
+      color:#333;
+      margin-bottom: pxTorem(8px);
+      margin-right:pxTorem(10px);
+      font-size:pxTorem(28px);
+    }
+    p{
+      color:#666666;
+      font-size:pxTorem(24px);
+    }
+    span{
+      display: inline-block;
+      &:nth-of-type(1){
+        width:pxTorem(145px);
+      }
+    }
+    strong{
+      color:$red_c;
+      display: block;
+      font-size:pxTorem(28px);
+      margin-top:pxTorem(10px);
+    }
+  }
+  .img{
+    margin-right:pxTorem(20px);
+    width:pxTorem(163px);
+    height:pxTorem(163px);
+    border:1px solid #e5e5e5;
+    img{
+      width:100%;
+      vertical-align: middle;
+    }
+  }
+  .productNum{
+    $h:50px;
+    padding:pxTorem(20px) pxTorem(8px) pxTorem(20px) 0;
+    margin-top:pxTorem(35px);
+    margin-bottom:pxTorem(20px);
+    border-top:1px solid #e5e5e5;
+    border-bottom:1px solid #e5e5e5;
+    text-align:right;
+    position: relative;
+    b{
+      position: absolute;
+      left:0;
+      top:pxTorem(20px);
+      height:pxTorem($h);
+      line-height:pxTorem($h);
+      color:#333;
+      font-weight: normal;
+    }
+    .reduce,.add,input[type='number']{
+      display: inline-block;
+    }
+    .reduce,.add{
+      background: #e0e0e0;
+      width:pxTorem($h);
+      height:pxTorem($h);
+      line-height:pxTorem($h);
+      text-align:center;
+      position: static;
+      font-size:pxTorem(14 * 2px);
+    }
+    .select{
+      background: #eee;
+    }
+    input[type='number']{
+      text-align:center;
+      width:pxTorem(57px);
+      height:pxTorem($h);
+      border:0;
+    }
+    @extend %numberArrow;
+  }
+  .btn{
+    display: block;
+    height:pxTorem(85px);
+    line-height:pxTorem(85px);
+    text-align:center;
+    color:#fff;
+    background:#003247;
+    font-size:pxTorem(16 * 2px);
+  }
+  .exit{
+    position: absolute;
+    right:pxTorem(24px);
+    top:pxTorem(-58px);
+    width:pxTorem(40px);
+    height:pxTorem(40px);
+    @include border-radius(50%);
+    border:pxTorem(2px) solid #fff;
+    background-image: url("../images/iconDelete.png");
+    @extend %ico_rem;
+    background-size:50% 50% !important;
+  }
+}
+
+
+//页面切换Tab
+.showTab{
+  $h:80px;
+  height:pxTorem($h);
+  @extend .display-flex;
+  background: #fff;
+  a,h2{
+    line-height:pxTorem($h - 4px);
+    display: block;
+    @extend .flex;
+    width:100%;
+    text-align:center;
+    font-size:pxTorem(24px);
+    color:#333333;
+    border-bottom: pxTorem(4px) solid #dddddd;
+    &.select{
+      border-color: $blue-base;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//商品详情页
+//.detail_slider{
+//  height:pxTorem(640px);
+//  ul,li{
+//    height:100%;
+//  }
+//  li{
+//    height:pxTorem(640px);
+//  }
+//}
+//.detail_img{
+//  position: absolute;
+//  left:0;
+//  top:50%;
+//  margin-top:-50%;
+//}
+//详情页内容
+//.detailBox{
+//  padding-top: pxTorem(68px);
+//  padding-bottom:pxTorem(105px);
+//}
+
+
+//
+//
+//.buying{
+//  h2{
+//    border-bottom: 0;
+//  }
+//}
+//
+//.pro_info{
+//  background: #fff;
+//  padding: pxTorem(20px) 0;
+//  li{
+//    height: pxTorem(40px);
+//    padding-left: pxTorem(20px);
+//    font-size:pxTorem(28px);
+//  }
+//  span,em{
+//    vertical-align: top;
+//  }
+//  span{
+//    color: #999;
+//  }
+//  em{
+//    color: #333;
+//    margin-left: pxTorem(15px);
+//  }
+//}
+//.con_title{
+//  background: #fff;
+//  margin-bottom: pxTorem(10px);
+//  h2{
+//    font-size: pxTorem(28px);
+//    padding-top: pxTorem(20px);
+//    padding-bottom: pxTorem(20px);
+//    border-bottom: 2px solid #e5e5e5;
+//    margin: auto pxTorem(20px);
+//  }
+//  p{
+//    padding: pxTorem(20px);
+//    font-size:pxTorem(28px);
+//    img{
+//      width:100%;
+//    }
+//  }
+//  .f12{
+//    font-size:pxTorem(24px);
+//  }
+//  .cen{
+//    text-align:center;
+//  }
+//}
+//
+////浮动信息
+//.detailPf{
+//  position: fixed;
+//  left:0;
+//  bottom: pxTorem(78px + 20);
+//  width: 100%;
+//  border-bottom:1px solid #d2d2d2;
+//  z-index:99;
+//}
+//
+//.product_title{
+//  padding-top: pxTorem(10px);
+//  position: relative;
+//  background: #fff;
+//  h1,h2{
+//    padding-left: pxTorem(20px);
+//  }
+//  h1{
+//    font-size: pxTorem(28px);
+//    height:pxTorem(85px);
+//    line-height: 1.5;
+//    padding-right:pxTorem(70px);
+//    margin-bottom: pxTorem(10px);
+//  }
+//  h2{
+//    font-size: pxTorem(36px);
+//    color: $red_c;
+//    padding-bottom: pxTorem(6px);
+//  }
+//  .love{
+//    width: pxTorem(80px);
+//    height: pxTorem(38px);
+//    position: absolute;
+//    top: pxTorem(20px);
+//    right:0;
+//    text-align: center;
+//    i,em{
+//      vertical-align: top;
+//    }
+//    i{
+//      display: block;
+//      width:pxTorem(32px);
+//      height: pxTorem(26px);
+//      background-image: url("../images/love_999.png");
+//      @extend %ico_rem;
+//      margin:0 auto;
+//    }
+//    i.select{
+//      background-image: url("../images/love_sel.png");
+//    }
+//    em{
+//      //      font-size: pxTorem(18px);
+//      color: #999;
+//    }
+//  }
+//  .fzx{
+//    display: block;
+//    width: pxTorem(600px);
+//    height: 2px;
+//    background: #e5e5e5;
+//    margin-left: pxTorem(20px);
+//  }
+//  //电话预定
+//  .tel{
+//    width:pxTorem(172px - 56);
+//    padding-left:pxTorem(56px);
+//    height:pxTorem(48px);
+//    line-height:pxTorem(48px);
+//    position: absolute;
+//    right:pxTorem(25px);
+//    bottom:pxTorem(10px);
+//    border:1px solid #b2b2b2;
+//    @include border-radius(pxTorem(6px));
+//    color:$red_c;
+//    box-shadow: inset 0 0 pxTorem(6px) rgba(178,178,178,.35);
+//    &:after{
+//      content: "\20";
+//      width:pxTorem(24px);
+//      height:pxTorem(33px);
+//      background-image: url("../images/tel.png");
+//      @extend %ico_rem;
+//      position: absolute;
+//      left:pxTorem(20px);
+//      top:pxTorem(7px);
+//    }
+//  }
+//}
+//.pro_info{
+//  background: #fff;
+//  padding: pxTorem(20px) 0;
+//  li{
+//    height: pxTorem(40px);
+//    padding-left: pxTorem(20px);
+//    font-size:pxTorem(28px);
+//  }
+//  span,em{
+//    vertical-align: top;
+//  }
+//  span{
+//    color: #999;
+//  }
+//  em{
+//    color: #333;
+//    margin-left: pxTorem(15px);
+//  }
+//}
+//
+////成交记录
+//.detail_deal{
+//  p{
+//    padding-top:pxTorem(30px);
+//    padding-bottom:pxTorem(30px);
+//  }
+//}
+//
+////离底部距离
+//.detail_mb{
+//  margin-bottom:pxTorem(105px);
+//}
+//.detail_cl{
+//  height:pxTorem(105px);
+//}
