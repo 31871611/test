@@ -3,11 +3,30 @@ var sass = require('gulp-sass');                    //scss
 var minifyCss = require("gulp-minify-css");         //压缩css
 var livereload = require('gulp-livereload');        //gulp-livereload
 var sourcemaps = require('gulp-sourcemaps');        //编译sass时生成额外的.map文件用
-//var base64 = require('gulp-base64');                //把图片转换为base64
-//var config = require('./config').base64;              //base64配置文件
 var cssBase64 = require('gulp-css-base64');
 
-var webpack = require('gulp-webpack');              //webpack
+
+
+
+
+var webpack = require("webpack");
+var webpackConfig = require("./webpack.config.js");
+gulp.task("webpack", function(callback) {
+    var myConfig = Object.create(webpackConfig);
+    // run webpack
+    webpack(
+        // configuration
+        myConfig
+        , function(err, stats) {
+            // if(err) throw new gutil.PluginError("webpack", err);
+            // gutil.log("[webpack]", stats.toString({
+            //	 // output options
+            // }));
+            callback();
+        });
+});
+
+
 
 
 //html
@@ -41,6 +60,8 @@ gulp.task('cssBase64', function () {
 
 
 //转base64
+//var base64 = require('gulp-base64');                //把图片转换为base64
+//var config = require('./config').base64;              //base64配置文件
 //gulp.task('base64', ['sass'], function() {
 //    return gulp.src('./src/html/css/*.css')
 //        .pipe(base64({
@@ -54,11 +75,12 @@ gulp.task('cssBase64', function () {
 
 
 //webpack
-gulp.task('webpack', function(){
-    return gulp.src('./src')
-        .pipe(webpack( require('./webpack.config.js') ))
-        .pipe(gulp.dest('./dist'));
-});
+//var webpack = require('gulp-webpack');              //webpack
+//gulp.task('webpack', function(){
+//    return gulp.src('./src/**/*.vue')
+//        .pipe(webpack( require('./webpack.config.js') ))
+//        .pipe(gulp.dest('./dist'));
+//});
 
 //默认任务
 gulp.task('default', function() {
@@ -73,6 +95,9 @@ gulp.task('default', function() {
     gulp.watch('./src/sass/**/*.scss', function(){
         gulp.run('sass');
     });
+
+
+    gulp.watch('./src/**/*.vue', ['webpack']);
 
 });
 

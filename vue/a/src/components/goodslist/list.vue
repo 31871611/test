@@ -55,8 +55,9 @@
 //            });
 
             // GET request
-            this.$http.jsonp('http://pan.jizhenfang.com:8211/dataSource/category/listCategory/0').then(function (response) {
+//            this.$http.jsonp('http://pan.jizhenfang.com:8211/dataSource/category/listCategory/0').then(function (response) {
 //            this.$http.jsonp('http://192.168.1.165/jizhenfang-php2/test.php',{jsonp:'callback'}).then(function (response) {
+            this.$http.get('http://localhost/json.php',{jsonp:'callback'}).then(function (response) {
 
                 // get status
                 alert(response.status);
