@@ -209,6 +209,13 @@
       display: block;
       margin-top:pxTorem(20px);
     }
+    //数量
+    .num{
+      position: absolute;
+      right:0;
+      bottom:pxTorem(10px);
+      font-size:pxTorem(32px);
+    }
     //价格
     strong{
       margin-left:pxTorem(55px);
@@ -375,6 +382,26 @@
 /**************************************************************/
 
 
+//进行时间tab
+.goodsGoDay{
+  height:pxTorem(90px);
+  @extend .display-flex;
+  section{
+    @extend .flex;
+    background:#f7f7f7;
+    color:#333;
+    font-size:pxTorem(24px);
+    text-align:center;
+    padding-top:pxTorem(14px);
+    &.select{
+      background: $blue-base;
+      color:#fff;
+    }
+  }
+}
+
+
+
 //图片广告
 .goodsAd{
   img{
@@ -423,7 +450,6 @@
 .goodsDayEndTime{
   text-align:center;
   padding-top:pxTorem(14px);
-  padding-bottom:pxTorem(10px);
   h3{
     color:#333333;
     font-size:pxTorem(14px);
@@ -487,13 +513,14 @@
   }
   .box{
     @extend .flex;
+    @extend .display-flex;
     a{
-      display: inline-block;
+      @extend .flex;
+      display: block;
       line-height:pxTorem($h - 4px);
-      width:pxTorem(140px);
       text-align:center;
       color:#333333;
-      font-size:pxTorem(24px);
+      font-size:pxTorem(32px);
       &.select{
         color:$blue-base;
         border-bottom: pxTorem(4px) solid $blue-base;

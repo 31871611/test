@@ -43,6 +43,14 @@ body{
   margin-bottom: pxTorem(30px) !important;
 }
 
+.red{
+  color:$red-base !important;
+}
+
+.url{
+  color:#3366cc !important;
+}
+
 //错误提示
 .error{
   color:$red_c;
@@ -96,8 +104,11 @@ body{
 //品类选择列表|.categoryChoice|.goodsFilterIf
 @import "components/category";
 
-//商品详情页|
+//商品详情页|.detail*+
 @import "components/detail";
+
+//结算中心
+@import "components/clearing";
 
 //动画keyframes
 @import "components/keyframes";

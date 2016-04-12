@@ -287,20 +287,23 @@
 
 //导航
 .indexNav{
-  $h:170px;
-  height:pxTorem($h);
+  //$h:170px;85
+  //height:pxTorem($h);
+  padding:pxTorem(30px) 0;
   @extend .display-flex;
+  text-align:center;
   a{
     @extend .flex;
     text-align:center;
     color:#333333;
-    &:before{
+  }
+  .img{
+    width:pxTorem(65px);
+    height:pxTorem(65px);
+    margin:0 auto pxTorem(15px);
+    img{
       display: block;
-      margin:pxTorem(30px) auto pxTorem(18px);
-      content: "\20";
-      width:pxTorem(65px);
-      height:pxTorem(65px);
-      background:#f00;
+      @extend .img-auto;
     }
   }
 }
