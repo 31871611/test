@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/base.css"/>
 </head>
 <body>
-<div class="wrap">
+<div class="wrap" id="app">
     <header>
         <div class="header">
             <div class="left">
@@ -26,13 +26,19 @@
     <article class="main bgWhite">
         <div class="categoryChoice">
             <div class="categoryTab">
-                <a href="" class="select">活动推荐</a>
-                <a href="categorylist.html">寿山石</a>
-                <a href="">珠宝</a>
-                <a href="">珠宝</a>
+                <!--<a href="javascript:;" class="{{ (isShow == 0) ? 'select' : '' }}" @click="tab(0)">活动推荐</a>-->
+                <!--<a href="javascript:;" class="{{ (isShow == 1) ? 'select' : '' }}" @click="tab(1)">寿山石</a>-->
+                <!--<a href="javascript:;" class="{{ (isShow == 2) ? 'select' : '' }}" @click="tab(2)">珠宝</a>-->
+
+                <a href="javascript:;" :class="{'select':(isShow == 0)}" @click="tab(0)">活动推荐</a>
+                <a href="javascript:;" :class="{'select':(isShow == 1)}" @click="tab(1)">寿山石</a>
+                <a href="javascript:;" :class="{'select':(isShow == 2)}" @click="tab(2)">珠宝</a>
             </div>
-            <div class="categoryCon">
-                <h2><a href="">精品汇</a></h2>
+            <div class="categoryCon" :class="{'hide':(isShow != 0)}">
+                活动推荐
+            </div>
+            <div class="categoryCon" :class="{'hide':(isShow != 1)}">
+                <h2><a href="categorylist.html">精品汇</a></h2>
                 <div class="list">
                     <a href="" class="select">4月07日</a>
                     <a href="">4月02日</a>
@@ -69,6 +75,9 @@
                     <a href="">彩宝</a>
                 </div>
             </div>
+            <div class="categoryCon" :class="{'hide':(isShow != 2)}">
+                珠宝
+            </div>
         </div>
 
     </article>
@@ -86,4 +95,20 @@
 </div>
 
 </body>
+<script src="../../../../public/js/vue.js"></script>
+<script>
+
+    new Vue({
+        el:"#app",
+        data:{
+            isShow:0
+        },
+        methods:{
+            tab:function(index){
+                this.isShow=index;
+            }
+        }
+    });
+
+</script>
 </html>

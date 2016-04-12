@@ -30,11 +30,11 @@
       margin:0 auto;
       text-align:center;
       width:pxTorem(200px);
-      height:pxTo750(48px);
-      line-height:pxTo750(48px);
+      height:pxTorem(48px);
+      line-height:pxTorem(48px);
       border:1px solid $red-base;
       color:$red-base;
-      font-size:pxTo750(26px);
+      font-size:pxTorem(26px);
       @include border-radius(1px);
     }
   }

@@ -41,7 +41,7 @@
       height:pxTorem(40px);
       text-align:center;
       line-height:pxTorem(40px);
-      color:#fff;
+      color:#fff !important;
       background:#666666;
       font-size:pxTorem(24px);
       @include border-radius(4px);

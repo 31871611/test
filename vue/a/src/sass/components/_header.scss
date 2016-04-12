@@ -90,12 +90,12 @@
     position: relative;
     &:before{
       position: absolute;
-      left:pxTorem(12px);
-      top:pxTorem(12px);
+      left:pxTo750(12px);
+      top:pxTo750(12px);
       content: "\20";
       display: block;
-      width:pxTorem(40px);
-      height:pxTorem(36px);
+      width:pxTo750(40px);
+      height:pxTo750(36px);
       background-image: url("../images/iconSearchC.png");
       @extend %ico_rem;
     }
@@ -104,8 +104,8 @@
       border:0;
       height:pxTo750($h);
       line-height:pxTo750($h);
-      text-indent: pxTorem(65px);
-      font-size:pxTorem(26px);
+      text-indent: pxTo750(65px);
+      font-size:pxTo750(26px);
       color:#999999;
     }
   }

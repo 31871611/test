@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/base.css"/>
 </head>
 <body>
-<div class="wrap">
+<div class="wrap" id="app">
     <header>
         <div class="header">
             <div class="left">
@@ -26,21 +26,21 @@
     <article class="main">
         <div class="goodsRtrieval">
             <!--<a href="" class="select">排序</a>-->
-            <a href="">排序</a>
-            <a href="">价格</a>
-            <a href="">分类</a>
-            <a href="">状态</a>
+            <a href="javascript:;" @click="tab(0)">排序</a>
+            <a href="javascript:;" @click="tab(1)">价格</a>
+            <a href="javascript:;" @click="tab(2)">分类</a>
+            <a href="javascript:;" @click="tab(3)">状态</a>
         </div>
 
-        <div class="goodsFilterIf">
+        <div class="goodsFilterIf" :class="{'hide':is}">
             <div class="sort_list">
-                <ul class="hot">
+                <ul class="hot" :class="{'hide':(isShow != 0)}">
                     <li><a href="javascript:;" class="select">默认</a></li>
                     <li><a href="javascript:;" class="select">价格<i class="up"></i></a></li>
                     <li><a href="javascript:;">价格<i class="down"></i></a></li>
                 </ul>
 
-                <div class="price">
+                <div class="price" :class="{'hide':(isShow != 1)}">
                     <span class="low">¥0</span>
                     <span class="high">¥15000</span>
                     <div class="box">
@@ -50,7 +50,7 @@
                     <input type="range" name="points" step="1" min="0" max="15000" />
                 </div>
 
-                <div class="filter">
+                <div class="filter" :class="{'hide':(isShow != 2)}">
                     <div class="box">
                         <h2>材质</h2>
                         <div class="category_list">
@@ -89,7 +89,7 @@
                     </div>
                 </div>
 
-                <ul class="hot" style="">
+                <ul class="hot" :class="{'hide':(isShow != 3)}">
                     <li><a href="javascript:;">在售</a></li>
                     <li><a href="javascript:;">即将开售</a></li>
                     <li><a href="javascript:;">可预订</a></li>
@@ -100,6 +100,7 @@
         </div>
 
 
+        <!--列表-->
         <div class="goodsListBox">
             <ul class="goodsListNorule">
                 <li class="goodsType">
@@ -224,4 +225,22 @@
 </div>
 
 </body>
+<script src="../../../../public/js/vue.js"></script>
+<script>
+
+    new Vue({
+        el:"#app",
+        data:{
+            is:true,
+            isShow:false
+        },
+        methods:{
+            tab:function(index){
+                this.is=!this.is;
+                this.isShow=index;
+            }
+        }
+    });
+
+</script>
 </html>
