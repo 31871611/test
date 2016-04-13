@@ -104,8 +104,9 @@
             isShow:0
         },
         methods:{
-            tab:function(index){
+            tab:function(index,even){
                 this.isShow=index;
+                console.log(event.target.getAttribute("class"));
             }
         }
     });

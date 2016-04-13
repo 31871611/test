@@ -136,7 +136,24 @@
       }
     }
   }
+}
 
+//横版热度标签
+.goodsRowHotTab{
+  margin: pxTorem(20px) 0 0 pxTorem(30px);
+  a{
+    display: inline-block;
+    height:pxTorem(50px);
+    line-height:pxTorem(50px);
+    padding:0 pxTorem(15px);
+    margin: 0 pxTorem(20px) pxTorem(20px) 0;
+    background:#fff;
+    color:#333;
+    &.select{
+      background:$blue-base;
+      color:#fff;
+    }
+  }
 }
 
 //行row
@@ -192,6 +209,7 @@
       h3{
         color:#333333;
         font-size:pxTorem(32px);
+        padding-right:pxTorem(40px);
       }
     }
     h3{
@@ -225,8 +243,75 @@
       margin-top:pxTorem(20px);
       //font-weight:bold;
     }
-
-
+    //购物车藏品选中
+    i.shoppingSelect{
+      display: block;
+      font-style: normal;
+      padding-left:pxTorem(30px);
+      padding-right:pxTorem(25px);
+      width:pxTorem(36px);
+      font-size:pxTorem(28px);
+      &.select{
+        &:after{
+          background-color: $red-base;
+          width:pxTorem(36px);
+          height:pxTorem(36px);
+          border:0;
+          background-image: url("../images/iconHook.png");
+          @extend %ico_rem;
+          background-size:50% 50% !important;
+        }
+      }
+      &:after{
+        position: absolute;
+        left:pxTorem(30px);
+        top:40%;
+        content: "\20";
+        display: inline-block;
+        width:pxTorem(36px - 4);
+        height:pxTorem(36px - 4);
+        border:pxTorem(2px) solid #333;
+        @include border-radius(50%);
+        //margin-right:pxTorem(10px);
+      }
+    }
+    //购物车删除按钮
+    .garbage{
+      position: absolute;
+      right:pxTorem(10px);
+      bottom:pxTorem(10px);
+      background-image: url("../images/iconGarbage.png");
+      @extend %ico_rem;
+      width:pxTorem(37px);
+      height:pxTorem(36px);
+    }
+    //购物车添加与减藏品
+    .shoppingRA{
+      $h:30px;
+      position: absolute;
+      left:pxTorem(60px);
+      bottom:0;
+      height: pxTorem($h);
+      i,input[type='number']{
+        display: inline-block;
+        vertical-align: middle;
+        float:left;
+        text-align:center;
+      }
+      i{
+        width: pxTorem($h);
+        height: pxTorem($h);
+        background: #e4e4e4;
+        color:#999999;
+        font-style: normal;
+      }
+      input[type='number']{
+        width:pxTorem(40px);
+        height: pxTorem($h);
+        border:0;
+        @extend %numberArrow;
+      }
+    }
     //马上开抢按钮
     .btnGo{
       position: absolute;
@@ -264,7 +349,30 @@
         }
       }
     }
-
+    //灰色
+    .loveC{
+      position: absolute;
+      right:0;
+      top:0;
+      text-align:center;
+      padding:pxTorem(15px) pxTorem(15px);
+      color:#fff;
+      font-size:pxTorem(24px);
+      &:before{
+        content: "\20";
+        width:pxTorem(32px);
+        height:pxTorem(26px);
+        background-image:url("../images/iconLoveC.png");
+        @extend %ico_rem;
+        display:block;
+        margin:0 auto;
+      }
+      &.select{
+        &:before{
+          background-image:url("../images/iconLoveS.png");
+        }
+      }
+    }
   }
 }
 

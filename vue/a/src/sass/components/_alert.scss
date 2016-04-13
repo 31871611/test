@@ -1,0 +1,108 @@
+@charset "UTF-8";
+@import "../comm/css3";
+@import "../comm/common";
+
+
+//关注成功提示
+.mAlert{
+  display: -webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+  position: fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  z-index: 100;
+  span{
+    display: block;
+    padding:pxTorem(25px) pxTorem(50px);
+    text-align:center;
+    background:rgba(51,51,51,.8);
+    font-size:pxTorem(28px);
+    color:#fff;
+    @include border-radius(pxTorem(8px));
+  }
+}
+
+//结算弹窗确定取消
+.myalert{
+  position: fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  top:0;
+  @extend %boxcen;
+  background: rgba(0,0,0,.3);
+  z-index:100;
+  .content{
+    background:#fff;
+    width:pxTo750(560px);
+  }
+  .myalert-title{
+    $h:80px;
+    border-bottom: 1px solid #dddddd;
+    background: $red_c;
+    height:pxTorem(80px);
+    h2{
+      height:pxTorem(80px);
+      line-height:pxTorem(80px);
+      float: left;
+      font-size:pxTorem(32px);
+      padding-left:pxTorem(20px);
+      color:#fff;
+    }
+    .exit{
+      float: right;
+      color:#fff;
+      font-size:32px;
+      background-image: url("../images/x2.png");
+      width:pxTorem(30px + 37px * 2);
+      height:pxTorem(80px);
+      background-size:pxTorem(30px) pxTorem(30px);
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+  }
+  .myalert-box{
+    padding:pxTorem(30px);
+    p{
+      color:#333333;
+      font-size:pxTorem(28px);
+      line-height:pxTorem(40px);
+      margin-top:pxTorem(10px);
+    }
+    .cen{
+      text-align:center;
+    }
+    .load{
+      height: 20px;
+      width: 20px;
+      border-radius: 100%;
+      display: inline-block;
+      margin: 10px;
+      border: 2px solid #003247;
+      border-bottom-color: transparent;
+      vertical-align: middle;
+      @include animation(rotate 0.75s 0 linear infinite);
+    }
+  }
+  .myalert-btn{
+    @extend .display-flex;
+    border-top:1px solid #dddddd;
+    a{
+      display: block;
+      text-align: center;
+      height:pxTorem(86px);
+      line-height:pxTorem(86px);
+      width:100%;
+      @extend .flex;
+      color:#333333;
+      font-size:pxTorem(30px);
+      &:nth-child(2){
+        border-left:1px solid #dddddd;
+        margin-left:0;
+      }
+    }
+  }
+}

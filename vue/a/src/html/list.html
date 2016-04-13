@@ -1,108 +1,46 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>模版</title>
+    <title>列表</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
     <meta name="format-detection" content="telephone=no">
     <script src="js/w.js"></script>
     <link rel="stylesheet" href="css/base.css"/>
 </head>
 <body>
-<div class="wrap" id="app">
+
+<div class="wrap">
     <header>
-        <div class="header">
-            <div class="left">
-                <a href="javascript:;" class="return"></a>
-            </div>
-            <h2>品类</h2>
-            <div class="right">
-                <!--<a href="javascript:;" class="iconShare"></a>-->
-                <a href="javascript:;" class="iconSearch"></a>
-            </div>
-        </div>
+
     </header>
 
     <article class="main">
-        <div class="goodsRtrieval">
-            <!--<a href="" class="select">排序</a>-->
-            <a href="javascript:;" @click="tab(0)">排序</a>
-            <a href="javascript:;" @click="tab(1)">价格</a>
-            <a href="javascript:;" @click="tab(2)">分类</a>
-            <a href="javascript:;" @click="tab(3)">状态</a>
-        </div>
 
-        <div class="goodsFilterIf" :class="{'hide':is}">
-            <div class="sort_list">
-                <ul class="hot" :class="{'hide':(isShow != 0)}">
-                    <li><a href="javascript:;" class="select">默认</a></li>
-                    <li><a href="javascript:;" class="select">价格<i class="up"></i></a></li>
-                    <li><a href="javascript:;">价格<i class="down"></i></a></li>
-                </ul>
-
-                <div class="price" :class="{'hide':(isShow != 1)}">
-                    <span class="low">¥0</span>
-                    <span class="high">¥15000</span>
-                    <div class="box">
-                        <span class="left"></span>
-                        <span class="right"></span>
-                    </div>
-                    <input type="range" name="points" step="1" min="0" max="15000" />
-                </div>
-
-                <div class="filter" :class="{'hide':(isShow != 2)}">
-                    <div class="box">
-                        <h2>材质</h2>
-                        <div class="category_list">
-                            <a class="select" href="">全部</a>
-                            <a href="">田黄石</a>
-                            <a href="">荔枝洞石</a>
-                            <a href="">芙蓉石</a>
-                            <a href="">汶洋石</a>
-                            <a href="">高山石</a>
-                            <a href="">都成坑石</a>
-                            <a href="">善伯洞石</a>
-                            <a href="">旗降石</a>
-                            <a href="">二号矿石</a>
-                            <a href="">寿山掘性石</a>
-                            <a href="">其他寿山石</a>
-                        </div>
-                        <h2>形式</h2>
-                        <div class="category_list">
-                            <a class="" href="">文玩</a>
-                            <a class="" href="">摆件</a>
-                            <a class="" href="">手件</a>
-                            <a class="" href="">印章</a>
-                            <a class="" href="">挂件</a>
-                        </div>
-                        <!--<h2>技法</h2>-->
-                        <!--<div class="category_list">-->
-                            <!--<a class="" href="">圆雕</a>-->
-                            <!--<a class="" href="">浮雕</a>-->
-                            <!--<a class="" href="">薄意</a>-->
-                            <!--<a class="" href="">其他</a>-->
-                        <!--</div>-->
-                    </div>
-                    <div class="btn">
-                        <a href="javascript:;" class="clear">清除</a>
-                        <a href="javascript:;" class="ok">确认</a>
-                    </div>
-                </div>
-
-                <ul class="hot" :class="{'hide':(isShow != 3)}">
-                    <li><a href="javascript:;">在售</a></li>
-                    <li><a href="javascript:;">即将开售</a></li>
-                    <li><a href="javascript:;">可预订</a></li>
-                    <li><a href="javascript:;">已售</a></li>
-                    <li><a href="javascript:;" class="select">全部状态</a></li>
-                </ul>
-            </div>
-        </div>
-
-
-        <!--列表-->
         <div class="goodsListBox">
             <ul class="goodsListNorule">
+
+                <!--<li class="goodsHotTab">-->
+                <!--<div class="box">-->
+                <!--<a href="" class="select">戒指</a>-->
+                <!--<a href="">挂坠</a>-->
+                <!--<a href="">手镯</a>-->
+                <!--<a href="">耳坠</a>-->
+                <!--<a href="">翡翠</a>-->
+                <!--<a href="">珊瑚</a>-->
+                <!--</div>-->
+                <!--</li>-->
+
+
+                <!--<li class="goodsEndTime">-->
+                <!--<div class="box">-->
+                <!--<h3>04月07日 星期二</h3>-->
+                <!--<div class="timeCount">-->
+                <!--<strong>开售倒计时</strong><b>1天</b><span>00</span><em>：</em><span>45</span><em>：</em><span>00</span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</li>-->
+
                 <li class="goodsType">
                     <div class="box">田黄石</div>
                 </li>
@@ -225,22 +163,4 @@
 </div>
 
 </body>
-<script src="../../../../public/js/vue.js"></script>
-<script>
-
-    new Vue({
-        el:"#app",
-        data:{
-            is:true,
-            isShow:false
-        },
-        methods:{
-            tab:function(index,even){
-                this.is=!this.is;
-                this.isShow=index;
-            }
-        }
-    });
-
-</script>
 </html>

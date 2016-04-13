@@ -89,6 +89,9 @@ body{
 //底部导航|.appNav
 @import "components/navapp";
 
+//登录注册|.loginRegister
+@import "components/loginRegister";
+
 //搜索|.searchInfoList
 @import "components/search";
 
@@ -107,6 +110,9 @@ body{
 //商品详情页|.detail*+
 @import "components/detail";
 
+//购物车|.shoppingCart|
+@import "components/shoppingcart";
+
 //结算中心
 @import "components/clearing";
 
@@ -118,6 +124,9 @@ body{
 
 //页面失踪404|no404
 @import "components/404";
+
+//弹窗
+@import "components/alert";
 
 
 /****************************************************/

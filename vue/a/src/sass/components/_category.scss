@@ -93,6 +93,49 @@
       }
     }
   }
+  //横版价格升降
+  .rowPrice{
+    padding:pxTorem(20px) 0 pxTorem(10px);
+    margin:0 pxTorem(30px);
+    border-bottom: 1px solid #e5e5e5;
+    h2{
+      font-size:pxTorem(24px);
+      color:#666;
+      margin-bottom: pxTorem(20px);
+    }
+    .box{
+      @extend .display-flex;
+    }
+    a{
+      @extend .flex;
+      display: block;
+      position: relative;
+      &.select{
+        color:$blue-base;
+        border:0;
+        font-weight: bold;
+        .up{
+          border-color:transparent transparent $blue-base transparent;
+        }
+        .down{
+          border-color:$blue-base transparent transparent transparent;
+        }
+      }
+    }
+    i{
+      font-style: normal;
+      position: absolute;
+      left:pxTo750(60px);
+      &.up{
+        @include arrow(top,pxTo750(10px),#333333);
+        top:pxTo750(0px);
+      }
+      &.down{
+        @include arrow(bottom,pxTo750(10px),#333333);
+        top:pxTo750(10px);
+      }
+    }
+  }
   //价格
   .price{
     position: relative;
