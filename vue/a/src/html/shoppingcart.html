@@ -22,6 +22,7 @@
         <!--购物车为空时-->
         <div class="shoppingEmpty">
             <i class="iconShoppingEmpty"></i>
+            <i class="iconSearchEmpty"></i>
             <b>购物车空空如也</b>
             <b>赶紧去添加您喜欢的藏品</b>
             <a href="" class="btn">去看看</a>
@@ -33,10 +34,8 @@
                 <li class="row">
                     <div class="box">
                         <i class="shoppingSelect"></i>
-                        <a href="" class="img">
+                        <a href="" class="img uq">
                             <img src="picture/index6.jpg" alt=""/>
-                            <i class="out"></i>
-                            <!--<i class="booked"></i>-->
                         </a>
                         <div class="info">
                             <h3>B204004 18K金镶冰种翡翠戒指</h3>
@@ -47,9 +46,9 @@
                             <i class="garbage"></i>
                             <!--<div class="love select">1</div>-->
                             <div class="shoppingRA">
-                                <i class="reduce">+</i>
+                                <i class="reduce">-</i>
                                 <input type="number" value="1" />
-                                <i class="add">-</i>
+                                <i class="add">+</i>
                             </div>
                         </div>
                     </div>
@@ -57,18 +56,35 @@
                 <li class="row">
                     <div class="box">
                         <i class="shoppingSelect select"></i>
-                        <a href="" class="img">
+                        <a href="" class="img sl">
                             <img src="picture/index6.jpg" alt=""/>
-                            <i class="out"></i>
                         </a>
                         <div class="info">
                             <h3>B204004 18K金镶冰种翡翠戒指</h3>
                             <strong>￥18,500</strong>
                             <i class="garbage"></i>
                             <div class="shoppingRA">
-                                <i class="reduce">+</i>
+                                <i class="reduce">-</i>
                                 <input type="number" value="1" />
-                                <i class="add">-</i>
+                                <i class="add">+</i>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="row">
+                    <div class="box">
+                        <i class="shoppingSelect"></i>
+                        <a href="" class="img us">
+                            <img src="picture/index6.jpg" alt=""/>
+                        </a>
+                        <div class="info">
+                            <h3>B204004 18K金镶冰种翡翠戒指</h3>
+                            <strong>￥18,500</strong>
+                            <i class="garbage"></i>
+                            <div class="shoppingRA">
+                                <i class="reduce">-</i>
+                                <input type="number" value="1" />
+                                <i class="add">+</i>
                             </div>
                         </div>
                     </div>
@@ -78,16 +94,15 @@
                         <i class="shoppingSelect"></i>
                         <a href="" class="img">
                             <img src="picture/index6.jpg" alt=""/>
-                            <i class="out"></i>
                         </a>
                         <div class="info">
                             <h3>B204004 18K金镶冰种翡翠戒指</h3>
                             <strong>￥18,500</strong>
                             <i class="garbage"></i>
                             <div class="shoppingRA">
-                                <i class="reduce">+</i>
+                                <i class="reduce">-</i>
                                 <input type="number" value="1" />
-                                <i class="add">-</i>
+                                <i class="add">+</i>
                             </div>
                         </div>
                     </div>
@@ -116,7 +131,9 @@
     </footer>
 </div>
 
-<div class="myalert">
+<!--弹窗-->
+<div class="myalert hide">
+    <div class="opacity"></div>
     <div class="content">
         <div class="myalert-box">
             <p class="cen">确认要删除该商品吗？</p>

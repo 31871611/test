@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/base.css"/>
 </head>
 <body>
-<div class="wrap">
+<div class="wrap" id="app">
     <header>
         <div class="header">
             <a href="javascript:;" class="return"></a>
@@ -19,15 +19,11 @@
 
     <article class="main">
         <ul class="bulletinList">
-            <li class="select">
-                <h3><em>[集珍坊]</em>第届4艺交会公告</h3>
-                <p>集珍坊第届4艺交会集珍坊第届4艺交会集珍坊第届4艺交会集珍坊第届4艺交会集珍坊第届4艺交会集珍坊第届4艺交会集珍坊第届4艺交会</p>
-                <span>2016-7-27 11:20:08</span>
-            </li>
-            <li>
-                <h3><em>[集珍坊]</em>第届4艺交会公告</h3>
-                <p>集珍坊第届4艺交会</p>
-                <span>2016-7-27 11:20:08</span>
+            <!--单选:class="{'select':currentIndex==$index}"-->
+            <li v-for="list in lists" @click="toogle($index)" :class="{'select':currentIndex==$index}">
+                <h3><em>{{list.a}}</em>{{list.title}}</h3>
+                <p>{{list.con}}</p>
+                <span>{{list.time}}</span>
             </li>
         </ul>
     </article>
@@ -45,4 +41,76 @@
 </div>
 
 </body>
+<script src="../../../../public/js/vue.js"></script>
+<script src="../../../../public/js/vue-resource.js"></script>
+<script>
+
+    var app=new Vue({
+        el:"#app",
+        data:{
+            lists:[
+                {
+                    "a":"集珍坊",
+                    "title":"第届4艺交会公告",
+                    "con":"集珍坊第届4艺交会",
+                    "time":"2016-7-27 11:20:08"
+                },
+                {
+                    "a":"集珍坊",
+                    "title":"第届4艺交会公告",
+                    "con":"集珍坊第届4艺交会",
+                    "time":"2016-7-27 11:20:08"
+                },
+                {
+                    "a":"集珍坊",
+                    "title":"第届4艺交会公告",
+                    "con":"集珍坊第届4艺交会",
+                    "time":"2016-7-27 11:20:08"
+                }
+            ],
+//            currentIndex:-1       //单选
+            currentIndex:[]
+        },
+        methods:{
+            toogle:function(index){
+                //单选
+//                this.currentIndex==index ? this.currentIndex=-1 : this.currentIndex=index;
+//                if(this.currentIndex==index){
+//                    this.currentIndex=-1;
+//                }else{
+//                    this.currentIndex=index;
+//                }
+                //数组
+                this.currentIndex.push(index);
+                console.log(this.currentIndex +"+"+index);
+//                console.log(this.currentIndex);
+            }
+        }
+    });
+
+/*
+    app.$http.get('http://192.168.1.165/jizhenfang-php2/test.php').then(function (response) {
+
+        // get status
+        alert(response.status);
+
+        // get all headers
+        //console.log(response.headers());
+
+        // get 'expires' header
+        //console.log(response.headers('expires'));
+
+        // set data on vm
+//                this.$set('lists', response)
+        console.log(response);
+
+    },{
+//                headers: {'Content-Type': 'Access-Control-Allow-Origin'}
+    }, function (response) {
+
+        // error callback
+    });
+*/
+
+</script>
 </html>

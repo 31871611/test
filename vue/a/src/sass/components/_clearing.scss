@@ -261,20 +261,92 @@
     }
   }
 
+  //是否阅读售后条款
+  .isService{
+    $h:90px;
+    height:pxTorem($h);
+    margin-top:pxTorem(20px);
+    margin-bottom:pxTorem(20px);
+    background:#fff;
+    text-align:center;
+    input[type='checkbox']{
+      vertical-align: top;
+      margin-top:pxTorem(25px);
+      margin-right:pxTorem(10px);
+      border:0;
+      -webkit-appearance:none;
+      outline:none;
+      position: relative;
+      width:pxTorem(36px);
+      height:pxTorem(36px);
+      @include border-radius(50%);
+      &:before{
+        position: absolute;
+        left:0;
+        top:0;
+        content: "\20";
+        display: inline-block;
+        width:pxTorem(36px - 4);
+        height:pxTorem(36px - 4);
+        border:pxTorem(2px) solid #333;
+        @include border-radius(50%);
+        margin-right:pxTorem(10px);
+      }
+      &:checked{
+        &:before {
+          background-color: $red-base;
+          width: pxTorem(36px);
+          height: pxTorem(36px);
+          border: 0;
+          background-image: url("../images/iconHook.png");
+          @extend %ico_rem;
+          background-size: 50% 50% !important;
+        }
+      }
+    }
+    a{
+      color:$link-color;
+      display: inline-block;
+      line-height: pxTorem($h);
+    }
+  }
+
 
   //按钮
   .btn{
     margin-bottom: pxTorem(10px);
+    text-align:left;
+    text-indent: 43%;
     a{
-      width: pxTorem(608px);
-      height:pxTorem(88px);
-      line-height:pxTorem(88px);
-      color:#fff;
-      background: $red-base;
-      font-size:pxTorem(28px);
-    }
-    &:last-child{
-      margin-bottom: pxTorem(45px);
+      @include border-radius(pxTorem(3px));
+      background: #fff;
+      height:pxTorem(99px);
+      line-height:pxTorem(99px);
+      border:1px solid #999999;
+      color:#333;
+      font-size:pxTorem(32px);
+      position: relative;
+      &.wx,&.bank{
+        &:before {
+          content: "\20";
+          position: absolute;
+          left: 34%;
+          top: pxTorem(30px);
+          width: pxTorem(44px);
+          height: pxTorem(35px);
+          @extend %ico_rem;
+        }
+      }
+      &.wx{
+        &:before{
+          background-image: url("../images/iconWeiXin.png");
+        }
+      }
+      &.bank{
+        &:before {
+          background-image: url("../images/iconBank.png");
+        }
+      }
     }
   }
 
@@ -367,7 +439,7 @@
 ///////////////////////////////////////////////////////////////////////
 
 .orderDetails{
-  //margin-top:pxTorem(40px);
+  margin-top:pxTorem(20px);
   background: #fff;
   ul{
     padding:pxTorem(10px) 0;

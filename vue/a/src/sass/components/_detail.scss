@@ -15,6 +15,50 @@
   }
 }
 
+//珍大师倒记时
+.detailZshEnd{
+  $h:90px;
+  height: pxTorem($h);
+  background: $red-base;
+  @extend .display-flex;
+  //价格
+  .price{
+    line-height:pxTorem($h);  //添加
+    margin-left:pxTorem(30px);  //添加
+    font-size: pxTorem(42px);
+    //color: $red_c;
+    color: #fff;
+    //padding-bottom: pxTorem(6px);
+    i{
+      position: relative;
+      top:pxTorem(-5px);
+      margin-right:pxTorem(16px);
+      font-style: normal;
+      //background:$red_c;
+      background:#fff;
+      //color:#fff;
+      color:$red_c;
+      font-size:pxTorem(16px);
+      -webkit-border-radius: pxTorem(4px);
+      border-radius: pxTorem(4px);
+    }
+  }
+  .costPrice{
+    line-height:pxTorem($h + 10);  //添加
+    margin-left:pxTorem(30px);  //添加
+    color:#fff;
+    text-decoration:line-through;
+    //margin-top:pxTorem(20px);
+    //margin-left:pxTorem(55px);
+    display: block;
+    //color:#666;
+    font-size:pxTorem(24px);
+  }
+  //时间
+  .indexTime{
+    margin:pxTorem(24px) 2% 0 auto;
+  }
+}
 
 //藏品基本信息
 .detailTitle{
@@ -90,7 +134,7 @@
     line-height:pxTorem(44px);
     position: absolute;
     right:pxTorem(22px);
-    bottom:pxTorem(10px);
+    bottom:2%;
     border:1px solid #b2b2b2;
     background: #fff;
     @include border-radius(pxTorem(6px));

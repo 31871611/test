@@ -116,6 +116,15 @@ body{
 //结算中心
 @import "components/clearing";
 
+//私洽|.negotiation|.thumbnail
+@import "components/negotiation";
+
+//珍大师文章|.lBorTitle|.collectDetail|.collectList|.collectTip|.collectItem
+@import "components/article";
+
+//支付成功
+@import "components/paysuccess";
+
 //动画keyframes
 @import "components/keyframes";
 

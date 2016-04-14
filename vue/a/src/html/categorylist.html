@@ -32,25 +32,34 @@
             <a href="javascript:;" @click="tab(3)">状态</a>
         </div>
 
-        <div class="goodsFilterIf" :class="{'hide':is}">
+        <div class="goodsFilterIf">
             <div class="sort_list">
-                <ul class="hot" :class="{'hide':(isShow != 0)}">
+                <ul class="hot">
                     <li><a href="javascript:;" class="select">默认</a></li>
                     <li><a href="javascript:;" class="select">价格<i class="up"></i></a></li>
                     <li><a href="javascript:;">价格<i class="down"></i></a></li>
                 </ul>
 
-                <div class="price" :class="{'hide':(isShow != 1)}">
-                    <span class="low">¥0</span>
-                    <span class="high">¥15000</span>
-                    <div class="box">
-                        <span class="left"></span>
-                        <span class="right"></span>
-                    </div>
-                    <input type="range" name="points" step="1" min="0" max="15000" />
-                </div>
+                <!--<div class="price" :class="{'hide':(isShow != 1)}">-->
+                    <!--<span class="low">¥0</span>-->
+                    <!--<span class="high">¥15000</span>-->
+                    <!--<div class="box">-->
+                        <!--<span class="left"></span>-->
+                        <!--<span class="right"></span>-->
+                    <!--</div>-->
+                    <!--<input type="range" name="points" step="1" min="0" max="15000" />-->
+                <!--</div>-->
 
-                <div class="filter" :class="{'hide':(isShow != 2)}">
+                <ul class="hot">
+                    <li><a href="" class="select">￥1000以下</a></li>
+                    <li><a href="" class="">￥1001-3000</a></li>
+                    <li><a href="" class="">￥3001-5000</a></li>
+                    <li><a href="" class="">￥5001-8000</a></li>
+                    <li><a href="" class="">￥8001-15000</a></li>
+                    <li><a href="" class="">￥15000以上</a></li>
+                </ul>
+
+                <div class="filter">
                     <div class="box">
                         <h2>材质</h2>
                         <div class="category_list">
@@ -89,7 +98,7 @@
                     </div>
                 </div>
 
-                <ul class="hot" :class="{'hide':(isShow != 3)}">
+                <ul class="hot">
                     <li><a href="javascript:;">在售</a></li>
                     <li><a href="javascript:;">即将开售</a></li>
                     <li><a href="javascript:;">可预订</a></li>
@@ -228,19 +237,19 @@
 <script src="../../../../public/js/vue.js"></script>
 <script>
 
-    new Vue({
-        el:"#app",
-        data:{
-            is:true,
-            isShow:false
-        },
-        methods:{
-            tab:function(index,even){
-                this.is=!this.is;
-                this.isShow=index;
-            }
-        }
-    });
+//    new Vue({
+//        el:"#app",
+//        data:{
+//            is:true,
+//            isShow:false
+//        },
+//        methods:{
+//            tab:function(index,even){
+//                this.is=!this.is;
+//                this.isShow=index;
+//            }
+//        }
+//    });
 
 </script>
 </html>

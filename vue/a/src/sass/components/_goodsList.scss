@@ -161,7 +161,7 @@
   //列row
   li.row{
     background: #fff;
-    margin-bottom: pxTorem(20px);
+    margin-top: pxTorem(20px);
     height:pxTorem(280px - 20);
     padding-top:pxTorem(20px);
     .box{
@@ -174,34 +174,74 @@
       display: block;
       width:pxTorem(240px);   //修改大小
       height:pxTorem(240px);  //
+      position: relative;
       img{
         @extend .img-auto;
       }
       //图标
-      //i.out,i.booked{
-      //  @extend %ico_rem;
-      //  position: absolute;
-      //  bottom:pxTorem(4px);
-      //  a{
-      //    display: block;
-      //    width:100%;
-      //    height:100%;
-      //  }
-      //}
-      ////已售图标
-      //i.out{
-      //  background-image:url("../images/iconOut.png");
-      //  width:pxTorem(141px);
-      //  height:pxTorem(126px);
-      //  right:pxTorem(5px);
-      //}
-      ////已预定图图标
-      //i.booked{
-      //  background-image:url("../images/iconBooked.png");
-      //  width:pxTorem(156px);
-      //  height:pxTorem(140px);
-      //  right:pxTorem(5px);
-      //}
+      i.out,i.booked{
+        @extend %ico_rem;
+        position: absolute;
+        bottom:pxTorem(4px);
+        a{
+          display: block;
+          width:100%;
+          height:100%;
+        }
+      }
+      //已售图标
+      i.out{
+        background-image:url("../images/iconOut.png");
+        width:pxTorem(141px);
+        height:pxTorem(126px);
+        right:pxTorem(5px);
+      }
+      //已预定图图标
+      i.booked{
+        background-image:url("../images/iconBooked.png");
+        width:pxTorem(156px);
+        height:pxTorem(140px);
+        right:pxTorem(5px);
+      }
+    }
+    //购物车已售|购物车已下架|购物车交易中
+    .sl,.us,.uq{
+      &:before,&:after{
+        position: absolute;
+        left:0;
+        top:0;
+        height:100%;
+        width:100%;
+      }
+      &:before{
+        content: "\20";
+        background: rgba(153,153,153,.8);
+      }
+      &:after{
+        content: "正在交易中";
+        color:#eee;
+        text-align:center;
+        font-size:pxTorem(28px);
+        line-height:pxTorem(240px);
+      }
+    }
+    //购物车已售
+    .sl{
+      &:after{
+        content: "已售";
+      }
+    }
+    //购物车已下架
+    .us{
+      &:after{
+        content: "已下架";
+      }
+    }
+    //购物车交易中
+    .uq{
+      &:after{
+        content: "正在交易中";
+      }
     }
     .info{
       @extend .flex;
@@ -227,6 +267,15 @@
       display: block;
       margin-top:pxTorem(20px);
     }
+    //原价
+    .costPrice{
+      text-decoration:line-through;
+      margin-top:pxTorem(20px);
+      margin-left:pxTorem(55px);
+      display: block;
+      color:#666;
+      font-size:pxTorem(24px);
+    }
     //数量
     .num{
       position: absolute;
@@ -248,7 +297,7 @@
       display: block;
       font-style: normal;
       padding-left:pxTorem(30px);
-      padding-right:pxTorem(25px);
+      //padding-right:pxTorem(25px);
       width:pxTorem(36px);
       font-size:pxTorem(28px);
       &.select{
@@ -325,14 +374,13 @@
       color:$red-base;
       font-size:pxTorem(26px);
     }
-    //没修改
     .love{
       position: absolute;
       right:0;
       top:0;
       text-align:center;
       padding:pxTorem(15px) pxTorem(15px);
-      color:#fff;
+      color:#999;   //修改
       font-size:pxTorem(24px);
       &:before{
         content: "\20";
@@ -356,7 +404,7 @@
       top:0;
       text-align:center;
       padding:pxTorem(15px) pxTorem(15px);
-      color:#fff;
+      color:#999;
       font-size:pxTorem(24px);
       &:before{
         content: "\20";
@@ -557,7 +605,7 @@
 //当天商品开售倒记时
 .goodsDayEndTime{
   text-align:center;
-  padding-top:pxTorem(14px);
+  padding-top:pxTorem(20px);
   h3{
     color:#333333;
     font-size:pxTorem(14px);

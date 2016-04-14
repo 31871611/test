@@ -2,6 +2,16 @@
 @import "../comm/css3";
 @import "../comm/common";
 
+//半透明
+.opacity{
+  z-index:28;
+  position: fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  right:0;
+  background:rgba(0,0,0,.4);
+}
 
 //关注成功提示
 .mAlert{
@@ -33,9 +43,11 @@
   bottom:0;
   top:0;
   @extend %boxcen;
-  background: rgba(0,0,0,.3);
-  z-index:100;
+  //background: rgba(0,0,0,.3);
+  z-index:30;
   .content{
+    position: relative;
+    z-index:29;
     background:#fff;
     width:pxTo750(560px);
   }
@@ -68,7 +80,7 @@
     padding:pxTorem(30px);
     p{
       color:#333333;
-      font-size:pxTorem(28px);
+      font-size:pxTorem(32px);
       line-height:pxTorem(40px);
       margin-top:pxTorem(10px);
     }

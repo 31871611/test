@@ -43,15 +43,24 @@
                     <li><a href="javascript:;">价格<i class="down"></i></a></li>
                 </ul>
 
-                <div class="price" :class="{'hide':(isShow != 1)}">
-                    <span class="low">¥0</span>
-                    <span class="high">¥15000</span>
-                    <div class="box">
-                        <span class="left"></span>
-                        <span class="right"></span>
-                    </div>
-                    <input type="range" name="points" step="1" min="0" max="15000" />
-                </div>
+                <!--<div class="price" :class="{'hide':(isShow != 1)}">-->
+                    <!--<span class="low">¥0</span>-->
+                    <!--<span class="high">¥15000</span>-->
+                    <!--<div class="box">-->
+                        <!--<span class="left"></span>-->
+                        <!--<span class="right"></span>-->
+                    <!--</div>-->
+                    <!--<input type="range" name="points" step="1" min="0" max="15000" />-->
+                <!--</div>-->
+
+                <ul class="hot">
+                    <li><a href="" class="select">￥1000以下</a></li>
+                    <li><a href="" class="">￥1001-3000</a></li>
+                    <li><a href="" class="">￥3001-5000</a></li>
+                    <li><a href="" class="">￥5001-8000</a></li>
+                    <li><a href="" class="">￥8001-15000</a></li>
+                    <li><a href="" class="">￥15000以上</a></li>
+                </ul>
 
                 <div class="filter" :class="{'hide':(isShow != 2)}">
                     <div class="box">

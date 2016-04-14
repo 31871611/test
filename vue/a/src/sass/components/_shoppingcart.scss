@@ -16,6 +16,13 @@
   i{
     @extend %ico_rem;
     margin-bottom: pxTorem(25px);
+    //无商品
+    &.iconSearchEmpty{
+      //margin-left:pxTorem(214px);
+      width:pxTorem(84px);
+      height:pxTorem(84px);
+      background-image: url("../images/iconSearchEmpty.png");
+    }
     //购物车
     &.iconShoppingEmpty{
       //margin-left:pxTorem(214px);
@@ -54,7 +61,11 @@
 
 //购物车
 .shoppingCart{
+  padding-bottom: pxTorem(20px);
   li.row {
+    .img{
+      margin-left:pxTorem(25px);
+    }
     .box{
       margin-left:0;
     }

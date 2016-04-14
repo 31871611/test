@@ -52,7 +52,7 @@
   }
   //搜索
   .iconSearch{
-    padding:0 pxTo750(30px);
+    padding:0 pxTo750(30px) 0 pxTo750(15px);
     width:pxTo750(40px);
     &:after{
       width:pxTo750(40px);
@@ -62,7 +62,7 @@
   }
   //分享
   .iconShare{
-    padding:0 0 0 pxTo750(30px);
+    padding:0 pxTo750(30px) 0 pxTo750(15px);
     width:pxTo750(40px);
     &:after{
       width:pxTo750(40px);

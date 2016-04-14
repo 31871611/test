@@ -1,0 +1,24 @@
+@charset "UTF-8";
+@import "../comm/css3";
+@import "../comm/common";
+
+//支付成功
+.paySuccess{
+
+}
+
+.paySuccessBtn{
+  @extend .display-flex;
+  padding-bottom: pxTorem(20px);
+  a{
+    @extend .flex;
+    display: block;
+    margin-left:pxTorem(10px);
+    width:pxTorem(340px);
+    height:pxTorem(100px);
+    line-height:pxTorem(100px);
+    background: $blue-base;
+    color:#fff;
+    text-align:center;
+  }
+}
