@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body id="app">
+
+<ul>
+    <li v-for="list in lists" @click="toogle($index)" :class="{'select':$index == index}">{{list.num}}</li>
+</ul>
+
+<ul>
+    <li v-for="item in items">
+        {{item.select}}
+        <input type="checkbox" v-model="item.select" />
+        {{item.title}}
+        <input type="button" value="加" @click="add($index)" />
+        <input type="button" value="减" @click="reduce($index)" />
+        数量：<input type="number" v-model="item.counter" />
+        价格：{{item.price*item.counter}}
+    </li>
+</ul>
+<div>合计：原价：{{total}}|9折价：{{total * 0.9}}</div>
+
+</body>
+<script src="../public/js/vue.js"></script>
+<script>
+
+    var app=new Vue({
+        el:"#app",
+        data:{
+            msg:"mgs hello!",
+            lists:[
+                {num:1,selected:false},
+                {num:2,selected:false},
+                {num:3,selected:false},
+                {num:4,selected:false},
+                {num:5,selected:false}
+            ],
+            //还要一个对应的数组?
+            index:-1,
+            items:[
+                {select:false,title:"商品一",counter:1,price:10},
+                {select:false,title:"商品二",counter:1,price:100},
+                {select:false,title:"商品三",counter:1,price:5},
+                {select:false,title:"商品四",counter:1,price:50}
+            ],
+            total:0
+        },
+        methods:{
+            toogle:function(index){
+                this.index=index;
+            },
+            add:function(index){
+                //查询库存？
+                this.items[index].counter++;
+            },
+            reduce:function(index){
+                var counter=this.items[index].counter;
+                if(counter == 1) {
+                    return false;
+                }
+                this.items[index].counter--;
+            }
+        },
+        computed:{
+
+        }
+    });
+
+    app.$watch(function(){
+        var total=0;
+        for(var i = 0,len=this.items.length;i<len;i++){
+            if(this.items[i].select){
+                total=total+this.items[i].price * this.items[i].counter;
+            }
+        }
+        this.total=total;
+    });
+
+
+</script>
+</html>
