@@ -427,3 +427,26 @@
     margin-bottom:pxTorem(10px);
   }
 }
+
+
+//猜你喜欢
+.guessLike{
+  position: relative;
+  //渐变
+  .gradient{
+    position: absolute;
+    left:0;
+    top:0;
+    height:pxTo750(415px);
+    width:100%;
+    background-color:#fff;
+    @include gradient-vertical(#fff 30%, #e5e5e5);
+  }
+  //小标题
+  .indexTitle{
+    position: relative;
+    @extend %indexTitleComm;
+  }
+
+
+}

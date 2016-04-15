@@ -159,7 +159,7 @@
 //行row
 .goodsListRow{
   //列row
-  li.row{
+  li.row,li.follow{
     background: #fff;
     margin-top: pxTorem(20px);
     height:pxTorem(280px - 20);
@@ -420,6 +420,35 @@
           background-image:url("../images/iconLoveS.png");
         }
       }
+    }
+  }
+  //用户中心-我的关注
+  li.follow{
+    margin: 0 pxTorem(30px);
+    border-bottom: 1px solid #cccccc;
+    .box{
+      margin:0;
+    }
+    .info{
+      position: static;
+      h3{
+        margin-top:0;
+      }
+    }
+    strong{
+      margin:0;
+      position: absolute;
+      left:pxTorem(290px);
+      bottom:0;
+    }
+    .size{
+      color:#999;
+      font-size:pxTorem(28px);
+    }
+    .love,.loveC{
+      left:0;
+      top:0;
+      right:auto;
     }
   }
 }

@@ -16,6 +16,18 @@
   i{
     @extend %ico_rem;
     margin-bottom: pxTorem(25px);
+    //无地址
+    &.iconAddressEmpty{
+      width:pxTorem(140px);
+      height:pxTorem(161px);
+      background-image: url("../images/iconAddressEmpty.png");
+    }
+    //无订单
+    &.iconOrderEmpty{
+      width:pxTorem(121px);
+      height:pxTorem(139px);
+      background-image: url("../images/iconOrderEmpty.png");
+    }
     //无商品
     &.iconSearchEmpty{
       //margin-left:pxTorem(214px);
@@ -23,18 +35,24 @@
       height:pxTorem(84px);
       background-image: url("../images/iconSearchEmpty.png");
     }
-    //购物车
+    //无购物车
     &.iconShoppingEmpty{
       //margin-left:pxTorem(214px);
       width:pxTorem(129px);
       height:pxTorem(112px);
       background-image: url("../images/iconShoppingEmpty.png");
     }
-    //关注
+    //无关注
     &.iconLoveEmpty{
       width:pxTorem(137px);
       height: pxTorem(112px);
       background-image: url("../images/love_empty.png");
+    }
+    //无优惠卷
+    &.iconDiscountEmpty{
+      width:pxTorem(112px);
+      height: pxTorem(84px);
+      background-image: url("../images/iconDiscountEmpty.png");
     }
   }
   b{
@@ -54,6 +72,11 @@
     text-align:center;
     background:$blue-base;
     font-size:pxTorem(32px);
+    &.w{
+      width:auto;
+      margin-left:pxTorem(30px);
+      margin-right:pxTorem(30px);
+    }
   }
 }
 

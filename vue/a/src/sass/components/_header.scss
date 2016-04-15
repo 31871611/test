@@ -109,6 +109,24 @@
       color:#999999;
     }
   }
+  //全部订单
+  .order{
+    position: relative;
+    &:after{
+      content: "\20";
+      position: absolute;
+      right:pxTorem(-30px);
+      top:pxTorem(16px);
+      @include arrow(bottom,pxTorem(15px),#333);
+    }
+    &.select{
+      &:after{
+        top:pxTorem(0px);
+        @include arrow(top,pxTorem(15px),#333);
+      }
+    }
+  }
+
   //.edit{
   //
   //}

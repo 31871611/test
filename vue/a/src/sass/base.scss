@@ -98,8 +98,11 @@ body{
 //公告|.bulletinList
 @import "components/bulletin";
 
-//首页|.index*+
+//首页|.index*+|.guessLike
 @import "components/index";
+
+//图录
+@import "components/catalogue";
 
 //商品列表|.goodsList
 @import "components/goodsList";
@@ -116,14 +119,23 @@ body{
 //结算中心
 @import "components/clearing";
 
+//用户中心物流信息|.logisticsInfo|.logisticsPath
+@import "components/logistics";
+
 //私洽|.negotiation|.thumbnail
 @import "components/negotiation";
 
 //珍大师文章|.lBorTitle|.collectDetail|.collectList|.collectTip|.collectItem
 @import "components/article";
 
+//订单列表
+@import "components/orderList";
+
 //支付成功
 @import "components/paysuccess";
+
+//用户中心
+@import "components/user";
 
 //动画keyframes
 @import "components/keyframes";

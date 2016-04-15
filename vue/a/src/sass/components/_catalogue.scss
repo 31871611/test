@@ -1,0 +1,57 @@
+@charset "UTF-8";
+@import "../comm/css3";
+@import "../comm/common";
+
+
+//图录
+.catalogue{
+  margin:0 pxTorem(30px);
+  .list{
+    $h:274px;
+    position: relative;
+    margin:0 auto;
+    height: pxTorem($h + 100);
+    .img{
+      //width:pxTorem(210px);
+      //height:pxTorem(274px);
+      //margin:0 auto;
+      display: block;
+      text-align:center;
+    }
+    img{
+      width:pxTorem(210px);
+      height:pxTorem(274px);
+    }
+    //&:before{
+    //  position: absolute;
+    //  left:0;
+    //  top:0;
+    //  display: block;
+    //  content: "\20";
+    //  width:pxTorem(699px);
+    //  height:pxTorem(163px);
+    //  background-image: url("../images/iconCatalogueTable.png");
+    //  @extend %ico_rem;
+    //}
+  }
+  //背景桌子
+  .bg{
+    position: absolute;
+    left:0;
+    top: 56%;
+    width:100%;
+    img{
+      @extend .img-auto;
+    }
+  }
+  .box{
+    position: relative;
+    @extend .display-flex;
+    div{
+      @extend .flex;
+    }
+    h3{
+      text-align:center;
+    }
+  }
+}

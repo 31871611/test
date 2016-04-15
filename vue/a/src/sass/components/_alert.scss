@@ -118,3 +118,52 @@
     }
   }
 }
+
+
+
+//用户中心-修改性别弹窗
+.alertUserSex{
+  z-index:27;
+  position: fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  right:0;
+  .box{
+    background:#fff;
+    position: absolute;
+    left:0;
+    bottom: 0;
+    width:100%;
+    z-index:29;
+  }
+  h2{
+    font-size:pxTorem(32px);
+    margin-left:pxTorem(30px);
+    height:pxTorem(50px);
+    line-height:pxTorem(50px);
+    padding-top:pxTorem(10px);
+  }
+  ul{
+    li{
+      height:pxTorem(80px);
+      line-height:pxTorem(80px);
+      margin:0 pxTorem(30px);
+      font-size:pxTorem(28px);
+      &:nth-child(1){
+        border-bottom: 1px solid #cccccc;
+      }
+    }
+  }
+  .btn{
+    margin:0;
+    a{
+      height:pxTorem(90px);
+      line-height:pxTorem(90px);
+      border-top: 1px solid #cccccc;
+      color:#999999;
+      font-size:pxTorem(28px);
+    }
+    text-align:center;
+  }
+}
