@@ -44,12 +44,14 @@
   top:0;
   @extend %boxcen;
   //background: rgba(0,0,0,.3);
+  @include border-radius(pxTorem(4px));
   z-index:30;
   .content{
     position: relative;
     z-index:29;
     background:#fff;
     width:pxTo750(560px);
+    @include border-radius(pxTorem(4px));
   }
   .myalert-title{
     $h:80px;

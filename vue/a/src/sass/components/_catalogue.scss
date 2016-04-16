@@ -5,53 +5,97 @@
 
 //图录
 .catalogue{
-  margin:0 pxTorem(30px);
-  .list{
-    $h:274px;
+  li{
     position: relative;
-    margin:0 auto;
-    height: pxTorem($h + 100);
-    .img{
-      //width:pxTorem(210px);
-      //height:pxTorem(274px);
-      //margin:0 auto;
-      display: block;
-      text-align:center;
-    }
-    img{
-      width:pxTorem(210px);
-      height:pxTorem(274px);
-    }
-    //&:before{
-    //  position: absolute;
-    //  left:0;
-    //  top:0;
-    //  display: block;
-    //  content: "\20";
-    //  width:pxTorem(699px);
-    //  height:pxTorem(163px);
-    //  background-image: url("../images/iconCatalogueTable.png");
-    //  @extend %ico_rem;
-    //}
-  }
-  //背景桌子
-  .bg{
-    position: absolute;
-    left:0;
-    top: 56%;
-    width:100%;
+    height:pxTorem(404px);
     img{
       @extend .img-auto;
+      vertical-align: top !important;
     }
-  }
-  .box{
-    position: relative;
-    @extend .display-flex;
-    div{
+    &.top{
+      height:pxTorem(95px);
+    }
+    &.bottom{
+      height:pxTorem(29px);
+    }
+    .box{
+      position: absolute;
+      left:0;
+      top:0;
+      width:100%;
+      height:100%;
+      @extend .display-flex;
+    }
+    a{
+      display: block;
       @extend .flex;
-    }
-    h3{
-      text-align:center;
     }
   }
 }
+
+//列表
+.catalogueList{
+  li{
+    strong.price{
+      font-size:pxTorem(28px);
+      span{
+        font-size:pxTorem(24px);
+        color:#333;
+      }
+    }
+  }
+}
+
+
+//拍品价格
+.catalogueTitle{
+  h3.price{
+    font-size:pxTorem(24px);
+    color:#666;
+  }
+  strong{
+    font-size:pxTorem(32px);
+    color:$red-base;
+  }
+  //状态
+  .state{
+    position: absolute;
+    right:pxTorem(30px);
+    bottom: pxTorem(20px);
+    b{
+      color:$red-base;
+      font-weight:normal;
+    }
+  }
+}
+
+//拍品信息
+.catalogueInfo{
+  ul{
+    li{
+      width: auto;
+      float: none;
+    }
+  }
+}
+
+//按钮
+div.catalogueBtn{
+  border-top:1px solid #999999;
+  padding:pxTorem(10px) pxTorem(30px);
+  margin:0;
+  @extend .display-flex;
+  background: #fff;
+  a{
+    @extend .flex;
+    color:#fff;
+    background:#999999;
+    &.select{
+      background: $blue-base;
+    }
+    &:nth-child(2){
+      margin-left:pxTorem(10px);
+    }
+  }
+}
+

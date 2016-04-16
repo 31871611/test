@@ -172,3 +172,38 @@
   }
 }
 
+//推荐文章带图片
+.collectListAd{
+  position: relative;
+  //@extend .display-flex;
+  //@include justify-content();
+  //-webkit-box-pack:center;
+  //box-pack:center;
+  //-webkit-box-align:center;
+  //box-align:center;
+  .box{
+    display: -webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+    position: absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    a{
+      display: block;
+      background:rgba(0,0,0,.2);
+      color:#fff;
+      padding:pxTorem(10px) pxTorem(70px);
+    }
+    h3,h4{
+      line-height: pxTorem(114px / 2);
+    }
+    h3{
+      font-size:pxTorem(38px);
+    }
+    h4{
+      font-size:pxTorem(32px);
+    }
+  }
+}

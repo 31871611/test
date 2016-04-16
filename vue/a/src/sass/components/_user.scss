@@ -2,6 +2,27 @@
 @import "../comm/css3";
 @import "../comm/common";
 
+//字体样式
+.colorBase{
+  color: $color-333;
+}
+.colorGray{
+  color: $color-999 !important;
+}
+.colorRed{
+  color: $red-base !important;
+}
+.colorWeight{
+  font-weight: bold !important;
+}
+.pb20{
+  padding-bottom: pxTorem(20px);
+}
+.mt-40{
+  margin-top: pxTorem(-40px);
+}
+
+
 //用户中心
 .user{
   //width: 100%;
@@ -26,6 +47,9 @@
     &.iconUserAccept{
       background-image: url("../images/iconUserAccept.png");
     }
+    &.iconUserAcceptGray{
+      background-image: url("../images/iconUserAcceptGray.png");
+    }
     &.iconUserOrder{
       background-image: url("../images/iconUserOrder.png");
     }
@@ -46,6 +70,9 @@
     }
     &.iconUserAddress{
       background-image: url("../images/iconUserAddress.png");
+    }
+    &.iconUserAddressGray{
+      background-image: url("../images/iconUserAddressGray.png");
     }
     &.iconUserleft{
       width: pxTorem(16px);
@@ -179,7 +206,7 @@
     border-bottom: 1px dashed $color-ccc;
   }
   //用户中心列表
-  .userList,.userAdressList{
+  .userList,.userAdressList,.userOrderDetail{
     width: 100%;
     background-color: #fff;
     li{
@@ -229,7 +256,7 @@
     }
     i{
       margin-right: pxTorem(15px);
-      margin-top: pxTorem(-10px);
+      margin-top: pxTorem(-5px);
       &.iconUserleft,&.iconUserGou2,&.iconCircleSelect,&.iconCircle{
         margin-right: 0;
         margin-top: pxTorem(30px);
@@ -239,6 +266,32 @@
     input{
       width: 100%;
       border:none;
+    }
+    //高度自适应布局
+    .heightAutoLayout{
+      height: auto;
+      line-height: pxTorem(40px);
+      padding-top: pxTorem(25px);
+      padding-bottom: pxTorem(25px);
+    }
+    .btn{
+      margin-top: 0;
+      &:before{
+        content: "\20";
+        display: inline-block;
+        width: pxTorem(24px);
+        height: pxTorem(33px);
+        background-image: url("../images/iconTel.png");
+        @extend %ico_rem;
+        vertical-align: middle;
+        margin-right: pxTorem(5px);
+      }
+    }
+    //红边白底按钮
+    .btnRedBorder{
+      background-color: #fff;
+      border: 1px solid $red-base;
+      color: $red-base;
     }
   }
   //收货地址列表
@@ -297,6 +350,14 @@
       &:last-of-type{
         @extend %tr;
       }
+    }
+  }
+  //中间内容flex(1)布局
+  .centerFlexLayout{
+    @include display-flex();
+    align-items: center;
+    span{
+      @include flex(1);
     }
   }
   //更改日期提示
@@ -388,6 +449,7 @@
     @include display-flex();
     border: none;
     font-size: pxTorem(32px);
+    margin: 0;
     a{
       @extend %block;
       @include flex(1);
@@ -433,5 +495,69 @@
         height: pxTorem(215px);
       }
     }
+  }
+  //用户中心订单详情item
+  .userOrderDetail{
+    @include display-flex();
+    padding-top: pxTorem(20px);
+    padding-bottom: pxTorem(20px);
+    font-size: pxTorem(28px);
+    .box,span{
+      @include flex(1);
+    }
+    img{
+      @extend %block;
+      width: pxTorem(182px);
+      height: pxTorem(182px);
+      margin-left: pxTorem(30px);
+    }
+    .box{
+      position: relative;
+      @include display-flex();
+      flex-direction: column;
+      margin-left: pxTorem(25px);
+      margin-right: pxTorem(30px);
+      span{
+        margin-bottom: pxTorem(12px);
+        &:last-of-type{
+          margin-bottom: 0;
+        }
+      }
+      .positionTop,.positionBottom{
+        position: absolute;
+        right: 0;
+        top:pxTorem(60px);
+      }
+      .positionBottom{
+        top:pxTorem(130px);
+      }
+    }
+  }
+}
+
+
+
+//帮助
+.help{
+  padding:0 pxTorem(20px);
+  h1{
+    font-size:pxTorem(28px);
+    padding-top:pxTorem(15px);
+  }
+  p{
+    margin-top:pxTorem(10px);
+    line-height:pxTorem(40px);
+  }
+  .cen{
+    text-align:center;
+    img{
+      width:100%;
+    }
+  }
+  .indent{
+    text-indent:2em;
+  }
+  .red{
+    color:$red_c;
   }
 }
