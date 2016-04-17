@@ -100,6 +100,7 @@
       @extend %ico_rem;
     }
     input[type='text']{
+      @include border-radius(3px);
       display: block;
       border:0;
       height:pxTo750($h);

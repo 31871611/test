@@ -182,7 +182,6 @@
     line-height:pxTorem(58px);
     margin:0 auto;
     background:rgba(255,255,255,.8);
-    color:#999999;
     font-size:pxTorem(26px);
     text-indent: pxTorem(65px);
     @include border-radius(3px);
@@ -198,6 +197,10 @@
       background-image: url("../images/iconSearchC.png");
       @extend %ico_rem;
     }
+    a{
+      color:#999999;
+      display: block;
+    }
   }
   .testClassify,.indexNotice{
     position: absolute;
@@ -210,6 +213,9 @@
       margin:0 auto;
       content: "\20";
       display: block;
+    }
+    a{
+      color:#fff;
     }
   }
   .testClassify{

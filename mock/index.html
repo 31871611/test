@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/1.8.0/jquery.min.js"></script>
+<script>
+
+//    $.get("/test", {}, function(data){
+    $.get("/check.do", { "id": "789" }, function(data){
+        console.log(data);
+    }, "json");
+
+</script>
+</html>

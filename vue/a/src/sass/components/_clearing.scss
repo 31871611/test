@@ -371,7 +371,8 @@
     span,b{
       font-size:pxTorem(32px);
     }
-    span{
+    em{
+      font-style: normal;
       padding-left:pxTorem(20px +46px);
       float:left;
       &.select{
