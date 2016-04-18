@@ -293,10 +293,15 @@
     @extend .flex;
     text-align:center;
     color:#333333;
+    &:nth-of-type(3){
+      .img{
+        width:pxTorem(37px);
+      }
+    }
   }
   .img{
-    width:pxTorem(65px);
-    height:pxTorem(65px);
+    width:pxTorem(52px);
+    height:pxTorem(52px);
     margin:0 auto pxTorem(15px);
     img{
       display: block;

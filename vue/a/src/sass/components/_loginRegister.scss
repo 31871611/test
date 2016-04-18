@@ -158,6 +158,53 @@
 }
 
 
-
+//注册有礼
+.loginCeremony{
+  position: absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  background-image: url("../images/bgLoginCeremony.jpg");
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  h2,h3,p,span{
+    margin-left:10%;
+    color:#fff;
+  }
+  h2{
+    font-size:pxTorem(56px);
+    margin-top:pxTorem(90px);
+  }
+  h3{
+    font-size:pxTorem(36px);
+    margin-top:pxTorem(40px);
+  }
+  p{
+    font-size:pxTorem(32px);
+    &:nth-of-type(1){
+      margin-top:pxTorem(20px);
+    }
+  }
+  span{
+    font-size:pxTorem(24px);
+    display: block;
+    &:nth-of-type(1){
+      margin-top:pxTorem(20px);
+    }
+  }
+  a{
+    width:92%;
+    position: absolute;
+    left:4%;
+    bottom: pxTorem(30px);
+    height:pxTorem(90px);
+    line-height:pxTorem(90px);
+    text-align:center;
+    color:#fff;
+    font-size:pxTorem(32px);
+    background: rgba(0,0,0,.4);
+  }
+}
 
 

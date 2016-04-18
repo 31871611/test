@@ -50,9 +50,21 @@
     }
     //无优惠卷
     &.iconDiscountEmpty{
+      width:pxTorem(147px);
+      height: pxTorem(111px);
+      background-image: url("../images/iconDiscountEmpty.png");
+    }
+    //支付成功
+    &.iconPaySuccess{
+      width:pxTorem(110px);
+      height: pxTorem(112px);
+      background-image: url("../images/iconPaySuccess.png");
+    }
+    //支付失败
+    &.iconPayError{
       width:pxTorem(112px);
       height: pxTorem(84px);
-      background-image: url("../images/iconDiscountEmpty.png");
+      background-image: url("../images/iconPayError.png");
     }
   }
   b{

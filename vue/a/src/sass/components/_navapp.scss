@@ -67,6 +67,15 @@ nav.appNav{
         @extend %ico_rem;
       }
     }
+    //一分钱体验
+    &.iconNavYi{
+      &:before {
+        //width:pxTorem(46px);
+        //height:pxTorem(46px);
+        background-image: url("../images/iconNavYi.png");
+        @extend %ico_rem;
+      }
+    }
     //个人
     &.appNavUser{
       &:before {
@@ -107,6 +116,12 @@ nav.appNav{
       &.appNavOrder{
         &:before {
           background-image: url("../images/iconNavOrderS.png");
+        }
+      }
+      //一分钱体验
+      &.iconNavYi{
+        &:before {
+          background-image: url("../images/iconNavYiS.png");
         }
       }
       //个人

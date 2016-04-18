@@ -137,6 +137,12 @@ body{
 //用户中心
 @import "components/user";
 
+//优惠卷
+@import "components/coupons";
+
+//支付成功或失败
+@import "components/paysuccess";
+
 //动画keyframes
 @import "components/keyframes";
 

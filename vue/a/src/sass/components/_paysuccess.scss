@@ -3,22 +3,84 @@
 @import "../comm/common";
 
 //支付成功
-.paySuccess{
-
+.paysuccess{
+  .shoppingEmpty{
+    padding-top: 10%;
+  }
+  .orderList{
+    color:#333;
+    font-size:pxTorem(32px);
+    margin: pxTorem(110px) pxTorem(30px) 0;
+    li{
+      height:pxTorem(60px);
+    }
+    span{
+      float:left;
+    }
+    b{
+      float:right;
+      font-weight:normal;
+    }
+  }
+  .helpInfo{
+    margin: pxTorem(20px) pxTorem(30px) 0;
+    border-top:1px solid #d2d2d2;
+    padding-top:7%;
+    text-align:center;
+    color:#999999;
+    p{
+      line-height:pxTorem(45px);
+    }
+    a{
+      color:$link-color;
+      font-size:pxTorem(32px);
+      display: inline-block;
+      margin-top:pxTorem(40px);
+    }
+  }
 }
 
 .paySuccessBtn{
   @extend .display-flex;
-  padding-bottom: pxTorem(20px);
+  padding: 0 pxTorem(20px) pxTorem(20px) pxTorem(20px);
+  background: #fff;
+  margin:0 !important;
   a{
     @extend .flex;
     display: block;
-    margin-left:pxTorem(10px);
     width:pxTorem(340px);
     height:pxTorem(100px);
     line-height:pxTorem(100px);
     background: $blue-base;
     color:#fff;
     text-align:center;
+    &:nth-child(2){
+      margin-left:pxTorem(10px);
+    }
+  }
+}
+
+
+//订单提交成功---转账
+.paysubmit{
+  padding-bottom: pxTorem(50px);
+  background:#fff;
+  h2{
+    padding-left:pxTorem(20px);
+    font-size:pxTorem(32px);
+    height:pxTorem(35px * 2);
+    line-height:pxTorem(35px * 2);
+    background: #eeeeee;
+    margin-bottom: pxTorem(10px);
+  }
+  h3,p{
+    font-size:pxTorem(29px);
+    margin:0 pxTorem(20px);
+    line-height: pxTorem(50px);
+  }
+  h3{
+    &:nth-of-type(2){
+      margin-top:pxTorem(10px);
+    }
   }
 }

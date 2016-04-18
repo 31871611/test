@@ -169,3 +169,171 @@
     text-align:center;
   }
 }
+
+
+//结算中心-付款输入密码弹窗
+.alertPayInfo{
+  z-index:27;
+  position: fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  top:0;
+  @extend %boxcen;
+  .box{
+    background:#fff;
+    position: relative;
+    width:80%;
+    z-index:29;
+  }
+  .alertTitle{
+    height:pxTorem(90px);
+    line-height:pxTorem(90px);
+    background: $blue-base;
+    h2{
+      color:#fff;
+      padding:0 pxTorem(60px) 0 pxTorem(20px);
+      font-size:pxTorem(32px);
+    }
+    .exit{
+      width:pxTorem(40px);
+      height:pxTorem(40px);
+      border:pxTorem(1px) solid #fff;
+      @include border-radius(50%);
+      position: absolute;
+      right:pxTorem(20px);
+      top:pxTorem(24px);
+      background-image: url("../images/iconDelete.png");
+      @extend %ico_rem;
+      background-size:50% 50% !important;
+    }
+  }
+  .alertContent{
+    padding:pxTorem(30px) pxTorem(20px);
+    input[type='number']{
+      height:pxTorem(85px);
+      background:#e5e5e5;
+      border:0;
+      display:block;
+      width:98%;
+      padding-left:2%;
+      font-size:pxTorem(32px);
+      margin-top:pxTorem(15px);
+    }
+  }
+  .payTotal{
+    font-size:pxTorem(28px);
+    text-align: right;
+    margin-top:pxTorem(20px);
+    &:nth-last-of-type(1){
+      margin-bottom:pxTorem(30px);
+    }
+    b{
+      font-weight: normal;
+    }
+  }
+  //忘记密码
+  .forget{
+    display: block;
+    text-align: right;
+    color:$link-color;
+    margin-top:pxTorem(25px);
+  }
+  //订单详情
+  .orderList{
+    color:#333;
+    font-size:pxTorem(32px);
+    border-bottom: 1px solid #cccccc;
+    li{
+      height:pxTorem(60px);
+    }
+    span{
+      float:left;
+    }
+    b{
+      float:right;
+      font-weight:normal;
+    }
+  }
+  //取消列表
+  .exitList{
+    margin:0 pxTorem(27px);
+    li{
+      border-bottom: 1px solid #cccccc;
+      height:pxTorem(88px);
+      line-height:pxTorem(88px);
+      font-size:pxTorem(28px);
+    }
+  }
+}
+
+//待付款-取消原因
+.alertExitList{
+  .alertContent{
+    padding:0;
+  }
+  //取消列表
+  .exitList{
+    margin:0 pxTorem(27px);
+    li{
+      border-bottom: 1px solid #cccccc;
+      height:pxTorem(88px);
+      line-height:pxTorem(88px);
+      font-size:pxTorem(28px);
+      //&.select{
+      //  position: relative;
+      //  &:after{
+      //    content: "\20";
+      //    width:pxTorem(24px - 2);
+      //    height:pxTorem(24px - 2);
+      //    border:pxTorem(2px) solid #999999;
+      //    position: absolute;
+      //    right:pxTorem(6px);
+      //    top:pxTorem(32px);
+      //    @include border-radius(50%);
+      //  }
+      //}
+    }
+  }
+}
+
+//银行转账弹窗
+.giroAlert{
+  .box{
+    p{
+      &:nth-child(1){
+        margin-top:pxTorem(30px);
+      }
+    }
+    h3,p{
+      margin:0 pxTorem(20px) 0 pxTorem(20px);
+      line-height: pxTorem(48px);
+      font-size:pxTorem(28px);
+    }
+    h3{
+      margin-top:pxTorem(35px);
+    }
+    label{
+      display: inline-block;
+      text-align:right;
+      width:pxTorem(140px);
+    }
+  }
+  .btn{
+    margin:pxTorem(30px) 0 0 0;
+    @extend .display-flex;
+    a{
+      @extend .flex;
+      height:pxTorem(80px);
+      line-height:pxTorem(80px);
+      background: #e5e5e5;
+      color:#333;
+      &.select{
+        background: $blue-base;
+        color:#fff;
+      }
+    }
+  }
+}
+
+

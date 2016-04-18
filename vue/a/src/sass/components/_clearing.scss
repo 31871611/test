@@ -2,7 +2,42 @@
 @import "../comm/css3";
 @import "../comm/common";
 
-
+//选择按钮
+%selectBtn{
+  vertical-align: top;
+  margin-top:pxTorem(25px);
+  margin-right:pxTorem(10px);
+  border:0;
+  -webkit-appearance:none;
+  outline:none;
+  position: relative;
+  width:pxTorem(36px);
+  height:pxTorem(36px);
+  @include border-radius(50%);
+  &:before{
+    position: absolute;
+    left:0;
+    top:0;
+    content: "\20";
+    display: inline-block;
+    width:pxTorem(36px - 4);
+    height:pxTorem(36px - 4);
+    border:pxTorem(2px) solid #333;
+    @include border-radius(50%);
+    margin-right:pxTorem(10px);
+  }
+  &:checked{
+    &:before {
+      background-color: $red-base;
+      width: pxTorem(36px);
+      height: pxTorem(36px);
+      border: 0;
+      background-image: url("../images/iconHook.png");
+      @extend %ico_rem;
+      background-size: 50% 50% !important;
+    }
+  }
+}
 
 
 
@@ -270,39 +305,7 @@
     background:#fff;
     text-align:center;
     input[type='checkbox']{
-      vertical-align: top;
-      margin-top:pxTorem(25px);
-      margin-right:pxTorem(10px);
-      border:0;
-      -webkit-appearance:none;
-      outline:none;
-      position: relative;
-      width:pxTorem(36px);
-      height:pxTorem(36px);
-      @include border-radius(50%);
-      &:before{
-        position: absolute;
-        left:0;
-        top:0;
-        content: "\20";
-        display: inline-block;
-        width:pxTorem(36px - 4);
-        height:pxTorem(36px - 4);
-        border:pxTorem(2px) solid #333;
-        @include border-radius(50%);
-        margin-right:pxTorem(10px);
-      }
-      &:checked{
-        &:before {
-          background-color: $red-base;
-          width: pxTorem(36px);
-          height: pxTorem(36px);
-          border: 0;
-          background-image: url("../images/iconHook.png");
-          @extend %ico_rem;
-          background-size: 50% 50% !important;
-        }
-      }
+      @extend %selectBtn;
     }
     a{
       color:$link-color;
@@ -321,12 +324,12 @@
       @include border-radius(pxTorem(3px));
       background: #fff;
       height:pxTorem(99px);
-      line-height:pxTorem(99px);
+      line-height: normal;
       border:1px solid #999999;
       color:#333;
       font-size:pxTorem(32px);
       position: relative;
-      &.wx,&.bank{
+      &.balance,&.wx,&.bank,&.giro{
         &:before {
           content: "\20";
           position: absolute;
@@ -337,16 +340,54 @@
           @extend %ico_rem;
         }
       }
+      //余额支付
+      &.balance{
+        height:pxTorem(99px - 10);
+        padding-top:pxTorem(10px);
+        &:before{
+          background-image: url("../images/iconbalance.png");
+        }
+      }
+      &.select{
+        color:#999999;
+        &:before{
+          background-image: url("../images/iconbalanceC.png");
+        }
+      }
+      //微信
       &.wx{
+        line-height:pxTorem(99px);
         &:before{
           background-image: url("../images/iconWeiXin.png");
         }
       }
+      //在线支付
       &.bank{
+        line-height:pxTorem(99px);
         &:before {
           background-image: url("../images/iconBank.png");
         }
       }
+      //转帐
+      &.giro{
+        height:pxTorem(99px - 10);
+        padding-top:pxTorem(10px);
+        &:before{
+          background-image: url("../images/icongiro.png");
+        }
+      }
+    }
+    em{
+      display: block;
+      font-style: normal;
+      font-size:pxTorem(20px);
+    }
+    input[type='radio']{
+      position: absolute;
+      left:2.5%;
+      top:0;
+      @extend %selectBtn;
+      margin-top:pxTorem(28px);
     }
   }
 
@@ -505,5 +546,6 @@
     top:43%;
   }
 }
+
 
 
