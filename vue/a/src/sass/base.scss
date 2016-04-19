@@ -78,6 +78,11 @@ body{
   flex: 1;
 }
 
+//vue
+[v-cloak]{
+  visibility: hidden;
+}
+
 /****************************************************/
 
 ////基础布局，版面|.wrap|article.main|.scrollHide

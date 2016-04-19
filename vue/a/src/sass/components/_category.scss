@@ -34,19 +34,26 @@
 
 
 
-//筛选条件
+//筛选条件|整合
 .goodsFilterIf{
+  position: absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  z-index:48;
+  //透明遮罩
+  .opacityT{
+    @extend .opacity;
+    position: absolute !important;
+    z-index: 49 !important;
+  }
   //排序下拉信息
   .sort_list{
-    //position: absolute;
-    //left:0;
-    //top:pxTo750(246px);
-    right:0;
-    bottom:0;
-    z-index: 45;
+    @extend .wrap;
+    position: relative;
+    z-index:50;
     font-size:pxTo750(24px);
-    //width:100%;
-    //height:100%;
     background: #fff;
     a{
       color:#333333;
@@ -96,16 +103,8 @@
   //横版价格升降
   .rowPrice{
     padding:pxTorem(20px) 0 pxTorem(10px);
-    margin:0 pxTorem(30px);
     border-bottom: 1px solid #e5e5e5;
-    h2{
-      font-size:pxTorem(24px);
-      color:#666;
-      margin-bottom: pxTorem(20px);
-    }
-    .box{
-      @extend .display-flex;
-    }
+    @extend .display-flex;
     a{
       @extend .flex;
       display: block;
@@ -183,20 +182,10 @@
   }
   //筛选
   .filter{
-    //position: absolute;
-    //left:0;
-    //top:0;
-    //bottom:0;
-    //right:0;
-    //overflow: hidden;
-    //display:-webkit-box;
-    //display:-webkit-flex;
-    //display:-ms-flexbox;
-    //display:flex;
-    //-webkit-box-orient:vertical;
-    //-webkit-flex-direction:column;
-    //-ms-flex-direction:column;
-    //flex-direction:column;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+    @extend .flex;
+    width:100%;
     h2{
       padding-top:pxTo750(20px);
       margin:0 0 pxTo750(20px) 0;
@@ -205,9 +194,6 @@
     }
     .box{
       margin:0 pxTo750(30px) 0 ;
-      overflow:scroll;
-      -webkit-overflow-scrolling: touch;
-      @include flex(1);
       padding-bottom:pxTo750(30px);
     }
   }
@@ -233,6 +219,7 @@
     $h:76px;
     height:pxTo750($h);
     @extend .display-flex;
+    padding-bottom: pxTorem(10px);
     a{
       text-align: center;
       @extend .flex;

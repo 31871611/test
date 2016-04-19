@@ -26,21 +26,6 @@
             <a href="" class="btn">去看看</a>
         </div>
 
-        <!--订单筛选-->
-        <div class="user">
-            <ul class="userList">
-                <li class="select">
-                    <span>全部订单</span>
-                    <i class="iconUserGou2"></i>
-                </li>
-                <li><span>待付款</span></li>
-                <li><span>已付款</span></li>
-                <li><span>待收货</span></li>
-                <li><span>交易完成</span></li>
-                <li><span>交易关闭</span></li>
-            </ul>
-        </div>
-
         <!--订单列表-->
         <ul class="order_list">
             <li>
@@ -263,6 +248,48 @@
         </nav>
     </footer>
 </div>
+
+<!--订单筛选-->
+<ul class="dropDownList hide">
+    <li class="select">
+        <span>全部订单</span>
+        <i class="iconUserGou2"></i>
+    </li>
+    <li><span>待付款</span></li>
+    <li><span>已付款</span></li>
+    <li><span>待收货</span></li>
+    <li><span>交易完成</span></li>
+    <li><span>交易关闭</span></li>
+</ul>
+
+
+<!--订单支付-->
+<div class="orderPayBth hide">
+    <div class="opacity"></div>
+    <div class="box">
+        <ul class="orderList">
+            <li><span>订单编号:</span><b>JZ20160330173417511</b></li>
+            <li><span>订单总额：</span><b class="red">¥4200</b></li>
+            <li><span>优惠券：</span><b class="red">－¥100</b></li>
+            <li><span>应付金额：</span><b class="red">¥4100</b></li>
+        </ul>
+        <ul class="orderPayList">
+            <li><a href="" class="balance">
+                余额支付
+                <em>(可用余额¥1000）</em>
+            </a></li>
+            <li><a href="" class="wx">微信支付</a></li>
+            <li><a href="" class="bank">银行卡在线支付</a></li>
+            <li>
+                <a href="" class="giro">
+                    银行转账
+                    <em>(9点-21点支持该支付方式）</em>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
 
 </body>
 </html>

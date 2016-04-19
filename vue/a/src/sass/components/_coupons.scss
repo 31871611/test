@@ -15,10 +15,11 @@
   $ml:180px;
   margin:0 pxTorem(30px);
   li{
+    padding-bottom: pxTorem(10px);
     position: relative;
     background:#fff;
     margin-bottom: pxTorem(10px);
-    height:pxTorem($h);
+    //height:pxTorem($h);
     overflow: hidden;
     h2,p{
       margin-left:pxTorem($ml + 20);
@@ -97,10 +98,37 @@
         background:#cccccc;
       }
     }
+    //选中优惠卷按钮
+    .selectBtn{
+      @extend %selectBtn;
+      position: absolute;
+      right:pxTorem(20px);
+      top:50%;
+      margin:pxTorem(-16px) 0 0 0;
+    }
+    //已使用|已过期
+    .expire{
+      width:pxTorem(120px);
+      height:pxTorem(60px);
+      line-height:pxTorem(80px);
+      position: absolute;
+      right:pxTorem(- 38px);
+      top:pxTorem(- 8px);
+      background:#cccccc;
+      color:#fff;
+      //font-size:pxTorem(32px);
+      font-style:normal;
+      text-align:center;
+      //rotation:180deg;
+      @include rotate(45deg);
+    }
   }
   .money{
-    height:pxTorem($h);
-    position: relative;
+    //height:pxTorem($h);
+    position: absolute;
+    left:0;
+    top:0;
+    height:100%;
     background:$red-base;
     width:pxTorem($ml);
     float:left;
@@ -118,8 +146,8 @@
         content: "￥";
         font-style: normal;
         position: absolute;
-        right:pxTorem(-26px);
-        bottom:pxTorem(6px);
+        left:pxTorem(-20px);
+        top:0;
         font-size:pxTorem(24px);
       }
     }
