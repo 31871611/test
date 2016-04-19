@@ -6,21 +6,21 @@
 .header{
   $h:87px;
   $topH:40px;
-  height:pxTo750($h);
+  height:pxTorem($h);
   background:#fff;
   border-bottom: 1px solid #e5e5e5;
-  padding-top:pxTo750($topH);
+  padding-top:pxTorem($topH);
   @extend .display-flex;
   h2{
-    line-height:pxTo750($h);
-    font-size:pxTo750(36px);
+    line-height:pxTorem($h);
+    font-size:pxTorem(36px);
     text-align:center;
     color:#333333;
     @extend .flex;
   }
   a{
     position: relative;
-    height:pxTo750($h);
+    height:pxTorem($h);
     display: inline-block;
   }
   //左边
@@ -36,66 +36,66 @@
     &:after{
       content: "\20";
       display: block;
-      margin-top:pxTo750(26px);
+      margin-top:pxTorem(26px);
       @extend %ico_rem;
     }
   }
   //返回
   .return{
-    padding:0 pxTo750(30px);
-    width:pxTo750(22px);
+    padding:0 pxTorem(30px);
+    width:pxTorem(22px);
     &:after{
-      width:pxTo750(22px);
-      height:pxTo750(42px);
+      width:pxTorem(22px);
+      height:pxTorem(42px);
       background-image: url("../images/iconArrowLT.png");     /*base64:skip*/
     }
   }
   //搜索
   .iconSearch{
-    padding:0 pxTo750(30px) 0 pxTo750(15px);
-    width:pxTo750(40px);
+    padding:0 pxTorem(30px) 0 pxTorem(15px);
+    width:pxTorem(40px);
     &:after{
-      width:pxTo750(40px);
-      height:pxTo750(40px);
+      width:pxTorem(40px);
+      height:pxTorem(40px);
       background-image: url("../images/iconSearchT.png");
     }
   }
   //分享
   .iconShare{
-    padding:0 pxTo750(30px) 0 pxTo750(15px);
-    width:pxTo750(40px);
+    padding:0 pxTorem(30px) 0 pxTorem(15px);
+    width:pxTorem(40px);
     &:after{
-      width:pxTo750(40px);
-      height:pxTo750(40px);
+      width:pxTorem(40px);
+      height:pxTorem(40px);
       background-image: url("../images/iconShareT.png");
     }
   }
   //取消文字
   .exit{
-    padding:0 pxTo750(30px) 0 pxTo750(15px);
+    padding:0 pxTorem(30px) 0 pxTorem(15px);
     color:#666666;
-    font-size:pxTo750(26px);
-    line-height: pxTo750($h);
+    font-size:pxTorem(26px);
+    line-height: pxTorem($h);
   }
   //搜索栏
   .inputSearch{
     $h:58px;
-    margin-left:pxTo750(30px);
+    margin-left:pxTorem(30px);
     @extend .flex;
     background:#ffffff;
-    height:pxTo750($h);
-    line-height:pxTo750($h);
-    margin-top:pxTo750(16px);
+    height:pxTorem($h);
+    line-height:pxTorem($h);
+    margin-top:pxTorem(16px);
     @include border-radius(3px);
     position: relative;
     &:before{
       position: absolute;
-      left:pxTo750(12px);
-      top:pxTo750(12px);
+      left:pxTorem(12px);
+      top:pxTorem(12px);
       content: "\20";
       display: block;
-      width:pxTo750(40px);
-      height:pxTo750(36px);
+      width:pxTorem(40px);
+      height:pxTorem(36px);
       background-image: url("../images/iconSearchC.png");
       @extend %ico_rem;
     }
@@ -103,10 +103,10 @@
       @include border-radius(3px);
       display: block;
       border:0;
-      height:pxTo750($h);
-      line-height:pxTo750($h);
-      text-indent: pxTo750(65px);
-      font-size:pxTo750(26px);
+      height:pxTorem($h);
+      line-height:pxTorem($h);
+      text-indent: pxTorem(65px);
+      font-size:pxTorem(26px);
       color:#999999;
     }
   }
@@ -138,6 +138,7 @@
 
 //顶部搜索
 .topSearch{
+  @extend .header;
   background:#e5e5e5;
   border-bottom: 1px solid #999999;
   .return{

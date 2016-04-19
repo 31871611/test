@@ -657,63 +657,7 @@
 
 
 
-//筛选
-.goodsFilter{
-  $h:80px;
-  @extend .display-flex;
-  background: #f7f7f7;
-  //padding:pxTorem(10px) 0;
-  height:pxTorem($h);
-  .sort{
-    padding-left:pxTorem(75px);
-    width:pxTorem(153px - 75);
-    color:#333333;
-    font-size:pxTorem(24px);
-    line-height:pxTorem($h);
-    position: relative;
-    .iconFilter,&:after,.arrow{
-      position: absolute;
-    }
-    .iconFilter{
-      background-image: url("../images/iconFilter.png");
-      @extend %ico_rem;
-      width:pxTorem(38px);
-      height:pxTorem(38px);
-      left:pxTorem(30px);
-      top:pxTorem(22px);
-    }
-    &:after{
-      content: "\20";
-      right: 0;
-      top:pxTorem(10px);
-      width:1px;
-      height:pxTorem($h - 20);
-      background:#999;
-    }
-    .arrow{
-      content: "\20";
-      @include arrow(top,pxTorem(12px),#fff);
-      left:pxTorem(36px);
-      bottom: 0;
-    }
-  }
-  .box{
-    @extend .flex;
-    @extend .display-flex;
-    a{
-      @extend .flex;
-      display: block;
-      line-height:pxTorem($h - 4px);
-      text-align:center;
-      color:#333333;
-      font-size:pxTorem(32px);
-      &.select{
-        color:$blue-base;
-        border-bottom: pxTorem(4px) solid $blue-base;
-      }
-    }
-  }
-}
+
 
 //开售倒记时
 .rowGoodsEndTime{
