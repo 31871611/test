@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串函数</title>
+</head>
+<body>
+<h3>查找方法</h3>
+<dl>
+    <dt>字符方法</dt>
+    <dd>charAt()</dd>
+    <dd>功能：返回字符串中第n个字符</dd>
+    <dd>参数：超出范围,返回空字符串</dd>
+    <dd>返回值：string中第n个字符的实际值</dd>
+
+    <dd>charCodeAt()</dd>
+    <dd>功能：返回字符串中第n个字符</dd>
+    <dd>参数：超出范围,返回NaN</dd>
+    <dd>返回值：内容,string中第n个字符Unicode编码;范围,0~65535之间的16位整数</dd>
+
+    <dd>fromCharCode()</dd>
+    <dd>功能：根据字符编码创建字符串</dd>
+    <dd>参数：0个或多个整数，代表字符Unicode编码</dd>
+    <dd>返回值：由指定编码字符组成的新字符串</dd>
+    <dd>特性：静态方法，实为构造函数String()的属性</dd>
+
+    <dt>位置方法</dt>
+    <dd>indexOf()从前向后检索字符串，看其是否含有指定子串</dd>
+    <dd>lastIndexOf()从后向前检索字符串，看其是否含有指定子串</dd>
+
+    <dt>匹配方法</dt>
+    <dd>match()</dd>
+    <dd>search()</dd>
+    <dd>replace()</dd>
+
+    <dd>split()</dd>
+    <dd>功能：根据指定分隔符将字符串分割成多个子串，并返回成数组</dd>
+    <dd>参数：必须,指定的分隔符；可选,指定数组的长度</dd>
+</dl>
+
+<h3>操作方法</h3>
+<dl>
+    <dt>拼接方法</dt>
+    <dd>concat()</dd>
+    <dd>语法：string.concat(value,...)</dd>
+    <dd>功能：连接字符串</dd>
+    <dd>参数：要连接到string上的一个或多个值</dd>
+    <dd>返回值：把所有参数都连接到字符串string上得到的新字符串</dd>
+    <dd>特性：功能与+相同原始字符串的实际值并未被真正修改</dd>
+
+    <dt>截取方法</dt>
+    <dd>根据下标截取子串</dd>
+    <dd>slice()负值参数：与字符长度相加</dd>
+    <dd>substring()负值参数：转换为0</dd>
+
+    <dd>substr()根据长度截取子串</dd>
+    <dd>参数2：返回字符个数</dd>
+    <dd>负值参数：参数1,与字符串长度相加；参数2,转换为0</dd>
+
+
+    <dt>空格处理</dt>
+    <dd>trim清除前置及后缀空格</dd>
+    <dd>trimLeft清除前置空格</dd>
+    <dd>trimRight清除后缀空格</dd>
+
+    <dt>比较方法</dt>
+    <dd>localeCompare()</dd>
+    <dd>功能：用本地特定顺序比较两个字符串</dd>
+    <dd>参数：与字符串进行比较的字符串</dd>
+    <dd>返回值：说明比较结果的数字。负数,原字符串< 参数字符串；0,原字符串=参数字符串；正数,原字符串>参数字符串</dd>
+</dl>
+
+<h3>编码方法</h3>
+<dl>
+    <dt>字符串常规编码与解码</dt>
+    <dd>escape()</dd>
+    <dd>unescape()</dd>
+
+    <dt>URL字符串编码与解码</dt>
+    <dd>encodeURL()</dd>
+    <dd>decodeURL()</dd>
+
+    <dt>URL组件编码与解码</dt>
+    <dd>encodeURLComponent()</dd>
+    <dd>decodeURLComponent()</dd>
+</dl>
+
+<h3>转换方法</h3>
+<dl>
+    <dt>转为大写</dt>
+    <dd>toUpperCase()</dd>
+    <dd>toLocaleUpperCase()</dd>
+
+    <dt>转为小写</dt>
+    <dd>toLowerCase()</dd>
+    <dd>toLocaleLowerCase()</dd>
+</dl>
+</body>
+</html>
