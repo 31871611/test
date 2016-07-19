@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除节点</title>
+</head>
+<body>
+
+<button id="btn">按钮</button>
+<div class="retrievalSplit">retrievalSplit</div>
+
+</body>
+<script>
+
+    var btn=document.querySelector("#btn");
+    btn.onclick=function(){
+        var html=document.querySelector(".retrievalSplit");
+        //html.innerHTML="";
+        //根据上级来删除子节点
+        html.parentNode.removeChild(html);
+    }
+
+</script>
+</html>
