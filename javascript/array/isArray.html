@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    var arr=[1,2,3];
+    //isArray
+    var isArray=Function.isArray || function(o){
+                return typeof o == "object" && Object.prototype.toString.call(o) === "[object Array]"
+            };
+    console.log(isArray(arr));
+
+</script>
+
+</html>

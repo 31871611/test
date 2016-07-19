@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+/*
+    * forms：表示页面上form对象的集合
+    * elements[]
+    * name属性
+    * value属性
+    * type属性
+    * checked属性，checkbox多选是否选中
+    * radio单选具有length属性
+    *
+    <form name="form1">
+            <input type="button" name="myButton" value="按钮">
+            </form>
+            document.form1.length;返回form1里的表单长度
+    document.form1.myButton.value与document.form1[0]一样;
+    *
+    <form name="form1">
+            <input type="radio" name="myRadio">
+            <input type="radio" name="myRadio">
+            <input type="radio" name="myRadio">
+            <input type="radio" name="myRadio">
+            <input type="radio" name="myRadio">
+            </form>
+    for(var i=0;i<document.form1.myRadio.length;i++){
+        (function(i){
+            document.form1.myRadio[i].onclick=function(){
+                alert(i);
+            }
+        })(i);
+    };
+    *
+    <form name="form1">
+            <input type="text" name="myText" value="用户名" />
+            multiple多选
+    options[]，具有index属性、text属性、value属性、length
+    <select name="theDay" size="5" multiple>
+    <option value="0" selected>monday</option>
+    <option value="1">tuesday</option>
+            <option value="2">wednesday</option>
+            <option value="3">thursday</option>
+            <option value="4">friday</option>
+            <option value="5">saturday</option>
+            <option value="6">sunday</option>
+            </select>
+            </form>
+            document.form1.myText.select();
+
+    //列表框与下拉列表框具有3个事件：onfocus()、onblur()、onchange()
+    document.form1.theDay.options.length;
+    document.form1.theDay.options[0].value;
+    //添加新的列表项
+    //使用new创建一个option对象，然后插入到select对象的option[]数组中元素值为空的索引位置上
+    //新的option对象，需要两个参数。1、列表框显示的标题；2、该项设置的值
+    document.form1.theDay.options[7]=new Option("theText","theValue");
+    //移除一个选项，只需将options[]数组中该项的值设为null
+    document.form1.theDay.options[7]=null;
+    //从中间插入，需要腾出位置
+    //将option所有的选项都按顺序向后移动一个位置，空出索引为2的数组元素，以供插入
+    var len=document.form1.theDay.options.length-1;
+    for(var i=len;i>2;i--){
+        document.form1.theDay.options[i].text=document.form1.theDay.options[i-1].text;
+        document.form1.theDay.options[i].value=document.form1.theDay.options[i-1].value;
+    }
+    document.form1.theDay.options[2]=new Option("new2","new2");
+    //ie中添加新的列表项
+    //add()接受两个参数，1、要插入的option对象；2、该option对象要插入的索引位置。add(new Option("new2","new2"),2)
+    //remove()要删除的索引。remove(2)
+
+
+    */
+
+</script>
+
+</html>
