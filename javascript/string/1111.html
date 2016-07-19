@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>反转（颠倒）textarea中文本顺序</title>
+</head>
+<body>
+<form name="form1">
+    <h3>反转（颠倒）textarea中文本顺序</h3>
+    <textarea name="textarea1" rows="20" cols="40"></textarea>
+    <input type="button" value="反转" name="button" />
+</form>
+</body>
+<script>
+
+    var form1=document.form1;
+    var textarea=form1.textarea1;
+    var button=form1.button;
+    button.onclick=function(){
+        var textValue=textarea.value;
+        var textArr;
+
+        //有空格,先去除
+        //console.log(textValue.replace(/[ ]+/gm,""));
+        //textArr=textValue.split("\n");
+        textArr=textValue.replace(/[ ]+/gm,"").split("\n");         //windowIe下使用\r\n
+        //最后一个数组等于空就删除
+        if(textArr[textArr.length-1] == ""){
+            textArr.pop();
+        }
+        //console.log(textArr);
+
+        var reversedString="";
+        for(var i = textArr.length - 1;i>=0;i--){
+            reversedString=reversedString+textArr[i];
+            if(i > 0){
+                reversedString=reversedString+"\n";
+            }
+        }
+        textarea.value=reversedString;
+    }
+
+</script>
+
+</html>

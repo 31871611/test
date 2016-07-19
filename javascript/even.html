@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+/*
+    * 事件
+    * onload：页面加载完毕
+    * onunload：当页面所载，关闭浏览器或者打开了其他页面
+    * onload与onunload要放在window下，window.onload
+    * onclick：单击
+    * onfocus()：获得焦点
+    * onblur()：失去焦点
+    * onmousedown()
+    * onmouseup()
+    * onselect()方法，用于选择或加亮文本框中的文本
+    * onchange()内容发生改变
+    * onkeydown()当用户按下键时即触发
+    * onkeypress()当用户按了一个键时将触发
+    * onkeyup()当用户放开一个键时即触发
+    * event对象
+    * type返回事件名称
+    * srcElement|target返回接收当前事件的HTML元素。window.event.srcElement|event.target
+    * bubbles一个逻辑值，表示是否允许事件冒泡（即事件从一个底层元素向上传递给上一层的元素）
+    * cancelable一个逻辑值，表示是否可以取消事件默认行为
+    * currentTarget表示当前事件所指向的元素节点
+    * eventPhase一个表示事件流当前阶段的数字值
+    * fromElement表示鼠标移出的元素
+    * toElement表示产生事件的元素
+    * srcElement表示鼠标移入的元素
+    *
+    *
+    document.getElementsByTagName("a")[0].onclick=function(event){
+                var elementTarget;
+                window.event ? elementTarget=window.event.srcElement : elementTarget=event.target;
+                alert(elementTarget);
+
+                if(document.all){
+                    alert(window.event.srcElement);
+                    alert(window.event.type);
+                }else{
+                    alert(event.target);
+                    alert(event.type);
+                }
+            }
+            * MouseEvent对象，鼠标操作所引发的各种事件，如当前鼠标指针的坐标值、或者鼠标从哪一个元素上移开
+    * altKey一个逻辑值，表示当事件发生时，alt键是否被按下
+    * shiftKey一个逻辑值，表示当事件发生时，alt键是否被按下
+    * ctrlKey一个逻辑值，表示当事件发生时，alt键是否被按下
+    * metaKey一个逻辑值，表示当事件发生时，alt键是否被按下
+    * button对于鼠标事件，该属性表示鼠标的哪一个按钮被按下
+    * clientX表示当前事件发生时，鼠标指针在客户端区域中的横坐标，即x坐标
+    * clientY表示当前事件发生时，鼠标指针在客户端区域中的横坐标，即y坐标
+    * screenX表示当前事件发生时，鼠标指针相对于计算机屏幕区域中的横坐标，即x坐标
+    * screenY表示当前事件发生时，鼠标指针相对于计算机屏幕区域中的横坐标，即y坐标
+    *
+        //body里需要有内容
+    document.body.onclick=function(event){
+                if(document.all){
+//            alert(window.event.clientX);
+//            alert(window.event.altKey);
+                    alert(window.event.button);
+                }else{
+//            alert(event.clientX);
+//            alert(event.altKey);
+                    alert(event.button);
+                }
+            }
+            *
+*/
+
+
+</script>
+</html>

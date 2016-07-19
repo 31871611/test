@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+
+/*
+
+    var htmlElement;
+    var headElement;
+    var bodyElement;
+    var h1Element;
+    var pElement;
+
+    htmlElement=document.documentElement;
+    headElement=htmlElement.firstChild;
+
+    //    alert(headElement.tagName);
+
+    //ie返回1(正常)，剩下3(空白格)
+    //firefox、Opera、safari将把元素间的空格也视为一个子节点
+    if(headElement.nextSibling.nodeType == 3){
+//        alert(headElement.nextSibling.nextSibling.tagName);
+        bodyElement=headElement.nextSibling.nextSibling;
+    }else{
+        bodyElement=headElement.nextSibling;
+    }
+
+    if(bodyElement.firstChild.nodeType == 3){
+        h1Element=bodyElement.firstChild.nextSibling;
+    }else{
+        h1Element=bodyElement.firstChild;
+    }
+
+    alert(h1Element.tagName);
+
+*/
+
+
+    //创建h1标签
+    var newElem=document.createElement("h1");
+    var newText=document.createTextNode("h1标签节点");
+
+    newElem.setAttribute("style","text-align:center;");
+    //只能从末尾插入？
+    newElem.appendChild(newText);
+    document.body.appendChild(newElem);
+
+
+    //创建p标签
+    newElem=document.createElement("p");
+    newText=document.createTextNode("p标签节点");
+
+    alert(newElem.getAttribute("style"));           //null
+    newElem.setAttribute("style","color:#f00;");
+    alert(newElem.getAttribute("style"));           //color:#f00;
+
+    newElem.appendChild(newText);
+    document.body.appendChild(newElem);
+
+
+
+
+</script>
+</html>

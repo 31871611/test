@@ -25,13 +25,14 @@
     <dd>特性：静态方法，实为构造函数String()的属性</dd>
 
     <dt>位置方法</dt>
-    <dd>indexOf()从前向后检索字符串，看其是否含有指定子串</dd>
+    <dd>indexOf()从前向后检索字符串，如果要检索的字符串值没有出现，则该方法返回 -1。"Hello world!".indexOf("world");  //6</dd>
     <dd>lastIndexOf()从后向前检索字符串，看其是否含有指定子串</dd>
+    <dd>indexOf()、lastIndexOf()；对大小写敏感！</dd>
 
     <dt>匹配方法</dt>
-    <dd>match()</dd>
-    <dd>search()</dd>
-    <dd>replace()</dd>
+    <dd>match()找到一个或多个正则表达式的匹配。</dd>
+    <dd>search()检索与正则表达式相匹配的值。</dd>
+    <dd>replace()替换与正则表达式匹配的子串。</dd>
 
     <dd>split()</dd>
     <dd>功能：根据指定分隔符将字符串分割成多个子串，并返回成数组</dd>

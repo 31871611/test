@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建一个工具栏按钮</title>
+    <style>
+        .toolbar{border:1px solid #34e2d5;padding:5px;}
+        .toolbar span{display: inline-block;height:24px;width:24px;}
+        .toolbar-button{padding:3px;display: inline-block;}
+        .toolbar-button-hover{border:1px solid #316ac5;background:#c1d2ee;padding:2px;cursor: pointer;display: inline-block;}
+        .toolbar-icon{height: 30px;width:30px;vertical-align: middle;}
+    </style>
+</head>
+<body>
+
+</body>
+<script>
+
+    //使用一个多维数组来保存这些工具栏按钮的相关信息
+    var myToolbar=new Array();
+    //使用myToolbar[x]也声明为一个数组，每一个内容数组将包含一个特定工具栏按钮的信息
+    myToolbar[0]=new Array();
+    myToolbar[0][0]="https://gss0.bdstatic.com/7051cy89RcgCncy6lo7D0j9wexYrbOWh7c50/zhidaoribao/2016/0719/s1.jpg";                        //保存按钮图标
+    myToolbar[0][1]="javascript:alert('你点击了!');";     //保存一个url地址或者一段javascript代码
+
+    myToolbar[1]=new Array();
+    myToolbar[1][0]="https://gss0.bdstatic.com/7051cy89RcgCncy6lo7D0j9wexYrbOWh7c50/zhidaoribao/2016/0719/s2.jpg";
+    myToolbar[1][1]="javascript:alert('你点击了!');";
+
+    myToolbar[2]=new Array();
+    myToolbar[2][0]="https://gss0.bdstatic.com/7051cy89RcgCncy6lo7D0j9wexYrbOWh7c50/zhidaoribao/2016/0719/s3.jpg";
+    myToolbar[2][1]="http://www.baidu.com";
+
+    //创建一个div
+    var toolbar=document.createElement("div");
+    toolbar.id="sName";
+    toolbar.className="toolbar";
+
+    for(var i=0;i<myToolbar.length;i++){
+        var thisButton=myToolbar[i];
+        var button=document.createElement("a");
+        var icon=document.createElement("img");
+
+        button.setAttribute("href",thisButton[1]);
+        button.className="toolbar-button";
+
+        button.onclick=button_mouserHandler;
+        button.onmouseover=button_mouserHandler;
+        button.onmouseout=button_mouserHandler;
+        function button_mouserHandler(event){
+            var eType;
+            var eSrc;
+            //ie
+            if(window.event){       //document.all仅被ie4以上的浏览器支持
+                eType=window.event.type;
+                eSrc=window.event.srcElement;
+            }else{
+                eType=event.type;
+                eSrc=event.target;
+            }
+            if(eSrc.tagName == "IMG"){
+                eSrc=eSrc.parentNode;
+            }
+            if(eType == "mouseover"){
+                eSrc.className = "toolbar-button-hover"
+            }else if(eType == "mouseout"){
+                eSrc.className = "toolbar-button"
+            }else if(eType == "click"){
+                eSrc.className = "toolbar-button"
+
+            }
+
+        }
+
+        icon.src=thisButton[0];
+        icon.className="toolbar-icon";
+
+        button.appendChild(icon);
+        toolbar.appendChild(button);
+    }
+
+    document.body.appendChild(toolbar);
+
+
+</script>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>检测ie浏览器</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    function ie(){
+        var msie,index;
+        if(navigator.userAgent.indexOf("MSIE") >=0 ){
+            msie="MSIE";
+            index=navigator.userAgent.indexOf(msie)+msie.length+1;
+            return parseFloat(navigator.userAgent.substring(index,index+1));
+        }
+    }
+    if(ie() == "6"){
+        alert(6);
+    }
+</script>
+
+</html>

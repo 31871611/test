@@ -8,6 +8,7 @@
 <h3>获取节点</h3>
 <dl>
     <dt>document</dt>
+    <dd>document.documentElement返回根元素html</dd>
     <dd>getElementById(元素ID)通过元素ID获取节点</dd>
     <dd>getElementsByName(元素name属性)通过元素的name属性获取节点</dd>
     <dd>getElementsByTagName(元素标签)通过元素标签获取节点</dd>
@@ -116,15 +117,24 @@
 <ul>
     <li>body只能用于document.body,得到body元素</li>
     <li>innerHTML元素节点中的文字内容，可以包括html元素内容</li>
+    <li>ownerDocument返回包含当前节点的文档的根节点</li>
     <li>nodeName元素节点的名字，是只读的，对于元素节点就是大写的元素名，对于文字内容就是#test，对于document就是#document</li>
     <li>nodeValue元素节点的值，对于文字内容的节点，得到的就是文字内容</li>
     <li>nodeNode元素节点的父节点</li>
 </ul>
 
+<ul>
+    <li>style修改或获得css属性。e.style.color="#fff";只能获得内联样式属性</li>
+    <li>className设置或获得class属性。e.className="over";</li>
+    <li>id设置或获得id属性e.id="over";</li>
+    <li>tagName返回当前节点的标记名称。document.documentElement.tagName</li>
+    <li>hasChildNodes检查当前节点是否包含有子节点，如果有子节点，则返回一个true</li>
+</ul>
+
 </body>
 <script>
 
-    alert();
+    console.log(document.documentElement);
 
 </script>
 </html>
