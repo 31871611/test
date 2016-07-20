@@ -5,15 +5,23 @@
     <title>images</title>
 </head>
 <body>
-    <img src="http://njizhenfang.jizhenfang.com/commodity/20160715/d703c6c2f3ff4be4ad54f3cfd5270d1a.jpg" onclick="changeImg(0)" alt="">
+    <img alt="图片1" src="http://njizhenfang.jizhenfang.com/commodity/20160715/d703c6c2f3ff4be4ad54f3cfd5270d1a.jpg" onclick="changeImg(0)" alt="">
     <img src="http://njizhenfang.jizhenfang.com/commodity/20160715/e6bf286df56743d2a860825345b971da.jpg" onclick="changeImg(1)" alt="">
 </body>
 <script>
 /*
     document.images：页面上所用images的集合
 */
+window.onload=function(){
 
     console.log(document.images);
+    console.log(document.images[0].src);
+    console.log(document.images[0].alt);
+    console.log(document.images[0].complete);
+    console.log(document.images[0].height);
+    console.log(document.images[0].width);
+
+}; 
 
     //页面加载时随机地显示一张图片
     var myImages=[
