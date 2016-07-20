@@ -70,30 +70,6 @@
 
 
 
-
-
- * document.images：页面上所用images的集合
-
- <img src="images/face.jpg" onclick="return changeImg(0)" alt="">
- <img src="images/face.jpg" onclick="return changeImg(1)" alt="">
- //页面加载时随机地显示一张图片
- var myImages=["images/face.jpg","images/face_bg.jpg","images/logo.png","images/order_list.jpg"];
-
- function changeImg(imgNumber){
-    var imgClicked=document.images[imgNumber];
-    //设置一个0-3之间的随机数
-    var newImgNumber=Math.round(Math.random()*3);
-    //确保随机选出的图片不是当前被单击的那幅图片
-    while (imgClicked.src.indexOf(myImages[newImgNumber]) != -1){
-        newImgNumber=Math.round(Math.random()*3);
-    }
-    imgClicked.src=myImages[newImgNumber];
-    return false;
- }
-
-
-
-
  * document.links：表示页面上所有A对象的集合
 
 

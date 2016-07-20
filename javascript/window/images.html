@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>images</title>
+</head>
+<body>
+    <img src="http://njizhenfang.jizhenfang.com/commodity/20160715/d703c6c2f3ff4be4ad54f3cfd5270d1a.jpg" onclick="changeImg(0)" alt="">
+    <img src="http://njizhenfang.jizhenfang.com/commodity/20160715/e6bf286df56743d2a860825345b971da.jpg" onclick="changeImg(1)" alt="">
+</body>
+<script>
+/*
+    document.images：页面上所用images的集合
+*/
+
+    console.log(document.images);
+
+    //页面加载时随机地显示一张图片
+    var myImages=[
+        "http://njizhenfang.jizhenfang.com/commodity/20160715/1e7fb6062bb04aa8b94663acb78e5a89.jpg",
+        "http://njizhenfang.jizhenfang.com/commodity/20160715/533610cb40f34f3dbd1d3f95b0b95bf2.jpg",
+        "http://njizhenfang.jizhenfang.com/commodity/20160715/12a76d17ab494d4d9eaf1fa0955cddd3.jpg",
+        "http://njizhenfang.jizhenfang.com/commodity/20160715/397fbdbd9745429ca56b93751cc3ec2f.jpg"
+    ];
+
+    function changeImg(imgNumber){
+        var imgClicked=document.images[imgNumber];
+        //设置一个0-3之间的随机数
+        var newImgNumber=Math.round(Math.random()*3);
+        //确保随机选出的图片不是当前被单击的那幅图片
+        while (imgClicked.src.indexOf(myImages[newImgNumber]) != -1){
+            newImgNumber=Math.round(Math.random()*3);
+        }
+        imgClicked.src=myImages[newImgNumber];
+        return false;
+    }
+
+</script>
+</html>
