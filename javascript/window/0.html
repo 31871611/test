@@ -6,7 +6,7 @@
 </head>
 <body>
 <dl>
-    <dt><a href="http://www.w3school.com.cn/jsref/dom_obj_navigator.asp">Navigator</a> 导航器对象</dt>
+    <dt><a href="navigator.html">Navigator</a> 导航器对象</dt>
     <dd>appCodeName返回浏览器的代码名</dd>
     <dd>appName返回浏览器的名称</dd>
     <dd>appVersion返回浏览器的平台和版本信息</dd>
@@ -62,16 +62,94 @@
     <dd>close()关闭文档</dd>
     <dd>write()向当前文档追加写入文本</dd>
     <dd>writeln()与write()相同，在< pre>中会追加换行/ pre </dd>
-    <dd></dd>
 
-    <dt></dt>
-    <dd></dd>
+    <dt>窗口控制</dt>
+    <dd>moveBy()</dd>
+    <dd>语法：moveBy(水平位移量，垂直位移量)</dd>
+    <dd>功能：按照给定像素参数移动指定窗口</dd>
 
-    <dt></dt>
-    <dd></dd>
+    <dd>moveTo()</dd>
+    <dd>语法：moveTo(x,y)</dd>
+    <dd>功能：将窗口移动到指定的指定坐标(x,y)处</dd>
 
-    <dt></dt>
-    <dd></dd>
+    <dd>resizeBy()</dd>
+    <dd>语法：resizeBy(x,y)</dd>
+    <dd>功能：将当前窗口改变指定的大小(x,y)，当x、y的值大于0时为扩大；当x、y的值小于0时为缩小</dd>
+
+    <dd>resizeTo()</dd>
+    <dd>语法：resizeTo(水平宽度，垂直宽度)</dd>
+    <dd>功能：将当前窗口改变成(x,y)大小，x、y分别为宽度和高度</dd>
+
+    <dd>scrollBy()</dd>
+    <dd>语法：scrollBy(水平位移量、垂直位移量)</dd>
+    <dd>功能：将窗口中的内容按给定的位移量滚动；参数为正数时，正向滚动，否则反向滚动</dd>
+
+    <dd>scrollTo()</dd>
+    <dd>语法：scrollTo(x,y)</dd>
+    <dd>功能：将窗口中的内容滚动到指定位置</dd>
+
+    <dt>打开关闭窗口</dt>
+    <dd>open()</dd>
+    <dd>语法：open('url','窗口名称','窗口风格')</dd>
+    <dd>功能：打开一个新的窗口，并在窗口中装载指定url地址的网页</dd>
+    <dd>窗口风格：</dd>
+    <dd>height：窗口高度，不能小于100</dd>
+    <dd>width：窗口宽度，不能小于100</dd>
+    <dd>left：窗口左坐标，不能为负值</dd>
+    <dd>top：窗口上坐标，不能为负值</dd>
+    <dd>location：yes/no，是否显示地址栏</dd>
+    <dd>menubar：yes/no，是否显示菜单栏</dd>
+    <dd>resizable：yes/no，是否可以改变窗口大小</dd>
+    <dd>scrollbars：yes/no，是否允许出现滚动条</dd>
+    <dd>status：yes/no，是否显示状态栏</dd>
+    <dd>toolbar：yes/no，是否显示工具栏</dd>
+    <dd>close()自动关闭浏览器窗口</dd>
+
+    <dt>定时器</dt>
+    <dd>setTimeout()</dd>
+    <dd>clearTimeout()</dd>
+    <dd>setInterval()</dd>
+    <dd>clearInterval()</dd>
+
+
+    <dt>对话框</dt>
+    <dd>alert()</dd>
+    <dd>confirm()</dd>
+    <dd>prompt('提示字符串','默认文本')</dd>
+
+
+    <dt>属性</dt>
+    <dd>状态栏</dd>
+    <dd>defaultStatus改变浏览器状态栏的默认显示</dd>
+    <dd>status临时改变浏览器状态栏的显示</dd>
+
+
+    <dd>窗口位置</dd>
+    <dd>ie</dd>
+    <dd>screenLeft声明窗口的左上角的x坐标</dd>
+    <dd>screenTop声明窗口的左上角的y坐标</dd>
+    <dd>document.body.scrollLeft/document.documentElement.scrollLeft声明当前文档向左滚动过的像素数</dd>
+    <dd>document.body.screenTop/document.documentElement.screenTop声明当前文档向下滚动过的像素数</dd>
+
+    <dd>!ie</dd>
+    <dd>screenX声明了窗口的左上角在屏幕上的的 x 坐标</dd>
+    <dd>screenY声明了窗口的左上角在屏幕上的的 y 坐标</dd>
+    <dd>pageXOffset设置或返回当前页面相对于窗口显示区左上角的 X 位置</dd>
+    <dd>pageYOffset设置或返回当前页面相对于窗口显示区左上角的 Y 位置</dd>
+
+    <dd>ff</dd>
+    <dd>innerheight返回窗口的文档显示区的高度</dd>
+    <dd>innerwidth返回窗口的文档显示区的宽度</dd>
+    <dd>outerheight返回窗口的外部高度</dd>
+    <dd>outerwidth返回窗口的外部宽度</dd>
+
+
+    <dd>其它属性</dd>
+    <dd>opener可以实现同域名下跨窗体之间的通讯一个窗体要包含另一个窗体的opener</dd>
+    <dd>closed当前窗口关闭时返回true</dd>
+    <dd>name设置或返回窗口的名称</dd>
+    <dd>self返回对当前窗口的引用</dd>
+
 </dl>
 </body>
 
