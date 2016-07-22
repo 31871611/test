@@ -6,52 +6,21 @@
 </head>
 <body>
 
-</body>
-<script>
-/*
-    * forms：表示页面上form对象的集合
-    * elements[]
-    * name属性
-    * value属性
-    * type属性
-    * checked属性，checkbox多选是否选中
-    * radio单选具有length属性
-
-
-
-
-    <form name="form1">
-        <input type="button" name="myButton" value="按钮">
-    </form>
-    document.form1.length;返回form1里的表单长度
-    document.form1.myButton.value与document.form1[0]一样;
-
-
-
-
-    <form name="form1">
-        <input type="radio" name="myRadio">
-        <input type="radio" name="myRadio">
-        <input type="radio" name="myRadio">
-        <input type="radio" name="myRadio">
-        <input type="radio" name="myRadio">
-    </form>
-    for(var i=0;i<document.form1.myRadio.length;i++){
-        (function(i){
-            document.form1.myRadio[i].onclick=function(){
-                alert(i);
-            }
-        })(i);
-    };
-
-
-
-
-
-    <form name="form1">
-        <input type="text" name="myText" value="用户名" />     multiple多选
-
-        options[]，具有index属性、text属性、value属性、length
+<form name="form1">
+    <input type="text" name="myText" value="用户名" />
+    <div>
+        <input type="checkbox" />
+    </div>
+    <div>
+        <input type="radio" name="myRadio" />
+        <input type="radio" name="myRadio" />
+        <input type="radio" name="myRadio" />
+        <input type="radio" name="myRadio" />
+        <input type="radio" name="myRadio" />
+    </div>
+    <div>
+        <p>options[]，具有index属性、text属性、value属性、length</p>
+        <p>multiple多选</p>
         <select name="theDay" size="5" multiple>
             <option value="0" selected>monday</option>
             <option value="1">tuesday</option>
@@ -60,14 +29,50 @@
             <option value="4">friday</option>
             <option value="5">saturday</option>
             <option value="6">sunday</option>
-         </select>
-    </form>
+        </select>
+    </div>
+    <input type="button" name="myButton" value="按钮">
+</form>
+
+</body>
+<script>
+/*
+
+ * forms：表示页面上form对象的集合
+ * elements[]
+ * name属性
+ * value属性
+ * type属性
+ * checked属性，checkbox多选是否选中
+ * radio单选具有length属性
+
+ */
+
+
+    console.log(document.form1.length);          //返回form1里的表单元素长度
+    //document.form1.myButton.value与document.form1[0]一样;
+
+
+    for(var i=0;i<document.form1.myRadio.length;i++){
+        (function(i){
+            document.form1.myRadio[i].onclick=function(){
+                console.log(i);
+            }
+        })(i);
+    }
+
+
+    //等于全选文字
     document.form1.myText.select();
 
-
     //列表框与下拉列表框具有3个事件：onfocus()、onblur()、onchange()
-    document.form1.theDay.options.length;
-    document.form1.theDay.options[0].value;
+
+
+    console.log("下拉选项的长度："+document.form1.theDay.options.length);
+    console.log("选中下拉第1项的值："+document.form1.theDay.options[0].value + "，选中下拉第1项的文本：" + document.form1.theDay.options[0].text);
+
+
+
     //添加新的列表项
     //使用new创建一个option对象，然后插入到select对象的option[]数组中元素值为空的索引位置上
     //新的option对象，需要两个参数。1、列表框显示的标题；2、该项设置的值
@@ -87,7 +92,6 @@
     //remove()要删除的索引。remove(2)
 
 
-    */
 
 </script>
 
