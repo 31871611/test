@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>opener</title>
+</head>
+<body>
+
+<form action="">
+
+    子窗口
+    <br />
+    <input type="text" name="subText" id="" />
+    <input type="button" value="不允许主窗口控制" onclick="opener.document.forms[0].rdoControl[1].click()" />
+    <br />
+    <input type="button" value="关闭子窗口" onclick="self.close()" />
+
+</form>
+
+</body>
+</html>

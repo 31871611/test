@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>open</title>
+</head>
+<body>
+<dl>
+    <dt>open()</dt>
+    <dd>语法：open('url','窗口名称','窗口风格')</dd>
+    <dd>功能：打开一个新的窗口，并在窗口中装载指定url地址的网页</dd>
+    <dd>窗口风格：</dd>
+    <dd>height：窗口高度，不能小于100</dd>
+    <dd>width：窗口宽度，不能小于100</dd>
+    <dd>left：窗口左坐标，不能为负值</dd>
+    <dd>top：窗口上坐标，不能为负值</dd>
+    <dd>location：yes/no，是否显示地址栏</dd>
+    <dd>menubar：yes/no，是否显示菜单栏</dd>
+    <dd>resizable：yes/no，是否可以改变窗口大小</dd>
+    <dd>scrollbars：yes/no，是否允许出现滚动条</dd>
+    <dd>status：yes/no，是否显示状态栏</dd>
+    <dd>toolbar：yes/no，是否显示工具栏</dd>
+</dl>
+<form>
+    主窗口：<input type="button" value="打开子窗口" onclick="winOpen('opener.html')" />
+    <br />
+    <!-- 控制子窗口的按钮 -->
+    <input type="radio" name="rdoControl" checked />
+    <input type="text" name="mainText" id="" />
+    <input type="button" name="mainButton" value="改变子窗口中的文本框内容" onclick="controlSubWindow()" />
+    <br />
+    <!-- 不允许控制子窗口的按钮 -->
+    <input type="radio" name="rdoControl" onclick="disableControl()" />不允许改变子窗口的内容
+    <br />
+    <input type="button" value="关闭主窗口和子窗口" onclick="myWin.close();self.close();" />
+
+</form>
+
+</body>
+<script>
+
+    var myWin;
+    function winOpen(url){
+        myWin=window.open(url,"_blank","toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=400, height=400")
+        //myWin.document.forms[0].subText.focus();
+    }
+
+    //控制子窗口
+    function controlSubWindow(){
+        myWin.document.forms[0].subText.value=document.forms[0].mainText.value;
+    }
+
+    //不允许控制子窗口
+    function disableControl(){
+        document.forms[0].mainButton.disabled=true;
+    }
+
+
+</script>
+</html>

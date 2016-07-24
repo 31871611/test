@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>本地存储</title>
+</head>
+<body>
+
+</body>
+<script>
+
+/****
+
+ web storage提供2种存储api接口：sessionStorage和localStorage
+ sessionStorage在会话期间内有效
+ sessionStorage属性与方法使用方法基本上和localStorage相同
+
+
+ localStorage存储在本地，并且数据存储是永久的，除非用户或程序对其执行删除操作
+ localStorage提供接口
+ length存储着多少个键值对
+ setItem()存储一个键值对
+ getItem()读取一个键值对
+ removeItem()删除一个键值对
+ clear()删除所有键值对
+
+
+
+
+
+
+ */
+
+    var userData={
+        name:"sankyu name",
+        account:"sankyu",
+        level:1,
+        disabled:true
+    };
+
+    if(window.localStorage){
+        //浏览器支付localStorage
+
+        //存储一个数据
+        localStorage.setItem("name","非一般的黑客");
+
+        //通过getItem方法读取key值为name的值
+        console.log(localStorage.getItem("name"));
+
+        //通过length可以知道localStorage中存储着多少个键值对
+        console.log(localStorage.length);
+
+        //removeItem和clear同属于删除item操作
+        localStorage.removeItem("name");
+        localStorage.clear();
+
+
+        //存储json数据
+        localStorage.setItem("userData",JSON.stringify(userData));
+        //对userData内数据设置新值
+        userData.name="new sankyu name";
+        localStorage.setItem("userData",JSON.stringify(userData));
+        //读取userData数据并赋值给新变量nweUserData
+        var newUserData=JSON.parse(localStorage.getItem("userData"));
+        console.log(newUserData);
+        //删除本地存储的item
+        localStorage.removeItem("userData");
+        console.log(newUserData);
+    }
+    if(window.sessionStorage){
+        //浏览器支付sessionStorage
+        sessionStorage.setItem("name","非一般的黑客");
+        sessionStorage.setItem("name","new 非一般的黑客");
+        console.log(sessionStorage.getItem("name"));
+
+    }
+
+
+    //storage事件监听
+    //页面注册了storage对象的事件监听，就可以监听同一个域内的其它页面的storage对象的变化情况
+    window.addEventListener("storage",showStorageEvent,true);
+    function showStorageEvent(e){
+        console.log(e);
+    }
+
+
+    if(window.applicationCache){
+        //浏览器支持离线应用
+
+    }
+
+
+    //当前文件要保存在本地?
+    //用于判断当前浏览器是否在线
+    if(window.navigator.onLine){
+        console.log("在线");
+    }else{
+        console.log("离线");
+    }
+
+
+
+</script>
+</html>

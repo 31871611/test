@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>检测输入参数是否在指定的两个数之间</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    /*
+        检查输入的参数是否在指定的两个数之间
+        其中s1是下界,s2是上界,s是被测值
+        如果s1<=s<=s2,返回true
+        否则返回false
+    */
+
+    function isRange(s,s1,s2){
+        if(s1 == null && s2 == null){
+            return true;
+        }else if((s1 == null) && parseFloat(s) > parseFloat(s2)){
+            return false;
+        }else if((s2 == null) && parseFloat(s)< parseFloat(s1)){
+            return false;
+        }else if(parseFloat(s) < parseFloat(s2) || parseFloat(s) > parseFloat(s2)){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    document.write(100 + (isRange(100,0,200) ? "在" : "不在") + "0-200范围内");
+    document.write("<br />");
+    document.write(100 + (isRange(100,null,99) ? "在" : "不在") + "0-200范围内");
+    document.write("<br />");
+    document.write(100 + (isRange(100,50,null) ? "在" : "不在") + "0-200范围内");
+
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>检查字符串是否是有效的应用</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    //检查字符串是否是有效的应用
+    function isValidString(str){
+        var validChars="0123456789abcdefghijklmnopqrstuvwxyz_- ";
+        var isValidString=true;
+        var aChar;
+        for(i=0;i<str.length && isValidString == true;i++){
+            //转成小写，读取下标字符
+            aChar=str.toLowerCase().charAt(i);
+            //是否包括下标字符
+            if(validChars.indexOf(aChar) == -1){
+                isValidString = false;
+            }
+        }
+        return isValidString;
+    }
+
+    //测试isValidString函数
+    var aString1="abcd $gggg";
+    var aString2="_ab1-cd2_";
+    var aString3="12.34";
+
+    document.write(aString1+"是："+(isValidString(aString1) ? "有效的" : "无效的") + "字符");
+    document.write("<br />");
+    document.write(aString2+"是："+(isValidString(aString2) ? "有效的" : "无效的") + "字符");
+    document.write("<br />");
+    document.write(aString3+"是："+(isValidString(aString3) ? "有效的" : "无效的") + "字符");
+
+
+</script>
+</html>

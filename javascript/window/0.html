@@ -48,6 +48,7 @@
     <dd><a href="images.html">images[]</a>返回对文档中所有 Image 对象引用</dd>
     <dd><a href="links.html">links[]</a>返回对文档中所有 Area 和 Link 对象引用</dd>
     <dd><a href="form.html">forms[]</a>返回对文档中所有 Form 对象引用</dd>
+    <dd><a href="">frame[]</a>frame</dd>
 
     <dt>属性</dt>
     <dd><a href="../cookie.html">cookie</a>设置或返回与当前文档有关的所有 cookie</dd>
@@ -58,8 +59,12 @@
     <dd>document.URL	        返回当前文档的 URL</dd>
 
     <dt>方法</dt>
-    <dd>open()打开一个新的文档，并擦除旧文档内容</dd>
+    <dd><a href="open.html">open()</a>打开一个新的文档，并擦除旧文档内容</dd>
+    <dd>opener可以实现同域名下跨窗体之间的通讯一个窗体要包含另一个窗体的opener</dd>
+    <dd>parent当前窗口的上一级窗口对象</dd>
     <dd>close()关闭文档</dd>
+    <dd>closed当前窗口关闭时返回true</dd>
+    <dd>self返回对当前窗口的引用</dd>
     <dd>write()向当前文档追加写入文本</dd>
     <dd>writeln()与write()相同，在< pre>中会追加换行/ pre </dd>
 
@@ -87,23 +92,6 @@
     <dd>scrollTo()</dd>
     <dd>语法：scrollTo(x,y)</dd>
     <dd>功能：将窗口中的内容滚动到指定位置</dd>
-
-    <dt>打开关闭窗口</dt>
-    <dd>open()</dd>
-    <dd>语法：open('url','窗口名称','窗口风格')</dd>
-    <dd>功能：打开一个新的窗口，并在窗口中装载指定url地址的网页</dd>
-    <dd>窗口风格：</dd>
-    <dd>height：窗口高度，不能小于100</dd>
-    <dd>width：窗口宽度，不能小于100</dd>
-    <dd>left：窗口左坐标，不能为负值</dd>
-    <dd>top：窗口上坐标，不能为负值</dd>
-    <dd>location：yes/no，是否显示地址栏</dd>
-    <dd>menubar：yes/no，是否显示菜单栏</dd>
-    <dd>resizable：yes/no，是否可以改变窗口大小</dd>
-    <dd>scrollbars：yes/no，是否允许出现滚动条</dd>
-    <dd>status：yes/no，是否显示状态栏</dd>
-    <dd>toolbar：yes/no，是否显示工具栏</dd>
-    <dd>close()自动关闭浏览器窗口</dd>
 
     <dt>定时器</dt>
     <dd>setTimeout()</dd>
@@ -145,12 +133,24 @@
 
 
     <dd>其它属性</dd>
-    <dd>opener可以实现同域名下跨窗体之间的通讯一个窗体要包含另一个窗体的opener</dd>
-    <dd>closed当前窗口关闭时返回true</dd>
+
     <dd>name设置或返回窗口的名称</dd>
-    <dd>self返回对当前窗口的引用</dd>
+
+
 
 </dl>
+<ul>
+    <li>clientWidth</li>
+    <li>clientHeight</li>
+</ul>
 </body>
+<script>
 
+window.onload=function(){
+
+    window.scrollBy(0,100);
+
+}
+
+</script>
 </html>

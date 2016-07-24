@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>截取字符串</title>
+</head>
+<body>
+
+<h3>请输入文字说明</h3>
+<textarea id="description" onkeyup="conutChars(this.id)" style="width: 300px;height: 150px;"></textarea>
+<p id="conut"></p>
+
+</body>
+<script>
+    //当用户在文字框中输入文字时，在文字框的上方显示用户输入文字的个数，
+    //如果用户输入的文字长度超出指定的个数时，截取字符串
+    function conutChars(id){
+        var s=document.getElementById(id).value;
+        //如果字串长度超过指定个数，截取字串
+        if(!isMaxString(s,100)){
+            document.getElementById(id).value= s.substr(0,100);
+        }
+        document.getElementById("conut").innerHTML=document.getElementById(id).value.length;
+    }
+
+
+    function isMaxString(str,count){
+        if(str.length > count){
+            return false;
+        }
+        return true;
+    }
+
+</script>
+</html>
