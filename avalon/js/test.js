@@ -33,6 +33,8 @@
  });
  *
  可以直接通过$.ajax提交给后端，当然我们 还可以通过JSON.parse(JSON.stringify(vm.$model))干掉里面的所有函数
+ JSON.parse()，从一个字符串中解析出json 对象
+ JSON.stringify()，用于从一个对象解析出字符串
  *
  */
 
