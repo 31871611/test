@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>可拖动弹窗</title>
+    <style>
+        *{margin:0;padding:0;}
+        body{width:100%;height:100%;overflow: auto;}
+        /*.titlebar{position: absolute;left:0;top:0;width:100%;background:#3366cc;cursor: move;font-size:12px;}*/
+        .wins{position: absolute;visibility: hidden;border:3px solid #c0c0c0;}
+        /*.text{position: absolute;background:#fff;font-size:12px;overflow: auto;}*/
+        /*.title{font-weight: bold;}*/
+        p{margin:5px;}
+    </style>
+</head>
+<body>
+    <p><a href="javascript:openWin('wind1',50,300,300,200)">最新消息</a></p>
+    <div id="wind1" class="wins">
+        <div class="title" onmousedown="start('wind1')">
+            <h2>最新消息</h2>
+            <a href="javascript:;" onclick="closeWin()">关闭</a>
+        </div>
+        <div class="text">
+            <p>文章内容文章内容文章内容文章内容文章内容</p>
+        </div>
+    </div>
+</body>
+<script>
+
+    var ie=(window.attachEvent && navigator.userAgent.indexOf('opera') === -1);
+    var ff=(navigator.userAgent.indexOf('Gecko') > -1 && navigator.userAgent.indexOf('KHTML') === -1);
+    var active=0;
+    var x, y,coordsX,coordsY;
+
+
+    //按下需要拖动的元素
+    function start(windowName){     //设置开关变量active，保存当前坐标
+        dragWind=document.getElementById(windowName);
+        y=coordsY - parseInt(dragWind.style.top);
+        x=coordsX - parseInt(dragWind.style.left);
+        active=1;
+    }
+
+
+    //鼠标拖动移动
+    function drag(e){
+        coordsY = ff ? e.clientY : event.clientY;
+        coordsX = ff ? e.clientX : event.clientX;
+        if(active){
+            dragWind.style.top=(coordsY - y) + "px";
+            dragWind.style.left=(coordsX - x) + "px";
+        }
+    }
+
+
+    //隐藏弹窗
+    function closeWin(){
+        dragWind.style.visibility="hidden";
+    }
+
+    //显示打开弹窗
+    function openWin(windowName,topWin,leftWin,winWidth,winHeight){
+        dragWind = document.getElementById(windowName);
+        dragWind.style.visibility="visible";
+        dragWind.style.top=topWin + 'px';
+        dragWind.style.left=leftWin + 'px';
+        dragWind.style.width=winWidth + 'px';
+        dragWind.style.height=winHeight + 'px';
+
+    }
+
+
+    document.onmousemove=drag;
+    //鼠标松开
+    document.onmouseup=new Function("active=0");            //重新设置开关变量active
+    document.onselectstart=new Function("return false");    //针对ie
+
+
+</script>
+</html>

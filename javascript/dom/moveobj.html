@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>移入显示内联元素显示下拉元素</title>
+    <style>
+        .box{width:500px;height:500px;border:1px solid #0cbd0b;position: relative}
+        .alert{position: absolute;left:50px;top:50px;width:200px;height:200px;border:1px solid #00a0e9;display: none;}
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <a href="javascript:;">移入</a>
+    <div class="alert">显示窗体</div>
+</div>
+
+</body>
+<script>
+
+    var timeout=500;
+    var closeTimer;
+
+    document.getElementsByTagName("a")[0].onmousemove=function(){
+        for(var i=0;i<document.getElementsByTagName("div").length;i++){
+            if(document.getElementsByTagName("div")[i].className == "alert"){
+                document.getElementsByTagName("div")[i].style.display="block";
+            }
+        }
+    };
+
+    document.getElementsByTagName("a")[0].onmouseout=function(){
+        closeTimer=setTimeout(function(){
+            document.getElementsByTagName("div")[1].style.display="none";
+        },timeout);
+    };
+
+
+    //移入窗体
+    document.getElementsByTagName("div")[1].onmousemove=function(){
+        clearTimeout(closeTimer);
+        closeTimer=null;
+    };
+
+    //移出窗体隐藏
+    document.getElementsByTagName("div")[1].onmouseout=function(){
+        this.style.display="none";
+    }
+
+</script>
+</html>

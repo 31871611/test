@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    /**
+     * 简单弹窗
+     *
+     BoxAlert.run({
+        id:"id",
+        title:"说明",
+        content:"内容",          //纯汉字18，纯数字31
+        icon:"warning",         //success成功 warning警告 info通知 error错误
+        yesText:"确认",
+        yesUrl:"http://www.baidu.com",
+        confirm:function(){
+            console.log("点击了确认！");
+            alert("点击了确认！");
+        },
+        noText:"取消",
+        noUrl:"javascript:;",
+        close:function(){
+            console.log("点击了取消！");
+            alert("点击了取消！");
+        }
+    });
+     */
+    var BoxAlert={
+        setting:{
+            id:"com",
+            title:"标题",
+            content:"内容",
+            width:401,
+            icon:"warning",
+            yesText:"确认",
+            yesUrl:"javascript:;",
+            noText:"取消",
+            noUrl:"javascript:;",
+            timeout:3
+        },
+        run:function(setting){
+            if(!setting.id){
+                setting.id=this.setting.id;
+            }
+            if(!setting.title){
+                setting.title=this.setting.title;
+            }
+            if(!setting.content){
+                setting.content=this.setting.content;
+            }
+            if(!setting.yesText){
+                setting.yesText=this.setting.yesText;
+            }
+            if(!setting.yesUrl){
+                setting.yesUrl=this.setting.yesUrl;
+            }
+            if(!setting.noUrl){
+                setting.noUrl=this.setting.noUrl;
+            }
+            var html=[];
+            if($("#opacity2").length == 0){
+                html.push('<div id="opacity2" style="z-index:1000"></div>');
+            }
+            if(setting.width){
+                html.push('<div class="boxAlert" style="z-index:1001;width:'+setting.width+'px" id="'+setting.id+'">');
+            }else{
+                html.push('<div class="boxAlert" style="z-index:1001" id="'+setting.id+'">');
+            }
+            html.push('<div class="boxAlert-title"><h3>'+setting.title+'</h3><a href="javascript:;" class="exit"></a></div>');
+            html.push('<div class="boxAlert-content">');
+            if(setting.icon){
+                html.push('<div class="info-ico"><i class=ico-'+setting.icon+'></i><b>'+setting.content+'</b></div>');
+            }else{
+                html.push('<p class="boxAlert-info">'+setting.content+'</p>');
+            }
+            html.push('</div>');
+            html.push('<div class="boxAlert-btn mt30">');
+            html.push('<a href="'+setting.yesUrl+'" target="_blank" class="confirm">'+setting.yesText+'</a>');
+            if(setting.noText){
+                html.push('<a href="'+setting.noUrl+'" target="_blank" class="ml40 close">'+setting.noText+'</a>');
+            }
+            html.push('</div>');
+
+            //生成窗体
+            $("body").append(html.join(""));
+            //显示窗体
+            $("#"+setting.id).removeClass("hide");
+            //浏览器宽与高
+            var w=$(window).width()/2;
+            var h=$(window).height()/2;
+            //窗体宽与高
+            var alert_w=$("#"+setting.id).width()/2;
+            var alert_h=$("#"+setting.id).height()/2;
+            //中心显示
+            $("#"+setting.id).css({
+//              "position":"fixed",
+                "left":w-alert_w+"px",
+                "top":h-alert_h+"px"
+            });
+
+            //关闭窗体
+            $("#"+setting.id).find(".exit").bind("click",function(){
+                $("#opacity2").remove();
+                $("#"+setting.id).remove();
+                return false;
+            });
+
+            //点击确定
+            $("#"+setting.id).find(".confirm").bind("click",function(){
+                if(setting.confirm){
+                    setting.confirm();
+                }
+                $("#opacity2").remove();
+                $("#"+setting.id).remove();
+                if(setting.yesUrl == "javascript:;"){
+                    return false;
+                }
+            });
+
+            //取消
+            $("#"+setting.id).find(".close").bind("click",function(){
+                if(setting.close){
+                    setting.close();
+                }
+                $("#opacity2").remove();
+                $("#"+setting.id).remove();
+                if(setting.noUrl == "javascript:;"){
+                    return false;
+                }
+            });
+            //退出
+            $("#"+setting.id).find(".exit").bind("click",function(){
+                if(setting.exit){
+                    setting.exit();
+                }
+                $("#opacity2").remove();
+                $("#"+setting.id).remove();
+                if(setting.noUrl == "javascript:;"){
+                    return false;
+                }
+            });
+
+        }
+    };
+
+
+
+    //通过匿名空间隔开公有私有
+    (function(){
+
+        var _this;
+
+        var TabView=function(){
+            _this=this;
+            this.opt={
+                title:"标题"
+            };
+        };
+
+        var ui=function(opt){
+            var opt=opt || _this.opt;
+            return "<div>"+opt.title+"</div>"
+        };
+
+
+        //关注成功。显示在点击的爱心上方
+        TabView.prototype.info=function(opt){
+            var opt = opt || "黑底白字";
+            console.log(opt);
+            return this;
+        };
+
+
+        //显示单个按钮
+        TabView.prototype.alert=function(opt){
+            var html=ui(opt);
+            console.log(html);
+            return this;
+        };
+
+        //两个按钮
+        TabView.prototype.confirm=function(){
+
+        };
+
+        //把需要公开
+        window.TabView=new TabView();
+    })();
+
+    TabView.alert({
+        title:"测试标题"
+    }).info();
+
+</script>
+</html>
