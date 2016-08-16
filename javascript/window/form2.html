@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左右移动多选列表</title>
+    <style>
+        #leftList,#rightList,#buttons{display: block;float: left;margin:10px;}
+        #leftList,#rightList{width:40px;}
+        #buttons{width:40px;}
+    </style>
+</head>
+<body>
+
+<form name="myForm" id="myForm">
+
+    <select name="leftList" id="leftList" multiple size="6">
+        <option>a</option>
+        <option>b</option>
+        <option>c</option>
+    </select>
+
+    <div id="buttons">
+        <input type="button" name="to" id="to" value=">>" onclick="moveList('leftList','rightList')" />
+        <input type="button" name="backTo" id="backTo" value="<<" onclick="moveList('rightList','leftList')" />
+    </div>
+
+    <select name="rightList" id="rightList" multiple size="6">
+        <option>d</option>
+        <option>e</option>
+        <option>f</option>
+    </select>
+
+</form>
+
+</body>
+<script>
+
+
+    //用于对两个多选列表进行选项的移动操作
+    //from为“需要移动”的列表名称，to为“移动到”列表名称
+    function moveList(fromId,toId){
+        var fromList=document.getElementById(fromId);
+        var fromLen=fromList.options.length;
+        var toList=document.getElementById(toId);
+        var toLen=toList.options.length;
+        //current为“需要移动”列表中的当前选项序号
+        var current=fromList.selectedIndex;
+        //如果“需要移动”列表中有选择项，则进行移动操作
+        while (current > -1){
+            //0为“需要移动”列表中当前选择项对象
+            var o=fromList.options[current];
+            var t= o.text;
+            var v= o.value;
+            //根据已选项新建一个列表选项
+            var optionName=new Option(t,v,false,false);
+            //将该选项添加到“移动到”列表中
+            toList.options[toLen]=optionName;
+            toLen++;
+            //将该选项从“需要移动”列表中清除
+            fromList.options[current]=null;
+            current=fromList.selectedIndex;
+        }
+    }
+
+
+</script>
+
+</html>

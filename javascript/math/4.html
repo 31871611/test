@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数字对象方法的应用及格式化数字</title>
+</head>
+<body>
+
+<form name="mailForm">
+    <div>总额(￥)：<input type="text" name="total" value="10,100.00" readonly /></div>
+    <div>百分数(%)：<input type="text" name="percent" onblur="getAmount()" /></div>
+    <div>使用额(￥)：<input type="text" name="amount" onblur="getPercent()" /></div>
+</form>
+
+</body>
+<script>
+
+    function currencyFormat(inputString){
+        if(String(inputString).indexOf(',') > -1){
+            return inputString;
+        }
+
+        var floatNumber=parseFloat(inputString);
+        if(isNaN(floatNumber)){
+            return inputString;
+        }
+
+        var strIt=String(floatNumber.toFixed(2));
+        var loc=strIt.indexOf('.');
+        var left=strIt.substring(0,loc);
+        var right=strIt.substring(loc);
+        var first=left.length % 3;
+        var ret="";
+        var pos=first;
+        ret = ret + left.substring(0,pos);
+
+        while ( pos + 3 <= left.length){
+            if(ret != ''){
+                ret = ret + ",";
+                ret = ret + left.substring(pos,pos + 3);
+                pos = pos + 3;
+            }
+        }
+
+        return ret + right;
+    }
+
+    //移去千分位，号
+    function noCurrencyFormat(inputString){
+        var s=String(inputString);
+        var arrStr= s.split(",");
+        var ret = '';
+        for(var i=0;i<arrStr.length;i++){
+            ret += arrStr[i];
+        }
+        return ret;
+    }
+
+    //保留小数2位
+    function percentFormat(inputString){
+        var floatNumber=parseFloat(inputString);
+        if(isNaN(floatNumber)){
+            return;
+        }
+        return floatNumber.toFixed(2);
+    }
+
+    //计算并显示使用额
+    function getAmount(){
+        var sTotal=document.mailForm.total.valur;       //总额数
+        var sPercent=document.mailForm.percent.valur;   //百分数
+        if(!isFloat(sPercent)){
+            alert("sPercent error");
+            document.mailForm.percent.focus();
+            return;
+        }
+
+        //计算使用额
+        var sAmount=parseFloat(noCurrencyFormat(sTotal)) * parseFloat(sPercent) / 100;
+        //格式化使用额
+        document.mailForm.amount.value=currencyFormat(sAmount);
+        //格式化百分数
+        document.mailForm.percent.value=percentFormat(sPercent);
+    }
+
+
+    //计算并显示百分数
+    function getPercent(){
+        var sTotal=document.mailForm.total.value;           //总额数
+        var sAmount=document.mailForm.amount.value;         //使用额
+        if(!isFloat(sAmount)){
+            alert("sAmount error");
+            document.mailForm.amount.focus();
+            return;
+        }
+        //计算百分数
+        var sPercent=100 * parseFloat(noCurrencyFormat(sAmount)) / parseFloat(sTotal);
+        //格式化百分比
+        document.mailForm.percent.value=percentFormat(sPercent);
+        //格式化使用额
+        document.mailForm.amount.value=currencyFormat(sAmount);
+    }
+
+    //检验用户输入
+    function isFloat(inputString){
+
+
+        return true;
+    }
+
+</script>
+</html>

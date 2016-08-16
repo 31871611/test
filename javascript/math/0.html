@@ -8,11 +8,11 @@
 
 <dl>
     <dt>对象方法</dt>
-    <dd>abs(x)	    返回数的绝对值。</dd>
-    <dd>ceil(x)	    对数进行上舍入。</dd>
-    <dd>floor(x)	对数进行下舍入。</dd>
+    <dd>abs(x)	    返回数的绝对值。abs(2)结果为2，abs(-2)结果为2</dd>
+    <dd>ceil(x)	    对数进行上舍入。ceil(-15)结果为-15；ceil(-15.6)结果为-15；ceil(15.2)结果为16；ceil(15)结果为15；</dd>
+    <dd>floor(x)	对数进行下舍入。floor(-15)结果为-15；floor(-15.6)结果为-16；floor(15.2)结果为15；floor(15)结果为15；</dd>
     <dd>random()	返回 0 ~ 1 之间的随机数。</dd>
-    <dd>round(x)	把数四舍五入为最接近的整数。</dd>
+    <dd>round(x)	把数四舍五入为最接近的整数。round(3.4)结果为3</dd>
     <dd>acos(x)	    返回数的反余弦值。</dd>
     <dd>asin(x)	    返回数的反正弦值。</dd>
     <dd>atan(x)	    以介于 -PI/2 与 PI/2 弧度之间的数值来返回 x 的反正切值。</dd>
@@ -22,16 +22,23 @@
     <dd>log(x)	    返回数的自然对数（底为e）。</dd>
     <dd>max(x,y)	返回 x 和 y 中的最高值。</dd>
     <dd>min(x,y)	返回 x 和 y 中的最低值。</dd>
-    <dd>pow(x,y)	返回 x 的 y 次幂。</dd>
+    <dd>pow(x,y)	返回 x 的 y 次幂。pow(2,3)结果为8</dd>
     <dd>sin(x)	    返回数的正弦。</dd>
-    <dd>sqrt(x)	    返回数的平方根。</dd>
+    <dd>sqrt(x)	    返回数的平方根。sqrt(9)结果为3</dd>
     <dd>tan(x)	    返回角的正切。</dd>
     <dd>toSource()	返回该对象的源代码。</dd>
     <dd>valueOf()	返回 Math 对象的原始值。</dd>
 </dl>
+<ul>
+    <li>isMaN(NaN)</li>
+    <li>isFinite(x)是否是有限数</li>
+    <li>数字.toFixed(n)保留n位小数，返回某数四舍五入之后保留x位小数。var num1=1204.238;num1.toFixed(2);结果为1204.24;</li>
+    <li>数字.toPrecision(n)保留n位数字，返回某数四舍五入之后保留x位字符。var num1=1204.238;num1.toPrecision(5);结果为1204.2;</li>
+</ul>
+
 </body>
 <script>
-
+/*
     document.write("<ul>");
 
     document.write("<li>");
@@ -39,6 +46,25 @@
     document.write("</li>");
 
     document.write("</ul>");
+*/
+
+
+    var aNum=1204.6237;
+    console.log(aNum.toFixed(2));           //1204.62
+    console.log(aNum.toFixed(3));           //1204.624
+    console.log(aNum.toFixed(6));           //1204.623700
+
+    console.log(aNum.toPrecision(6));       //1204.62
+    console.log(aNum.toPrecision(7));       //1204.624
+    console.log(aNum.toPrecision(10));      //1204.623700
+    console.log(aNum.toPrecision(2));       //1.2e+3
+
+    //检测当前是否支持这种函数
+    if(aNum.toFixed){
+        //如果浏览器支持toFixed()函数
+    }
+
+
 
 </script>
 </html>

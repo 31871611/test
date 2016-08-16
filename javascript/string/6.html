@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>替换字符串函数</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    function replaceStr(inStr,oldStr,newStr){
+        var ret=inStr;
+        while (ret.indexOf(oldStr) > -1){           //查找是否有这个单词
+            ret=ret.replace(oldStr,newStr);
+        }
+        return ret;
+    }
+
+    var s="This is a book";
+    alert(replaceStr(s,"is","__"));
+
+</script>
+</html>

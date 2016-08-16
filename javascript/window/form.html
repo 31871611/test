@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form name="form1">
+<form name="form1" action="提交地址" method="get|post">
     <input type="text" name="myText" value="用户名" />
     <div>
         <input type="checkbox" />
@@ -36,6 +36,9 @@
 
 </body>
 <script>
+
+
+
 /*
 
  * forms：表示页面上form对象的集合
@@ -43,15 +46,24 @@
  * name属性
  * value属性
  * type属性
- * checked属性，checkbox多选是否选中
- * radio单选具有length属性
+ * checked属性，checked=true选中，checkbox多选是否选中，
+ * radio单选具有length属性，checked=true选中
+ *
 
  */
 
 
     console.log(document.form1.length);          //返回form1里的表单元素长度
+    console.log(document.form1.elements);        //返回form1里的表单元素.循环使用.
     //document.form1.myButton.value与document.form1[0]一样;
 
+/*
+    for(var i=0;document.form1.elements.length;i++){
+        document.form1.elements[i].type = "text";
+        document.form1.elements[i].className = "text";
+        ...等。查看console.log(document.form1.elements);
+    }
+*/
 
     for(var i=0;i<document.form1.myRadio.length;i++){
         (function(i){

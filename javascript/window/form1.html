@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发送邮件，弹出outlook软件</title>
+</head>
+<body>
+
+<form name="emailForm" action="mailto:" method="post">
+
+    <div>
+        <label for="">电子邮件地址：</label>
+        <input type="text" name="textEmail" />
+    </div>
+    <div>
+        <label for="">主题：</label>
+        <input type="text" name="txtSubject" />
+    </div>
+    <div>
+        <input type="submit" name="btnSubmit" value="发送" />
+        <input type="reset" value="重置" />
+    </div>
+
+</form>
+
+</body>
+<script>
+
+    //win7不支持了
+    var emailForm=document.emailForm;
+    emailForm.onsubmit=function(){
+        //用户输入的电子邮件地址
+        var sEmail=emailForm.textEmail.value;
+
+        //用户输入的电子邮件主题
+        var sSubject=emailForm.txtSubject.value;
+
+        //表单中action的内容
+        var sAction=emailForm.action;
+
+        //alert(sAction);
+        //将用户输入的电子邮件地址和主题附加到action
+        //使用函数escape()将字符串中特殊字符转换为url可识别的字符
+        sAction=sAction + escape(sEmail) + "?subject=" + escape(sSubject);
+
+        alert(sAction);
+    };
+
+
+
+
+</script>
+
+</html>

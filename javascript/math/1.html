@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>为数字添加千分位符</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    //为数字添加千分位符
+    function formatFloat(str){
+        str=new String(str);
+
+        //如果有小数点，leftLen为整数的长度；如果没有小数点，leftLen为输入数的长度
+        var leftLen=str.indexOf('.') > -1 ? str.indexOf('.') : str.length;
+
+        var leftString=str.substring(0,leftLen);    //整数内容
+        var rightString=str.substring(leftLen);     //小数点及以后的内容
+
+        var firstLen=leftLen % 3;   //第一个千分位在整数长度取模的位置
+        var ret='';                 //最后结果放在变量ret中
+        var pos=firstLen;
+        ret=ret+leftString.substring(0,pos);    //第一个千分位之前的内容
+        while (pos + 3 <= leftString.length){
+            if(ret != ''){
+                ret = ret + ','
+            }
+            ret = ret + leftString.substring(pos,pos+3);
+            pos=pos+3;
+        }
+        return (ret + rightString);
+    }
+
+    alert(formatFloat(123456789));
+
+</script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排序列表</title>
+</head>
+<body>
+
+
+<select name="myList" id="myList" multiple size="6">
+    <option value="0">book</option>
+    <option value="1">pen</option>
+    <option value="2">pencil</option>
+    <option value="3">amount</option>
+    <option value="4">music</option>
+    <option value="5">basic</option>
+</select>
+
+<input type="button" value="排序" />
+
+</body>
+<script>
+
+    //没完成
+
+    var aList=[];
+    var aText=[];
+
+    var button=document.getElementsByTagName("input")[0];
+    var lst=document.getElementById("myList");
+
+
+    button.onclick=function(){
+        //alert(myList.options.length);
+
+        for(var i=0;i<lst.length;i++){
+            aList[i] = new ListObj(lst.options[i].text,lst.options[i].value);
+            aText[i] = lst.options[i].text;
+        }
+
+        aText.sort();
+    };
+
+
+    function ListObj(text,value){
+        this.text=text;
+        this.value=value;
+    }
+
+</script>
+
+</html>
