@@ -1,0 +1,30 @@
+App.vue
+
+/*************************************************************************/
+
+引入一：
+<style src="../static/css/test.css"></style>
+
+引入二：
+<style>
+  @import "../static/css/test.css";
+</style>
+
+body {
+  /* css文件中路径以.css文件来定位 */
+  background:url("../images/logo.png");
+  color:#fff;
+}
+
+/*************************************************************************/
+
+<style lang="sass">
+  @import "../static/sass/test.scss";
+</style>
+
+body{
+  /* scss文件中路径以.vue文件来定位 */
+  background:url("../static/images/logo.png");
+}
+
+/*************************************************************************/
