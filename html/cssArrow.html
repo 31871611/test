@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>css小三角</title>
+<style type="text/css">
+.message-box {
+    position:relative;
+    width:240px;
+    height:60px;
+    line-height:60px;
+    background:#E9FBE4;
+    box-shadow:1px 2px 3px #E9FBE4;
+    border:1px solid #C9E9C0;
+    border-radius:4px;
+    text-align:center;
+    color:#0C7823;
+}
+.triangle-character {
+    position:absolute;
+    left:30px;
+    overflow:hidden;
+    width:26px;
+    height:26px;
+    font:normal 26px "宋体"; /* 字符的大小和字体也有关系哦！ */
+}
+.tc-border {
+    bottom:-13px;
+    color:#C9E9C0;
+}
+.tc-background {
+    bottom:-12px;
+    color:#E9FBE4;
+}
+</style>
+</head>
+
+<body>
+<div class="message-box">
+  <span>我是利用 ◆ 字符实现的</span>
+  <div class="triangle-character tc-border">◆</div>
+  <div class="triangle-character tc-background">◆</div>
+</div>
+</body>
+</html>
