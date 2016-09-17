@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用不同和格式显示今天的日期</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    var sWeek=['日','一','二','三','四','五','六'];
+
+    var myDate=new Date();  //当天的日期
+
+    var sYear=myDate.getFullYear();     //年
+    var sMonth=myDate.getMonth()+1;     //月
+    var sDate=myDate.getDate();         //日
+    var sDay=sWeek[myDate.getDay()];    //星期
+
+
+    //格式1
+    document.write(sMonth + '/' + sDate + '/' + sYear + '<br />');
+
+    //格式2
+    document.write(formatTwoDigits(sMonth) + '/' + formatTwoDigits(sDate) + '/' + sYear + '<br />');
+
+    //格式3
+    document.write(sYear + '年' + sMonth + '月' + sDate + '日' + '星期' + sDay + '<br />');
+
+    //格式4
+    document.write(imageDigite(sYear) + imageDigite(sMonth) + imageDigite(sDate));
+
+
+    //如果输入数是1位数，在十位数上补0
+    function formatTwoDigits(s){
+        if(s < 10){
+            return '0'+s;
+        }else{
+            return s;
+        }
+    }
+
+
+    //将数转换为图像，注意，在本文件的相同目录下已有0-9个图像文件，文件名为0.gif-9.gif。。。依些类推
+    function imageDigite(s){
+        var ret='';
+        var s=new String(s);
+        for(var i=0;i< s.length;i++){
+            //charAt()返回字符串中第n个字符
+            ret += '<img src="'+ s.charAt(i) +'.gif" />';
+//            ret += '<img src="'+ s[i] +'.gif" />';
+        }
+        return ret;
+    }
+
+
+
+</script>
+</html>

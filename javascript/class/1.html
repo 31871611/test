@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影预定系统</title>
+</head>
+<body>
+
+</body>
+<script>
+
+/*
+
+    如果仅仅只需要实现某个功能，而不需要保存数据的话--例如前面介绍过的fix()函数，
+    那么通常编写一个函数库，而不需要创建特定的对象
+
+*/
+
+/*
+
+    一个代表客户详细预定信息的对象
+    一个用于预定电影的对象
+    一个增加一个新预定
+    一个获取所有预定的详细信息的方法
+
+ */
+
+
+    //客户预定信息的类
+    function CustomerBooking(bookingId,customerName,film,showDate){
+        this.customerName=customerName;
+        this.bookingId=bookingId;
+        this.showDate=showDate;
+        this.film=film;
+    }
+
+
+    CustomerBooking.prototype.getBookingId=function(){
+        return this.bookingId;
+    };
+
+    CustomerBooking.prototype.setBookingId=function(bookingId){
+        this.bookingId=bookingId;
+    };
+
+
+    CustomerBooking.prototype.getCustomerName=function(){
+        return this.customerName;
+    };
+
+    CustomerBooking.prototype.setCustomerName=function(customerName){
+        this.customerName=customerName;
+    };
+
+
+    CustomerBooking.prototype.getFilm=function(){
+        return this.film;
+    };
+
+    CustomerBooking.prototype.setFilm=function(film){
+        this.film=film;
+    };
+
+
+    CustomerBooking.prototype.getShowDate=function(){
+        return this.showDate;
+    };
+
+    CustomerBooking.prototype.setShowDate=function(showDate){
+        this.showDate=showDate;
+    };
+
+
+    //电影预定项目的集合
+    function Cinema(){
+        this.bookings=[];
+    }
+
+    //不能传数组或对象...
+    Cinema.prototype.addBooking=function(bookingId,customerName,film,showDate){
+        this.bookings[bookingId]=new CustomerBooking(bookingId,customerName,film,showDate);
+    };
+
+    //输出为表格
+    Cinema.prototype.getBookingsTable=function(){
+        var booking;
+        var bookingsTableHtml='<table border=1>';
+        for(booking in this.bookings){
+            bookingsTableHtml +='<tr>';
+
+            bookingsTableHtml +='<td>';
+            bookingsTableHtml +=this.bookings[booking].getBookingId();
+            bookingsTableHtml +='</td>';
+
+            bookingsTableHtml +='<td>';
+            bookingsTableHtml +=this.bookings[booking].getCustomerName();
+            bookingsTableHtml +='</td>';
+
+            bookingsTableHtml +='<td>';
+            bookingsTableHtml +=this.bookings[booking].getFilm();
+            bookingsTableHtml +='</td>';
+
+            bookingsTableHtml +='<td>';
+            bookingsTableHtml +=this.bookings[booking].getShowDate();
+            bookingsTableHtml +='</td>';
+
+            bookingsTableHtml +='</tr>';
+        }
+        return bookingsTableHtml;
+    };
+
+
+/*
+
+*/
+
+    var firstBooking=new CustomerBooking(1234,'Robert Smith','Raging Bull','25 July 2014');
+    var secondBooking=new CustomerBooking(1244,'Arnold Palmer','Toy Story','27 July 2004');
+
+    console.log(firstBooking.getCustomerName());
+    console.log(secondBooking.getCustomerName());
+
+
+    var londonOdeon=new Cinema();
+    londonOdeon.addBooking(1234,'Robert Smith','Raging Bull','25 July 2014');
+    londonOdeon.addBooking(1244,'Arnold Palmer','Toy Story','27 July 2004');
+    document.write(londonOdeon.getBookingsTable());
+
+</script>
+</html>

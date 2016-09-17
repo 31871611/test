@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>date</title>
+</head>
+<body>
+
+</body>
+<script>
+/*
+
+    有4种方法可以声明和初始化Date对象
+
+ */
+
+    //第1种
+    // 显示当前pc机的日期和时间
+    var theDate1=new Date();
+
+
+    //第2种
+    // 传入毫秒值作为参数
+    var theDate2=new Date(949278000000);
+
+    //第3种
+    //传入表示日期或时间的字符串
+    var  theDate3=new Date('31 January 2010');
+
+    //第4种
+    //初始化2010年1月31日15点35分20秒20毫秒
+    //一月用数字0，十二月用数字11表示
+    var theDate4=new Date(2010,0,31,15,35,20,20);
+
+/*
+
+    获取Date的数值
+
+*/
+
+    //当前月份中的一天
+    console.log("天:"+theDate1.getDate());
+    //当前日期是星期几，0表示星期日、1表示星期一
+    console.log("星期几:"+theDate1.getDay());
+    //当前月份，0表示一月、1表示二月
+    console.log("月份:"+theDate1.getMonth());
+    //当前年份
+    console.log("年份:"+theDate1.getFullYear());
+    //当前地区
+    console.log("地区:"+theDate1.toDateString());
+    //当前小时
+    console.log("小时:"+theDate1.getHours());
+    //当前分钟
+    console.log("分钟:"+theDate1.getMinutes());
+    //当前秒
+    console.log("秒:"+theDate1.getSeconds());
+    //当前毫秒
+    console.log("毫秒:"+theDate1.getMilliseconds());
+    //整个时间的字符串
+    console.log("整个时间的字符串:"+theDate1.toTimeString());
+
+
+/*
+
+    使用Date对象获得当前日期信息
+
+ */
+
+    var months=["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"];
+    var dateNow=new Date();
+    var yearNow=dateNow.getFullYear();              //年
+    var monthNow=months[dateNow.getMonth()];        //月
+    var dayNow=dateNow.getDate();                   //日
+    var datSuffix;
+
+    console.log(yearNow + "." + monthNow + "." + dayNow);
+
+
+/*
+
+    设置Date的值
+
+*/
+
+
+    //设置月份中的一天，接收一个参数值为1-31，表示月份中的一天
+    console.log(theDate1.setDate(27));
+    //设置年中的一月，接收一个参数值为0-11
+    console.log(theDate1.setMonth(1));
+    //以4位设置年份，接收一个4位的数字参数
+    console.log(theDate1.setFullYear(2000));
+    //小时
+    console.log("小时:"+theDate1.setHours());
+    //分钟
+    console.log("分钟:"+theDate1.setMinutes());
+    //秒
+    console.log("秒:"+theDate1.setSeconds());
+    //毫秒
+    console.log("毫秒:"+theDate1.setMilliseconds());
+
+
+/*
+
+    获得当前时间，+28天后日期
+    参数超过合法时间，则将会把相应的时间向前滚动
+    参数为负数，则将会把相应时间向后滚动
+
+*/
+
+    var nowDate=new Date();
+    var currentDay=nowDate.getDate();
+    var s=nowDate.setDate(currentDay + 28);
+    console.log(new Date(s));
+
+</script>
+</html>

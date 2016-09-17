@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Date</title>
+</head>
+<body>
+
+</body>
+<script>
+
+var date=new Date();
+
+/*
+    获取
+*/
+    //时区.计算机指定时区
+    date.getDate();                 //返回月份中的日期数（1-31）
+    date.getDay();                  //返回星期数，0表示星期日、6表示星期六
+    date.getMonth();                //返回月份数，0表示一月，1表示二月，依此类推
+    date.getFullYear();             //返回4位整数年份。
+    date.getYear();                 //返回2位整数年份
+    date.getHours();                //返回小时数（0-23）
+    date.getMinutes();              //返回分钟数(0-59)
+    date.getSeconds();              //返回秒数（0-59）
+    date.getMilliseconds();         //返回毫秒数（0-999）
+    date.getTime();                 //返回1970年1月1日0:0:0起的毫秒数
+    Date.parse();                   //静态方法。返回1970年1月1日0:0:0起的毫秒数
+
+    //时区.格林尼治标准时间
+    date.getTimezoneOffset();       //返回计算机设定时区与格林尼治标准时间相差的分钟数
+    date.getUTCDate();              //与getDate()意义相同，只是表示的时区不同
+    date.getUTCDay();               //与getDay()意义相同，只是表示的时区不同
+    date.getUTCMonth();             //与getMonth()意义相同，只是表示的时区不同
+    date.getUTCFullYear();          //与getFullYear()意义相同，只是表示的时区不同
+    date.getUTCHours();             //与getHours()意义相同，只是表示的时区不同
+    date.getUTCMinutes();           //与getMinutes()意义相同，只是表示的时区不同
+    date.getUTCSeconds();           //与getSeconds()意义相同，只是表示的时区不同
+    date.getUTCMilliseconds();      //与getMilliseconds()意义相同，只是表示的时区不同
+
+/*
+    设置
+*/
+
+    //时区.计算机指定时区
+    date.setDate(日期数);                     //设置月份中的日期数1-31
+    date.setFullYear(年[,月,日]);            //设置年数，4位整数
+    date.setHours(小时[,分,秒,毫秒]);         //设置小时数
+    date.setMilliseconds(毫秒);              //设置毫秒数
+    date.setMinutes(分[,秒,毫秒]);            //设置分钟数
+    date.setMonth(月[,日]);                   //设置月份数
+    date.setSeconds(秒[,毫秒]);              //设置秒数
+    date.setTime(总毫秒数);                  //设置1970年1月1日0:0:0起的毫秒数
+    date.setYear();                         //设置年数，2位
+    date.toLocaleString();                  //将日期对象转换成当地时区的日期字串
+
+    //时区.格林尼治标准时间
+    date.setUTCDate();              //与setDate()意义相同，只是表示的时区不同
+    date.setUTCMonth();             //与setMonth()意义相同，只是表示的时区不同
+    date.setUTCFullYear();          //与setFullYear()意义相同，只是表示的时区不同
+    date.setUTCHours();             //与setHours()意义相同，只是表示的时区不同
+    date.setUTCMinutes();           //与setMinutes()意义相同，只是表示的时区不同
+    date.setUTCSeconds();           //与setSeconds()意义相同，只是表示的时区不同
+    date.setUTCMilliseconds();      //与setMilliseconds()意义相同，只是表示的时区不同
+    date.toUTCString();             //将日期对象转换成格林尼治标准时间的日期字串
+    Date.UTC();                     //返回整数表示1970年1月1日0:0:0起的毫秒数
+
+</script>
+</html>

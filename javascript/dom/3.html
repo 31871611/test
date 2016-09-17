@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画显示6条信息，同时由小至大变换字体尺寸</title>
+</head>
+<body>
+
+<div id="content"></div>
+
+</body>
+<script>
+
+    var s= 0;
+    var i=0;
+    var m=70;
+    var d=2000;
+    var msg=['welcome to','goole.com','google search','google picture','google tools','and much more...'];
+
+    function changeMsg(){
+        if(i>msg.length){
+            location.href='http://www.baidu.com';
+            return true;
+        }
+
+        txt=document.getElementById('content');
+        txt.innerHTML=msg[i];
+        s=0;
+        zoomTxt();
+        i++;
+        setTimeout('changeMsg()',d);
+    }
+
+    function zoomTxt(){
+        if(s < m){
+            txt.style.fontSize = s + "px";
+            s+=5;
+            setTimeout("zoomTxt()",30);
+        }
+    }
+
+    window.onload=changeMsg();
+
+</script>
+</html>

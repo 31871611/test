@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>indexOf</title>
+</head>
+<body>
+
+</body>
+<script>
+/*
+
+ indexOf()用于查找一个字符串是否包含了某个子字符串
+ 从前向后检索字符串，如果要检索的字符串值没有出现，则该方法返回 -1。
+
+ 参数2：可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的首字符开始检索。
+
+*/
+
+    var str='Hello world!';
+    console.log(str.indexOf('world'));  //返回位置，包含空格
+    console.log(str.indexOf('a'));      //没有，则该方法返回 -1。
+
+
+/*
+
+    统计字符串中某个子串出现的次数
+
+*/
+
+    var myStr='Welcome to Wrox books. ';
+    myStr = myStr + 'The Wrox website is www.wrox.com';
+    myStr = myStr + 'Visit the Wrox website today. Thanks for buying Wrox';
+
+    var foundAtPosition=0;
+    var wroxCount=0;
+
+    while (foundAtPosition != -1){
+        foundAtPosition = myStr.indexOf('Wrox',foundAtPosition);
+        if(foundAtPosition != -1){
+            wroxCount ++;
+            foundAtPosition++;
+        }
+    }
+
+    console.log('单词Wrox出现次数：'+wroxCount);
+
+
+</script>
+</html>

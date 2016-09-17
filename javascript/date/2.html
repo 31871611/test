@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+/*
+
+    如果能自动地将该时间转换为访客所在地区的时间
+
+
+*/
+
+
+
+    var theDate1=new Date();
+
+    console.log(theDate1.toUTCString());            //将把Date对象中保存的UTC日期的时间以一个字符串形式返回
+    console.log(theDate1.toLocaleString());         //把Date对象中保存的本地日期和时间以一个字符串的形式返回
+    console.log(theDate1.getTimezoneOffset());      //输出本地时间与UTC时间之间的差值(分钟)，夏时制返回分钟少一个小时，当前时区在UTC之后，如美国时区，将返回一个正数；在UTC之前，如澳大利亚或日本，则返回一个负数
+    console.log(theDate1.toLocaleTimeString());     //下午9:39:26
+    console.log(theDate1.toTimeString());           //显示时间部分.21:39:26 GMT+0800 (中国标准时间)
+    console.log(theDate1.toLocaleDateString());     //按用户计算机上设定的格式显示日期.2016/9/15
+    console.log(theDate1.toDateString());           //Thu Sep 15 2016
+
+
+
+/*
+
+    圣弗郎西斯科      纽约          伦敦，格林尼治时间       德国，柏林     北京，重庆，香港特别行政区，乌鲁木齐      日本，东京
+    下午4:00          下午7:00      0:00                    上午1:00    (UTC+08:00)                           上午9:00
+*/
+
+
+/*
+
+    UTC伦敦，格林尼治时间
+    设置和获取Date对象的UTC日期时间
+
+*/
+
+    console.log('UTC');
+    console.log(theDate1.getUTCDate());             //日
+    console.log(theDate1.getUTCDay());              //星期
+    console.log(theDate1.getUTCFullYear());         //年
+    console.log(theDate1.getUTCMonth());            //月+1
+    console.log('小时'+theDate1.getUTCHours());     //时间的小时+8等于北京时间
+    console.log(theDate1.getUTCMilliseconds());     //时间的毫秒
+    console.log(theDate1.getUTCMinutes());          //分钟
+    console.log(theDate1.getUTCSeconds());          //秒
+    console.log();
+
+
+
+
+
+</script>
+</html>

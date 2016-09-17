@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>校验用户输入的日期字串</title>
+</head>
+<body>
+
+<form>
+    <h3>日期格式</h3>
+    从
+    <input type="text" name="from" size="11" maxlength="11" />
+    至
+    <input type="text" name="to" size="11" maxlength="11" />
+    <input type="button" name="formatbutton" onclick="doDateCheck(this.form.from,this.form.to)" value="校验" />
+</form>
+
+</body>
+<script>
+/*
+
+  用户输入的合法的日期字串，格式为mm/dd/yyy
+  用户输入的第一个日期小于等于第二个日期
+  显示两个日期相差的天数
+
+*/
+
+    var minYear=1900;
+    var maxYear=2100;
+    var dtCh='/';
+
+    //检验输入字串s是否是整数
+    function isInteger(s){
+        if(isNaN(parseInt(s))) return false;
+        return true;
+    }
+
+
+    //从输入字串s中移去dtChs中包含的字符
+    //例如，从字串11/1/2004中移去'/'，返回1112004
+    function removeAllDtCh(s,dtChs){
+        var returnString='';
+        //检验输入字串s中的每一个字符
+        //如果字符不是在dtChs中，就将它加到返回字串returnString中
+        for(var i=0;i< s.length;i++){
+            var c= s.charAt(i);
+            if(dtChs.indexOf(c) == -1) returnString += c;
+        }
+        return returnString;
+    }
+
+
+    //返回一个存有每个月中天数的数组
+    function DaysArray(n){
+        for(var i=1;i<=n;i++){
+            this[i]=31;
+            if(i==4 || i==6 || i==9 || i==11){
+                this[i]=30
+            }
+            if(i==2){
+                this[i]=29
+            }
+        }
+        //[31,29,31,30,31,30,31,31,30,31,31,30]
+        return this;
+    }
+
+
+    //返回指定年份中的二月份的天数
+    function daysInFebruary(year){
+        //如果年份可以被4整除，且年份不是世纪年或年份可以被400带队，那么，二月份将有29天
+        //否则，二月份将有28天
+        return ((year % 4 == 0) && (year % 100 == 0));
+    }
+
+
+    //日期检验主程序
+    function isDate(dtStr){
+        if(dtStr == '') return true;
+        var daysInMonth=DaysArray(12);
+        var pos1=dtStr.indexOf('/');
+        var pos2=dtStr.indexOf('/',pos1+1);
+
+        if(pos1 == -1 || pos2 == -1){
+            alert('日期格式是：mm/dd/yy');
+            return false;
+        }
+
+        var strMonth=dtStr.substring(0,pos1);
+        var strDay=dtStr.substring(pos1+1,pos2);
+        var strYear=dtStr.substring(pos2+1);
+
+        if(strYear.length == 2){
+            strYear = '20'+strYear;
+        }
+
+        month=parseInt(strMonth,10);
+        day=parseInt(strDay,10);
+        year=parseInt(strYear,10);
+
+        if(strMonth.length<1 || month<1 || month>12){
+            alert('请输入有效的月份数');
+            return false;
+        }
+
+        if(strDay.length<1 || day<1 || day>31 || (month == 2 && day > daysInFebruary(year)) || day > daysInMonth[month]){
+            alert('请输入有效的月份中的日期数');
+            return false;
+        }
+
+        if(strYear.length != 4 || year==0 || year<minYear || year > maxYear){
+            alert('请输入四位年数，范围为'+minYear+'至'+maxYear);
+            return false;
+        }
+
+        if(dtStr.indexOf(dtCh.pos2 + 1) != -1 || !isInteger(removeAllDtCh(dtStr,dtCh))){
+            alert('请输入有效的日期');
+            return false;
+        }
+        return true;
+    }
+
+
+    function doDateCheck(from,to){
+        if(!doDateFormatCheck(from)) return;
+        if(!doDateFormatCheck(to)) return;
+        //parse() 方法可解析一个日期时间字符串，并返回 1970/1/1 午夜距离该日期时间的毫秒数
+        if(Date.parse(from.value) <= Date.parse(to.value)){
+            alert('输入的日期有效.相差'+diffDays(from.value,to.value)+'天');
+        }else{
+            if(from.value=='' || to.value == ''){
+                alert('请输入两个日期');
+            }else {
+                alert('至日期必须大于从日期');
+            }
+        }
+    }
+
+
+    //如果校验日期不合格，光标焦点到该输入框中
+    function doDateFormatCheck(o){
+        if(!isDate(o.value)){
+            o.select();
+            o.focus();
+            return false;
+        }
+        return true;
+    }
+
+    //得到两个日期的相差天数
+    function diffDays(from,to){
+        var dFrom=new Date(from);
+        var dTo=new Date(to);
+        return parseInt((dTo - dFrom) / (1000 * 60 * 60 * 24));
+    }
+
+
+</script>
+</html>

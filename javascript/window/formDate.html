@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用列表框进行日期的计算</title>
+    <script>
+
+        //说明下拉框及onchange事件处理器的使用
+        //用户将通过下拉列表框来选择并设置两个日期，计算出这两个日期相差的天数
+
+
+        function writeOptions(startNumber,endNumber){
+            var optionCounter;
+            for(optionCounter = startNumber;optionCounter<=endNumber;optionCounter++){
+                document.write('<option value="'+optionCounter+'">'+optionCounter+'</option>')
+            }
+        }
+
+        function writeMonthOptions(){
+            var theMonth;
+            var monthCounter;
+            //初始化为当前月份的第一天
+            var theDate=new Date(1);
+            for(monthCounter=0;monthCounter<12;monthCounter++){
+                theDate.setMonth(monthCounter);
+                theMonth=theDate.toString();
+                //取出表示月份名称简写的三个字符
+                theMonth=theMonth.substr(4,3);
+                document.write('<option value="'+theMonth+'">'+theMonth+'</option>');
+            }
+        }
+
+        function recalcDateDiff(){
+            var myForm=document.form1;
+            //开始-天
+            var firstDay=myForm.firstDay.options[myForm.firstDay.selectedIndex].value;
+            //结束-天
+            var secondDay=myForm.secondDay.options[myForm.secondDay.selectedIndex].value;
+            //开始-月份
+            var firstMonth=myForm.firstMonth.options[myForm.firstMonth.selectedIndex].value;
+            //结束-月份
+            var secondMonth=myForm.secondMonth.options[myForm.secondMonth.selectedIndex].value;
+            //开始-年份
+            var firstYear=myForm.firstYear.options[myForm.firstYear.selectedIndex].value;
+            //结束-年份
+            var secondYear=myForm.secondYear.options[myForm.secondYear.selectedIndex].value;
+            //
+            var firstDate=new Date(firstDay + '' + firstMonth + '' + firstYear);
+            var secondDate=new Date(secondDay + '' + secondMonth + '' + secondYear);
+            //相减得时间差
+            var daysDiff=(secondDate.valueOf() - firstDate.valueOf());
+            //毫秒数除以1000得到秒，除60得分钟，除60得小时数，除24得天数
+            daysDiff=Math.floor(Math.abs((((daysDiff / 1000) / 60)/60)/24));
+            myForm.textDays.value=daysDiff;
+            return true;
+        }
+
+
+        function window_onload(){
+            var theForm=document.form1;
+            var nowDate=new Date();
+            //选中当天日期
+            theForm.firstDay.options[nowDate.getDate() - 1].selected = true;
+            theForm.secondDay.options[nowDate.getDate() - 1].selected = true;
+            //选中当月
+            theForm.firstMonth.options[nowDate.getMonth()].selected=true;
+            theForm.secondMonth.options[nowDate.getMonth()].selected=true;
+            //选中年份
+            theForm.firstYear.options[nowDate.getFullYear()-1970].selected=true;
+            theForm.secondYear.options[nowDate.getFullYear()-1970].selected=true;
+        }
+
+
+
+    </script>
+</head>
+<body onload="window_onload()">
+    <form name="form1">
+        <h3>first Date</h3>
+        <div>
+            <select name="firstDay" onchange="recalcDateDiff()">
+                <script>
+                    writeOptions(1,31);
+                </script>
+            </select>
+            <select name="firstMonth" onchange="recalcDateDiff()">
+                <script>
+                    writeMonthOptions();
+                </script>
+            </select>
+            <select name="firstYear" onchange="recalcDateDiff()">
+                <script>
+                    writeOptions(1970,2020);
+                </script>
+            </select>
+        </div>
+        <h3>second Date</h3>
+        <div>
+            <select name="secondDay" onchange="recalcDateDiff()">
+                <script>
+                    writeOptions(1,31);
+                </script>
+            </select>
+            <select name="secondMonth" onchange="recalcDateDiff()">
+                <script>
+                    writeMonthOptions();
+                </script>
+            </select>
+            <select name="secondYear" onchange="recalcDateDiff()">
+                <script>
+                    writeOptions(1970,2020);
+                </script>
+            </select>
+        </div>
+
+        total difference in days
+        <input type="text" name="textDays" value="0" readonly />
+    </form>
+</body>
+
+</html>
