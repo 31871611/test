@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示用户访问该网页的次数</title>
+</head>
+<body>
+
+</body>
+<script>
+/*
+
+ 设置、取出、删除cookie值
+
+*/
+
+
+    //设置cookie
+    function setCookie(name,value,expires,path,domain,secure){
+        var curCookie=name + '=' + escape(value) +
+                (expires ? "; expires=" + expires.toUTCString() : "") +
+                (path ? "; path=" + path : "") +
+                (domain ? "; domain=" + domain : "") +
+                (secure ? "; secure=" + secure : "");
+        document.cookie=curCookie;
+    }
+
+    //取出cookie
+    function getCookie(name){
+        //cookies是以分号相间隔
+        var aCookie=document.cookie.split(";");
+        for(var i=0;i<aCookie.length;i++){
+            //每一组分号中的内容都是用"名字=值"格式
+            var aCrumb=aCookie[i].split("=");
+            if(name == aCrumb[0]){
+                //name=value;
+                return decodeURI(aCrumb[1]);
+            }
+        }
+        //要取出的cookie值不存在
+        return null;
+    }
+
+    //删除cookie
+    function deleteCookie(name,path,domain){
+        if(getCookie(name)){
+            document.cookie=name+"=" +
+                    (path ? "; path=" + path : "") +
+                    (domain ? "; domain" + domain : "") +
+                    "; expires=Thu,01-Jan-70 00:00:01 GMT";
+        }
+    }
+
+
+    //当前日期
+    var now=new Date();
+    //设置cookie一年以后过期
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+
+    //取出名字"counter"的cookie值
+    var visits=getCookie('counter');
+    //如果cookie值没有找到，说明用户是第一次访问该网页
+    if(!visits){
+        visits=1;
+        document.write("欢迎第一次访问这里.")
+    }else{
+        //将取出的cookie值加1
+        visits=parseInt(visits) + 1;
+        document.write("欢迎您回到这里，这是您第" + visits + "次访问这里.");
+    }
+
+
+    //重新设置cookie值
+    setCookie("counter",visits,now);
+
+
+</script>
+</html>

@@ -27,7 +27,7 @@
     //设置6个月后过期
     var expires=new Date();
     expires.setMonth(expires.getMonth() + 6);
-    document.cookie="userName=paul;expires="+expires.toGMTString()+";";
+    document.cookie="userName=paul;expires="+expires.toUTCString()+";";
 
     //创建cookie并设置相应属性函数
     function setCookie(cookieName,cookieValue,cookiePath,cookieExpires){
@@ -66,7 +66,8 @@
             if(cookieEndsAt == -1){
                 cookieEndsAt=cookieValue.length;
             }
-            cookieValue=unescape(cookieValue.substring(cookieStartsAt,cookieEndsAt));
+            //unescape已删除，用 decodeURI() 和 decodeURIComponent() 取而代之
+            cookieValue=decodeURI(cookieValue.substring(cookieStartsAt,cookieEndsAt));
         }
         return cookieValue;
     }
