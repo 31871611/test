@@ -1,0 +1,42 @@
+<view>
+    <loading hidden="{{hidden}}" bindchange="loadingChange">
+        加载中...
+    </loading>
+    <!-- 轮播swiper -->
+    <swiper indicator-dots="{{swiper.indicatorDots}}" autoplay="{{swiper.autoplay}}" interval="{{swiper.interval}}" duration="{{swiper.duration}}">
+        <block wx:for="{{swiper.imgUrls}}">
+            <swiper-item>
+                <image src="{{item}}" class="slide-image" width="355" height="150" />
+            </swiper-item>
+        </block>
+    </swiper>
+    <!-- 数据绑定 -->
+    <text>{{msg}}</text>
+    <!-- 列表渲染 -->
+    <view wx:for-items="{{array}}">
+        下标变量名默认为:{{index}}---
+        {{item}}
+    </view>
+    <view wx:for="{{items}}">
+        {{item.message}}
+    </view>
+    <!-- 条件渲染 -->
+    <view wx:if="{{view == 'webview'}}">webview</view>
+    <view wx:elif="{{view == 'app'}}">app</view>
+    <view wx:else="{{view == 'mina'}}">mina</view>
+    <!-- 三元运算 -->
+    <view hidden="{{flag ? true : false}}">三元运算</view>
+    <!-- 算数运算 -->
+    <view>{{a+b}} + {{c}} + d</view>
+    <!-- 事件 -->
+    <view bindtap="add">{{count}}</view>
+</view>
+
+<!-- <block/>是一个包装元素，不会在页面中做任何渲染，只接受控制属性 -->
+<block wx:if="{{flag}}">
+    <text>text1</text>
+    <text>text2</text>
+</block>
+
+<!-- 对象 -->
+<template is="objectCombine" data="{{for:a,bar:b}}"></template>

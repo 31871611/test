@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>冒泡</title>
+    <style>
+        .overlay{
+            position: fixed;
+            left:0;
+            top:0;
+            right:0;
+            bottom:0;
+            background: rgba(0,0,0,.8);
+        }
+        article{
+            position: absolute;
+            left:50%;
+            top:50%;
+            margin:-200px 0 0 -200px;
+            width:400px;
+            height:400px;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="overlay">
+    <article></article>
+</div>
+</body>
+<script src="http://wx.artjzf.com/static/js/jquery-1.8.3.min.js"></script>
+<script>
+/*
+ http://www.cnblogs.com/bo-haier/p/5644268.html
+
+*/
+    $('.overlay').click(function(e){
+        //检查事件的触发对象和绑定对象是否一致，从而确定事件不是从子元素里面冒泡上来的
+        console.log(this);              //<div class="overlay"></div>
+        console.log(e.target);          //<article></article>
+        console.log(e.currentTarget);   //<div class="overlay"></div>
+        //e.target指的是该对象里的子对象
+        //e.currentTarget指的是注册了事件监听器的对象
+        if(e.target == e.currentTarget){
+            closeOverlay();
+        }
+    });
+
+    function closeOverlay(){
+        $('.overlay').hide();
+    }
+
+</script>
+</html>

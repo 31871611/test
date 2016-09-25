@@ -38,6 +38,12 @@ var date=new Date();
     date.getUTCSeconds();           //与getSeconds()意义相同，只是表示的时区不同
     date.getUTCMilliseconds();      //与getMilliseconds()意义相同，只是表示的时区不同
 
+
+    date.toDateString();            //以特定格式显示星期几、月、日和年."Fri Sep 23 2016"
+    date.toTimeString();            //以特定的格式显示时、分、秒和时区."21:46:02 GMT+0800 (中国标准时间)"
+    date.toLocaleDateString();      //以特定的地区格式显示星期几、月、日和年."2016/9/23"
+    date.toLocaleTimeString();      //以特定的地区格式显示时、分、秒和时区."下午9:46:40"
+
 /*
     设置
 */
@@ -64,6 +70,10 @@ var date=new Date();
     date.setUTCMilliseconds();      //与setMilliseconds()意义相同，只是表示的时区不同
     date.toUTCString();             //将日期对象转换成格林尼治标准时间的日期字串
     Date.UTC();                     //返回整数表示1970年1月1日0:0:0起的毫秒数
+
+
+
+
 
 </script>
 </html>

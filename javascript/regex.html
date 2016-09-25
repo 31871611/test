@@ -8,6 +8,12 @@
 
 </body>
 <script>
+
+    var box='Mr.Lee is Lee';
+    box.match('L');         //找到L，返回L否则返回null
+    box.search('L');        //找到L的位置，和indexOf类似
+    box.replace('L','Q');   //把L替换为Q
+
 /**
  *
  * exec：方法也用于在字符串中查找指定正则表达式，如果 exec()方法执行成功，则返回包含该查找字符串的相关信息数组。如果执行失败，则返回null。
@@ -16,6 +22,7 @@
  * replace(pattern, replacement) 用 replacement 替换 pattern，替换
  * search(pattern) 返回字符串中 pattern 开始位置
  * split(pattern) 返回字符串按指定 pattern 拆分的数组，字符串拆分成数组
+
  *
  * 匹配单个字符（用.）
  * 匹配多个字符中的某一个（用[和]）
