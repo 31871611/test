@@ -66,6 +66,31 @@
  */
 
 
+    //BOM
+    //window.innerWidth。返回浏览器窗口本身的尺寸
+    //window.innerHeight
+    //window.outerWidth。返回浏览器窗口本身+边框的尺寸
+    //window.outerHeight
+    //ie不支持以上
+    alert(window.innerWidth + '|' + window.outerWidth);
+
+    //ie标准模式
+    alert(document.documentElement.clientWidth + '|' + document.documentElement.clientHeight);
+    //ie非标准模式
+    alert(document.body.clientWidth + '|' + document.body.clientHeight);
+
+    var width=window.innerWidth;
+    var height=window.innerHeight;
+    if(typeof width != 'number'){                   //如果是ie，就使用document
+        if(document.compatMode === 'CSS1Compat'){   //判断页面是否处于标准模式，如果返回CSS1Compat即标准模式
+            width = document.documentElement.clientWidth;
+            height = document.documentElement.clientHeight;
+        }else{
+            width = document.body.clientWidth;
+            height = document.body.clientHeight;
+        }
+    }
+
 
 
 
