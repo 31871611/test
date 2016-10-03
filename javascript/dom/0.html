@@ -3,10 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>DOM基本操作</title>
+    <style type="text/css">
+        #box{
+            height: 100px;
+            border:10px solid #0E2D5F;
+            overflow: auto;
+        }
+    </style>
 </head>
 <body>
 <div id="box">
     测试Div<em>倾斜</em>结尾
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
 </div>
 <h3>获取节点</h3>
 <dl>
@@ -223,13 +247,68 @@ console.log(document.getElementById('box').nodeType);       //1，元素节点
     <li>id设置或获得id属性e.id="over";</li>
 </ul>
 
+<dl>
+    <dt>元素尺寸和位置</dt>
+    <dd></dd>
+</dl>
+
 </body>
 <script>
 
 
     //document.getElementById('srcoll').scrollIntoView(true);   //没效果
 
+    var box=document.getElementById('box');
+    //获取元素可视区大小包括内边距所占据大小，如果有滚动条会减去
+    console.log(box.clientWidth);
+    console.log(box.clientHeight);
 
+    //获取滚动内容的元素大小。设置宽或高后实际内容宽高。包括内边距，如果有滚动条会减去
+    console.log(box.scrollWidth);
+    console.log(box.scrollHeight);
+
+    //获取元素实际大小，包含边框、内边框、滚动条。不包括滚动内容实际大小
+    console.log(box.offsetWidth);
+    console.log(box.offsetHeight);
+
+    //获取元素左边框和上边框的大小
+    console.log(box.clientLeft);
+    console.log(box.clientTop);
+
+    //获取元素相对于父元素的位置
+    console.log(box.offsetLeft);
+    console.log(box.offsetTop);
+
+    //得到父元素
+    console.log(box.offsetParent);
+
+    //获取滚动条距离
+    console.log(document.body.scrollTop);
+    console.log(document.body.scrollLeft);
+    //火狐 || 谷歌
+    var scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
+    console.log(scrollTop);
+
+    //获取元素各边与页面上边的左边的距离
+    console.log(box.getBoundingClientRect().top + '|' + getRect(box).top);          //元素上边距离页面上边的距离
+    console.log(box.getBoundingClientRect().right + '|' + getRect(box).right);      //元素右边距离页面左边的距离
+    console.log(box.getBoundingClientRect().bottom + '|' + getRect(box).bottom);    //元素下边距离页面上边的距离
+    console.log(box.getBoundingClientRect().left + '|' + getRect(box).left);        //元素左边距离页面左边的距离
+
+    //兼容ie。在ie中默认坐标从(2,2)开始
+    function getRect(element){
+        var rect=element.getBoundingClientRect();
+        var top=document.documentElement.clientTop;
+        var left=document.documentElement.clientLeft;
+
+        return{
+            top:rect.top-top,
+            bottom:rect.bottom-top,
+            left:rect.left-left,
+            right:rect.right-left
+        }
+
+    }
 
 
 </script>
