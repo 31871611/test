@@ -5,6 +5,9 @@
     <title>DOM基本操作</title>
 </head>
 <body>
+<div id="box">
+    测试Div<em>倾斜</em>结尾
+</div>
 <h3>获取节点</h3>
 <dl>
     <dt>document</dt>
@@ -37,6 +40,14 @@
     <dd>parentNode</dd>
     <dd>语法：子节点.parentNode</dd>
     <dd>功能：获取已知节点的父节点</dd>
+
+    <dd>ownerDocument</dd>
+    <dd>返回包含当前节点的文档的根节点，相当与document</dd>
+    <dd></dd>
+
+    <dd>attributes</dd>
+    <dd>获取当前元素节点的所有属性节点集合</dd>
+
 </dl>
 
 <h3>节点操作</h3>
@@ -63,6 +74,25 @@
     <dd>insertBefore()</dd>
     <dd>语法：insertBefore(所要添加的新节点，已知子节点)</dd>
     <dd>功能：在已知的子节点前插入一个新的子节点</dd>
+
+    <!--
+    
+        //在已知节点后面创建一个节点
+
+        //传入新节点、当前节点
+        function insertAfter(newElement,targetElement){
+            //得到交节点
+            var parent=targetElement.parentNode;
+            //如果最后一个子节点是当前元素，那么直接添加即可
+            if(parent.lastChild === targetElement){
+                parent.appendChild(newElement);
+            }else{
+                //在当前节点的下一个节点之前添加
+                parent.insertBefore(newElement,targetElement.nextSibling);
+            }
+        }
+
+    -->
 
     <dt>替换节点</dt>
     <dd>replaceChild()</dd>
@@ -114,28 +144,93 @@
     <dd>substring(offset,count)返回offset起count个节点</dd>
 </dl>
 
-<ul>
-    <li>body只能用于document.body,得到body元素</li>
-    <li>innerHTML元素节点中的文字内容，可以包括html元素内容</li>
-    <li>outerHTML会转义元素标签</li>
-    <li>ownerDocument返回包含当前节点的文档的根节点</li>
-    <li>nodeName元素节点的名字，是只读的，对于元素节点就是大写的元素名，对于文字内容就是#test，对于document就是#document</li>
-    <li>nodeValue元素节点的值，对于文字内容的节点，得到的就是文字内容</li>
-    <li>nodeNode元素节点的父节点</li>
-</ul>
+<dl>
+    <dt>节点</dt>
+    <dd>nodeNode元素节点的父节点</dd>
+    <dd>nodeName元素节点的名字，是只读的，对于元素节点就是大写的元素名，对于文字内容就是#test，对于document就是#document</dd>
+    <dd>nodeValue元素节点的值，对于文字内容的节点，得到的就是文字内容</dd>
+    <dd>nodeType</dd>
+</dl>
+
+<!--
+console.log(document.getElementById('box').nodeType);       //1，元素节点
+
+节点类型    nodeName                nodeType    nodeValue
+元素       元素名称(与tagName一样)      1          null
+属性       属性名称                    2          属性值
+文本       #text                      3          文本内容(不包含html)
+
+
+    //<div id="box">测试Div<em>倾斜</em>结尾</div>
+    var box=document.getElementById('box');
+    //alert(box.childNodes[0]);
+    //console.log(box.childNodes[0]);
+
+    //元素节点使用nodeName或者tagName获取标签名称
+    //文本子节点使用nodeValue获取
+    for(var i=0;i<box.childNodes.length;i++){
+        //判断是元素节点，输出元素标签名
+        if(box.childNodes[i].nodeType === 1){
+            alert('元素节点：'+box.childNodes[i].nodeName);
+        }else if(box.childNodes[i].nodeType === 3){
+            //判断是文本节点，输出文本内容
+            alert('文本节点：'+box.childNodes[i].nodeValue);
+        }
+    }
+
+
+    //innerHtml和nodeValue的区别
+    //1.取值，
+    //2.赋值的时候，nodeValue会把含在文本里的HTML转义成特殊字符
+
+
+-->
+
 
 <ul>
+    <li>document.documentElement,根节点html</li>
+    <li>body只能用于document.body,得到body元素</li>
+    <li>tagName返回当前节点的标记名称。document.documentElement.tagName</li>
+    <li>hasChildNodes检查当前节点是否包含有子节点，如果有子节点，则返回一个true</li>
+    <li>innerText获取文本内容或设置文本内容，火狐不支持</li>
+    <li>innerHTML元素节点中的文字内容，包括html元素内容</li>
+    <li>outerHTML会转义元素标签，不推荐使用</li>
+    <li>outerText与innerText一样，火狐不支持，不推荐使用</li>
+    <li>document.referrer，获取上一个url;历史记录上一个也可以？</li>
+</ul>
+
+<!--
+
+    //innerText兼容火狐方法.textContent
+    function getInnerText(element){
+        return (typeof element.textContent === 'string') ? element.textContent : element.innerText;
+    }
+
+    function setInnerText(element,text){
+        if(typeof element.textContent === 'string'){
+            element.textContent=text;
+        }else{
+            element.innerText=text;
+        }
+    }
+
+-->
+
+<ul id="srcoll">
+    <li>.title='';获取或设置title</li>
     <li>style修改或获得css属性。e.style.color="#fff";只能获得内联样式属性</li>
     <li>className设置或获得class属性。e.className="over";</li>
     <li>id设置或获得id属性e.id="over";</li>
-    <li>tagName返回当前节点的标记名称。document.documentElement.tagName</li>
-    <li>hasChildNodes检查当前节点是否包含有子节点，如果有子节点，则返回一个true</li>
 </ul>
 
 </body>
 <script>
 
-    console.log(document.documentElement);
+
+    //document.getElementById('srcoll').scrollIntoView(true);   //没效果
+
+
+
 
 </script>
 </html>

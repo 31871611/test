@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>操作样式</title>
+    <link rel="stylesheet" href="css.css">
+    <style>
+        #box{
+            /*color: red;background:#ccc;font-size:20px;float: right;*/
+        }
+    </style>
+
+</head>
+<body>
+<!--
+style="color: red;background:#ccc;font-size:20px;float: right;"
+-->
+    <div id="box">测试</div>
+</body>
+<script>
+/*
+    //检测浏览器是否支持DOM1级css能力或DOM2级CSS能力
+    //ie6中,hasFeature()方法只为HTML和版本1.0返回true，但ie支持最常用的CSS2模块
+    alert('DOM1级CSS能力：'+document.implementation.hasFeature('CSS','2.0'));
+    alert('DOM2级CSS能力：'+document.implementation.hasFeature('CSS2','2.0'));
+
+    行内  style=""
+    内联  <style></style>
+    链接  <link />
+
+
+    //1.访问元素的样式
+    //行内style样式的访问方式
+
+    var box=document.getElementById('box');
+    //获取行内样式
+    console.log(box.style);             //CSSStyleDeclaration对象
+    console.log(box.style.cssFloat || box.style.styleFloat);    //非ie || ie
+    console.log(box.style.cssText);
+
+    //设置行内样式
+    box.style.color='red';
+    //非ie || ie
+    typeof box.style.cssFloat != 'undefined' ? box.style.cssFloat='right' : box.style.styleFloat='right';
+
+
+    //获取计算后样式。可以获取行内、内联、链接
+    //getComputedStyle();参数1.需要计算的样式元素；参数2.伪类(如:hover)，如果没有就填null
+    //ie不支持，可以使用currentStyle
+    var style=window.getComputedStyle ? window.getComputedStyle(box,null) : null || box.currentStyle;
+    console.log(style.color);
+    console.log(style.border);  //获取不到.border是综合属性。只能获取到单独属性style.borderTopColor
+
+
+
+    //内联、链接样式
+    //是否支持DOM2级样式表
+    alert('DOM2级CSS能力：'+document.implementation.hasFeature('StyleSheets','2.0'));
+    console.log(document.getElementsByTagName('link')[0]);      //HTMLLinkElement
+    console.log(document.getElementsByTagName('style')[0]);     //HTMLStyleElement
+
+
+
+
+
+
+ */
+
+
+/*
+
+    //判断是否存在这个class
+    function hasClass(element,className){
+        return element.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
+    }
+
+    //添加一个class，如果不存在的话
+    function addClass(element,className){
+        if(!hasClass(element,className)){
+            element.className += '' + className;
+        }
+    }
+
+    //删除一个class，如果存在的话
+    function removeClass(element,className){
+        if(hasClass(element,className)){
+            //\s空格 ^开头
+            element.className=element.className.replace(new RegExp('(\\s|^)' + className + '(\\s|$)'),'');
+        }
+    }
+
+*/
+
+
+    //获取内联、link链接样式
+    var box=document.getElementById('box');
+    console.log(document.styleSheets);         //集合
+    var sheet=document.styleSheets[0];
+
+    var rules=sheet.cssRules || sheet.rules;
+    //长度为2.#box{} #a{}
+    console.log(rules[0]);
+    console.log(rules[0].style.color);      //可以获取、设置
+
+
+                                            //样式表中一个{}为一个位数
+    insertRule(sheet,'body',"background:red;",0);       //不会显示在谷歌调试工具可以选择区、显示在不能关闭默认样式中
+
+    //为了添加css规则，并且兼容所有浏览器
+    function insertRule(sheet,selectorText,cssText,position){
+        //如果是非ie
+        if(sheet.insertRule){
+            sheet.insertRule(selectorText + "{" + cssText + "}",position);
+        }else if(sheet.addRule){
+            //如果是ie
+            sheet.addRule(selectorText,cssText,position);
+        }
+    }
+
+    deleteRule(sheet,0);
+
+    //为了删除css规则，并且兼容所有浏览器
+    function deleteRule(sheet,index){
+        //如果是非ie
+        if(sheet.deleteRule){
+            sheet.deleteRule(index);
+        }else if(sheet.removeRule){
+            //如果是ie
+            sheet.removeRule(index);
+        }
+    }
+
+
+
+
+
+
+
+
+
+</script>
+</html>
