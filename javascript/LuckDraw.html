@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跑马灯抽奖</title>
+    <style>
+        li.select{color:#f00;}
+    </style>
+</head>
+<body>
+<ul>
+    <li class="select">1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+</ul>
+<input type="button" value="点击" />
+</body>
+<script src="http://wx.artjzf.com/static/js/jquery-1.8.3.min.js"></script>
+<script>
+
+    //初始值
+    var index=0;
+    //列表长度
+    var len=$("ul").children().length;
+    //最小圈
+    var min=1;
+    //最大圈数
+    var max=4;
+    //中奖值，长度里的一个值
+    var prizeNum=6;
+    //定时器
+    var timer=null;
+    //滚动速度
+    var speed = 700;
+
+
+    $("input").on("click",function(){
+        go();
+    });
+
+
+    function go(){
+        /*
+        if(minLun == maxLun){
+            window.clearInterval(timer);
+            speed += 100;
+            timer = setInterval(run, speed);
+        }
+
+        if(minLun == 1){
+            window.clearInterval(timer);
+            speed -= 80;
+            timer = setInterval(run, speed);
+        }
+        */
+
+        index++;
+        if(index == len) index=0;
+        $("ul").children().removeClass("select");
+        $("ul").children().eq(index).addClass("select");
+
+        //判断是否跑了一圈
+        if(index % len == 0){
+            min ++;
+        }
+
+        //跑满圈数 && ( 跑到中奖数 || 如果是最后一个值 )
+        if (min == max && (((index + 1) % len) == prizeNum || ((index + 1) % len) == 0 )) {
+            clearTimeout(timer);
+            alert("恭喜抽中了" + prizeNum + "号奖品");
+            //解绑
+            $('input').off();
+            return false;
+        }else{
+            timer=setTimeout(go,100);
+        }
+
+    }
+
+
+
+</script>
+</html>
