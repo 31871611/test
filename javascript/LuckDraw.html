@@ -69,7 +69,8 @@
         }
 
         //跑满圈数 && ( 跑到中奖数 || 如果是最后一个值 )
-        if (min == max && (((index + 1) % len) == prizeNum || ((index + 1) % len) == 0 )) {
+//        if (min == max && (((index + 1) % len) == prizeNum || ((index + 1) % len) == 0 )) {
+        if (min == max && (index + 1) == prizeNum) {
             clearTimeout(timer);
             alert("恭喜抽中了" + prizeNum + "号奖品");
             //解绑
