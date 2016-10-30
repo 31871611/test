@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS 面包屑导航栏</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #crumbs ul{
+            list-style: none;
+            margin:100px 0 0 100px;
+        }
+        #crumbs ul li a{
+            float: left;
+            margin-right: 30px;
+            display: inline-block;
+            position: relative;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 20px 0 20px;
+            text-align: center;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        #crumbs ul li a:after{
+            content: "";
+            /* 高:40 */
+            border-left: 20px solid #3498db;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            position: absolute;
+            right: -20px;
+            top: 0;
+        }
+        #crumbs ul li a:before{
+            content: "";
+            border-top: 20px solid #3498db;
+            border-bottom: 20px solid #3498db;
+            border-left: 20px solid transparent;
+            position: absolute;
+            top: 0;
+            left: -20px;
+        }
+
+        #crumbs ul li:first-child a{
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        #crumbs ul li:first-child a:before{
+            display: none;
+        }
+
+        #crumbs ul li:last-child a{
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        #crumbs ul li:last-child a:after{
+            display: none;
+        }
+
+        #crumbs ul li a:hover{
+            background-color:#fa5ba5;
+        }
+
+
+        #crumbs ul li a:hover:after{
+            border-left-color: #fa5ba5;
+        }
+
+
+
+        #crumbs ul li a:hover:before{
+            border-top-color: #fa5ba5;
+            border-bottom-color: #fa5ba5;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="crumbs">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Info</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
