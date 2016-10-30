@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择部分文本</title>
+</head>
+<body>
+<div id="box"></div>
+<form name="form">
+    <input type="text" name="text" value="1234567890" />
+</form>
+
+</body>
+<script>
+
+    //setSelectionRange()，w3c;火狐需要加上text.focus();
+    //接受两个参数：索引和长度
+
+    var text=document.forms[0].elements['text'];
+/*
+
+    //选择全部文本
+    //text.select();
+    text.setSelectionRange(0,3);
+    //选择全部文本
+    //text.setSelectionRange(0,text.value.length);
+    text.focus();
+
+
+    //ie8以下
+    var range=text.createTextRange();       //创建一个文本范围对象
+    range.collapse(true);                   //将指针移动起点
+    range.moveStart('character',0);         //移动起点，character表示逐字移动
+    range.moveEnd('character',3);           //移动终点，同上
+    range.select();
+
+*/
+
+    //兼容
+    function selectText(text,start,stop){
+        if(text.setSelectionRange){
+            text.setSelectionRange(start,stop);
+            text.focus();
+        }else if(text.createTextRange){
+            var range=text.createTextRange();
+            range.collapse(true);
+            range.moveStart('character',start);
+            range.moveEnd('character',stop - start);    //ie用终点减去起点得到字符数
+            range.select();
+        }
+    }
+
+    //selectText(text,0,3);
+
+
+/*******************************************************************************************************/
+
+
+    //取得选择的文本内容
+    //selectionStart：选中开始的位置索引、selectionEnd：选中结束的位置索引;w3c
+    //selection;ie
+
+/*
+    addEvent(text,'select',function(){
+//        console.log(this.selectionStart);
+//        console.log(this.selectionEnd);
+        console.log(this.value.substring(this.selectionStart,this.selectionEnd));
+    });
+*/
+
+    //兼容
+    function getSelectText(text){
+        if(typeof text.selectionStart == 'number'){     //非ie
+            return text.value.substring(text.selectionStart,text.selectionEnd);
+        }else if(document.selection){                   //ie
+            return document.selection.createRange().text;   //获取ie选择的文本
+        }
+    }
+
+    addEvent(text,'select',function(){
+       document.getElementById('box').innerHTML=getSelectText(this);
+    });
+
+/*******************************************************************************************************/
+
+
+
+    function addEvent(obj,type,fn){
+        if(obj.addEventListener){
+            obj.addEventListener(type,fn);
+        }else if(obj.attachEvent){
+            obj.attachEvent('on'+type,fn);
+        }
+    }
+
+</script>
+</html>

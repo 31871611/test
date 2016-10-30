@@ -6,7 +6,20 @@
 </head>
 <body>
 
-<form name="form1" action="提交地址" method="get|post">
+<dl>
+    <dt>HTMLFormElement属性和方法</dt>
+    <dd>acceptCharset：服务器能够处理的字符集</dd>
+    <dd>action：接受请求的 URL</dd>
+    <dd>elements：表单中所有控件的集合</dd>
+    <dd>enctype：请求的编码类型</dd>
+    <dd>length：表单中控件的数量</dd>
+    <dd>name：表单的名称</dd>
+    <dd>target：用于发送请求和接受响应的窗口名称</dd>
+    <dd>reset()：将所有表单重置</dd>
+    <dd>submit()：提交表单</dd>
+</dl>
+
+<form name="form1" id="form1" action="提交地址" method="get|post">
     <input type="text" name="myText" value="用户名" />
     <div>
         <input type="checkbox" />
@@ -17,6 +30,11 @@
         <input type="radio" name="myRadio" />
         <input type="radio" name="myRadio" />
         <input type="radio" name="myRadio" />
+    </div>
+    <div>
+        <textarea name="textarea">
+
+        </textarea>
     </div>
     <div>
         <p>options[]，具有index属性、text属性、value属性、length</p>
@@ -32,38 +50,78 @@
         </select>
     </div>
     <input type="button" name="myButton" value="按钮">
+    <div>
+        <input type="submit" value="提交" />
+    </div>
 </form>
 
 </body>
 <script>
 
+/*
 
+  forms：表示页面上form对象的集合
+  elements[]
+  name属性
+  value属性
+  type属性
+  checked属性，checked=true选中，checkbox多选是否选中，
+  radio单选具有length属性，checked=true选中
+
+ */
+
+
+
+    //获取表单<form>对象的方法
+    var fm=document.getElementById('form1');               //使用id获取
+    document.getElementsByTagName('form')[0];       //获取第一个form元素
+    document.forms[0];                              //使用forms数字下标获取元素
+    document.forms['form1'];                        //使用forms的名称下标获取元素
+    document.form1;                                 //使用name名称直接获取.不推荐使用
+
+
+    //获取表单元素
+    fm.elements[0];
+    fm.elements['myText'];
+    fm.elements.length;
 
 /*
 
- * forms：表示页面上form对象的集合
- * elements[]
- * name属性
- * value属性
- * type属性
- * checked属性，checked=true选中，checkbox多选是否选中，
- * radio单选具有length属性，checked=true选中
- *
+    表单字段属性
 
- */
+     disabled       布尔值，表示当前字段是否被禁用
+     form           指向当前字段所属表单的指针，只读
+     name           当前字段的名称
+     readOnly       布尔值，表示当前字段是否只读
+     tabIndex       表示当前字段的切换
+     type           当前字段的类型
+     value          当前字段的值
+
+*/
+
+    fm.elements['myText'].value;        //获取和设置value
+
+
+    //<input type='text' />、<textarea></textarea>都可以通过value获取它们的值
+    fm.elements['myText'].value;
+    fm.elements['textarea'].value;
+
+
+    //获取最初的value值
+    fm.elements['myText'].defaultValue;
+
+
+
+    //阻止submit的默认行为.尽量避免使用name='submit'或id='submit'
+    addEvent(fm,'submit',function(e){
+        preDef(e);
+    });
 
 
     console.log(document.form1.length);          //返回form1里的表单元素长度
     console.log(document.form1.elements);        //返回form1里的表单元素.循环使用.
     //document.form1.myButton.value与document.form1[0]一样;
 
-/*
-    for(var i=0;document.form1.elements.length;i++){
-        document.form1.elements[i].type = "text";
-        document.form1.elements[i].className = "text";
-        ...等。查看console.log(document.form1.elements);
-    }
-*/
 
     for(var i=0;i<document.form1.myRadio.length;i++){
         (function(i){
@@ -77,12 +135,19 @@
     //等于全选文字
     document.form1.myText.select();
 
-    //列表框与下拉列表框具有3个事件：onfocus()、onblur()、onchange()
 
+
+
+
+
+
+
+/****************************************************************************************************/
+
+    //列表框与下拉列表框具有3个事件：onfocus()、onblur()、onchange()
 
     console.log("下拉选项的长度："+document.form1.theDay.options.length);
     console.log("选中下拉第1项的值："+document.form1.theDay.options[0].value + "，选中下拉第1项的文本：" + document.form1.theDay.options[0].text);
-
 
 
     //添加新的列表项
@@ -103,6 +168,7 @@
     //add()接受两个参数，1、要插入的option对象；2、该option对象要插入的索引位置。add(new Option("new2","new2"),2)
     //remove()要删除的索引。remove(2)
 
+/****************************************************************************************************/
 
 
 </script>
