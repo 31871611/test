@@ -2,78 +2,395 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>事件event</title>
+    <style>
+        #box{width: 100px;height: 100px;}
+        .red{background: red;}
+        .blue{background: blue;}
+        #pos{display: block;width: 150px;height: 150px;background: #0cbd0b;}
+    </style>
 </head>
 <body>
+<a href="http://www.baidu.com">百度</a>
+<span id="pos">
+    <div id="box" class="red">
+        <input type="button" value="点击" />
+    </div>
+</span>
+
+<ul>
+    <li>onclick()：单击</li>
+    <li>ondblclick()：双击</li>
+    <li>onmousedown():当用户按下鼠标还未弹起时触发</li>
+    <li>onmouseup()：当用户释放鼠标按钮时触发</li>
+    <li>onmouseover()：当鼠标移到某个元素上方时触发</li>
+    <li>onmouseout()：当鼠标离开时</li>
+    <li>onmousemove()：当鼠标在元素上移动时触发</li>
+
+    <li>onkeydown()当用户按下键时即触发，如果按住不放，会重复触发</li>
+    <li>onkeypress()当用户按了一个键时将触发，如果按住不放，会重复触发</li>
+    <li>onkeyup()当用户放开一个键时触发</li>
+
+    <li>onload：页面加载完毕</li>
+    <li>onunload：当页面所载，关闭浏览器或者打开了其他页面</li>
+    <li>onload()与onunload()要放在window下，window.onload</li>
+
+    <li>onselect()：当用户选择文本框(input或textarea)中的一个或多个字符触发</li>
+    <li>onchange()：当文本框(input或textarea)内容改变且失去焦点后触发</li>
+
+    <li>onfocus()：获得焦点</li>
+    <li>onblur()：失去焦点</li>
+
+    <li>onsubmit()：当用户提交按钮在<form><input type="submit" value="元素上触发" /></form></li>
+    <li>onreset()：当用户点击重置按钮在<form><input type="reset" value="元素上触发" /></form></li>
+
+    <li>onresize()：当窗口或框架的大小变化时在window或框架上触发</li>
+    <li>onscroll()：当用户滚动带滚动条的元素时触发</li>
+
+    <li>onContextMenu();可以修改window自带的右键菜单</li>
+    <li>鼠标滚轮事件；onmousewheel|DOMMouseScroll</li>
+
+    <li>onabort()当图像加载被中断时</li>
+    <li>ondragdrop()当用户将一个对象拖放到浏览器窗口时</li>
+    <li>onerror()在加载文档或图像时发生错误</li>
+    <li>onmove()当浏览器窗口移动时</li>
+    <li>beforeunload();卸载前事件.谷歌上无效</li>
+</ul>
+
+<dl>
+    <dt>鼠标 / 键盘属性</dt>
+    <dd>MouseEvent对象，鼠标操作所引发的各种事件，如当前鼠标指针的坐标值、或者鼠标从哪一个元素上移开</dd>
+    <dd>altKey，判断alt键是否被按下</dd>
+    <dd>shiftKey，判断shift键是否被按下</dd>
+    <dd>ctrlKey，判断ctrl键是否被按下</dd>
+    <dd>metaKey，判断meat(window)键是否被按下</dd>
+    <dd>keyCode，该属性声明了被敲击的键生成的 Unicode 字符码</dd>
+    <dd>button对于鼠标事件，该属性表示鼠标的哪一个按钮被按下。0左键，1中间，2右键；使用于mousedown和mouseup</dd>
+    <dd>clientX鼠标指针在可视区域中的横坐标，即x坐标</dd>
+    <dd>clientY鼠标指针在可视区域中的横坐标，即y坐标</dd>
+    <dd>screenX鼠标指针相对于计算机屏幕区域中的横坐标，即x坐标</dd>
+    <dd>screenY鼠标指针相对于计算机屏幕区域中的横坐标，即y坐标</dd>
+    <dd>relatedTarget	返回与事件的目标节点相关的节点。</dd>
+</dl>
+
+<dl>
+    <dt>2 级 DOM 事件标准定义的属性</dt>
+    <dd>type返回事件名称</dd>
+    <dd>srcElement|target返回接收当前事件的HTML元素。window.event.srcElement|event.target</dd>
+    <dd>bubbles一个逻辑值，表示是否允许事件冒泡（即事件从一个底层元素向上传递给上一层的元素</dd>
+    <dd>cancelable一个逻辑值，表示是否可以取消事件默认行为</dd>
+    <dd>currentTarget表示当前事件所指向的元素节点</dd>
+    <dd>eventPhase一个表示事件流当前阶段的数字值</dd>
+
+    <dd>detail与事件相关的细节信息</dd>
+    <dd>event.preventDefault()取消事件的默认行为。如果cancelable是true，则可以使用这个方法</dd>
+    <dd>event.stopPropagation()取消事件的进一步捕获或冒泡。如果bubbles为true，则可以使用这个方法。非ie</dd>
+    <dd>view与事件关联的抽象视图</dd>
+    <dd>cancelBubble默认值为false，但将其设置为true就可以取消事件冒泡</dd>
+    <dd>returnValue默认值为true，但将其设置为false就可以取消事件的默认行为</dd>
+
+    <dd>relatedTarget</dd>
+    <dd>fromElement表示鼠标移出的元素|ie</dd>
+    <dd>toElement表示产生事件的元素|ie</dd>
+</dl>
 
 </body>
 <script>
 /*
-    * 事件
-    * onload：页面加载完毕
-    * onunload：当页面所载，关闭浏览器或者打开了其他页面
-    * onload与onunload要放在window下，window.onload
-    * onclick：单击
-    * onfocus()：获得焦点
-    * onblur()：失去焦点
-    * onmousedown()
-    * onmouseup()
-    * onselect()方法，用于选择或加亮文本框中的文本
-    * onchange()内容发生改变
-    * onSelect()文本框中选择了文字内容
-    * onkeydown()当用户按下键时即触发
-    * onkeypress()当用户按了一个键时将触发
-    * onkeyup()当用户放开一个键时即触发
-    * event对象
-    * type返回事件名称
-    * srcElement|target返回接收当前事件的HTML元素。window.event.srcElement|event.target
-    * bubbles一个逻辑值，表示是否允许事件冒泡（即事件从一个底层元素向上传递给上一层的元素）
-    * cancelable一个逻辑值，表示是否可以取消事件默认行为
-    * currentTarget表示当前事件所指向的元素节点
-    * eventPhase一个表示事件流当前阶段的数字值
-    * fromElement表示鼠标移出的元素
-    * toElement表示产生事件的元素
-    * srcElement表示鼠标移入的元素
-    *
-    *
-    document.getElementsByTagName("a")[0].onclick=function(event){
-                var elementTarget;
-                window.event ? elementTarget=window.event.srcElement : elementTarget=event.target;
-                alert(elementTarget);
 
-                if(document.all){
-                    alert(window.event.srcElement);
-                    alert(window.event.type);
-                }else{
-                    alert(event.target);
-                    alert(event.type);
-                }
+    //事件中属性
+    document.getElementsByTagName("input")[0].onclick=function(event){
+        var e=event || window.event;
+        //非ie  ||  ie
+        var target=e.target || e.srcElement;
+        console.log(target);
+        console.log(target.type);
+        console.log(target.tagName);
+    };
+
+ */
+
+
+
+/*
+    //鼠标按键
+    document.getElementsByTagName('input')[0].onmousedown=function(event){
+        //非ie  ||  ie
+        var e=event || window.event;
+        if(getButton(event) == 0){
+            alert('按下了左键');
+        }else if(getButton(event) == 1){
+            alert('按下了中键');
+        }else if(getButton(event) == 2){
+            alert('按下了右键');
+        }
+    };
+
+    function getButton(event){
+        //非ie  ||  ie
+        var e=event || window.event;
+        if(event){
+            return e.button;
+        }else if(window.event){     //兼容ie
+            switch (e.button){
+                case 1 :
+                    return 0;
+                case 4 :
+                    return 1;
+                case 2 :
+                    return 2;
             }
-            * MouseEvent对象，鼠标操作所引发的各种事件，如当前鼠标指针的坐标值、或者鼠标从哪一个元素上移开
-    * altKey一个逻辑值，表示当事件发生时，alt键是否被按下
-    * shiftKey一个逻辑值，表示当事件发生时，alt键是否被按下
-    * ctrlKey一个逻辑值，表示当事件发生时，alt键是否被按下
-    * metaKey一个逻辑值，表示当事件发生时，alt键是否被按下
-    * button对于鼠标事件，该属性表示鼠标的哪一个按钮被按下
-    * clientX表示当前事件发生时，鼠标指针在客户端区域中的横坐标，即x坐标
-    * clientY表示当前事件发生时，鼠标指针在客户端区域中的横坐标，即y坐标
-    * screenX表示当前事件发生时，鼠标指针相对于计算机屏幕区域中的横坐标，即x坐标
-    * screenY表示当前事件发生时，鼠标指针相对于计算机屏幕区域中的横坐标，即y坐标
-    *
-        //body里需要有内容
-    document.body.onclick=function(event){
-                if(document.all){
-//            alert(window.event.clientX);
-//            alert(window.event.altKey);
-                    alert(window.event.button);
-                }else{
-//            alert(event.clientX);
-//            alert(event.altKey);
-                    alert(event.button);
-                }
-            }
-            *
+        }
+    }
 */
+
+
+/*
+
+ //可视区及屏幕坐标.body里需要有内容
+ document.body.onclick=function(event){
+     var e=event || window.event;
+
+     alert(e.clientX + '|' + e.clientY);
+     alert(e.screenX + '|' + e.screenY);
+
+ };
+
+*/
+
+
+/*
+
+    //判断是否按键盘上的常用键。shfit、ctrl、alt、meat(window)
+    document.getElementsByTagName('input')[0].onclick=function(event){
+        alert(getKey(event));
+    };
+
+    function getKey(event){
+        var e=event || window.event;
+        var keys=[];
+
+        if(e.shiftKey) keys.push('shift');
+        if(e.ctrlKey) keys.push('ctrl');
+        if(e.altKey) keys.push('alt');
+
+        return keys;
+    }
+
+ */
+
+
+/*
+
+    //捕获流程。document->html->body->box->input
+    //冒泡流程。input->box->body->html->document
+    document.onclick=function(){
+        alert('document');
+    }
+
+    document.documentElement.onclick=function(){
+        alert('html');
+    }
+
+    document.body.onclick=function(){
+        alert('body');
+    }
+
+    document.getElementById('box').onclick=function(){
+        alert('box');
+    }
+
+    document.getElementsByTagName('input')[0].onclick=function(event){
+        var e=event || window.event;
+        alert('input');
+
+        //阻止冒泡
+        //w3c：e.stopPropagation()
+        //ie：e.cancelBubble = true
+        //方法1.兼容ie
+        window.event ? e.cancelBubble = true : e.stopPropagation();
+        //方法2.兼容ie
+        //typeof e.stopPropagation == 'function' ? e.stopPropagation() : e.cancelBubble=true;
+        //方法3.兼容ie
+        //document.all ? e.cancelBubble=true : e.stopPropagation();
+    }
+
+ */
+
+
+/**/
+
+    //非ie
+    //window.addEventListener();添加事件
+    //window.removeEventListener();删除事件
+    //接受3个参数：事件名、函数、冒泡或捕获的布尔值(true表示捕获，false表示冒泡)
+
+    //ie
+    //window.attachEvent();
+    //window.detachEvent();事件名需要加on
+    //区别：
+    // 1.ie不支持捕获，只支持冒泡；
+    // 2.ie添加事件不能屏蔽重复的函数；
+    // 3.ie中的this指向的是window而不是dom对象；
+    // 4.在传统事件上，ie是无法接受到event对象的，但使用了attachEvent()却可以
+    //var input=document.getElementsByTagName("input")[0];
+//    input.addEventListener("click",function(){
+//        alert(1);
+//    },false);
+//    input.addEventListener("click",function(){
+//        alert(2);
+//    },false);
+
+
+//    input.attachEvent("onclick",function(){
+//        alert(1);
+//    },false);
+//
+//    input.attachEvent("onclick",function(){
+//        alert(2);
+//    },false);
+
+
+
+    //兼容ie与w3c
+    function addEvent(obj,type,fn){
+        if(obj.addEventListener){
+            obj.addEventListener(type,fn);
+        }else if(obj.attachEvent){
+            obj.attachEvent('on'+type,fn);
+        }
+    }
+
+    function removeEvent(obj,type,fn){
+        if(obj.removeEventListener){
+            obj.removeEventListener(type,fn);
+        }else if(obj.detachEvent){
+            obj.detachEvent('on'+type,fn);
+        }
+    }
+
+    function getTarget(event){      //得到事件目标
+        if(event.target){
+            return event.target;
+        }else if(window.event.srcElement){
+            return window.event.srcElement;
+        }
+    }
+
+
+/***********************************************************************************************/
+
+    var box=document.getElementById('box');
+    addEvent(box,'click',toBlue);
+
+
+    function toRed(){
+        var _this=getTarget(event);
+        _this.className='red';
+        removeEvent(box,'click',toRed);
+        addEvent(box,'click',toBlue);
+    }
+
+    function toBlue(){
+        var _this=getTarget(event);
+        _this.className='blue';
+        removeEvent(box,'click',toBlue);
+        addEvent(box,'click',toRed);
+    }
+
+/***********************************************************************************************/
+
+/*
+    //w3c获取从哪里移入移出的dom对象
+    addEvent(box,'mouseover',function(event){
+        //移入前的dom对象
+        alert(event.relatedTarget);
+    });
+
+    addEvent(box,'mouseout',function(){
+        //移出到的dom对象
+        alert(event.relatedTarget);
+    });
+
+
+
+    //ie获取
+    addEvent(box,'mouseover',function(event){
+        //移入前的dom对象
+        alert(window.event.fromElement);
+    });
+
+    addEvent(box,'mouseout',function(event){
+        //移入前的dom对象
+        alert(window.event.toElement);
+    });
+
+ */
+
+    //兼容w3c|ie
+addEvent(box,'mouseover',function(event){
+    alert(getTargetElement(event));
+});
+
+function getTargetElement(event){
+    var e=event || window.event;
+    if(e.srcElement){
+        if(e.type == 'mouseover'){
+            return e.fromElement;
+        }else if(e.type == 'mouseout'){
+            return e.toElement;
+        }
+    }else if(e.relatedTarget){
+        return e.relatedTarget;
+    }
+}
+
+/***********************************************************************************************/
+
+    //阻止默认行为
+    function preDef(event){
+        var e=event || window.event;
+        if(e.preventDefault){
+            e.preventDefault();     //w3c
+        }else {
+            e.returnValue=false;    //ie
+        }
+
+    }
+
+/***********************************************************************************************/
+
+    //beforeunload();卸载前事件.谷歌上无效
+    addEvent(window,'beforeunload',function(){
+        if(confirm('确定要离开！')){
+            alert('1');
+        }
+    });
+
+/***********************************************************************************************/
+
+    //鼠标滚轮事件；onmousewheel|DOMMouseScroll
+
+    //onmousewheel非火狐
+    document.onmousewheel=function(event){
+        alert(getWd(event));
+    };
+
+    //DOMMouseScroll火狐
+    document.DOMMouseScroll=function(event){
+        alert(getWd(event));
+    };
+
+    //兼容差值
+    function getWd(event){
+        var e=event || window.event;
+        if(e.wheelDelta){
+            return e.wheelDelta;
+        }else if(e.detail){
+            return -event.detail * 30;
+        }
+    }
+
 
 
 </script>
