@@ -2,17 +2,19 @@ App.vue
 
 /*************************************************************************/
 
-<script>
 // scss文件中以.scss的路径访问图片
-require('assets/scss/hello.scss')
+<script>
+    require('assets/scss/hello.scss')
 </script>
+
+<style lang="scss" scoped src="../assets/scss/hello.scss"></style>
 
 /*************************************************************************/
 
-引入一：
+引入一：scoped有效
 <style src="../static/css/test.css"></style>
 
-引入二：
+引入二：不支持scoped
 <style>
   @import "../static/css/test.css";
 </style>
@@ -24,6 +26,8 @@ body {
 }
 
 /*************************************************************************/
+
+//没意义
 
 <style lang="sass">
   @import "../static/sass/test.scss";
