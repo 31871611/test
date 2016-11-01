@@ -43,6 +43,9 @@
             return num * arguments.callee(num-1);   //使用callee来执行自身
         }
     }
+    //arguments.callee是一个指向正在执行的函数的指针，因此可以用它来实现对函数的递归调用
+    //在编写递归函数时，使用arguments.callee总比使用函数名更保险
+
 
     //apply()
     //call()

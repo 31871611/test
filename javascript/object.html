@@ -8,6 +8,7 @@
 
 </body>
 <script>
+/*
 
     var o={};
     o.name="姓名";
@@ -36,6 +37,123 @@
     console.log(box3 instanceof RegExp);    //是否是正则表达式.true
     var box4='lee';
     console.log(box4 instanceof String);    //当使用instanceof检查基本类型的值时，它会返回false
+
+
+ */
+
+
+/*
+
+    //用作块级作用域（通常称为私有作用域）的匿名函的语法
+    //紧随其后的另一对圆括号会立即调用这个函数
+    (function(){
+        //这里是块级作用域
+
+    })()
+
+    var Abc=(function(){
+        //这里是块级作用域
+
+        return{
+            name:"name",
+            method:function(){
+
+            },
+            set:function(){},
+            get:function(){}
+        }
+    })()
+
+*/
+
+
+/*
+    //静态私有变量
+    (function(){
+        //私有变量和私有函数
+        var privateVariable=10;
+
+        function privateFunction(){
+            return false;
+        }
+
+        //构造函数.未使用var会创建一个全局变量
+        MyObject=function(){};
+
+        //公有/特权方法
+        MyObject.prototype.publicMethod=function(){
+            privateVariable++;
+            privateFunction();
+        }
+
+    })();
+
+    var myObject=new MyObject();
+    myObject.publicMethod();
+
+ */
+
+
+/*
+    //没理解。运行不了
+    //模块模式
+    var singleton=function(){
+        //私有变量和私有函数
+        var privateVariable=10;
+
+        function privateFunction(){
+            return false;
+        }
+
+        CustomType=function(){};
+
+        //创建对象
+        var object=new CustomType();
+
+        //添加特权/公有属性和方法
+        object.publicProperty=true;
+
+        object.publicMethod=function(){
+            privateVariable++;
+            privateFunction();
+        };
+
+        return object;
+    }();
+
+    console.log(singleton.publicMethod());
+
+
+
+    var application=function(){
+        //私有变量和函数
+        var components=[];
+
+        //初始化
+        components.push(new BaseComponent());
+
+        //创建application的一个局部副本
+        var app=new BaseComponent();
+
+        //公共接口
+        app.getComponentCount=function(){
+            return components.length;
+        };
+
+        app.registerComponent=function(){
+            if(typeof component == "object"){
+                components.push(component);
+            }
+        };
+
+        //返回这个副本
+        return app;
+    }();
+
+    console.log(application.getComponentCount());
+ */
+
+
 
 </script>
 </html>
