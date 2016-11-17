@@ -54,6 +54,11 @@ router.map({
     component: function(resolve){
       require(['./components/photoswipe/photoswipe.vue'], resolve);
     }
+  },
+  '/larea':{
+    component: function(resolve){
+      require(['./components/larea/larea.vue'], resolve);
+    }
   }
 
   //'/article/:type':{

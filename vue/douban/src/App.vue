@@ -17,6 +17,7 @@
     <li><a v-link="'/router/02?favorite=yes'">路由说明</a></li>
     <li><a v-link="'/test'">测试</a></li>
     <li><a v-link="'/photoswipe'">图片</a></li>
+    <li><a v-link="'/larea'">iso三联地址联动</a></li>
   </ul>
   <router-view></router-view>
 </template>
