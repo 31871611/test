@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模块化</title>
+    <style>
+        a{
+            display: block;
+            background: #f00;
+            height:500px;
+        }
+        div{
+            position: fixed;
+            left:0;
+            top:0;
+            bottom:0;
+            right:0;
+            background: rgba(0,0,0,.5);
+        }
+    </style>
+</head>
+<body>
+<!--<a href="http://www.baidu.com">百度</a>-->
+<!--<div></div>-->
+</body>
+<script>
+/*
+
+ 在大部分情况下，还是可以直接使用 touchend 替代，但是一定要如 @悠悠 答案中所说：
+ 在touchstart、touchend时记录时间、手指位置，
+ 在touchend时进行比较，如果手指位置为同一位置（或允许移动一个非常小的位移值）且时间间隔较短（一般认为是200ms），
+ 且过程中未曾触发过touchmove，
+ 即可认为触发了手持设备上的“click”，
+ 一般称它为“tap”
+
+
+    document.getElementsByTagName('div')[0].ontouchstart=touch;
+    document.getElementsByTagName('div')[0].ontouchmove=touch;
+    document.getElementsByTagName('div')[0].ontouchend=touch;
+
+
+
+    function touch(event){
+        console.log(1);
+
+
+        var time;
+
+        var touch=event.changedTouches[0];
+        var start={
+            x:touch.clientX,
+            y:touch.clientY
+        };
+        console.log(event.type+'|'+start.x + "|" + start.y);
+
+        if(event.type == 'touchstart'){
+            time=new Date()-0;
+            console.log(time);
+        }else if(event.type == 'touchmove'){
+
+        }else if(event.type == 'touchend'){
+
+            console.log((new Date()-0) + '|' + time);
+
+
+            this.style.display='none';
+            event.preventDefault();
+        }
+
+    }
+
+ */
+
+
+
+/*
+
+//例1：匿名闭包函数
+var global='hello, i am a global variable;';
+(function(){
+    var myGrader=[93,95,88,0,55,91];
+    var average=function(){
+        var total=myGrader.reduce(function(accumulator,item){
+            return accumulator + item;
+        },0);
+        return 'your average grade is ' + total / myGrader.length + ' .';
+    };
+
+    var failing=function(){
+        var failingGrades=myGrader.filter(function(item){
+            return item < 70;
+        });
+        return 'you failed ' + failingGrades.length + ' times.';
+    };
+
+    console.log(failing());
+    console.log(global);
+})()
+
+*/
+
+
+/*
+
+//例2：全局引入
+var globalVariable={};
+(function(globalVariable){
+
+    //在函数的作用域中下面的变量是私有的
+    var privateFunction=function(){
+        console.log('this is private!');
+    };
+
+    //通过全局变量设置下列方法的外部访问接口
+    //与些同时这些方法又都在函数内部
+    globalVariable.each=function(collection,iterator){
+        if(Array.isArray(collection)){
+            for(var i=0;i<collection.length;i++){
+                iterator(collection[i],i,collection);
+            }
+        }else{
+            for(var key in collection){
+                iterator(collection[key],key,collection);
+            }
+        }
+    };
+
+    globalVariable.filter=function(collection,test){
+        var filtered=[];
+        globalVariable.each(collection,function(item){
+            if(test(item)){
+                filtered.push(item);
+            }
+        });
+        return filtered;
+    };
+
+    globalVariable.map=function(collection,iterator){
+        var mapped=[];
+        globalUtils.each(collection,function(value,key,collection){
+            mapped.push(iterator(value));
+        });
+        return mapped;
+    };
+
+    globalVariable.reduce=function(collection,iterator,accumulator){
+        var startingValueMissing = accumulator == undefined;
+        globalVariable.each(collection,function(item){
+            if(startingValueMissing){
+                accumulator = item;
+                startingValueMissing = false;
+            }else{
+                accumulator = iterator(accumulator,item);
+            }
+        });
+        return accumulator;
+    };
+
+    globalVariable.test=function(t){
+        console.log(t);
+    };
+
+})(globalVariable);
+
+globalVariable.test('111');
+
+*/
+
+
+/*
+
+//例3：对象接口
+var myGradesCalculate=(function(){
+    //私有
+    var myGrader=[93,95,88,0,55,91];
+
+    //通过接口在外部访问下列方法
+    //与此同时这些方法又都在函数内部
+    return{
+        average:function(){
+            var total=myGrader.reduce(function(accumulator,item){
+                return accumulator + item;
+            },0);
+            return 'your average grade is ' + total / myGrader.length + ' .';
+        },
+        failing:function(){
+            var failingGrades=myGrader.filter(function(item){
+                return item < 70;
+            });
+            return 'you failed ' + failingGrades.length + ' times.';
+        }
+    };
+
+})();
+
+console.log(myGradesCalculate.average());
+console.log(myGradesCalculate.failing());
+
+*/
+
+
+/*
+
+//例4：揭示模块模式 Revealing module pattern
+var myGradesCalculate=(function(){
+    //私有
+    var myGrader=[93,95,88,0,55,91];
+
+    var average=function(){
+        var total=myGrader.reduce(function(accumulator,item){
+            return accumulator + item;
+        },0);
+        return 'your average grade is ' + total / myGrader.length + ' .';
+    };
+
+    var failing=function(){
+        var failingGrades=myGrader.filter(function(item){
+            return item < 70;
+        });
+        return 'you failed ' + failingGrades.length + ' times.';
+    };
+
+    return{
+        average:average,
+        failing:failing
+    }
+
+})();
+
+console.log(myGradesCalculate.average());
+console.log(myGradesCalculate.failing());
+
+ */
+
+/*
+
+//CommonJS
+
+function myModule(){
+    this.hello=function(){
+        return 'hello!';
+    }
+
+    this.goodbye=function(){
+        return 'goodbye!';
+    }
+}
+
+module.exports=myModule;
+
+//文件2.引用
+var myModule_=require('myModule');
+var myModuleInstance=new myModule();
+myModuleInstance.hello();
+myModuleInstance.goodbye();
+
+ */
+
+
+/**/
+
+//UMD
+//Universal Module Definition（通用模块定义规范）
+//UMD创造了一种同时使用两种规范的方法，并且也支持全局变量定义。所以UMD的模块可以同时在客户端和服务端使用。
+
+(function(root,factory){
+    if(typeof define === 'function' && define.amd){
+        //amd
+        define(['jquery','myOtherModule'],factory);
+    }else if(typeof exports === 'object'){
+        //Node, CommonJS之类的
+        module.exports=factory(require('jquery'),require('myOtherModule'));
+    }else {
+        //Browser globals (Note:root is window).浏览器全局变量(root 即 window)
+        root.returnExports=factory(root.jQuery,root.myOtherModule);
+    }
+}(this,function($,myOtherModule){       //传入两个参数，分别是this和一个函数（补充：js参数可以是一个函数）
+    //Methods
+    function notHelloOrGoodbye(){}  //A private method，因为它没被返回
+    function hello(){}     //A public method because it's returned(see below)
+    function goodbye(){}    //A public method because it's returned(see below)
+
+    //Exposed public methods
+    return{
+        hello:hello,
+        goodbye:goodbye
+    }
+}));
+
+
+
+
+/*
+
+//ES6 模块
+
+// lib/counter.js
+
+var counter=1;
+
+function increment(){
+    counter++;
+}
+
+function decrement(){
+    counter--;
+}
+
+module.exports={
+    counter:counter,
+    increment:increment,
+    decrement:decrement
+}
+
+
+// src/main.js
+
+var counter=require('../../lib/counter.js');
+或者使用
+import * as counter from '../../lib/counter.js';
+counter.increment();
+console.log(counter.counter);
+
+*/
+
+</script>
+</html>

@@ -72,3 +72,18 @@ module.exports = {
 //http://www.cnblogs.com/Kummy/p/4966937.html
 //http://chenzhutian.org/blog/2016/%E6%B5%85%E8%B0%88VisMooc%E7%9A%84%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/#0-tsina-1-36853-397232819ff9a47a7b7e80a40613cfe1
 //http://jiongks.name/blog/just-vue/
+
+
+
+/*
+
+ http://www.mmxiaowu.com/article/5825d0b3f13f2541f7d7bd45
+ 压缩时会把display: -webkit-flex;去除问题
+
+ vuecli里/build/utils.js
+ css: generateLoaders(['css']),
+ 修改为
+ css: generateLoaders(['css?-autoprefixer']),
+ //css: generateLoaders(['css?-autoprefixer', 'postcss']),
+
+ */
