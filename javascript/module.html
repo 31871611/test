@@ -257,7 +257,7 @@ myModuleInstance.goodbye();
  */
 
 
-/*
+/**/
 
 //UMD
 //Universal Module Definition（通用模块定义规范）
@@ -266,17 +266,17 @@ myModuleInstance.goodbye();
 (function(root,factory){
     if(typeof define === 'function' && define.amd){
         //amd
-        define(['myModule','myOtherModule'],factory);
+        define(['jquery','myOtherModule'],factory);
     }else if(typeof exports === 'object'){
-        //commonJS
-        module.exports=factory(require('myModule'),require('myOtherModule'));
+        //Node, CommonJS之类的
+        module.exports=factory(require('jquery'),require('myOtherModule'));
     }else {
-        //Browser globals (Note:root is window)
-        root.returnExports=factory(root.myModule,root.myOtherModule);
+        //Browser globals (Note:root is window).浏览器全局变量(root 即 window)
+        root.returnExports=factory(root.jQuery,root.myOtherModule);
     }
-}(this,function(myModule,myOtherModule){
+}(this,function($,myOtherModule){       //传入两个参数，分别是this和一个函数（补充：js参数可以是一个函数）
     //Methods
-    function notHelloOrGoodbye(){}  //A private method
+    function notHelloOrGoodbye(){}  //A private method，因为它没被返回
     function hello(){}     //A public method because it's returned(see below)
     function goodbye(){}    //A public method because it's returned(see below)
 
@@ -285,9 +285,9 @@ myModuleInstance.goodbye();
         hello:hello,
         goodbye:goodbye
     }
-}))
+}));
 
-*/
+
 
 
 /*
