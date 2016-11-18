@@ -16,7 +16,7 @@
     <select name="leftList" id="leftList" multiple size="6">
         <option>a</option>
         <option>b</option>
-        <option>c</option>
+        <option value="c">c</option>
     </select>
 
     <div id="buttons">
@@ -62,6 +62,45 @@
         }
     }
 
+    var leftList=document.getElementById('leftList');
+    console.log(leftList.selectedIndex);                //需要手动选择
+    console.log(leftList.options[2].index);             //得到当前选项的索引值
+
+    addEvent(leftList,'change',function(){
+        console.log(this.selectedIndex);                        //得到当前选项的索引，从0开始
+        console.log(this.options[this.selectedIndex].text);     //得到当前选项的text项
+        console.log(this.options[this.selectedIndex].value);    //得到当前选项的value项
+                                                                //如果是多项选择，始终返回的是第一项
+        console.log(this.options[1].selected);                  //返回是否选中的布尔值
+        if(this.options[1].selected == true){
+            console.log('选中第二项');
+        }
+
+
+    });
+
+    //默认选中一项
+    leftList.selectedIndex=1;
+
+
+
+/***********************************************************************************/
+
+function getTarget(event){      //得到事件目标
+    if(event.target){
+        return event.target;
+    }else if(window.event.srcElement){
+        return window.event.srcElement;
+    }
+}
+
+function addEvent(obj,type,fn){
+    if(obj.addEventListener){
+        obj.addEventListener(type,fn);
+    }else if(obj.attachEvent){
+        obj.attachEvent('on'+type,fn);
+    }
+}
 
 </script>
 
