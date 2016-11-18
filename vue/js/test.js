@@ -61,7 +61,12 @@ require(["vue"],function(Vue){
             'expression-'+this.expression+'<br />'+
             'argument-'+this.arg+'<br />'+
             'modifiers-'+JSON.stringify(this.modifiers)+'<br />'+
-            'value-'+value
+            'value-'+value;
+
+            var _this=this;
+            setTimeout(function(){
+                console.log(_this.el.clientHeight);
+            },10)
         }
     });
 
