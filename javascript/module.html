@@ -259,7 +259,7 @@ myModuleInstance.goodbye();
 
 /**/
 
-//UMD
+//UMD：https://github.com/umdjs/umd
 //Universal Module Definition（通用模块定义规范）
 //UMD创造了一种同时使用两种规范的方法，并且也支持全局变量定义。所以UMD的模块可以同时在客户端和服务端使用。
 
@@ -289,6 +289,8 @@ myModuleInstance.goodbye();
 }));
 
 
+
+
 /*
 
 (function (root, factory) {
@@ -305,6 +307,16 @@ myModuleInstance.goodbye();
     var PhotoSwipe = function(a,b,...){};
     return PhotoSwipe;
 });
+
+
+    avalon.init = function (el) {
+        this[0] = this.element = el
+    }
+
+    //没有var
+    avalon = function (el) { //创建jQuery式的无new 实例化结构
+        return new avalon.init(el)
+    }
 
 */
 
