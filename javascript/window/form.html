@@ -109,6 +109,9 @@
 
     //获取最初的value值
     fm.elements['myText'].defaultValue;
+    //获取radio、多选按钮初始值
+    fm.elements['myRadio'].defaultChecked;
+
 
 
 
@@ -170,6 +173,32 @@
 
 /****************************************************************************************************/
 
+
+
+
+
+
+
+
+
+
+/***********************************************************************************/
+
+function getTarget(event){      //得到事件目标
+    if(event.target){
+        return event.target;
+    }else if(window.event.srcElement){
+        return window.event.srcElement;
+    }
+}
+
+function addEvent(obj,type,fn){
+    if(obj.addEventListener){
+        obj.addEventListener(type,fn);
+    }else if(obj.attachEvent){
+        obj.attachEvent('on'+type,fn);
+    }
+}
 
 </script>
 
