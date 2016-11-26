@@ -95,7 +95,7 @@
 
 
 /*
-    //没理解。运行不了
+
     //模块模式
     var singleton=function(){
         //私有变量和私有函数
@@ -114,7 +114,7 @@
         object.publicProperty=true;
 
         object.publicMethod=function(){
-            privateVariable++;
+            console.log(privateVariable);
             privateFunction();
         };
 
@@ -123,8 +123,68 @@
 
     console.log(singleton.publicMethod());
 
+*/
 
 
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(factory);
+    } else if (typeof exports === 'object') {
+        module.exports = factory();
+    } else {
+        root.base = factory();
+    }
+})(this, function () {
+
+    'use strict';
+
+    //私有变量和私有函数
+    var privateVariable=10;
+
+    function privateFunction(){
+        return false;
+    }
+
+    var CustomType=function(){};
+
+    //添加特权/公有属性和方法
+    CustomType.prototype.publicProperty=true;
+
+    CustomType.prototype.publicMethod=function(){
+        console.log(privateVariable);
+        privateFunction();
+    };
+
+/*
+    var base=function(){
+        return new CustomType();
+    };
+
+    return base;
+
+
+ //console.log(base().publicMethod());
+
+*/
+
+
+    var base=new CustomType();
+
+    return base;
+
+    //console.log(base.publicMethod());
+
+});
+
+
+console.log(base.publicMethod());
+
+
+
+
+
+/*
+    //报错
     var application=function(){
         //私有变量和函数
         var components=[];
@@ -151,8 +211,8 @@
     }();
 
     console.log(application.getComponentCount());
- */
 
+*/
 
 
 </script>

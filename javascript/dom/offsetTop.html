@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>offsetTop</title>
+    <style>
+        *{margin: 0;padding:0;}
+        .top{
+            height: 100px;
+            background: #565656;
+        }
+        .a{
+            position: relative;
+            margin-top: 50px;
+        }
+        .b{width: 300px;height: 300px;padding-top:100px;background: #00a0e9;}
+        .c{
+            width: 100px;
+            height: 100px;
+            background: #0E2D5F;
+        }
+    </style>
+</head>
+<body>
+<div class="top"></div>
+    <div class="a">
+        <div class="b">
+            <div class="c">
+
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    //a.150  b.150  c.250
+    var box=document.querySelector('.c');
+    console.log(box.offsetTop);
+    console.log(offsetLeft(box));
+
+
+    //父级使用position: relative;就只能计算到这里，需要继续向上查找
+    //如果多层的话，就必须使用循环或递归
+    function offsetLeft(element){
+        var left=element.offsetTop;         //得到第一层距离
+        var parent=element.offsetParent;    //得到第一个父元素
+
+        while (parent !== null){            //如果还有上一级父元素
+            left += parent.offsetTop;       //把本层距离累加
+            parent = parent.offsetParent;   //得到本层的父元素
+        }                                   //然后继续循环
+
+        return left;
+    }
+
+
+
+</script>
+</html>

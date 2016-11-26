@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>input满足一定长自己切换到下一个input</title>
+</head>
+<body>
+    <form id="form1">
+        <input type="text" name="user1" maxlength="1" />
+        <input type="text" name="user2" maxlength="2" />
+        <input type="text" name="user3" maxlength="3" />
+    </form>
+</body>
+<script>
+    var fm=document.getElementById('form1');
+
+    addEvent(fm.elements['user1'],'keyup',tabForward);
+    addEvent(fm.elements['user2'],'keyup',tabForward);
+    //addEvent(fm.elements['user3'],'keyup',tabForward);
+
+    function tabForward(event){
+        var e=event || window.event;
+        var target=getTarget(e);
+        //判断当前长度是否和指定长度一致
+        if(target.value.length == target.maxLength){
+            //遍历所有字段
+            for(var i=0;i<fm.elements.length;i++){
+                //找到当前字段
+                if(fm.elements[i] == target){
+                    //就把焦点移入下一个
+                    fm.elements[i + 1].focus();
+                    //中途返回
+                    return;
+                }
+                //删除?
+
+            }
+        }
+
+    }
+
+
+
+/***********************************************************************************/
+
+    function getTarget(event){      //得到事件目标
+        if(event.target){
+            return event.target;
+        }else if(window.event.srcElement){
+            return window.event.srcElement;
+        }
+    }
+
+    function addEvent(obj,type,fn){
+        if(obj.addEventListener){
+            obj.addEventListener(type,fn);
+        }else if(obj.attachEvent){
+            obj.attachEvent('on'+type,fn);
+        }
+    }
+
+
+</script>
+</html>
