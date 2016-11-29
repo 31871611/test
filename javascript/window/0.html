@@ -72,7 +72,6 @@
     <dd>moveBy()</dd>
     <dd>语法：moveBy(水平位移量，垂直位移量)</dd>
     <dd>功能：按照给定像素参数移动指定窗口</dd>
-
     <dd>moveTo()</dd>
     <dd>语法：moveTo(x,y)</dd>
     <dd>功能：将窗口移动到指定的指定坐标(x,y)处</dd>
@@ -104,6 +103,8 @@
     <dd>alert()</dd>
     <dd>confirm()</dd>
     <dd>prompt('提示字符串','默认文本')</dd>
+    <dd>print()；调出打印机与ctrl+p一样</dd>
+
 
 
     <dt>属性</dt>
@@ -148,9 +149,20 @@
 
 window.onload=function(){
 
-    window.scrollBy(0,100);
 
 }
+
+
+
+    //获取浏览器窗口左边和上边的位置
+    var leftPos=(typeof window.screenLeft == 'number') ? window.screenLeft : window.screenX;
+    var topPos=(typeof window.screenLeft == 'number') ? window.screenTop : window.screenY;
+
+
+
+
+
+
 
 </script>
 </html>
