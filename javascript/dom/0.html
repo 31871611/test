@@ -260,7 +260,7 @@ console.log(document.getElementById('box').nodeType);       //1，元素节点
 
     var box=document.getElementById('box');
     //获取元素可视区大小包括内边距所占据大小，如果有滚动条会减去
-    console.log(box.clientWidth);
+    console.log(document.body.clientWidth);
     console.log(box.clientHeight);
 
     //获取滚动内容的元素大小。设置宽或高后实际内容宽高。包括内边距，如果有滚动条会减去
