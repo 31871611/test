@@ -28,6 +28,40 @@
 
 
 
+/*
+
+    var o={};
+    o.name="姓名";
+
+    function Obj(){}
+    Obj.prototype.name="姓名";
+
+
+    //用于检查给定的属性在当前对象实例中（而不是在实例的原型中）是否存在
+    console.log(o.hasOwnProperty("name"));
+    //用于检查传入的对象是否是另一个对象的原型
+    console.log(o.isPrototypeOf(o));
+
+    //用于检查给定的属性是否能够使用for-in语句来枚举。与hasOwnProperty()方法一样，作为参数的属性名必须以字符串形式指定
+    console.log(o.propertyIsEnumerable('name'));
+
+
+
+    //基本类型的值有以下几种：Undefined、Null、Boolean、Number、String
+    var box=[1,2,3];
+    console.log(typeof box);                //object
+    console.log(box instanceof Array);      //是否是数组.true
+    var box2={};
+    console.log(box2 instanceof Object);    //是否是对象.true
+    var box3=/g/;
+    console.log(box3 instanceof RegExp);    //是否是正则表达式.true
+    var box4='lee';
+    console.log(box4 instanceof String);    //当使用instanceof检查基本类型的值时，它会返回false
+
+ */
+
+
+
 /**
  *
 
