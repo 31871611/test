@@ -27,6 +27,135 @@
 
 
 
+/*
+
+    //流程控制
+    var box={
+        'name':'李炎恢',
+        'age':28,
+        'height':178
+    };
+
+
+    //for...in可以用来枚举对象的属性，主要用于数组，对象
+    for(var p in box){
+        console.log(p + ':' + box[p]);
+    }
+
+
+    // for (pro in array){
+    //   console.log("document."+pro+"="+document[pro]);
+    // }
+
+
+    //函数
+    function argument(){
+        //函数可以通过arguments对象来接收传递进来的参数
+        return arguments.length;
+    }
+
+    console.log(argument(1,2,3,4,5));
+
+
+
+
+    //Function类型
+    function box(num){
+        if(num <= 1){
+            return 1;
+        }else{
+            return num * arguments.callee(num-1);   //使用callee来执行自身
+        }
+    }
+    //arguments.callee是一个指向正在执行的函数的指针，因此可以用它来实现对函数的递归调用
+    //在编写递归函数时，使用arguments.callee总比使用函数名更保险
+
+
+    //apply()
+    //call()
+
+
+ */
+
+
+/**
+ *
+ css/
+    include/
+        footer.css
+        header.css
+        reset.css
+    module/
+        dialog.css
+    release
+ script/
+    common.js
+    require.min.js
+    release/
+    widget/
+        alert.js
+        confirm.js
+        dialog.js
+        login.js
+ images/
+    test/
+    ico.png
+
+
+ *
+ */
+
+
+/**
+ *
+ www.w3.org
+ 模块化框架：requirejs/seajs
+ 前端mvc框架，一二个
+ 设计模式：继承&重用，代码重用
+ 性能优化：http cache、local cache、compress、dom render、
+ restful Api desgin
+ 自动化（grunt/nodejs）
+ 跨终端适配
+ 代码托管
+
+ 目录架构
+ /ui/控制视图业务逻辑的代码
+ /Model/数据层、存放与服务器打交道的代码
+ /Controller/控制层
+
+ 规范
+ cmd按需加载、依赖就近
+ amd依赖关系前置
+
+ 模拟数据：mock.js,faker.js,ssr.js
+
+ es6、typescript
+
+
+ *
+ * /
+
+
+
+
+/***
+
+//封装通用ajax，请求地址一样只是参数不同
+var ajaxGet=function (param,callback){
+    var param=param || {};
+    param["_tc"]=Math.random();     //生成随机数防止缓存
+
+    $.get("/route.php",param,function(d){
+        callback&&callback(d);
+    },"json");
+};
+
+**/
+
+
+
+
+
 
 /*
 
