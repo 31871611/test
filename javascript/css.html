@@ -5,6 +5,7 @@
     <title>脚本化css</title>
 </head>
 <body>
+    <div id="myDiv" data-appId="12345" data-myname="Nicholas"></div>
 
     <div id="box" class="b c "></div>
     <div id="box1" class="b c "></div>
@@ -18,8 +19,22 @@
     document.querySelectorAll();    //获得匹配选择器的一组元素,返回所有的元素
     e.getAttribute("style");        //查询元素的内联样式
     console.log(document.querySelector(".b").style.width=200+"px");
+    document.getElementsByClassName('username');        //html5，接收一个或多个类名的字符串
 
 */
+
+
+var head = document.head || document.getElementsByTagName('head')[0];
+
+//字符集属性
+console.log(document.charset);
+document.charset = 'UTF-8';
+
+//自定义数据属性
+var div=document.getElementById('myDiv');
+console.log(div.dataset.appid);
+div.dataset.appid = 23456;
+
 
 
 /*******************************/
