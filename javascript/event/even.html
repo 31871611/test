@@ -29,9 +29,11 @@ http://blog.csdn.net/fswan/article/details/17238933
     <li>onmouseout()：当鼠标离开时</li>
     <li>onmousemove()：当鼠标在元素上移动时触发</li>
 
+    <li>当用户按下键盘上的字符键时：onkeydown -> onkeypress -> onkeyup</li>
     <li>onkeydown()当用户按下键时即触发，如果按住不放，会重复触发</li>
     <li>onkeypress()当用户按了一个键时将触发，如果按住不放，会重复触发</li>
     <li>onkeyup()当用户放开一个键时触发</li>
+    <li>textInput：当用户在可编辑区域中输入字符中，就会触发这个事件</li>
 
     <li>onload：页面加载完毕</li>
     <li>onunload：当页面所载，关闭浏览器或者打开了其他页面</li>
@@ -68,8 +70,11 @@ http://blog.csdn.net/fswan/article/details/17238933
     <dd>metaKey，判断meat(window)键是否被按下</dd>
     <dd>keyCode，该属性声明了被敲击的键生成的 Unicode 字符码</dd>
     <dd>button对于鼠标事件，该属性表示鼠标的哪一个按钮被按下。0左键，1中间，2右键；使用于mousedown和mouseup</dd>
-    <dd>clientX鼠标指针在可视区域中的横坐标，即x坐标</dd>
-    <dd>clientY鼠标指针在可视区域中的横坐标，即y坐标</dd>
+    <dd>clientX鼠标指针在浏览器视口中的横坐标，即x坐标</dd>
+    <dd>clientY鼠标指针在浏览器视口中的纵坐标，即y坐标</dd>
+    <dd>pageX：页面坐标x</dd>
+    <dd>pageY：页面坐标y</dd>
+    <dd>在页面没有滚动的情况下，pageX和pageY的值与clientX和clientY的值相等</dd>
     <dd>screenX鼠标指针相对于计算机屏幕区域中的横坐标，即x坐标</dd>
     <dd>screenY鼠标指针相对于计算机屏幕区域中的横坐标，即y坐标</dd>
     <dd>relatedTarget	返回与事件的目标节点相关的节点。</dd>
@@ -408,10 +413,18 @@ function getTargetElement(event){
 
 var EventUtil={
     addHandler:function(element,type,handler){
-
+        if(element.addEventListener){
+            element.addEventListener(type,handler);
+        }else if(element.attachEvent){
+            element.attachEvent('on'+type,handler);
+        }
     },
     removeHandler:function(element,type,handler){
-
+        if(element.removeEventListener){
+            element.removeEventListener(type,handler);
+        }else if(element.detachEvent){
+            element.detachEvent('on'+type,handler);
+        }
     },
     getEvent:function(event){
         return event ? event : window.event;
@@ -432,6 +445,12 @@ var EventUtil={
         }else{
             event.cancelBubble = true;
         }
+    },
+    scrollLeft:function(){
+        return document.body.scrollLeft || document.documentElement.scrollLeft;
+    },
+    scrollTop:function(){
+        return document.body.scrollTop || document.documentElement.scrollTop;
     }
 };
 
@@ -444,6 +463,27 @@ document.onclick=function(event){
 
 
 /***********************************************************************************************/
+
+
+
+var isSupported={
+    'HTMLEvents':document.implementation.hasFeature("HTMLEvents","2.0"),            //确定浏览器是否支持DOM2级事件规定的HTML事件
+    'UIEvent':document.implementation.hasFeature("UIEvent","3.0"),                  //确定浏览器是否支持DOM3级事件规定的HTML事件
+    "FocusEvent":document.implementation.hasFeature("FocusEvent","3.0"),            //是否支持焦点事件
+    "MouseEvents2":document.implementation.hasFeature("MouseEvents","2.0"),         //是否支持焦点事件
+    "MouseEvents3":document.implementation.hasFeature("MouseEvent","3.0")           //是否支持焦点事件
+};
+
+console.log(isSupported);
+
+
+
+/***********************************************************************************************/
+
+
+//捕获阶段侦听
+
+
 
 
 </script>

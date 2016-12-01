@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+    <li>1</li>
+</ul>
+    <div id="myDive">myDiv</div>
+</body>
+<script>
+
+    //跨浏览器
+
+    var EventUtil={
+        addHandler:function(element,type,handler){
+            if(element.addEventListener){
+                element.addEventListener(type,handler);
+            }else if(element.attachEvent){
+                element.attachEvent('on'+type,handler);
+            }
+        },
+        removeHandler:function(element,type,handler){
+            if(element.removeEventListener){
+                element.removeEventListener(type,handler);
+            }else if(element.detachEvent){
+                element.detachEvent('on'+type,handler);
+            }
+        },
+        getEvent:function(event){
+            return event ? event : window.event;
+        },
+        getTarget:function(event){
+            return event.target || event.srcElement;
+        },
+        preventDefault:function(event){
+            if(event.preventDefault){
+                event.preventDefault();
+            }else{
+                event.returnValue = false;
+            }
+        },
+        stopPropagation:function(event){
+            if(event.stopPropagation){
+                event.stopPropagation();
+            }else{
+                event.cancelBubble = true;
+            }
+        },
+        scrollLeft:function(){
+            return document.body.scrollLeft || document.documentElement.scrollLeft;
+        },
+        scrollTop:function(){
+            return document.body.scrollTop || document.documentElement.scrollTop;
+        }
+    };
+
+
+/***********************************************************************************************/
+
+
+/*
+
+    ie8及更早版本不支持事件对象上的页面坐标
+
+*/
+
+    var div=document.getElementById('myDive');
+    EventUtil.addHandler(div,'click',function(event){
+        var e = EventUtil.getEvent(event);
+        var page={
+            x: e.pageX,
+            y: e.pageY
+        };
+
+        if(page.x === undefined){
+            page.x = e.clientX + EventUtil.scrollLeft();
+        }
+
+        if(page.y === undefined){
+            page.y = e.clientY + EventUtil.scrollTop();
+        }
+
+        alert(e.pageX + '|' + e.pageY + '|' +page.x + '|' + page.y);
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
