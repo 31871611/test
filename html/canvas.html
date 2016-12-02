@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+    <style>
+        canvas{
+            border:1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas width="350" height="450" id="canvas1" onclick="linGrad(this.id)" ondblclick="eraseSquare(this.id)"></canvas>
+
+</body>
+<script>
+/*
+
+    fillStyle="rgb(13,118,208)"     填充色
+    strokeStyle()   边框色
+    fillRect()      绘制有填充的矩形
+    strokeRect()    绘制矩形轮廓
+    clearRect()     绘制空心的透明矩形
+
+*/
+
+    //绘制一个蓝色正方形
+    function drawSquare(id){
+        var canvas=document.getElementById(id);         //找到canvas元素
+        var context=canvas.getContext("2d");            //将环境设为二维
+        context.fillStyle="rgb(13,118,208)";            //填充颜色
+        context.fillRect(30,30,150,150);                //绘出四边相等的矩形，参数x、y、height、width
+        //context.strokeStyle();
+    }
+
+    function linGrad(id){
+        var canvas=document.getElementById(id);         //找到canvas元素
+        var context=canvas.getContext("2d");            //将环境设为二维
+        var linGrad=context.createLinearGradient(0,0,500,500);      //渐变
+        linGrad.addColorStop(0,"red");
+        linGrad.addColorStop(1,"blue");
+        context.fillStyle=linGrad;
+        context.fillRect(30,30,150,150);                //绘出四边相等的矩形，参数x、y、height、width
+    }
+
+
+    //擦除函数
+    function eraseSquare(id){
+        var canvas=document.getElementById(id);
+        canvas.width=canvas.width;
+    }
+
+
+
+</script>
+</html>
