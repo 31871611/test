@@ -4,6 +4,7 @@ var images = require("images");
 
  node-webkit:开发桌面+WEB混合型应用的神器 - 天上的神明与星辰,...
  https://segmentfault.com/a/1190000000498344
+ nw.js
 
  https://github.com/zhangyuanwei/node-images
 
