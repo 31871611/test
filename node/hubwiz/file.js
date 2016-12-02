@@ -1,4 +1,4 @@
-//
+//http://www.cnblogs.com/caixiaojia/p/4716503.html
 
 /*
     //写入一个文件
