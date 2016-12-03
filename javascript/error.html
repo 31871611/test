@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>错误处理</title>
+</head>
+<body>
+
+</body>
+<script>
+/*
+
+    try...catch
+    throw
+
+*/
+
+
+    try {                                                   //尝试着执行try包含的代码
+        window.abcd();                                      //不存在的方法
+    }catch (e){                                             //如果有错误，执行catch，e是异常对象
+        alert('发生错误啦，错误信息为：' + e);                 //直接打印调用toString()方法
+
+        //某些浏览器不支持
+        console.log('错误名称：' + e.name);
+        console.log('错误信息：' + e.message);
+    }
+
+
+
+
+    console.error('错误！');       //红色带叉
+    console.info('信息！');        //白色带信息号
+    console.log('日志！');         //白色
+    console.warn('警告！');        //黄色带感叹号
+
+
+</script>
+</html>
