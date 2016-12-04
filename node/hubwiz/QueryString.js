@@ -56,3 +56,20 @@
 
 */
 
+
+/*
+
+    var querystring = require('querystring');
+    var result = querystring.escape('<哈哈>');
+    console.log(result);    // %3C%E5%93%88%E5%93%88%3E
+
+*/
+
+
+/*
+
+    var querystring = require('querystring');
+    var result = querystring.unescape('%3C%E5%93%88%E5%93%88%3E');
+    console.log(result);    // <哈哈>
+
+*/
