@@ -7,6 +7,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    https://segmentfault.com/q/1010000003816641
   </div>
 </template>
 
