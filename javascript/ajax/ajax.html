@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax</title>
+</head>
+<body>
+
+</body>
+<script>
+
+
+    var EventUtil={
+        addHandler:function(element,type,handler){
+            if(element.addEventListener){
+                element.addEventListener(type,handler);
+            }else if(element.attachEvent){
+                element.attachEvent('on'+type,handler);
+            }
+        },
+        removeHandler:function(element,type,handler){
+            if(element.removeEventListener){
+                element.removeEventListener(type,handler);
+            }else if(element.detachEvent){
+                element.detachEvent('on'+type,handler);
+            }
+        },
+        getEvent:function(event){
+            return event ? event : window.event;
+        },
+        getTarget:function(event){
+            return event.target || event.srcElement;
+        },
+        preventDefault:function(event){
+            if(event.preventDefault){
+                event.preventDefault();
+            }else{
+                event.returnValue = false;
+            }
+        },
+        stopPropagation:function(event){
+            if(event.stopPropagation){
+                event.stopPropagation();
+            }else{
+                event.cancelBubble = true;
+            }
+        },
+        getRelatedTarget:function(event){
+            //var e = this.getEvent(event);
+            if(event.relatedTarget){
+                return event.relatedTarget;
+            }else if(event.toElement){
+                return event.toElement;
+            }else if(event.fromElement){
+                return event.fromElement;
+            }else{
+                return null;
+            }
+        },
+        getButton:function(event){
+            //var e = this.getEvent(event);
+            if(document.implementation.hasFeature("MouseEvents","2.0")){
+                return event.button;
+            }else{
+                switch (event.button){
+                    case 0 :
+                    case 1 :
+                    case 3 :
+                    case 5 :
+                    case 7 :
+                        return 0;
+                    case 2 :
+                        return 2;
+                    case 4 :
+                        return 1;
+                }
+            }
+        },
+        scrollLeft:function(){
+            return document.body.scrollLeft || document.documentElement.scrollLeft;
+        },
+        scrollTop:function(){
+            return document.body.scrollTop || document.documentElement.scrollTop;
+        },
+//    screenX:function(){
+//        return (typeof window.screenLeft == 'number') ? window.screenLeft : window.screenX;
+//    },
+//    screenY:function(){
+//        return (typeof window.screenLeft == 'number') ? window.screenTop : window.screenY;
+//    }
+};
+
+
+
+
+
+
+
+
+/**************************************************************************************************************/
+
+/*
+
+    //在浏览器中创建 XHR 对象可以直接实例化 XMLHttpRequest
+    var xhr = new XMLHttpRequest();
+    console.log(xhr);
+
+
+
+    如果是 IE6 及以下，低版本 IE 浏览器可能会遇到三种不同版本的 XHR 对象，即 MSXML2.XMLHttp 、
+    MSXML2.XMLHttp.3.0 、 MSXML2.XMLHttp.6.0 。我们可以编写一个函数。
+
+ */
+
+    // 兼容低版本ie
+    function createXHR(){
+        if(typeof XMLHttpRequest != 'undefined'){
+            return new XMLHttpRequest();
+        }else if(typeof ActiveXObject != 'undefined'){
+            var versions=[
+                'MSXML2.XMLHttp.6.0',
+                'MSXML2.XMLHttp.3.0',
+                'MSXML2.XMLHttp'
+            ];
+            for(var i = 0;i < versions.length;i++){
+                try {
+                    return new ActiveXObject(versions[i]);
+                } catch (e){
+                    // 跳过
+                }
+            }
+        }else {
+            throw new Error('您的浏览器不支持 XHR 对象！');
+        }
+    }
+
+/*
+    var xhr = new createXHR();
+    // 必须先调用 open() 方法 ， 它接受三个参数 ： 要发送的请求类型 (get 、post) 、请求的 URL 和 表示是否异步。
+    xhr.open('get','demo.php','false');
+    // send() 方法进行发送请求 ， send() 方法接受一个参数 ， 作为请求主体发送的数据 。
+    // 如果不需要则 ， 必须填 null 。执行 send() 方法之后，请求就会发送到服务器上。
+    xhr.send(null);     //发送请求
+
+    当请求发送到服务器端 ， 收到响应后 ， 响应的数据会自动填充 XHR 对象的属性 。 那么一共有四个属性：
+    responseText   作为响应主体被返回的文本
+    responseXML    如果响应主体内容类型是 "text/xml" 或 "application/xml" ，则返回包含响应数据的 XML DOM 文档
+    status         响应的 HTTP 状态
+    statusText     HTTP 状态的说明
+
+
+
+
+
+    EventUtil.addHandler(document,'click',function(){
+        var xhr = new createXHR();
+        xhr.open('get','demo.php?rand=' + Math.random(),false);
+        xhr.send(null);
+
+        if (xhr.status == 200){         //如果返回成功了
+            alert(xhr.responseText);
+        } else {
+            alert('数据返回失败！状态代码：' + xhr.status + '状态信息：' + xhr.statusText);
+        }
+    })
+
+
+ */
+
+
+/*
+
+   使用异步调用 ，需要触发 readystatechange 事件，然后检测 readyState 属性即可。这个属性有五个值：
+   0  未初始化     尚未调用 open() 方法
+   1  启动         已经调用 open() 方法，但尚未调用 send() 方法
+   2  发送         已经调用 send() 方法，但尚未接受响应
+   3  接受         已经接受到部分响应数据
+   4  完成         已经接受到全部响应数据，而且可以使用
+
+
+
+    //异步get
+    EventUtil.addHandler(document,'click',function(){
+        var xhr = new createXHR();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                // 使用 getResponseHeader() 获取单个响应头信息
+                alert(xhr.getResponseHeader('Content-Type'));
+                // 使用 getAllResponseHeaders() 获取整个响应头信息
+                alert(xhr.getAllResponseHeaders());
+
+                if (xhr.status == 200){         //如果返回成功了
+                    alert(xhr.responseText);
+                } else {
+                    alert('数据返回失败！状态代码：' + xhr.status + '状态信息：' + xhr.statusText);
+                }
+            }
+        };
+        // xhr.open('get','demo.php?rand=' + Math.random(),true);
+        // get代参数，通过 URL 后的问号给服务器传递键值对数据，服务器接收到返回响应数据
+        // xhr.open('get','demo.php?rand=' + Math.random() + '&name=Koo',true);
+
+        var url = 'demo.php?rand=' + Math.random();
+        url = addURLParam(url,'name','lee');
+        url = addURLParam(url,'age',100);
+        url = addURLParam(url,'age',100);
+
+        xhr.open('get',url,true);
+        // 使用 setRequestHeader() 设置单个请求头信息
+        xhr.setRequestHeader('MyHeader','Lee');     //放在open方法之后，send方法之前，一般没什么用，在post提交请求有用
+        xhr.send(null);
+        // xhr.abort();        //取消异步请求
+    });
+
+
+
+    // 当使用XMLHttpRequest时，浏览器中的POST方法是一个“两步走”的过程：首先发送文件头，然后才发送数 据。
+    // 因此使用GET最为恰当，因为它只需发送一个TCP包（除非你有很多cookie）。
+    // IE中URL的最大长度为2K，因此如果你要发送一个超过2K的 数据时就不能使用GET了。
+
+
+
+
+
+    //使用 encodeURIComponent() 进行编码处理
+    function addURLParam(url,name,value){
+        url += (url.indexOf('?') == -1 ? '?' : '&');    //判断url是否有已有参数
+        url += encodeURIComponent(name) + '=' + encodeURIComponent(value);
+        return url;
+    }
+
+
+*/
+
+
+/*
+
+    //异步post
+    EventUtil.addHandler(document,'click',function(){
+        var xhr = new createXHR();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                // 使用 getResponseHeader() 获取单个响应头信息
+                alert(xhr.getResponseHeader('Content-Type'));
+                // 使用 getAllResponseHeaders() 获取整个响应头信息
+                alert(xhr.getAllResponseHeaders());
+
+                if (xhr.status == 200){         //如果返回成功了
+                    alert(xhr.responseText);
+                } else {
+                    alert('数据返回失败！状态代码：' + xhr.status + '状态信息：' + xhr.statusText);
+                }
+            }
+        };
+        var url = 'demo.php?rand=' + Math.random();
+        xhr.open('post',url,true);
+        // 使用 setRequestHeader() 设置单个请求头信息
+        xhr.setRequestHeader('MyHeader','Lee');     //放在open方法之后，send方法之前，一般没什么用，在post提交请求有用
+
+        // POST需要使用 XHR 来模仿表单提交
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        // POST 请求的数据，是通过 send() 方法向服务器提交数据。
+        xhr.send('name=Lee&age=100');
+        // xhr.abort();        //取消异步请求
+    });
+
+*/
+
+    //异步JSON
+
+
+
+    //封装ajax
+    function ajax(obj){
+        var xhr = new createXHR();
+        obj.url = obj.url + '?rand=' + Math.random();
+        obj.data = params(obj.data);
+        if(obj.method === 'get') obj.url = obj.url.indexOf('?') == -1 ? obj.url + '?' + obj.data : obj.url + '&' + obj.data;
+        if(obj.async === true){
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState == 4) callback();
+            }
+        }
+        xhr.open(obj.method,obj.url,obj.async);
+        if(obj.method === 'post'){
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(obj.data);
+        }else{
+            xhr.send(null);
+        }
+        if(obj.async === false){
+            callback();
+        }
+        function callback(){
+            if(xhr.status == 200){
+                obj.success(xhr.responseText);      //回调
+            }else{
+                alert('数据返回失败！状态代码：' + xhr.status + '状态信息：' + xhr.statusText);
+            }
+        }
+    }
+
+
+    //调用ajax
+    EventUtil.addHandler(document,'click',function(){
+        ajax({
+            method:'get',
+            url:'demo.php',
+            data:{
+                'name':'lee',
+                'age':100
+            },
+            success:function(text){
+                alert(text);
+            },
+            async:true
+        })
+    });
+
+
+    //名值对编码
+    function params(data){
+        var arr=[];
+        for(var i in data){
+            arr.push(encodeURIComponent(i) + '=' + encodeURIComponent(data[i]));
+        }
+        return arr.join('&');
+    }
+
+
+</script>
+</html>
