@@ -12,30 +12,136 @@
     document.write("<ul>");
 
     document.write("<li>");
-    document.write("浏览器的代码名："+navigator.appCodeName);
+    document.write("浏览器的代码名：" + navigator.appCodeName);
     document.write("</li>");
 
     document.write("<li>");
-    document.write("浏览器的名称："+navigator.appName);
+    document.write("浏览器的名称：" + navigator.appName);
     document.write("</li>");
 
     document.write("<li>");
-    document.write("浏览器的平台和版本信息："+navigator.appVersion);
+    document.write("浏览器的平台和版本信息：" + navigator.appVersion);
     document.write("</li>");
 
     document.write("<li>");
-    document.write("浏览器中是否启用 cookie 的布尔值："+navigator.cookieEnabled);
+    document.write("浏览器中是否启用 cookie 的布尔值：" + navigator.cookieEnabled);
     document.write("</li>");
 
     document.write("<li>");
-    document.write("浏览器的操作系统平台："+navigator.platform);
+    document.write("浏览器的操作系统平台：" + navigator.platform);
     document.write("</li>");
 
     document.write("<li>");
-    document.write("客户机发送服务器的 user-agent 头部的值："+navigator.userAgent);
+    document.write("客户机发送服务器的 user-agent 头部的值：" + navigator.userAgent);
+    document.write("</li>");
+
+    document.write("<li>");
+    document.write("当前浏览器是否启用了Java：" + navigator.javaEnabled());      //IE：true；谷歌：false
     document.write("</li>");
 
     document.write("</ul>");
+
+
+
+    // alert('浏览器中安装的插件信息数组：' + navigator.plugins.length);
+
+
+
+
+    var client = function(){
+
+        var engine = {          // 呈现引擎
+            ie : false,
+            gecko : false,
+            webkit : false,
+            khtml : false,
+            opera : false,
+
+            ver : 0             // 具体版本号
+        };
+
+        var browser = {          // 浏览器对象
+            ie : false,
+            gecko : false,
+            webkit : false,
+            khtml : false,
+            opera : false,
+
+            ver : 0,            // 具体版本号
+            name : ''           // 具体的浏览器名称
+        };
+
+        var system = {          //操作系统
+            win : false,
+            mac : false,
+            x11 : false         //Unix、Linux
+        };
+
+        var ua = navigator.userAgent;                               // 核心检测程度区
+        var p = navigator.platform;                                 // 获取系统
+        system.win = p.indexOf('Win') == 0;                         // 判断是否是window
+        system.mac = p.indexOf('Mac') == 0;                         // 判断是否是mac
+        system.x11 = (p == 'X11') || (p.indexOf('Linux') == 0);     //判断是否是Unix、Linux
+
+
+        // opera浏览器支持window.opera对象
+        for(var p in window.opera){
+            document.write(p + '<br />');
+
+        }
+
+        if(window.opera){                               // 判断opera浏览器
+            engine.ver = window.opera.version();        // 获取opera呈现引擎版本
+            engine.opera = true;
+        }else if(/AppleWebKit\/(\S+)/.test(ua)){        // 通过正则表达式来获取webkit引擎和它的版本号
+            engine.ver = RegExp['$1'];                  // 获取webkit版本号
+            engine.webkit = parseFloat(engine.ver);
+            if (/Chrome\/(\S+)/.test(ua)) {
+                browser.ver = RegExp['$1'];
+                browser.chrome = true;
+                browser.name = 'Chrome';
+            } else if (/Version\/(\S+)/.test(ua)) {
+                browser.ver = RegExp['$1'];
+                browser.chrome = true;
+                browser.name = 'Safari';
+            }
+        }else if(/KHTML\/(\S+)/.test(ua) || /Konqueror\/([^;]+)/.test(ua)){     //Linux平台下浏览器
+            engine.ver = RegExp['$1'];
+            engine.khtml = true;
+        }else if (/rv:([^\)]+)\) Gecko\/\d{8}/.test(ua)) { // 获取 Gecko 和它的版本号
+            engine.ver = RegExp['$1'];
+            engine.gecko = true;
+            if (/Firefox\/(\S+)/.test(ua)) {
+                browser.ver = RegExp['$1'];     // 设置版本
+                browser.firefox = true;         // 填充保证为 true
+                browser.name = 'Firefox';       // 设置名称
+            }
+        }else if (/MSIE ([^;]+)/.test(ua)) {            // 获取 IE 和它的版本号
+            engine.ver = browser.ver = RegExp['$1'];    // 获取版本
+            engine.ie = browser.ie = true;              // 填充保证为true
+            browser.name = 'Internet Explorer';         // 设置名称
+        }
+
+
+        return {
+            engine : engine     //返回呈现引擎对象
+        }
+    }();                        //自我执行
+
+
+    //alert(browser.ie);
+
+
+    var a = function(){
+
+        var x='';
+
+
+        return{
+            a:x
+        }
+    }
+
 
 </script>
 </html>
