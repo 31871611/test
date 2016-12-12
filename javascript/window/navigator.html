@@ -71,10 +71,12 @@
             name : ''           // 具体的浏览器名称
         };
 
-        var system = {          //操作系统
+        var system = {          // 操作系统
             win : false,
             mac : false,
-            x11 : false         //Unix、Linux
+            x11 : false,        // Unix、Linux
+
+            sysname : ''        // 系统名称
         };
 
         var ua = navigator.userAgent;                               // 核心检测程度区
@@ -124,12 +126,15 @@
 
 
         return {
-            engine : engine     //返回呈现引擎对象
+            engine : engine,     //返回呈现引擎对象
+            browser : browser,
+            system : system
         }
     }();                        //自我执行
 
 
-    //alert(browser.ie);
+    alert(client.system.sysname + '|' +client.browser.name + client.browser.ver);
+
 
 
     var a = function(){
