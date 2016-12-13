@@ -12,7 +12,12 @@
 var express = require('express');
 var app = express();
 
+// 静态文件目录
 app.use(express.static('public'));
+app.use(express.static('files'));       // 可以多次调用 express.static 中间件
+
+// 虚拟（virtual）”目录（即目录根本不存在）
+app.use('/static', express.static('public'));       // http://localhost:3000/static/css/style.css
 
 app.get('/', function (req, res) {
     res.send('Hello World');

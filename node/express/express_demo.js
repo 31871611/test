@@ -1,9 +1,10 @@
+// http://caibaojian.com/nodejs/19.html
+
 var express = require('express');
 
 var app = express();
 
-// request 和 response 对象来处理请求和响应的数据
-// http://caibaojian.com/nodejs/19.html
+// req (请求) 和 res (响应)
 app.get('/',function(req,res){
     res.send('Hello World!');
 });
