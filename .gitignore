@@ -1,0 +1,8 @@
+node/node-images/node_modules/*
+node/crawler/node_modules/*
+mock/node_modules/*
+
+/vue/douban/src/components/larea/*
+!/vue/douban/src/components/larea/larea.vue
+/vue/douban/src/components/photoswipe/*
+!/vue/douban/src/components/photoswipe/photoswipe.vue
