@@ -7,6 +7,7 @@ var fs = require('fs');
 
 // post请求使用
 var bodyParser = require('body-parser');
+// multer 实现文件上传
 var multer = require('multer');
 
 app.use(express.static('public'));
