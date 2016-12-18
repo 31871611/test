@@ -8,8 +8,8 @@
         div.d1{margin:200px auto 0;background:url(images/9f0.jpg) no-repeat;width:200px;height:80px;
             -webkit-transform-style:preserve-3d;	/*定义3d空间*/
             /*设计沿x轴旋转、20秒线性过度动画、无限次播放*/
-            -webkit-animation-name:x-spin;		/*定义动画名称为x-spin*/
-            -webkit-animation-duration:20s;		/*定义动画时间为20秒*/
+            -webkit-animation-name:x-spin;		            /*定义动画名称为x-spin*/
+            -webkit-animation-duration:20s;		            /*定义动画时间为20秒*/
             -webkit-animation-iteration-count:infinite;		/*定义动画播放次数为无穷次*/
             -webkit-animation-timing-function:linear;		/*定义动画过渡为线性转换*/
         }
@@ -131,16 +131,16 @@
  *
  *
  * 伪类选择器
- * :enabled     选择启用状态的元素
- * :disabled    选择禁用状态的元素
- * :checked     选择勾选的 input 元素
- * :default     从一组类似的元素中选择默认元素。比如 input 被勾选的即默认的。
- * :valid和:invalid输入验证合法与不合法显示时选择的元素。
- * required 和:optional根据是否具有 required 属性选择元素
- * :focus       表示获得焦点时
- * :not         否定选择器，反选
- * :empty       匹配没有任何内容的元素
- * :target      定位到锚点时，选择此元素
+ * :enabled             选择启用状态的元素
+ * :disabled            选择禁用状态的元素
+ * :checked             选择勾选的 input 元素
+ * :default             从一组类似的元素中选择默认元素。比如 input 被勾选的即默认的。
+ * :valid和:invalid      输入验证合法与不合法显示时选择的元素。
+ * required 和:optional  根据是否具有 required 属性选择元素
+ * :focus               表示获得焦点时
+ * :not(.className)     选择不满足某些条件的元素
+ * :empty               匹配没有任何内容的元素
+ * :target              定位到锚点时，选择此元素
  *
  *
  * 边框
@@ -165,6 +165,11 @@
  *
  *
  * 颜色
+ * rbga()语法即在颜色值后追加一个透明值
+ * rgba(255,255,255,.5);
+ *
+ * opacity()：设置元素的透明度
+ * 这种方式会对整个元素产生影响（元素的内容都会透明）
  *
  *
  *
@@ -229,6 +234,7 @@
  * transition过渡属性
  * transition主要包含四个属性值 | transition: transform 1s ease-out 0s;
  * transition: background 0.5s ease-in,color 0.3s ease-out;想改变两个或者多个css属性的transition效果用逗号,隔开
+ *
  * 执行变换的属性：transition-property | none(没有属性改变,当其值为none时，transition马上停止执行)，all（所有属性改变,当指定为all时，则元素产生任何属性值变化时都将执行transition效果），indent（元素属性名,ident是可以指定元素的某一个属性值）
  * 变换延续的时间：transition-duration | 用来指定元素转换过程的持续时间，取值：<time>为数值，单位为s（秒）或者ms(毫秒),可以作用于所有元素，包括:before和:after伪元素。其默认值是0，也就是变换时是即时的。
  * 在延续时间段，变换的速率变化transition-timing-function | 1、ease：（逐渐变慢）默认值，2、linear：（匀速），3、ease-in：(加速)，4、ease-out：（减速），5、ease-in-out：（加速然后减速），6、cubic-bezier：（该值允许你去自定义一个时间曲线）
@@ -237,7 +243,24 @@
  * div:hover{background: #009944;transition: background 1s ease-out 0s;}
  *
  *
+ *
+ *
+ *
+ *
+ *
+ *
  * 动画animate
+ * animation-name:name;     用于定义css动画的名称，如果动画的名称是none，那么就不会有动画。这可以用于覆盖任何动画
+ * animation-duration:20s;  用于定义动画的播放时间
+ * animation-timing-function:linear;用于定义css动画的播放方式，规定动画的速度曲线
+ *
+ * animation-delay:;定义动画开始的时间
+ * animation-iteration-count:infinite;定义css动画的播放次数
+ * animation-direction:;定义动画播放的方向，取值包括两个值。
+ *  默认：normal，动画每次循环都向前播放
+ *  alternate，表示第偶次向前播放，奇次向反方向播放
+ * animation-play-state:running | paused;用于控制动画的播放和暂停。
+ *
  *
  *
  *

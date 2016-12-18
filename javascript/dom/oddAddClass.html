@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>隔行添加class</title>
+    <style>
+        .odd{
+            background: #f00;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+</ul>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+</ul>
+</body>
+<script>
+
+    var ul = document.getElementsByTagName('ul');
+    var odd, li;
+    for(var i = 0;i<ul.length;i++){
+        odd = true;
+        li = ul[i].getElementsByTagName('li');
+        for(var j = 0;j<li.length;j++){
+            if(odd){
+                li[j].className = 'odd';
+                odd = false;
+            }else{
+                odd = true;
+            }
+        }
+    }
+
+
+</script>
+</html>
