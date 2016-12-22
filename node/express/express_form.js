@@ -18,7 +18,7 @@ app.use(express.static('public'));
 
 app.get('/', function (req, res) {
     console.log(__dirname);
-    res.sendFile(__dirname + '/' + 'express_demo4.html');
+    res.sendFile(__dirname + '/' + 'express_form.html');
 });
 
 app.get('/process_get',function(req,res){
@@ -29,6 +29,11 @@ app.get('/process_get',function(req,res){
     };
     console.log(response);
     res.end(JSON.stringify(response));
+});
+
+app.get('/user/:username',function(req,res){
+    // http://localhost:8081/user/name
+    res.send('user：' + req.params.username);
 });
 
 
