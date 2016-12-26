@@ -45,7 +45,7 @@ style="color: red;background:#ccc;font-size:20px;float: right;"
 
 
     //获取计算后样式。可以获取行内、内联、链接
-    //getComputedStyle();参数1.需要计算的样式元素；参数2.伪类(如:hover)，如果没有就填null
+    //getComputedStyle();参数1.需要计算的样式元素节点；参数2.伪类(如:hover)，如果没有就填null
     //ie不支持，可以使用currentStyle
     var style=window.getComputedStyle ? window.getComputedStyle(box,null) : null || box.currentStyle;
     console.log(style.color);
