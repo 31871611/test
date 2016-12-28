@@ -1,2 +1,8 @@
 node-webkit教程
 http://www.cnblogs.com/xuanhun/archive/2014/04.html
+
+
+
+electron
+https://github.com/electron/electron/tree/master/docs-translations/zh-CN
+https://wizardforcel.gitbooks.io/electron-doc/content/tutorial/quick-start.html
