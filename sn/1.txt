@@ -98,3 +98,22 @@ devDependencies和dependencies的区别
 
 devDependencies  里面的插件只用于开发环境，不用于生产环境
 dependencies     是需要发布到生产环境的。
+
+
+
+npm查看全局安装过的包
+http://www.111cn.net/wy/js-ajax/105058.htm
+
+
+/********************************************************************************/
+安装node
+安装nvm
+安装nrm.npm install -g nrm
+安装相关全局.gulp、vue-cli等
+查看已安装全局
+
+
+vue1:
+npm install --save vue-touch@1.1.0 vue-resource@1.0.3 vue-router@0.7.13
+npm install --save-dev sass-loader node-sass
+
