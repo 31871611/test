@@ -90,6 +90,7 @@ superagent.get(cnodeUrl).end(function(err,res){
             // 接下来都是 jquery 的用法了
             var htmlUrl = html[0];
             var htmlText = html[1];
+            var index = html[2];
             var $ = cheerio.load(htmlText);
             return({
                 title: $('.topic_full_title').text().trim(),
@@ -103,11 +104,13 @@ superagent.get(cnodeUrl).end(function(err,res){
     });
 
     // 所有下一级链接
-    topicUrls.forEach(function(url){
+    topicUrls.forEach(function(url,index){
         // 一次性发了 40 个并发请求出去
         superagent.get(url).end(function(err,res){
-            console.log('fetch ' + url + ' successful');
-            ep.emit('topic_html',[url,res.text]);
+            // 请求造成异步.顺序错乱了
+            console.log('fetch ' + url + ' successful' + '|' + index);
+            // 参数2：需要传入的数据内容
+            ep.emit('topic_html',[url,res.text,index]);
         })
     })
 
@@ -118,10 +121,19 @@ superagent.get(cnodeUrl).end(function(err,res){
 
 /*
 
+// 需要测试的url
+var urls = [];
+for(var i = 0; i < 30; i++) {
+    urls.push('http://datasource_' + i);
+}
+
 var concurrencyCount = 0;
 var fetchUrl = function (url, callback) {
+    // 随机时间
     var delay = parseInt((Math.random() * 10000000) % 2000, 10);
+    // 叠加数.提示.没有功能意义
     concurrencyCount++;
+
     console.log('现在的并发数是', concurrencyCount, '，正在抓取的是', url, '，耗时' + delay + '毫秒');
 
     // 5条以后根据随机时间一条一条请求
@@ -131,18 +143,12 @@ var fetchUrl = function (url, callback) {
     }, delay);
 };
 
-
-var urls = [];
-for(var i = 0; i < 30; i++) {
-    urls.push('http://datasource_' + i);
-}
-
 // 一次请求5条
 async.mapLimit(urls, 5, function (url, callback) {
     fetchUrl(url, callback);
 }, function (err, result) {
     console.log('final:');
-    console.log(result);
+    console.log(result);        // 输出：['http://datasource_1 html content','http://datasource_2 html content',...]
 });
 
 */
