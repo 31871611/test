@@ -1,8 +1,4 @@
 /**index.wxss**/
-/*
-    http://mp.weixin.qq.com/s?__biz=MzI4ODUxNTczMA==&mid=2247483907&idx=1&sn=54e6438d13f3b6f1f3dd30ea110de029&scene=0#wechat_redirect
-    以 1 px = 1 rpx 的标准，将设计稿尺寸设定为 750×1334。
-*/
 .container {
   height: 100%;
   display: flex;

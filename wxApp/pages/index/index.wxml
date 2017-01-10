@@ -9,9 +9,13 @@
     {{array[0].msg}}
   </view>
   <view bindtap='bindViewTap'>
-    事件处理
+    事件处理js跳转到logs
   </view>
   <view bindtap='bindViewData'>
     跳转到data
+  </view>
   <view>
+    <navigator url="../logs/logs">页面跳转，可以返回</navigator>
+    <navigator url="../user/user" redirect>页面跳转，无法返回</navigator>
+  </view>
 </view>

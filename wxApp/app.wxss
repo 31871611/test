@@ -4,7 +4,12 @@
     http://www.cnblogs.com/TonyYPZhang/p/5942037.html
     视图容器的 view, 基础内容的 text,  表单的 button 等
     <block /> 可以来包含一组组件，但是 <block/> 并不是一个组件，它仅仅是一个包装元素，不会在页面中做任何渲染，只接受控制属性。不添加class
+    
+    http://mp.weixin.qq.com/s?__biz=MzI4ODUxNTczMA==&mid=2247483907&idx=1&sn=54e6438d13f3b6f1f3dd30ea110de029&scene=0#wechat_redirect
+    以 1 px = 1 rpx 的标准，将设计稿尺寸设定为 750×1334。
 
+    案例
+    https://www.zhihu.com/question/50907897
 
     商品列表
     商品详情

@@ -10,11 +10,11 @@ Page({
   //事件处理函数
   bindViewTap: function() {
     /*
-wx.navigateTo(OBJECT)：保留当前页面，跳转到应用内的某个页面，
+      wx.navigateTo(OBJECT)：保留当前页面，跳转到应用内的某个页面，
 
-wx.redirectTo(OBJECT)：关闭当前页面，跳转到应用内的某个页面。
+      wx.redirectTo(OBJECT)：关闭当前页面，跳转到应用内的某个页面。
 
-wx.navigateBack()：关闭当前页面，回退前一页面。
+      wx.navigateBack()：关闭当前页面，回退前一页面。
 
     */
     //页面跳转
