@@ -1,4 +1,25 @@
 /**app.wxss**/
+/*
+
+    http://www.cnblogs.com/TonyYPZhang/p/5942037.html
+    视图容器的 view, 基础内容的 text,  表单的 button 等
+    <block /> 可以来包含一组组件，但是 <block/> 并不是一个组件，它仅仅是一个包装元素，不会在页面中做任何渲染，只接受控制属性。不添加class
+
+
+    商品列表
+    商品详情
+    结算中心
+    支付成功
+    支付失败
+
+    订单列表
+    订单详情
+
+    用户中心
+
+    搜索
+
+*/
 .container {
   height: 100%;
   display: flex;
