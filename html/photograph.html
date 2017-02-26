@@ -22,6 +22,9 @@
                 canvas = document.createElement('canvas'),
                 ctx = canvas.getContext('2d'),
                 img = new Image();
+            // 原图尺寸
+            var width = e.target.naturalWidth;
+            var height = e.target.naturalHeight;
             // 如果需要压缩剪切图片
             img.onload = function() {
                 var square = 320;           //缩略图大小
