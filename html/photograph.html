@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用HTML5+Canvas调用IPHONE摄像头拍照并压缩处理</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+</head>
+<body>
+    <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput" class="sign_file" />
+    <img src="" id="j_thumb" alt="">
+
+</body>
+<script>
+
+    // http://www.0773linji.com/article/index/id/109
+    // http://www.myexception.cn/web/1947138.html
+    function drawOnCanvas(file) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e) {
+            var dataURL = e.target.result,
+                canvas = document.createElement('canvas'),
+                ctx = canvas.getContext('2d'),
+                img = new Image();
+            // 如果需要压缩剪切图片
+            img.onload = function() {
+                var square = 320;           //缩略图大小
+                canvas.width = square;
+                canvas.height = square;
+                var context = canvas.getContext('2d');
+                context.clearRect(0, 0, square, square);
+                var imageWidth;
+                var imageHeight;
+                var offsetX = 0;
+                var offsetY = 0;
+                if (this.width > this.height) {
+                    imageWidth = Math.round(square * this.width / this.height);
+                    imageHeight = square;
+                    offsetX = - Math.round((imageWidth - square) / 2);
+                } else {
+                    imageHeight = Math.round(square * this.height / this.width);
+                    imageWidth = square;
+                    offsetY = - Math.round((imageHeight - square) / 2);
+                }
+                context.drawImage(this, offsetX, offsetY, imageWidth, imageHeight);
+                // 获取到base64编码值
+                var base64 = canvas.toDataURL('image/jpeg',0.5);
+                document.querySelector('#j_thumb').setAttribute('src',base64);
+
+            };
+            img.src = dataURL;
+            //原图
+            document.body.appendChild(img);
+            //直接获取文件base64数据
+            //document.querySelector('#j_thumb').setAttribute('src',dataURL);
+        };
+    }
+
+    document.querySelector('input[type=file]').onchange = function () {
+        if (this.files.length === 0) { return false; }
+        var file = this.files[0];
+        // 判断是否是图片
+        if(!/image\/\w+/.test(file.type)){
+            alert("需要是图片！");
+            return false;
+        }
+        drawOnCanvas(file);
+    };
+
+//    rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
+
+
+</script>
+</html>
