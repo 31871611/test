@@ -168,7 +168,7 @@
  * rbga()语法即在颜色值后追加一个透明值
  * rgba(255,255,255,.5);
  *
- * opacity()：设置元素的透明度
+ * opacity:0-100;设置元素的透明度
  * 这种方式会对整个元素产生影响（元素的内容都会透明）
  *
  *
@@ -183,6 +183,38 @@
  *
  *
  * 伸缩布局
+ * display: flex;
+ *
+ *
+    justify-content: flex-start | flex-end | center | space-between | space-around;    水平方向
+    flex-start：子元素从开始位置对齐（大部分情况等同于左对齐）
+    flex-end：子元素从结束位置对齐（大部分情况等同于右对齐）
+    center：子元素居中对齐
+    space-between：子元素两端对齐（分散平均）
+    space-around：子元素居中（平均分）
+ *
+ *
+    align-items: flex-start | flex-end | center | baseline | stretch;    垂直方向
+    flex-start：上对齐，子元素不会换行
+    flex-end：下对齐
+    center：居中对齐
+    baseline：如弹性盒子元素的行内轴与侧轴为同一条，则该值与'flex-start'等效。其它情况下，该值将参与基线对齐。
+    stretch：子元素height:100%
+ *
+ *
+    align-content：flex-start | flex-end | center | space-between | space-around | stretch;    垂直方向
+    flex-start：上对齐，子元素多了会换行
+    flex-end：下对齐，子元素多了会换行
+    center：居中对齐，子元素多了会换行
+    space-between：平均分布，子元素多了会换行
+    space-around：各行在弹性盒容器中平均分布，两端保留子元素与子元素之间间距大小的一半。如果剩余的空间是负数或弹性盒容器中只有一行，该值等效于'center'。在其它情况下，各行会按一定方式在弹性盒容器中排列，以保持两两之间的空间相等，同时第一行前面及最后一行后面的空间是其他空间的一半。
+    stretch：各行将会伸展以占用剩余的空间。如果剩余的空间是负数，该值等效于'flex-start'。在其它情况下，剩余空间被所有行平分，以扩大它们的侧轴尺寸。
+ *
+ *
+
+
+
+
  *
  * 多列布局
  *
