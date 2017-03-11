@@ -133,6 +133,12 @@
     <dd>outerwidth返回窗口的外部宽度</dd>
 
 
+    <dd>scroll()事件.滚动</dd>
+    <dd>scrollX</dd>
+    <dd>scrollY</dd>
+
+
+
     <dd>其它属性</dd>
 
     <dd>name设置或返回窗口的名称</dd>
@@ -160,6 +166,17 @@ window.onload=function(){
 
 
 
+    // 只有有滚动条的元素才能触发scroll事件。
+    window.addEventListener('scroll',function(){
+        if(this.scrollY > h){
+            //alert('大于');
+            _this.is = true;
+            _this.cssName = 'fixed';
+        }else{
+            _this.is = false;
+            _this.cssName = 'relative';
+        }
+    },false);
 
 
 
