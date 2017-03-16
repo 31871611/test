@@ -43,6 +43,7 @@ $ git reset HEAD readme.txt	（把暂存区的修改撤销掉）
 
 $ rm test.txt			（删除文件，linux命令，或者进入目录右键删除）
 $ git rm test.txt		（从版本库中删除该文件）
+$ git rm -r 文件夹       （删除目录）
 
 
 工作区	比如：learngit文件夹
