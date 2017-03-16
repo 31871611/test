@@ -2,7 +2,8 @@ node/node-images/node_modules/*
 node/crawler/node_modules/*
 mock/node_modules/*
 
-/vue/douban/src/components/larea/*
-!/vue/douban/src/components/larea/larea.vue
-/vue/douban/src/components/photoswipe/*
-!/vue/douban/src/components/photoswipe/photoswipe.vue
+vue/vue1/node_modules
+
+node/express/node_modules/
+node/express/public/images/
+node/promise/node_modules/
