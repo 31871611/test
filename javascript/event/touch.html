@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>手机触摸</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <style>
+        div{width:300px;height:300px;background: #008000}
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<dl>
+    <dt>顺序：</dt>
+    <dd>touchstart：手指放在屏幕上的时候触发</dd>
+    <dd>touchmove：手指在屏幕上移动的时候触发</dd>
+    <dd>touchend：手指从屏幕拿起的时候触发</dd>
+</dl>
+<dl>
+    <dt>属性：</dt>
+    <dd>clientX：触摸点相当于浏览器窗口的位置（X、Y坐标）</dd>
+    <dd>clientY：</dd>
+    <dd>screenX:触摸点相当于屏幕的位置（X、Y坐标）</dd>
+    <dd>screenY:</dd>
+    <dd>e.pageX：触摸点相当于页面的位置（X、Y坐标）</dd>
+    <dd>e.pageY：</dd>
+    <dd>identifier：表示触摸的唯一ID</dd>
+</dl>
+<dl>
+    <dt>触摸列表：</dt>
+    <dd>e.changedTouches：当前事件上的手指，仅列出最后发生的触摸</dd>
+    <dd>e.targetTouches：当前dom元素上手指列表</dd>
+    <dd>e.touches：当前屏幕上所有手指的列表（尽量不使用这个）</dd>
+    <dd>e.originalEvent.targetTouches[0]：jQuery中使用</dd>
+</dl>
+</body>
+<script>
+/*
+
+var touch = function(){
+
+    var touch = {
+        start : function(event){
+            var touches = event.changedTouches[0];
+            this.startX = touches.clientX;
+            this.startY = touches.clientY;
+        },
+        move : function(event){
+            event.preventDefault();
+            var touches = event.changedTouches[0];
+            this.moveX = touches.clientX - this.startX;
+            this.moveY = touches.clientY - this.startY;
+        },
+        end : function(event){
+            var touches = event.changedTouches[0];
+            this.endX = touches.clientX - this.startX;
+            this.endY = touches.clientY - this.startY;
+
+            // 左右划到|水平划到
+            if(Math.abs(this.endX) > Math.abs(this.endY)){
+                //if(this.endX > 0){
+                if(this.endX > 20){     //大于20px的差值算划到
+                    // 右
+                //}else {
+                }else if(this.endX < -20) {     //小于20px
+                    // 左
+                }
+
+            }else {     // 上下划到
+                if(this.endY > 0){
+                    // 上
+                }else {
+                    // 下
+                }
+            }
+        }
+    }
+
+
+}
+
+
+
+
+
+var box=document.getElementById("box");
+    box.addEventListener("touchstart",touchstart,false);
+    box.addEventListener("touchmove",touchMoveFunc,false);
+    box.addEventListener("touchend",touchend,false);
+
+
+    //获取触点位置
+    function touchPos(e){
+        var touches = e.changedTouches,
+                l = touches.length,
+                touch,
+                tagX,
+                tagY;
+        for (var i = 0; i < l; i++) {
+            touch = touches[i];
+            tagX = touch.clientX;
+            tagY = touch.clientY;
+        }
+        oPosition.x = tagX;
+        oPosition.y = tagY;
+        return oPosition;
+    }
+
+    var startX=0;
+    var startY=0;
+
+
+    //触摸开始
+    function touchstart(e){
+        var touch= e.changedTouches[0];
+        startX=touch.clientX;
+        startY=touch.clientY;
+    }
+
+    //触摸移动
+    function touchMoveFunc(e){
+        var touch= e.changedTouches[0];
+        var x=touch.clientX - startX;
+        var y=touch.clientX - startY;
+        alert(x+"|"+y);
+    }
+
+    //触摸结束
+    function touchend(){
+        alert("离开");
+    }
+
+*/
+
+
+/*
+
+function handleTouchEvent(event) {
+    //只跟踪一次触摸
+    if (event.touches.length == 1) {
+        var output = document.getElementById("output");
+        switch (event.type) {
+            case "touchstart":
+                output.innerHTML = "Touch started (" + event.touches[0].clientX + "," + event.touches[0].clientY + ")";
+                break;
+            case "touchmove":
+                event.preventDefault(); //阻止滚动
+                output.innerHTML += "<br>Touch moved (" + event.changedTouches[0].clientX + "," + event.changedTouches[0].clientY + ")";
+                break;
+            case "touchend":
+                output.innerHTML += "<br>Touch ended (" + event.changedTouches[0].clientX + "," + event.changeTouches[0].clientY + ")";
+                break;
+        }
+    }
+}
+document.addEventListener("touchstart", handleTouchEvent, false);
+document.addEventListener("touchend", handleTouchEvent, false);
+document.addEventListener("touchmove", handleTouchEvent, false);
+
+*/
+
+
+
+</script>
+</html>
