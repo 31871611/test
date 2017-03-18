@@ -113,7 +113,5 @@ http://www.111cn.net/wy/js-ajax/105058.htm
 查看已安装全局
 
 
-vue1:
-npm install --save vue-touch@1.1.0 vue-resource@1.0.3 vue-router@0.7.13
-npm install --save-dev sass-loader node-sass
+
 

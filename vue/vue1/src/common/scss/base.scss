@@ -1,0 +1,72 @@
+@charset "UTF-8";
+@import "comm/reset";
+@import "comm/css3";
+@import "comm/common";
+
+html,body{
+  height:100%;
+  //overflow-x: hidden;
+}
+html {
+  //font-size: $browser-default-font-size;
+}
+body{
+  //@include font-dpr(24px);
+  //background-color:$bg-color;
+}
+
+
+.hide{
+  display: none !important;
+}
+.mt20{
+  margin-top: pxTorem(20px) !important;
+}
+.mt25{
+  margin-top: pxTorem(25px) !important;
+}
+.mt80{
+  margin-top: pxTorem(80px) !important;
+}
+.mb10{
+  margin-bottom: pxTorem(10px) !important;
+}
+.mb20{
+  margin-bottom: pxTorem(20px) !important;
+}
+.mb30{
+  margin-bottom: pxTorem(30px) !important;
+}
+
+.red{
+  color:$red-base !important;
+}
+
+.url{
+  color:#3366cc !important;
+}
+
+//错误提示
+.error{
+  color:$red_c;
+}
+.bgWhite{
+  background:#fff;
+}
+.clearfix{
+  @extend %clearfix;
+}
+
+
+
+/****************************************************/
+
+//基础布局，版面|.wrap|article.main|.scrollHide
+@import "comm/layout";
+
+//动画keyframes
+@import "components/keyframes";
+
+
+/****************************************************/
+

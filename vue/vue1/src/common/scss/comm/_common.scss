@@ -246,20 +246,6 @@ $browser-default-font-size: 75px;
   margin-left: -($width) / 2;
 }
 
-//css3剧中
-%boxcen{
-  display: -webkit-box;
-  display: -moz-box;
-  display: box;
-  //  display: -webkit-flex;
-  //  display: -moz-flex;
-  //  display: -ms-flexbox;
-  //  display: flex;
-  -webkit-box-pack:center;
-  box-pack:center;
-  -webkit-box-align:center;
-  box-align:center;
-}
 
 //透明度
 @mixin opacity($opacity:50) {

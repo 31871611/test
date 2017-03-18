@@ -1,0 +1,66 @@
+@charset "UTF-8";
+@import "../comm/css3";
+@import "../comm/common";
+
+
+/*******************************************************************/
+
+//过渡.从下往上滑动
+.SlideTopBottom-enter{
+  @include animation(SlideBottomToTop 400ms);
+}
+.SlideTopBottom-leave{
+  @include animation(SlideTopToBottom 400ms);
+}
+//从下往上滑动显示
+@include keyframes(SlideBottomToTop){
+  0%{
+    @include translate3D(0,100%,0);
+    @include opacity(50);
+  }
+  100%{
+    @include translate3D(0,0,0);
+    @include opacity(100);
+  }
+}
+//从上往下滑动显示
+@include keyframes(SlideTopToBottom){
+  0%{
+    @include translate3D(0,0,0);
+    @include opacity(100);
+  }
+  100%{
+    @include translate3D(0,100%,0);
+    @include opacity(50);
+  }
+}
+
+/*******************************************************************/
+
+// 左右滑动
+.SlideRightLeft-enter{
+  @include animation(SlideRightToLeft 400ms);
+}
+.SlideRightLeft-leave{
+  @include animation(SlideLeftToRight 400ms);
+}
+//从右往左滑动显示
+@include keyframes(SlideRightToLeft){
+  0%{
+    @include translate3D(100%,0,0);
+  }
+  100%{
+    @include translate3D(0,0,0);
+  }
+}
+//从左往右滑动显示
+@include keyframes(SlideLeftToRight){
+  0%{
+    @include translate3D(0,0,0);
+  }
+  100%{
+    @include translate3D(100%,0,0);
+  }
+}
+
+/***************************************************************************/

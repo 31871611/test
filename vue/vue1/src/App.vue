@@ -32,8 +32,8 @@ export default {
 }
 </script>
 
+<style lang="scss" src="./common/scss/base.scss"></style>
 <style>
-@import "../static/css/pos.css";
 .tab{
   display:flex;
   height:40px;
