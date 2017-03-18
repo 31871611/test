@@ -1,0 +1,25 @@
+@charset "UTF-8";
+@import "comm/css3";
+@import "comm/common";
+
+
+.tab{
+  display:flex;
+  height:40px;
+  line-height:40px;
+  /* 1像素 */
+  @import "comm/mixin";
+  @include border-1px(rgba(7,17,27,.1));
+  .tab-item{
+    flex: 1;
+    text-align: center;
+    a{
+      display: block;
+      font-size:14px;
+      color:rgb(77,85,93);
+      &.active{
+        color:#f01414;
+      }
+    }
+  }
+}

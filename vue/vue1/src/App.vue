@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-header></v-header>
+    <v-header :seller="seller"></v-header>
     <div class="tab">
       <div class="tab-item">
         <a v-link="'/goods'">商品</a>
@@ -25,7 +25,25 @@
 <script type="text/ecmascript-6">
 import header from './components/header/header.vue'
 
+const ERR_OK = 0;
+
 export default {
+  data() {
+    return{
+      seller:{}
+    }
+  },
+  created() {
+    this.$http.get('/api/seller').then(function(response){
+      //console.log(response);
+      var res = response.data;
+      if(res.error === ERR_OK){
+        this.seller = res.data;
+      }
+    },function(){
+
+    })
+  },
   components: {
     'v-header':header
   }
@@ -33,34 +51,4 @@ export default {
 </script>
 
 <style lang="scss" src="./common/scss/base.scss"></style>
-<style>
-.tab{
-  display:flex;
-  height:40px;
-  line-height:40px;
-  /*border-bottom: 1px solid rgba(7,17,27,.1);*/
-  position: relative;
-}
-/* 1像素 */
-.tab:after{
-  content: '\20';
-  display: block;
-  position: absolute;
-  left:0;
-  bottom:0;
-  width: 100%;
-  border-bottom: 1px solid rgba(7,17,27,.1);
-}
-.tab .tab-item{
-  flex: 1;
-  text-align: center;
-}
-.tab .tab-item a{
-  display: block;
-  font-size:14px;
-  color:rgb(77,85,93);
-}
-.tab .tab-item a.active{
-  color:#f01414;
-}
-</style>
+<style lang="scss" src="./common/scss/app.scss"></style>
