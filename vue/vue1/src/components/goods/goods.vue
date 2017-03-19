@@ -1,16 +1,18 @@
 <template>
   <div class="goods">
-    <div class="menu-wrapper">
+    <div class="menu-wrapper" v-el:menu-wrapper>
       <ul>
-        <li class="menu-item" v-for="item in goods" v-touch:tap="selectMenu($index,$event)">
+        <li class="menu-item" v-for="item in goods"  :class="{'current':currentIndex===$index}" @click="selectMenu($index,$event)">
           <span class="text">
             <span v-show="item.type>0" :class="classMap[item.type]" class="icon"></span>{{item.name}}
           </span>
         </li>
       </ul>
     </div>
-    <div class="foods-wrapper">
+
+    <div class="foods-wrapper" v-el:foods-wrapper>
       <ul>
+        <!-- -hook钩子给js使用 -->
         <li v-for="item in goods" class="food-list food-list-hook">
           <h1 class="title">{{item.name}}</h1>
           <ul>
@@ -43,13 +45,17 @@
 </template>
 
 <script type="text/ecmascript-6">
+import BScroll from 'better-scroll';
+
 const ERR_OK = 0;
 
 export default {
   data () {
     return {
       goods: [],
-      classMap:[]
+      classMap:[],
+      listHeight:[],
+      scrollY:0
     }
   },
   ready: function () {
@@ -62,19 +68,75 @@ export default {
       var res = response.data;
       if(res.error === ERR_OK){
         this.goods = res.data;
+
+        // 异步后才运行，nextTick方法更新dom
+        this.$nextTick(function(){
+          this._initScroll();
+          // 计算右边列表分类高度
+          this._calculateHeight();
+        });
       }
     })
   },
   methods: {
     selectMenu:function(index,event){
-      console.log(index);
+      // 防止pc端click，触发2次。pc上无event._constructed
+      if (!event._constructed) {
+        return;
+      }
+      let foodList = this.$els.foodsWrapper.getElementsByClassName('food-list-hook');
+      // 元素数组
+      let el = foodList[index];
+      this.foodsScroll.scrollToElement(el, 300);
     },
     selectFood:function(food,event){
       console.log(food);
+    },
+    _initScroll() {
+      // 对应v-el:menu-wrapper
+      this.meunScroll = new BScroll(this.$els.menuWrapper,{
+        click:true
+      });
+
+      // 右边列表
+      this.foodsScroll = new BScroll(this.$els.foodsWrapper,{
+        click:true,
+        probeType: 3
+      });
+
+      // 获取右边列表滚动Y值
+      this.foodsScroll.on('scroll', (pos) => {
+        this.scrollY = Math.abs(Math.round(pos.y));
+      });
+
+    },
+    _calculateHeight() {
+      // 得到每个分类的节点.返回数组节点
+      let foodList = this.$els.foodsWrapper.getElementsByClassName('food-list-hook');
+      let height = 0;
+      this.listHeight.push(height);
+      for (let i = 0; i < foodList.length; i++) {
+        let item = foodList[i];
+        // 每个节点的高度.进行累加得到下一个节点高度
+        height += item.clientHeight;
+        this.listHeight.push(height);
+      }
     }
   },
   computed:{
-
+    currentIndex() {
+      for (let i = 0; i < this.listHeight.length; i++) {
+        // 数值
+        let height1 = this.listHeight[i];
+        let height2 = this.listHeight[i + 1];
+        // 大于第一个 && 小于第二个 = 区间
+        // 最后一个数组+1，height2为空
+        if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
+          return i;
+        }
+      }
+      return 0;
+    }
   },
   components: {}
 }
