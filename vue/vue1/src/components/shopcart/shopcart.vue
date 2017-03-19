@@ -1,6 +1,6 @@
 <template>
   <div class="shopcart">
-    <div class="content">
+    <div class="content" v-touch:tap="toggleList">
       <div class="content-left">
         <div class="logo-wrapper">
           <div class="logo" :class="{'highlight':totalCount>0}">
@@ -26,15 +26,36 @@
     </div>
 
 
-    <div class="shopcart-list"></div>
+    <div class="shopcart-list" v-show="listShow" transition="fold">
+      <div class="list-header">
+        <h1 class="title">购物车</h1>
+        <span class="empty" v-touch:tap="empty">清空</span>
+      </div>
+      <div class="list-content" v-el:list-content>
+        <ul>
+          <li class="food" v-for="food in selectFoods">
+            <span class="name">{{food.name}}</span>
+            <div class="price">
+              <span>￥{{food.price*food.count}}</span>
+            </div>
+            <div class="cartcontrol-wrapper">
+              <cartcontrol :food="food"></cartcontrol>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
 
   </div>
 
-  <!--<div class="list-mask"></div>-->
+  <div class="list-mask" @click="hideList" v-show="listShow" transition="fade"></div>
 
 </template>
 
 <script type="text/ecmascript-6">
+import BScroll from 'better-scroll';
+import cartcontrol from '../cartcontrol/cartcontrol.vue';
+
 export default {
   props:{
     selectFoods: {
@@ -76,7 +97,8 @@ export default {
           show:false
         }
       ],
-      dropBalls:[]
+      dropBalls:[],
+      fold: true
     }
   },
   ready: function () {
@@ -117,6 +139,26 @@ export default {
       } else {
         return 'enough';
       }
+    },
+    listShow() {
+      // 有商品时
+      if (!this.totalCount) {
+        this.fold = true;
+        return false;
+      }
+      let show = !this.fold;
+      if (show) {
+        this.$nextTick(() => {
+          if (!this.scroll) {
+            this.scroll = new BScroll(this.$els.listContent, {
+              click: true
+            });
+          } else {
+            this.scroll.refresh();
+          }
+        });
+      }
+      return show;
     }
   },
   methods: {
@@ -133,10 +175,19 @@ export default {
       }
     },
     toggleList:function(){
-
+      // 有商品时
+      if (!this.totalCount) {
+        return;
+      }
+      this.fold = !this.fold;
     },
     hideList:function(){
-
+      this.fold = true;
+    },
+    empty() {
+      this.selectFoods.forEach((food) => {
+        food.count = 0;
+      });
     }
   },
   transitions: {
@@ -181,7 +232,7 @@ export default {
     }
   },
   components: {
-
+    cartcontrol
   }
 
 }
