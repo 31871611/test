@@ -4,6 +4,7 @@ vue init webpack#1.0 name
 npm install --save vue-resource@1.0.3
 npm install --save vue-router@0.7.13
 npm install --save vue-touch@1.1.0
+npm install --save better-scroll    //滚动插件
 
 npm install --save-dev sass-loader
 npm install --save-dev node-sass
@@ -12,7 +13,7 @@ npm install --save-dev node-sass
 ######################################################################################
 
 node 安装失败
-set SASS_BINARY_PATH=E:/win32-x64-46_binding.node
+set SASS_BINARY_PATH=c:/win32-x64-46_binding.node
 npm rebuild node-sass
 http://jingyan.baidu.com/article/9f63fb919eefcac8400f0e03.html
 https://segmentfault.com/a/1190000005921721
