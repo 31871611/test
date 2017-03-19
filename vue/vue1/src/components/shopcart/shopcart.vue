@@ -63,6 +63,7 @@ export default {
   computed:{
     totalPrice() {
       let total = 0;
+      // this.selectFoods=点击+号的商品信息
       this.selectFoods.forEach((food) => {
         total += food.price * food.count;
       });

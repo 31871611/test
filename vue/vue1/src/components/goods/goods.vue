@@ -31,7 +31,7 @@
                   <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
                 </div>
                 <div class="cartcontrol-wrapper">
-                  <!--<cartcontrol :food="food"></cartcontrol>-->
+                  <cartcontrol :food="food"></cartcontrol>
                 </div>
               </div>
             </li>
@@ -39,7 +39,7 @@
         </li>
       </ul>
     </div>
-    <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+    <shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
   <!--<food :food="selectedFood" v-ref:food></food>-->
 </template>
@@ -47,6 +47,7 @@
 <script type="text/ecmascript-6">
 import BScroll from 'better-scroll';
 import shopcart from '../shopcart/shopcart.vue';
+import cartcontrol from '../cartcontrol/cartcontrol.vue';
 
 const ERR_OK = 0;
 
@@ -147,6 +148,7 @@ export default {
       let foods = [];
       this.goods.forEach((good) => {
         good.foods.forEach((food) => {
+          // 点击+号后，生成food.count数量
           if (food.count) {
             foods.push(food);
           }
@@ -156,7 +158,8 @@ export default {
     }
   },
   components: {
-    shopcart
+    shopcart,
+    cartcontrol
   }
 }
 </script>
