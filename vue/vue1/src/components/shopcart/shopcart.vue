@@ -11,7 +11,7 @@
         <div class="price" :class="{'highlight':totalPrice>0}">￥{{totalPrice}}</div>
         <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
       </div>
-      <div class="content-right">
+      <div class="content-right" v-touch:tap.stop.prevent="pay">
         <div class="pay" :class="payClass">
           {{payDesc}}
         </div>
@@ -188,6 +188,13 @@ export default {
       this.selectFoods.forEach((food) => {
         food.count = 0;
       });
+    },
+    pay() {
+      // 总价 < 最少起送卖价格
+      if (this.totalPrice < this.minPrice) {
+        return;
+      }
+      window.alert(`支付${this.totalPrice}元`);
     }
   },
   transitions: {
