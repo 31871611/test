@@ -13,6 +13,7 @@ npm install --save-dev node-sass
 
 node 安装失败
 set SASS_BINARY_PATH=E:/win32-x64-46_binding.node
+npm rebuild node-sass
 http://jingyan.baidu.com/article/9f63fb919eefcac8400f0e03.html
 https://segmentfault.com/a/1190000005921721
 
