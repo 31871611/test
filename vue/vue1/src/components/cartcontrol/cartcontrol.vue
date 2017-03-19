@@ -36,9 +36,10 @@ export default {
       } else {
         this.food.count++;
       }
-      //this.$dispatch('cart.add', event.target);
+      // event.target对象以cart.add事件传入.父组件
+      this.$dispatch('cart.add', event.target);
     },
-    decreaseCart:function(){
+    decreaseCart:function(event){
       if (!event._constructed) {
         return;
       }

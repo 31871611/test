@@ -39,7 +39,7 @@
         </li>
       </ul>
     </div>
-    <shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+    <shopcart v-ref:shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
   <!--<food :food="selectedFood" v-ref:food></food>-->
 </template>
@@ -98,6 +98,14 @@ export default {
     },
     selectFood:function(food,event){
       console.log(food);
+    },
+    _drop(target) {
+      // 体验优化,异步执行下落动画
+      this.$nextTick(() => {
+        // 需要在使用的组件上添加v-ref才能调用子组件方法
+        // 把dom节点分发到，shopcart组件中的drop方法
+        this.$refs.shopcart.drop(target);
+      });
     },
     _initScroll() {
       // 对应v-el:menu-wrapper
@@ -160,6 +168,12 @@ export default {
   components: {
     shopcart,
     cartcontrol
+  },
+  events:{
+    // 接收子组件事件.参数节点dom元素
+    'cart.add'(target) {
+      this._drop(target);
+    }
   }
 }
 </script>
