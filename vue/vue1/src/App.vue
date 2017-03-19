@@ -12,7 +12,7 @@
         <a v-link="'/seller'">商家</a>
       </div>
     </div>
-    <router-view></router-view>
+    <router-view :seller="seller"></router-view>
     <div class="content">
       content
       <div>
