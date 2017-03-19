@@ -24,7 +24,7 @@
 <div>合计：原价：{{total}}|9折价：{{total * 0.9}}</div>
 
 </body>
-<script src="../public/js/vue.js"></script>
+<script src="http://apps.bdimg.com/libs/vue/1.0.14/vue.js"></script>
 <script>
 
     var app=new Vue({
@@ -41,10 +41,10 @@
             //还要一个对应的数组?
             index:-1,
             items:[
-                {select:false,title:"商品一",counter:1,price:10},
-                {select:false,title:"商品二",counter:1,price:100},
-                {select:false,title:"商品三",counter:1,price:5},
-                {select:false,title:"商品四",counter:1,price:50}
+                {title:"商品一",counter:1,price:10},
+                {title:"商品二",counter:1,price:100},
+                {title:"商品三",counter:1,price:5},
+                {title:"商品四",counter:1,price:50}
             ],
             total:0
         },
@@ -69,6 +69,7 @@
         }
     });
 
+    // 也可以使用计算
     app.$watch(function(){
         var total=0;
         for(var i = 0,len=this.items.length;i<len;i++){
