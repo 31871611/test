@@ -1,10 +1,7 @@
 @charset "UTF-8";
 @import "comm/css3";
 @import "comm/common";
-
-
-
-
+@import "comm/mixin";
 
 
 .food{
@@ -140,7 +137,7 @@
       .rating-item{
         position: relative;
         padding: 16px 0;
-        border-1px(rgba(7, 17, 27, 0.1));
+        @include border-1px(rgba(7, 17, 27, 0.1));
         .user{
           position: absolute;
           right: 0;

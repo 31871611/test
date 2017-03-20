@@ -41,13 +41,14 @@
     </div>
     <shopcart v-ref:shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
-  <!--<food :food="selectedFood" v-ref:food></food>-->
+  <food :food="selectedFood" v-ref:food></food>
 </template>
 
 <script type="text/ecmascript-6">
 import BScroll from 'better-scroll';
 import shopcart from '../shopcart/shopcart.vue';
 import cartcontrol from '../cartcontrol/cartcontrol.vue';
+import food from '../food/food.vue';
 
 const ERR_OK = 0;
 
@@ -62,7 +63,8 @@ export default {
       goods: [],
       classMap:[],
       listHeight:[],
-      scrollY:0
+      scrollY:0,
+      selectedFood:{}
     }
   },
   ready: function () {
@@ -97,7 +99,12 @@ export default {
       this.foodsScroll.scrollToElement(el, 300);
     },
     selectFood:function(food,event){
-      console.log(food);
+      if (!event._constructed) {
+        return;
+      }
+      this.selectedFood = food;
+      // 需要在使用的组件上添加v-ref才能调用子组件方法
+      this.$refs.food.show();
     },
     _drop(target) {
       // 体验优化,异步执行下落动画
@@ -167,7 +174,8 @@ export default {
   },
   components: {
     shopcart,
-    cartcontrol
+    cartcontrol,
+    food
   },
   events:{
     // 接收子组件事件.参数节点dom元素
