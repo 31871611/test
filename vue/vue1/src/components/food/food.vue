@@ -42,7 +42,7 @@
                 <span>{{rating.username}}</span>
                 <img class="avatar" width="12" height="12" :src="rating.avatar">
               </div>
-              <div class="time">{{rating.rateTime}}</div>
+              <div class="time">{{rating.rateTime | formatDate}}</div>
               <div class="text">
                 <p>
                   <span :class="{'icon-thumb_up':rating.rateType===0,'icon-thumb_down':rating.rateType===1}"></span>{{rating.text}}
@@ -61,6 +61,7 @@
 <script type="text/ecmascript-6">
 import Vue from 'vue';
 import BScroll from 'better-scroll';
+import {formatDate} from '../../common/js/date'
 import cartcontrol from 'components/cartcontrol/cartcontrol';
 import split from 'components/split/split';
 import ratingselect from 'components/ratingselect/ratingselect';
@@ -123,11 +124,18 @@ export default {
       if (this.onlyContent && !text) {
         return false;
       }
+      // 是全部
       if (this.selectType === ALL) {
         return true;
       } else {
         return type === this.selectType;
       }
+    }
+  },
+  filters: {
+    formatDate(time) {
+      let date = new Date(time);
+      return formatDate(date, 'yyyy-MM-dd hh:mm');
     }
   },
   components: {
