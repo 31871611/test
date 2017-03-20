@@ -34,10 +34,10 @@
 
       <div class="rating">
         <h1 class="title">商品评价</h1>
-        <!--<ratingselect></ratingselect>-->
+        <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
         <div class="rating-wrapper">
           <ul v-show="food.ratings && food.ratings.length">
-            <li class="rating-item" v-for="rating in food.ratings">
+            <li v-show="needShow(rating.rateType,rating.text)" class="rating-item" v-for="rating in food.ratings">
               <div class="user">
                 <span>{{rating.username}}</span>
                 <img class="avatar" width="12" height="12" :src="rating.avatar">
@@ -63,6 +63,9 @@ import Vue from 'vue';
 import BScroll from 'better-scroll';
 import cartcontrol from 'components/cartcontrol/cartcontrol';
 import split from 'components/split/split';
+import ratingselect from 'components/ratingselect/ratingselect';
+
+const ALL = 2
 
 export default {
   props:{
@@ -72,7 +75,14 @@ export default {
   },
   data () {
     return {
-      showFlag:false
+      showFlag:false,
+      selectType:ALL,
+      onlyContent: true,
+      desc: {
+        all: '全部',
+        positive: '推荐',
+        negative: '吐槽'
+      }
     }
   },
   ready: function () {
@@ -84,7 +94,10 @@ export default {
   methods: {
     show() {
       this.showFlag = true;
-
+      // 页面调用时初始化数值
+      this.selectType = ALL;
+      this.onlyContent = true;
+      //页面调用时初始化数值.end
       this.$nextTick(() =>{
         if(!this.scroll){
           // 对应v-el:menu-wrapper
@@ -104,13 +117,38 @@ export default {
       // event.target对象以cart.add事件传入.父组件
       this.$dispatch('cart.add', event.target);
       Vue.set(this.food, 'count', 1);
+    },
+    needShow(type, text) {
+      // 有评论内容
+      if (this.onlyContent && !text) {
+        return false;
+      }
+      if (this.selectType === ALL) {
+        return true;
+      } else {
+        return type === this.selectType;
+      }
     }
   },
   components: {
     cartcontrol,
-    split
+    split,
+    ratingselect
+  },
+  events: {
+    'ratingtype.select'(type) {
+      this.selectType = type;
+      this.$nextTick(() => {
+        this.scroll.refresh();
+      });
+    },
+    'content.toggle'(onlyContent) {
+      this.onlyContent = onlyContent;
+      this.$nextTick(() => {
+        this.scroll.refresh();
+      });
+    }
   }
-
 }
 </script>
 <style lang="scss" src="../../common/scss/_food.scss"></style>
