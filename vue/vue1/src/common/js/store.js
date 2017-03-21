@@ -1,3 +1,13 @@
+/*
+  seller = {
+    id:{
+      key:value
+    },
+    02:{
+      'favorite':true
+    }
+  }
+*/
 export function saveToLocal(id, key, value) {
 	let seller = window.localStorage.__seller__;
 	if (!seller) {
