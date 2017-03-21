@@ -1,12 +1,11 @@
 <template>
-  <div class="split">{{msg}}</div>
+  <div class="split"></div>
 </template>
 
 <script type="text/ecmascript-6">
 export default {
   data () {
     return {
-      msg: 'split'
     }
   },
   ready: function () {
