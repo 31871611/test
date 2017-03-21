@@ -99,7 +99,7 @@ export default {
     this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
   },
   ready: function () {
-    // 本页刷新会失效.使用watch监听.切换页面有效
+    // 本页刷新会失效.所以使用watch监听.但切换页面有效
     this._initScroll();
     this._initPics();
   },
