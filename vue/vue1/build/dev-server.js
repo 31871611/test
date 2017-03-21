@@ -15,6 +15,7 @@ var proxyTable = config.dev.proxyTable
 
 var app = express()
 
+// mock数据
 // 读取json文件数据
 var appData = require('../data.json');
 var seller = appData.seller;
@@ -42,7 +43,7 @@ apiRouter.get('/ratings',function(req,res){
   });
 });
 app.use('/api',apiRouter);
-
+// mock数据.end
 
 
 var compiler = webpack(webpackConfig)
