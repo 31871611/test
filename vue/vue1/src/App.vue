@@ -12,7 +12,7 @@
         <a v-link="'/seller'">商家</a>
       </div>
     </div>
-    <router-view :seller="seller"></router-view>
+    <router-view :seller="seller" keep-alive></router-view>
     <div class="content">
         <a v-link="'/a'">测试路由跳转</a>
     </div>
