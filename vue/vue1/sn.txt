@@ -19,3 +19,24 @@ http://jingyan.baidu.com/article/9f63fb919eefcac8400f0e03.html
 https://segmentfault.com/a/1190000005921721
 
 ######################################################################################
+
+cartcontrol.vue
+// event.target对象以cart.add事件传入.父组件
+this.$dispatch('cart.add', event.target);
+
+
+food.vue
+v-el:food | this.$els.food
+
+
+goods.vue
+v-ref:food |
+// 需要在使用的组件上添加v-ref才能调用子组件方法
+this.$refs.food.show();
+
+// 接收子组件事件.参数节点dom元素
+'cart.add'(target) {
+  this._drop(target);
+}
+
+
