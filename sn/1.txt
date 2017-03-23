@@ -44,8 +44,10 @@ npm install ./package.tgz
 
 可以通过以下2个命令，查看 node.js 和 npm 的版本号：
 node -v
-
 npm -v
+
+不支持全局查看时
+webpack --version
 
 安装Grunt：
 安装Grunt命令行（CLI）：
@@ -111,7 +113,6 @@ http://www.111cn.net/wy/js-ajax/105058.htm
 安装nrm.npm install -g nrm
 安装相关全局.gulp、vue-cli等
 查看已安装全局
-
 
 
 
