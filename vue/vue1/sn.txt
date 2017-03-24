@@ -10,6 +10,11 @@ npm install --save-dev sass-loader
 npm install --save-dev node-sass@4.2.0
 
 
+
+// 页面顶部进度条
+nprogress
+
+
 ######################################################################################
 
 node 安装失败
