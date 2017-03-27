@@ -75,6 +75,7 @@ router.map({
 
 
   //'/article/:type':{
+  //  name: 'article',
   //  component: article,
   //  subRoutes:{
   //    '/:id': {

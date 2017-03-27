@@ -31,7 +31,7 @@
 // 处理图片背景
 @mixin bg-image($url){
   background-image: url($url + "@2x.png");
-  
+
   //background-image: url($url + ".png");
   @media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2){
     background-image: url($url + "@2x.png");
