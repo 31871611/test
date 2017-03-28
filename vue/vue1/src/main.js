@@ -29,6 +29,7 @@ let router = new VueRouter({
   linkActiveClass:'active'
 });
 
+// 饿了ele
 router.map({
   '/goods':{
     component: goods
@@ -71,8 +72,29 @@ router.map({
         }
       }
     }
-  }
+  },
 
+/*
+  '/aa':{   =/aa
+    component: function(resolve){
+      require(['./components/router/a.vue'], resolve);
+    },
+    subRoutes:{
+      '/':{   =/aa
+        name:'aa.b',  //好像没什么用，没明白有什么意义
+        component: function(resolve){
+          require(['./components/router/b.vue'], resolve);
+        }
+      },
+      '/c':{  =/aa/c
+        name:'aa.c',  //好像没什么用，没明白有什么意义
+        component: function(resolve){
+          require(['./components/router/c.vue'], resolve);
+        }
+      }
+    }
+  }
+*/
 
   //'/article/:type':{
   //  name: 'article',
