@@ -58,6 +58,10 @@
       },
       canActivate: function(transition) {
         console.log('执行组件的钩子函数:canActivate')
+        // 上一页面url
+        console.log(transition.from.path);
+        // 本页面url
+        console.log(transition.to.path);
         transition.next()
       },
       activate: function(transition) {
