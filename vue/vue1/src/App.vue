@@ -14,7 +14,7 @@
     </div>
     <router-view :seller="seller" keep-alive></router-view>
     <div class="content">
-        <a v-link="'/a'">测试路由跳转</a>
+        <a v-link="'/a?id=1&type=1'">测试路由跳转</a>
     </div>
   </div>
 </template>

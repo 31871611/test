@@ -5,7 +5,7 @@
 <template>
 <h1 transition="SlideRightLeft" class="fullPosition">
   {{msg}}
-  <a v-link="'/a/b'">跳转</a>
+  <a v-link="'/a/b?id=1&type=1'">跳转</a>
 </h1>
 <router-view></router-view>
 </template>
