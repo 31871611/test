@@ -52,6 +52,7 @@
     },
     route: {
       canReuse: function(transition) {
+        // 决定组件是否可以被重用。
         console.log('执行组件的钩子函数:canReuse')
         return true
       },
@@ -86,5 +87,19 @@
 
     }
   }
+
+/*
+
+//进入
+  执行组件的钩子函数:canActivate
+  执行组件的钩子函数:activate
+  执行组件的钩子函数:data
+
+//离开
+  执行组件的钩子函数:canDeactivate
+  执行组件的钩子函数:deactivate
+
+
+*/
 </script>
 
