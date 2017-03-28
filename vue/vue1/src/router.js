@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import ele from './components/ele/ele.vue';
 import goods from './components/goods/goods.vue';
 import ratings from './components/ratings/ratings.vue';
 import seller from './components/seller/seller.vue';
@@ -19,6 +20,20 @@ let router = new VueRouter({
 
 // 饿了ele
 router.map({
+  '/ele' :{
+    component: ele,     //基础头部
+    subRoutes:{
+      '/goods':{
+        component: goods
+      },
+      '/ratings':{
+        component: ratings
+      },
+      '/seller':{
+        component: seller
+      }
+    }
+  },
   '/goods':{
     component: goods
   },
