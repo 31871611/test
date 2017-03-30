@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue2路由</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <meta name="format-detection" content="telephone=no,email=no" />
+    <script src="https://unpkg.com/vue@2.2.6/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@2.3.1/dist/vue-router.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <h1>Hello App!</h1>
+    <ul>
+        <!-- 使用 router-link 组件来导航. -->
+        <!-- 通过传入 `to` 属性指定链接. -->
+        <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+        <li><router-link to="/foo#111">Go to Foo</router-link></li>
+        <li><router-link to="/query?user=1&type=1">Go to query</router-link></li>
+        <li><router-link to="/user/01">Go to User</router-link></li>
+        <li><router-link to="/user/01/profile">UserProfile子路由</router-link></li>
+        <li><router-link to="/user/01/a">重定向</router-link></li>
+    </ul>
+    <!-- 路由出口 -->
+    <!-- 路由匹配到的组件将渲染在这里 -->
+    <router-view></router-view>
+</div>
+
+
+<div>
+    <h3> <router-link>说明</h3>
+
+    <!-- 字符串.当被点击后，内部会立刻把 to 的值传到 router.push() -->
+    <router-link to="home">Home</router-link>
+    <!-- 渲染结果 -->
+    <a href="home">Home</a>
+
+    <!-- 使用 v-bind 的 JS 表达式.多了单引号-->
+    <router-link v-bind:to="'home'">Home</router-link>
+
+    <!-- 不写 v-bind 也可以，就像绑定别的属性一样 -->
+    <router-link :to="'home'">Home</router-link>
+
+    <!-- 同上 -->
+    <router-link :to="{ path: 'home' }">Home</router-link>
+
+    <!-- 命名的路由 -->
+    <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>
+
+    <!-- 带查询参数，下面的结果为 /register?plan=private -->
+    <router-link :to="{ path: 'register', query: { plan: 'private' }}">Register</router-link>
+
+    <!-- 设置 replace 属性.当点击时，会调用 router.replace() -->
+    <router-link :to="{ path: '/abc'}" replace></router-link>
+
+    <!-- 设置 append 属性后，则在当前（相对）路径前添加基路径。例如，我们从 /a 导航到一个相对路径 b，如果没有配置 append，则路径为 /b，如果配了，则为 /a/b -->
+    <router-link :to="{ path: 'relative/path'}" append></router-link>
+</div>
+
+</body>
+<script type="text/javascript">
+// http://router.vuejs.org/zh-cn/essentials/getting-started.html
+
+
+    // 0. 如果使用模块化机制编程，導入Vue和VueRouter，要调用 Vue.use(VueRouter)
+
+    // 1. 定义（路由）组件。
+    // 可以从其他文件 import 进来
+    const Foo = {
+        template: '<div @click="ck()">foo {{$route.hash}}</div>',
+        methods: {
+            ck:function(){
+                alert(1);
+            }
+        }
+    };
+    const Query = { template: '<div>url参数：{{$route.query}}</div>' };
+    const User = {
+        template: '<div>' +
+        'User的id: {{ $route.params.id }} 对象: {{$route.params}} ' +
+        '<router-view></router-view>' +
+        '</div>',
+        watch:{
+            '$route' (to,from){
+                // 对路由变化作出响应...没反映
+                console.log(to);
+                console.log(from);
+                // window.history.length
+            }
+        }
+    };
+    const UserProfile = { template:'<div>UserProfile子路由</div>' };
+    const UserPosts = { template:'<div>UserPosts子路由</div>' };
+
+    // 2. 定义路由
+    // 每个路由应该映射一个组件。 其中"component" 可以是
+    // 通过 Vue.extend() 创建的组件构造器，
+    // 或者，只是一个组件配置对象。
+    // 我们晚点再讨论嵌套路由。
+    const routes = [
+        { path: '/foo', component: Foo },
+        { path: '/query', component: Query },
+        { path: '/user/:id', component: User,
+            // 子路由
+            children: [
+                {
+                    // 当 /user/:id/profile 匹配成功，
+                    // UserProfile 会被渲染在 User 的 <router-view> 中
+                    path: 'profile',
+                    component: UserProfile
+                },
+                {
+                    // 当 /user/:id/posts 匹配成功
+                    // UserPosts 会被渲染在 User 的 <router-view> 中
+                    path: 'posts',
+                    component: UserPosts
+                },{
+                    path : 'a',
+                    // 重定向
+                    redirect: '/user/:id/profile'
+                    //redirect: { name: 'foo' }  重定向到命名路由
+                }
+                // 别名：/a 的别名是 /b，意味着，当用户访问 /b 时，URL 会保持为 /b，但是路由匹配则为 /a，就像用户访问 /a 一样。
+
+            ]
+        }
+    ];
+
+    // 3. 创建 router 实例，然后传 `routes` 配置
+    // 你还可以传别的配置参数, 不过先这么简单着吧。
+    const router = new VueRouter({
+        routes, // （缩写）相当于 routes: routes
+        scrollBehavior (to, from, savedPosition) {      // 滚动行为.只在 HTML5 history 模式下可用
+            // 第三个参数 savedPosition 当且仅当 popstate 导航 (通过浏览器的 前进/后退 按钮触发) 时才可用。
+            // return 期望滚动到哪个的位置
+            // return { x: 0, y: 0 }
+        }
+    });
+
+/*
+    router.beforeEach((to, from, next) => {
+
+         每个钩子方法接收三个参数：
+
+         to: Route: 即将要进入的目标 路由对象
+
+         from: Route: 当前导航正要离开的路由
+
+         next: Function: 一定要调用该方法来 resolve 这个钩子。执行效果依赖 next 方法的调用参数。
+
+         next(): 进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是 confirmed （确认的）。
+
+         next(false): 中断当前的导航。如果浏览器的 URL 改变了（可能是用户手动或者浏览器后退按钮），那么 URL 地址会重置到 from 路由对应的地址。
+
+         next('/') 或者 next({ path: '/' }): 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。
+
+    })
+
+    router.afterEach(route => {
+        // after 钩子没有 next 方法，不能改变导航：
+    })
+*/
+
+
+    router.beforeEach(function(to, from, next){
+        console.log(to);
+        next();
+    });
+
+
+    // 4. 创建和挂载根实例。
+    // 记得要通过 router 配置参数注入路由，
+    // 从而让整个应用都有路由功能
+    const app = new Vue({
+        router
+    }).$mount('#app');
+
+    // 现在，应用已经启动了！
+
+
+/*##############################################################################################################
+
+ router.push(location)：会向 history 栈添加一个新的记录，所以，当用户点击浏览器后退按钮时，则回到之前的 URL。
+
+ router.push(location)  等于=  <router-link :to="...">
+
+    // 字符串
+    router.push('home')
+
+    // 对象
+    router.push({ path: 'home' })
+
+    // 命名的路由
+    router.push({ name: 'user', params: { userId: 123 }})
+
+    // 带查询参数，变成 /register?plan=private
+    router.push({ path: 'register', query: { plan: 'private' }})
+
+----------------------------------------------------------------------------------------------------------------
+
+ router.replace(location)：不会向 history 添加新记录，而是替换掉当前的 history 记录。
+
+ router.replace(...)  等于=  <router-link :to="..." replace>
+
+----------------------------------------------------------------------------------------------------------------
+
+ router.go(n)：在 history 记录中向前或者后退多少步
+
+ // 在浏览器记录中前进一步，等同于 history.forward()
+ router.go(1)
+
+ // 后退一步记录，等同于 history.back()
+ router.go(-1)
+
+ // 前进 3 步记录
+ router.go(3)
+
+ // 如果 history 记录不够用，那就默默地失败呗
+ router.go(-100)
+ router.go(100)
+
+----------------------------------------------------------------------------------------------------------------
+
+ 数据获取
+ http://router.vuejs.org/zh-cn/advanced/data-fetching.html
+
+----------------------------------------------------------------------------------------------------------------
+
+ 路由懒加载
+ component: resolve => require(['@/components/user/user'], resolve),
+
+----------------------------------------------------------------------------------------------------------------
+
+ <router-view>
+
+ <keep-alive>
+    <router-view></router-view>
+ </keep-alive>
+
+----------------------------------------------------------------------------------------------------------------
+
+ 路由信息对象的属性
+
+ $route.path
+
+ 类型: string
+
+ 字符串，对应当前路由的路径，总是解析为绝对路径，如 "/foo/bar"。
+
+ $route.params
+
+ 类型: Object
+ 一个 key/value 对象，包含了 动态片段 和 全匹配片段，如果没有路由参数，就是一个空对象。
+
+ $route.query
+
+ 类型: Object
+
+ 一个 key/value 对象，表示 URL 查询参数。例如，对于路径 /foo?user=1，则有 $route.query.user == 1，如果没有查询参数，则是个空对象。
+
+ $route.hash
+
+ 类型: string
+
+ 当前路由的 hash 值 (带 #) ，如果没有 hash 值，则为空字符串。
+
+ $route.fullPath
+
+ 类型: string
+
+ 完成解析后的 URL，包含查询参数和 hash 的完整路径。
+
+ $route.matched
+
+ 类型: Array<RouteRecord>
+ 一个数组，包含当前路由的所有嵌套路径片段的 路由记录 。路由记录就是 routes 配置数组中的对象副本（还有在 children 数组）。
+
+ const router = new VueRouter({
+     routes: [
+        // 下面的对象就是 route record
+        { path: '/foo', component: Foo,
+            children: [
+            // 这也是个 route record
+                { path: 'bar', component: Bar }
+            ]
+        }
+     ]
+ })
+ 当 URL 为 /foo/bar，$route.matched 将会是一个包含从上到下的所有对象（副本）。
+
+ $route.name
+
+ 当前路由的名称，如果有的话。（查看 命名路由）
+
+
+##############################################################################################################*/
+</script>
+</html>
