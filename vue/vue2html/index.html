@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue2</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <meta name="format-detection" content="telephone=no,email=no" />
+    <script src="https://unpkg.com/vue@2.2.6/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@2.3.1/dist/vue-router.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <h3>新增</h3>
+
+
+
+
+    生命
+</div>
+
+</body>
+<script type="text/javascript">
+
+/*
+    vue生命周期
+    https://segmentfault.com/a/1190000008010666
+
+*/
+var app = new Vue({
+    el: '#app',
+    data: {
+        message : "xuxiao is boy"
+    },
+    beforeCreate: function () { // 组件实例被创建，组件属性计算之前，如data属性等
+        console.group('beforeCreate 创建前状态===============》');
+        console.log("%c%s", "color:red" , "el     : " + this.$el); //undefined
+        console.log("%c%s", "color:red","data   : " + this.$data); //undefined
+        console.log("%c%s", "color:red","message: " + this.message)
+    },
+    created: function () {  // 组件实例创建完成，属性已绑定，但DOM还未生成，$el属性还不存在
+        console.group('created 创建完毕状态===============》');
+        console.log("%c%s", "color:red","el     : " + this.$el); //undefined
+        console.log("%c%s", "color:red","data   : " + this.$data); //已被初始化
+        console.log("%c%s", "color:red","message: " + this.message); //已被初始化
+    },
+    beforeMount: function () {  // 模板编译/挂载之前
+        console.group('beforeMount 挂载前状态===============》');
+        console.log("%c%s", "color:red","el     : " + (this.$el)); //已被初始化
+        console.log(this.$el);
+        console.log("%c%s", "color:red","data   : " + this.$data); //已被初始化
+        console.log("%c%s", "color:red","message: " + this.message); //已被初始化
+    },
+    mounted: function () {  // 模板编译/挂载之后（不保证组件已在document中）
+        console.group('mounted 挂载结束状态===============》');
+        console.log("%c%s", "color:red","el     : " + this.$el); //已被初始化
+        console.log(this.$el);
+        console.log("%c%s", "color:red","data   : " + this.$data); //已被初始化
+        console.log("%c%s", "color:red","message: " + this.message); //已被初始化
+    },
+    beforeUpdate: function () { // 组件更新之前
+        console.group('beforeUpdate 更新前状态===============》');
+        console.log("%c%s", "color:red","el     : " + this.$el);
+        console.log(this.$el);
+        console.log("%c%s", "color:red","data   : " + this.$data);
+        console.log("%c%s", "color:red","message: " + this.message);
+    },
+    updated: function () { // 组件更新之后
+        console.group('updated 更新完成状态===============》');
+        console.log("%c%s", "color:red","el     : " + this.$el);
+        console.log(this.$el);
+        console.log("%c%s", "color:red","data   : " + this.$data);
+        console.log("%c%s", "color:red","message: " + this.message);
+    },
+    beforeDestroy: function () { // 组件销毁前调用
+        console.group('beforeDestroy 销毁前状态===============》');
+        console.log("%c%s", "color:red","el     : " + this.$el);
+        console.log(this.$el);
+        console.log("%c%s", "color:red","data   : " + this.$data);
+        console.log("%c%s", "color:red","message: " + this.message);
+    },
+    destroyed: function () { // 组件销毁后调用
+        console.group('destroyed 销毁完成状态===============》');
+        console.log("%c%s", "color:red","el     : " + this.$el);
+        console.log(this.$el);
+        console.log("%c%s", "color:red","data   : " + this.$data);
+        console.log("%c%s", "color:red","message: " + this.message)
+    }
+})
+</script>
+</html>
