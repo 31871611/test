@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import home from './components/home/home.vue';
 import ele from './components/ele/ele.vue';
 import goods from './components/goods/goods.vue';
 import ratings from './components/ratings/ratings.vue';
@@ -20,6 +21,9 @@ let router = new VueRouter({
 
 // 饿了ele
 router.map({
+  '/':{
+    component: home
+  },
   '/ele' :{
     component: ele,     //基础头部
     subRoutes:{
