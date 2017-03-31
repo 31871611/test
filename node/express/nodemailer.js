@@ -29,7 +29,17 @@ var mailOptions = {
     //text: 'Hello world', // 文本
     html: `<h2>nodemailer基本使用:</h2><h3>
     <a href="http://blog.csdn.net/zzwwjjdj1/article/details/51878392">
-    http://blog.csdn.net/zzwwjjdj1/article/details/51878392</a></h3>`
+    http://blog.csdn.net/zzwwjjdj1/article/details/51878392</a></h3>`,
+    attachments:[   // 附件信息
+        {
+            filename : 'package.json',
+            path: './package.json'
+        },
+        {
+            filename : 'content',
+            content : '发送内容'
+        }
+    ]
 };
 
 transporter.sendMail(mailOptions, function(error, info){
