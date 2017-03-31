@@ -17,10 +17,10 @@ function scheduleCronstyle(){
 
 
     // 取消
-    setTimeout(function() {
-        console.log('定时器取消');
-        j.cancel();
-    }, 5000);
+    //setTimeout(function() {
+    //    console.log('定时器取消');
+    //    j.cancel();
+    //}, 5000);
 
 }
 
@@ -28,6 +28,9 @@ scheduleCronstyle();
 
 
 /*
+ '*'需要特别注意，任意秒数都触发
+
+
  传入的'30 * * * * *'带来的结果是每分钟的30秒时都会执行
 
 
