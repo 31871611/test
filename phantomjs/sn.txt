@@ -1,0 +1,25 @@
+PhantomJS快速入门
+http://phantomjs.org/quick-start.html
+http://www.cnblogs.com/front-Thinking/p/4321720.html
+http://www.tuicool.com/articles/MbEvauy
+http://www.tuicool.com/articles/rIz2Qf6
+
+
+
+下载
+http://npm.taobao.org/dist/phantomjs/
+
+运行
+D:\phantomjs-2.1.1-windows\bin>phantomjs hello.js
+
+
+
+
+
+
+
+
+
+
+
+
