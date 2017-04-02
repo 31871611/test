@@ -37,6 +37,8 @@
 				line-height: 24px;
 			}
 			.m-button-bar{
+				position: relative;
+				z-index: 99;
 				width: 70%;
 				max-width: 800px;
 				margin:0 auto;
@@ -265,14 +267,15 @@
 
 				var Win = $(window);
 				var Doc = $(document);
+				var readerModel;
+				var readerUi;
 
 				function main(){
 					// todo 整个项目的入口函数
 
-
 					// 数据层
-					var readerModel = ReaderModel();
-					var readerUi = ReaderBaseFrame($('#fiction_container'));
+					readerModel = ReaderModel();
+					readerUi = ReaderBaseFrame($('#fiction_container'));
 
 					readerModel.init(function(data){
 						readerUi(data);
@@ -284,20 +287,25 @@
 				function ReaderModel(){
 					// todo 实现和阅读相关的数据交互的方法
 					var chapter_id;
+					var chapterTotal;
 					var init = function(callback){
 						getFictionInfo(function(){
 							getCurChapterContent(chapter_id,function(data){
 								callback && callback(data);
 							});
+
 						})
 					};
+					// 章节列表目录
 					var getFictionInfo = function(callback){
 						$.get('data/chapter.json',function(data){
 							// todo 获得章节信息之后的回调
 							chapter_id = data.chapters[1].chapter_id;
+							chapterTotal = data.chapters.length;
 							callback && callback();
 						},'json');
 					};
+					// 每章详细信息
 					var getCurChapterContent = function(chapter_id,callback){
 						$.get('data/data' + chapter_id + '.json',function(data){
 							if(data.result == 0){
@@ -306,10 +314,30 @@
 									callback && callback(data);
 								});
 							}
-						},'json')
+						},'json');
+					};
+					// 上一页
+					var prevChapter = function(UiCallback){
+						chapter_id = parseInt(chapter_id,10);
+						if(chapter_id == 1){
+							return false;
+						}
+						chapter_id -= 1;
+						getCurChapterContent(chapter_id,UiCallback);
+					};
+					// 下一页
+					var nextChapter = function(UiCallback){
+						chapter_id = parseInt(chapter_id,10);
+						if(chapter_id == chapterTotal){
+							return false;
+						}
+						chapter_id += 1;
+						getCurChapterContent(chapter_id,UiCallback);
 					};
 					return{
-						init : init
+						init : init,
+						prevChapter : prevChapter,
+						nextChapter : nextChapter
 					}
 				}
 
@@ -363,13 +391,28 @@
 						Dom.bottom_nav.hide();
 						Dom.font_container.hide();
 						Dom.font_button.removeClass('current');
+					});
+
+
+					// 下一页按钮
+					$('#prev_button').click(function(){
+						// todo 先获得章节数据->把数据拿来渲染
+						readerModel.prevChapter(function(data){
+							readerUi(data);
+						});
+					});
+					// 下一页按钮
+					$('#next_button').click(function(){
+						readerModel.nextChapter(function(data){
+							readerUi(data);
+						});
 					})
 
 				}
 
 				main();
 
-			})()
+			})();
 
 /*
 	{
