@@ -300,7 +300,11 @@
 					var getFictionInfo = function(callback){
 						$.get('data/chapter.json',function(data){
 							// todo 获得章节信息之后的回调
-							chapter_id = data.chapters[1].chapter_id;
+							chapter_id = Util.StorageGetter('last_chapter_id');
+							if(!chapter_id){
+								// 第一次没有记录，从第一章开始
+								chapter_id = data.chapters[1].chapter_id;
+							}
 							chapterTotal = data.chapters.length;
 							callback && callback();
 						},'json');
@@ -324,6 +328,8 @@
 						}
 						chapter_id -= 1;
 						getCurChapterContent(chapter_id,UiCallback);
+						//保存记录页数
+						Util.StorageSetter('last_chapter_id',chapter_id);
 					};
 					// 下一页
 					var nextChapter = function(UiCallback){
@@ -333,6 +339,8 @@
 						}
 						chapter_id += 1;
 						getCurChapterContent(chapter_id,UiCallback);
+						//保存记录页数
+						Util.StorageSetter('last_chapter_id',chapter_id);
 					};
 					return{
 						init : init,
