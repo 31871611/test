@@ -1,5 +1,9 @@
 <template>
   <div class="hello">
+    <div>
+      <router-link to="/user">跳转到user</router-link>
+      <router-link to="/login">跳转到login</router-link>
+    </div>
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>

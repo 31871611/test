@@ -1,6 +1,12 @@
 vue init webpack name
 
 
+
+
+npm install --save-dev sass-loader@6.0.3
+npm install --save-dev node-sass@4.5.2
+
+
 #########################################################################################
 
 官方脚手架

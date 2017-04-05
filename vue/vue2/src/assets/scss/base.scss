@@ -1,0 +1,69 @@
+@charset "UTF-8";
+@import "common/reset";
+@import "common/css3";
+@import "common/common";
+
+
+html,body,#app{
+  height: 100%;
+  width: 100%;
+}
+
+html{
+  font-size:$browser-default-font-size;
+}
+
+
+
+//基础布局，版面
+.wrap{
+  @include display-flex();
+  @include flex-direction(column);
+  width:100%;
+  height:100%;
+}
+article.main{
+  @include flex(1);
+  overflow: hidden;
+}
+.mainScroll{
+  width:100%;
+  height:100%;
+  overflow:scroll;
+  -webkit-overflow-scrolling: touch;
+}
+//.mainScroll::-webkit-scrollbar,
+//.mainScroll::-webkit-scrollbar{
+//  -webkit-opacity: 0;
+//  opacity: 0;
+//}
+article.scrollHide{
+  overflow:hidden;
+}
+header{
+
+}
+footer{
+
+}
+
+//vue
+[v-cloak]{
+  visibility: hidden;
+}
+.v-cloak--block,.v-cloak--inline,.v-cloak--inlineBlock{
+  display: none;
+}
+
+
+/****************************************************/
+
+
+//引入字体图标
+//@import "components/fonts";
+
+
+
+/****************************************************/
+
+

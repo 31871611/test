@@ -1,0 +1,152 @@
+@charset "UTF-8";
+@import "css3";
+
+//蓝色
+$blue-base:#003347;
+//触屏蓝色
+$blue-hover-base:#002443;
+//红色
+$red-base:#ea3a38;
+//触屏红色
+$red-hover-base:#a32827;
+//一元购
+$red-yi:#ed4343;
+//灰色
+$gray-base:#e5e5e5;
+//触屏灰色
+$gray-hover-base:#999;
+$color-333:#333;
+$color-666:#666;
+$color-999:#999;
+$color-ccc:#ccc;
+$color-eee:#eee;
+//绿色
+$green-base:#009944;
+//背景
+$bg-color:#eee;
+//次背景
+$sub-color:#f7f7f7;
+//a连接
+$link-color:#3366cc;
+//下划线
+$link-hover-color:#fff;
+
+
+//px转为rem;
+$browser-default-font-size: 64px;
+@function pxTorem($px){//$px为需要转换的字号
+  @return $px / $browser-default-font-size * 1rem;
+}
+
+//dpr字体转换
+@mixin font-dpr($font-size){
+  font-size: $font-size / 2;
+
+  [data-dpr="2"] & {
+    font-size: $font-size;
+  }
+
+  [data-dpr="3"] & {
+    font-size: $font-size * 3 / 2;
+  }
+}
+
+
+%clearfix{
+  *zoom:1;
+  &:after{
+    visibility:hidden;
+    display:block;
+    font-size:0;
+    content:"\20";
+    clear:both;
+    height:0;
+  }
+}
+
+
+//移除input type="number"时上下箭头
+%numberArrow{
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;
+  }
+}
+
+
+//ico图标
+%icoRem{
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+
+// 1像素
+@mixin border1px($color){
+  position: relative;
+  &:after{
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid $color;
+    content: '\20';
+  }
+  @media (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5){
+    &::after{
+      -webkit-transform: scaleY(0.7);
+      transform: scaleY(0.7);
+    }
+  }
+  @media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2){
+    &::after{
+      -webkit-transform: scaleY(0.5);
+      transform: scaleY(0.5);
+    }
+  }
+}
+
+// 处理图片背景
+@mixin bgImage($url){
+  background-image: url($url + ".png");
+  @media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2){
+    background-image: url($url + "@2x.png");
+  }
+  @media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3){
+    background-image: url($url + "@3x.png");
+  }
+}
+
+
+//css三角形
+@mixin arrow($type,$w:5px,$c:#ccc){
+  width:0;
+  height:0;
+  overflow:hidden;
+  @if $type == top {
+    border-width:$w;
+    border-style:dashed dashed solid dashed;
+    border-color:transparent transparent $c transparent;
+  } @else if $type == right {
+    border-width:$w;
+    border-style:dashed dashed dashed solid;
+    border-color:transparent transparent transparent $c;
+  } @else if $type == bottom {
+    border-width:$w;
+    border-style:solid dashed dashed dashed;
+    border-color:$c transparent transparent transparent;
+  } @else if $type == left {
+    border-width:$w;
+    border-style:dashed solid dashed dashed;
+    border-color:transparent $c transparent transparent;
+  }
+}
+
+//透明度
+@mixin opacity($opacity:50) {
+  opacity: $opacity / 100;
+  filter: alpha(opacity=$opacity);
+}
