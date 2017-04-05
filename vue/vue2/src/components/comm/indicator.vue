@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
 /*
  是否显示文字
 */

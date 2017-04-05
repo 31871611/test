@@ -25,7 +25,7 @@ export default {
       alert('调用子组件test()');
     },
     modifyparent:function(){
-      this.$emit('modify','被子组件修改'); //主动触发upup方法，'hehe'为向父组件传递的数据
+      this.$emit('modify','被子组件修改'); //主动触发upup方法，向父组件传递的数据'被子组件修改'
     }
   }
 }
