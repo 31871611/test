@@ -1,9 +1,13 @@
 <template>
   <div class="hello">
-    <div>
-      <router-link to="/user">跳转到user</router-link>
-      <router-link to="/login">跳转到login</router-link>
-    </div>
+    <ul>
+      <li><router-link to="/user">跳转到user</router-link></li>
+      <li><router-link to="/login">跳转到login</router-link></li>
+    </ul>
+    <!-- 加载中... -->
+    <indicator v-show="false" :is-text="false"></indicator>
+
+    <hr>
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -24,13 +28,18 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
+import indicator from './comm/indicator.vue';
+
 export default {
   name: 'hello',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  components: {
+    indicator
   }
 }
 </script>
@@ -46,10 +55,6 @@ ul {
   padding: 0;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
 
 a {
   color: #42b983;

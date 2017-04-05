@@ -1,11 +1,10 @@
 vue init webpack name
 
 
-
-
 npm install --save-dev sass-loader@6.0.3
 npm install --save-dev node-sass@4.5.2
 
+https://github.com/imcvampire/vue-axios
 
 #########################################################################################
 
@@ -17,11 +16,35 @@ Use ESLint to lint your code? No
 
 #########################################################################################
 
+v-el 和 v-ref 合并为一个 ref 属性了，可以在组件实例中通过 $refs 来调用
+<div ref="item">ref</div>
+this.$refs.item
+-----------------------------------------------------------------------------------------
+调用子组件方法
+父组件：<abc ref="abc"></abc>
+        this.$refs.abc.test();
+        this.$refs.abc.data;
+子组件：test() {}
+-----------------------------------------------------------------------------------------
+
+父子通信
+
+子组件：
+<div @click="up"></div>
+up() {
+    this.$emit('upup','hehe'); //主动触发upup方法，'hehe'为向父组件传递的数据
+}
+
+父组件
+<child @upup="change" :msg="msg"></child> //监听子组件触发的upup事件,然后调用change方法
+change(change) {
+    this.msg = change;
+}
+
+######################################################################################
+
+通过组件或路由传递
 
 
-
-
-
-https://github.com/imcvampire/vue-axios
 
 

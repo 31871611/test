@@ -25,6 +25,10 @@ const router = new Router({
       meta:{
         requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
       }
+    },
+    {
+      path: '/indicator',
+      component: resolve => require(['@/components/comm/indicator'], resolve)
     }
   ]
 })
