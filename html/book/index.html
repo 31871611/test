@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" href="css/reset.css">
+		<style type="text/css">
+			html{
+				width: 100%;
+				height: 100%;
+				overflow-x: hidden;
+			}
+			body{
+				text-align: left;
+				width: 100%;
+				overflow: hidden;
+				background:#e9dfc7;
+			}
+			.m-read-content{
+				font-size:14px;
+				color: #555;
+				line-height: 31px;
+				padding:15px;
+			}
+			.m-read-content h4{
+				font-size:20px;
+				color: #736357;
+				border-bottom: 1px solid #736357;
+				letter-spacing: 2px;
+				margin:0 0 1em 0;
+			}
+			.m-read-content p{
+				text-indent:2em;
+				margin:0.5em 0;
+				letter-spacing: 0;
+				line-height: 24px;
+			}
+			.m-button-bar{
+				position: relative;
+				z-index: 99;
+				width: 70%;
+				max-width: 800px;
+				margin:0 auto;
+				padding:5px;
+			}
+			.u-tab{
+				display: flex;
+				height: 34px;
+				line-height: 34px;
+				border-radius: 8px;
+				margin:10px auto;
+				border:1px solid #858382;
+				font-size:12px;
+				background: #000;
+				opacity: .9;
+			}
+			.u-tab li{
+				/*display: inline-block;*/
+				/*width:49%;*/
+				flex: 1;
+				border-right: 1px solid #858382;
+				text-align: center;
+				color: #e9dfc7;
+			}
+			.u-tab li:nth-child(2){
+				border-right:0;
+			}
+			.top-nav{
+				position: fixed;
+				top:0;
+				left:0;
+				width: 100%;
+				height: 50px;
+				z-index: 99;
+				background: #000;
+			}
+			.top-nav .icon-back{
+				float: left;
+				position: relative;
+				z-index: 2;
+				height: 50px;
+				line-height: 50px;
+				padding:0 20px;
+				color: #fff;
+			}
+			.top-nav .nav-title{
+				position: absolute;
+				left:0;
+				top:0;
+				z-index: 1;
+				width: 100%;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				color: #fff;
+			}
+			.bottom-nav{
+				display: flex;
+				position: fixed;
+				left:0;
+				bottom: 0;
+				z-index: 99;
+				height: 70px;
+				width: 100%;
+				background: #000;
+				color: #fff;
+			}
+			.bottom-nav div{
+				flex: 1;
+				height: 70px;
+				line-height: 70px;
+				text-align: center;
+			}
+			.nav-pannel-bk{
+				position: fixed;
+				left:0;
+				bottom: 70px;
+				height: 135px;
+				width: 100%;
+				background: rgba(0,0,0,.9);
+				z-index: 99;
+			}
+			.nav-pannel{
+				position: fixed;
+				left:0;
+				bottom: 70px;
+				height: 135px;
+				width: 100%;
+				z-index: 100;
+				color: #fff;
+			}
+			.child-mod{
+				padding:5px 10px;
+				margin:15px;
+				display: flex;
+			}
+			.child-mod span{
+				display: block;
+				padding:0 20px 0 10px;
+			}
+			.font-size-button{
+				display: block;
+				background: none;
+				border:1px solid #8c8c8c;
+				color: #fff;
+				border-radius: 16px;
+				padding: 5px 40px;
+				margin-right: 10px;
+			}
+			.bk-container{
+				width: 30px;
+				height: 30px;
+				border-radius: 15px;
+				background: #fff;
+			}
+			.m-artical-action{
+				position: fixed;
+				left:0;
+				top:0;
+				right:0;
+				bottom: 0;
+				z-index: 98;
+			}
+			.artical-action-mid{
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="root" class="container">
+			<div class="m-artical-action">
+				<div class="artical-action-mid" id="action_mid"></div>
+			</div>
+
+			<div id="top-nav" class="top-nav" style="display: none;">
+				<div class="icon-back">返回</div>
+				<div class="nav-title">返回书架</div>
+			</div>
+			<div id="fiction_chapter_title"></div>
+			<div id="fiction_container" class="m-read-content">
+				<h4>小标题</h4>
+				<p>页面生命周期钩子如上面的代码所示，这四个是最常用到的部分。这部分需要注意下，当引入keep-alive的时候，页面第一次进入，钩子的触发顺序created-> mounted-> activated，退出时触发deactivated。当再次进入（前进或者后退）时，只触发activated。</p>
+				<p>我们知道keep-alive之后页面模板第一次初始化解析变成HTML片段后，再次进入就不在重新解析而是读取内存中的数据，即，只有当数据变化时，才使用VirtualDOM进行diff更新。故，页面进入的数据获取应该在activated中也放一份。数据下载完毕手动操作DOM的部分也应该在activated中执行才会生效。</p>
+				<p>所以，应该activated中留一份数据获取的代码，或者不要created部分，直接将created中的代码转移到activated中。</p>
+				<p>以前的写法是在data中将需要的$route数据进行赋值，便于其余方法使用，但是使用了keep-alive后数据需要进入页面在activated中再次获取，才能达到更新的目的。定义一个initData方法，然后在activated中启动。</p>
+				<p>需求描述：当页面在进行轮播操作的时候希望能记录当前显示的轮播ID(activeIndex)。当进入下一个页面再返回的时候能记住之前的选择，将轮播打到之前的ID位置。所以我想将这部分信息固化在url中，轮播发生变化时，修改URL。这样实现比较符最小修改原则，其余页面不用变动。</p>
+				<p>之前的写法是将activeIndex放在$route的query中，当轮播后，将
+					activeIndex的值存入$route.query.activeIndex中，然后$router.replace当前路由，理论上应该能发生变化，但实际没有。</p>
+				<p>查看文档后说，$route是只读模式。当然，对象部分是他监管不到的，我修改了并不是正统的做法。</p>
+			</div>
+			<div class="m-button-bar">
+				<ul class="u-tab">
+					<li id="prev_button">上一章</li>
+					<li id="next_button">下一章</li>
+				</ul>
+			</div>
+			<div class="bottom-nav bottom_nav" style="display: none;">
+				<div>目录</div>
+				<div id="font-button">字体</div>
+				<div>夜间</div>
+			</div>
+
+
+			<div class="nav-pannel-bk font-container" style="display: none;"></div>
+			<div class="nav-pannel font-container" id="font-container" style="display: none;">
+				<div class="child-mod">
+					<span>字号</span>
+					<button id="large-font" class="font-size-button">放大</button>
+					<button id="small-font" class="font-size-button">缩小</button>
+				</div>
+				<div class="child-mod">
+					<span>背景</span>
+					<div class="bk-container">
+						<div class="bk-container-current"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<script src="lib/zepto.min.js"></script>
+		<script>
+			window.jQuery = $;
+		</script>
+		<script src="js/jquery.base64.js"></script>
+		<script src="js/jquery.jsonp.js"></script>
+
+		<script>
+			(function(){
+				'use strict'
+				var Util = (function(){
+					var prefix = 'html5_reader_';
+					var StorageGetter = function(key){
+						return localStorage.getItem(prefix + key);
+					};
+					var StorageSetter = function(key,val){
+						return localStorage.setItem(prefix + key,val);
+					};
+					var getJSONP = function(url,callback){
+						return $.jsonp({
+							url : url,
+							cache : true,
+							callback : 'duokan_fiction_chapter',
+							success : function(result){
+								// debugger //浏览器断点
+								var data = $.base64.decode(result);
+								var json = decodeURIComponent(escape(data));
+								callback(json);
+							}
+						})
+					};
+
+					return {
+						StorageGetter:StorageGetter,
+						StorageSetter:StorageSetter,
+						getJSONP : getJSONP
+					}
+				})();
+
+				var Dom = {
+					top_nav : $('#top-nav'),
+					bottom_nav : $('.bottom_nav'),
+					font_container : $('.font-container'),
+					font_button : $('#font-button')
+				};
+
+				var Win = $(window);
+				var Doc = $(document);
+				var readerModel;
+				var readerUi;
+
+				function main(){
+					// todo 整个项目的入口函数
+
+					// 数据层
+					readerModel = ReaderModel();
+					readerUi = ReaderBaseFrame($('#fiction_container'));
+
+					readerModel.init(function(data){
+						readerUi(data);
+					});
+
+					EventHanlder();
+				}
+
+				function ReaderModel(){
+					// todo 实现和阅读相关的数据交互的方法
+					var chapter_id;
+					var chapterTotal;
+					var init = function(callback){
+						/*
+						getFictionInfo(function(){
+							getCurChapterContent(chapter_id,function(data){
+								callback && callback(data);
+							});
+						})
+						 */
+						getFictionInfoPromise().then(function(){
+							return getCurChapterContentPromise();
+						}).then(function(data){
+							callback && callback(data);
+						})
+					};
+					// 章节列表目录
+					var getFictionInfo = function(callback){
+						$.get('data/chapter.json',function(data){
+							// todo 获得章节信息之后的回调
+							if(data.result == 0){
+								chapter_id = Util.StorageGetter('last_chapter_id');
+								if(!chapter_id){
+									// 第一次没有记录，从第一章开始
+									chapter_id = data.chapters[1].chapter_id;
+								}
+								chapterTotal = data.chapters.length;
+								callback && callback();
+							}
+						},'json');
+					};
+					// es6-Promise写法
+					var getFictionInfoPromise = function(){
+						return new Promise(function(resolve,reject){
+							$.get('data/chapter.json',function(data){
+								// todo 获得章节信息之后的回调
+								if(data.result == 0){
+									chapter_id = Util.StorageGetter('last_chapter_id');
+									if(!chapter_id){
+										// 第一次没有记录，从第一章开始
+										chapter_id = data.chapters[1].chapter_id;
+									}
+									chapterTotal = data.chapters.length;
+									resolve();
+								}else{
+									reject();
+								}
+							},'json');
+						});
+					};
+
+					// 每章详细信息
+					var getCurChapterContent = function(chapter_id,callback){
+						$.get('data/data' + chapter_id + '.json',function(data){
+							if(data.result == 0){
+								var url = data.jsonp;
+								Util.getJSONP(url,function(data){
+									callback && callback(data);
+								});
+							}
+						},'json');
+					};
+					// es6-Promise写法
+					var getCurChapterContentPromise = function(){
+						return new Promise(function(resolve,reject){
+							$.get('data/data' + chapter_id + '.json',function(data){
+								if(data.result == 0){
+									var url = data.jsonp;
+									Util.getJSONP(url,function(data){
+										resolve(data);
+									});
+								}else{
+									reject({msg:'失败了'});
+								}
+							},'json');
+						});
+					};
+
+					// 上一页
+					var prevChapter = function(UiCallback){
+						chapter_id = parseInt(chapter_id,10);
+						if(chapter_id == 1){
+							return false;
+						}
+						chapter_id -= 1;
+						getCurChapterContent(chapter_id,UiCallback);
+						//保存记录页数
+						Util.StorageSetter('last_chapter_id',chapter_id);
+					};
+					// 下一页
+					var nextChapter = function(UiCallback){
+						chapter_id = parseInt(chapter_id,10);
+						if(chapter_id == chapterTotal){
+							return false;
+						}
+						chapter_id += 1;
+						getCurChapterContent(chapter_id,UiCallback);
+						//保存记录页数
+						Util.StorageSetter('last_chapter_id',chapter_id);
+					};
+					return{
+						init : init,
+						prevChapter : prevChapter,
+						nextChapter : nextChapter
+					}
+				}
+
+				function ReaderBaseFrame(container){
+					// todo 渲染基本的ui结构
+					function parseChapterData(jsonData){
+						var html = '';
+						var jsonObj = JSON.parse(jsonData);
+						html += '<h4>'+ jsonObj.t +'</h4>';
+						for(var i = 0;i<jsonObj.p.length;i++){
+							html += '<p>'+ jsonObj.p[i] +'</p>';
+						}
+						return html;
+					}
+					return function (data){
+						container.html(parseChapterData(data));
+					};
+				}
+
+				function EventHanlder(){
+					// todo 交互的事件绑定
+
+					$('#action_mid').click(function(){
+						if(Dom.top_nav.css('display') == 'none'){
+							Dom.top_nav.show();
+							Dom.bottom_nav.show();
+						}else{
+							Dom.top_nav.hide();
+							Dom.bottom_nav.hide();
+						}
+					});
+
+					Dom.font_button.click(function(){
+						// todo 显示或隐藏字体面板\
+						if(Dom.font_container.css('display') == 'none'){
+							Dom.font_container.show();
+							// todo 修改字体颜色
+							Dom.font_button.addClass('current');
+						}else{
+							Dom.font_container.hide();
+							Dom.font_button.removeClass('current');
+						}
+					});
+
+					$('#night-button').click(function(){
+						// todo 触发背景切换事件
+					});
+
+					Win.scroll(function(){
+						Dom.top_nav.hide();
+						Dom.bottom_nav.hide();
+						Dom.font_container.hide();
+						Dom.font_button.removeClass('current');
+					});
+
+
+					// 下一页按钮
+					$('#prev_button').click(function(){
+						// todo 先获得章节数据->把数据拿来渲染
+						readerModel.prevChapter(function(data){
+							readerUi(data);
+						});
+					});
+					// 下一页按钮
+					$('#next_button').click(function(){
+						readerModel.nextChapter(function(data){
+							readerUi(data);
+						});
+					})
+
+				}
+
+				main();
+
+			})();
+
+/*
+	{
+		't':'标题',
+		'p':['内容1','内容2']
+	}
+*/
+
+		</script>
+	</body>
+</html>
