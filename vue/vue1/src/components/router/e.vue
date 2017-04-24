@@ -7,7 +7,6 @@
   {{msg}}
   <a v-link="'/'">回首页</a>
 </h1>
-  <router-view></router-view>
 </template>
 
 <script type="text/ecmascript-6">
