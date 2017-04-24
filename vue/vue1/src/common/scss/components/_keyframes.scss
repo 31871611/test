@@ -38,29 +38,12 @@
 /*******************************************************************/
 
 // 左右滑动
-.SlideRightLeft-enter{
-  @include animation(SlideRightToLeft 400ms);
+.SlideRightLeft-transition{
+  transition: all 0.2s linear;
+  @include translate3D(0,0,0);
 }
-.SlideRightLeft-leave{
-  @include animation(SlideLeftToRight 400ms);
-}
-//从右往左滑动显示
-@include keyframes(SlideRightToLeft){
-  0%{
-    @include translate3D(100%,0,0);
-  }
-  100%{
-    @include translate3D(0,0,0);
-  }
-}
-//从左往右滑动显示
-@include keyframes(SlideLeftToRight){
-  0%{
-    @include translate3D(0,0,0);
-  }
-  100%{
-    @include translate3D(100%,0,0);
-  }
+.SlideRightLeft-enter,.SlideRightLeft-leave{
+  @include translate3D(100%,0,0);
 }
 
 /***************************************************************************/
