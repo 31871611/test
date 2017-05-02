@@ -299,6 +299,49 @@
  当前路由的名称，如果有的话。（查看 命名路由）
 
 
-##############################################################################################################*/
+##############################################################################################################
+
+
+
+ {
+     // 我的地址
+     path: '/userAddress',
+     name: 'userAddress',
+     component: resolve => require(['@/views/userAddress/userAddress'], resolve),
+     children:[
+         {
+             // 前面不带/：路径为/userAddress/add
+             path: 'add',
+             component: resolve => require(['@/views/userAddress/addAddress'], resolve)
+         },
+         {
+             // 前面带/：路径为/modify
+             path: '/modify',
+             component: resolve => require(['@/views/userAddress/addAddress'], resolve)
+         }
+     ]
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
 </script>
 </html>
