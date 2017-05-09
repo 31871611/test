@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="MyCssModule">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>设置css样式</title>
+    <style>
+        .text-red{background: #ff0000}
+        .text-green{background:#008000;}
+    </style>
+    <script src="../js/angular-1.0.1.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="CssController">
+    <p class="text-{{color}}">测试css样式</p>
+    <button class="btn btn-default" ng-click="setGreen()">绿色</button>
+</div>
+
+</body>
+<script>
+    var MyCssModule=angular.module("MyCssModule",[]);
+    MyCssModule.controller("CssController",["$scope",function($scope){
+        $scope.color="red";
+        $scope.setGreen=function(){
+            $scope.color="green";
+        }
+    }]);
+
+    //版本2与用angularjs开发下一代web应用第28页一样
+</script>
+</html>

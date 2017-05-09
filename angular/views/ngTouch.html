@@ -1,0 +1,20 @@
+<div ng-controller="mailsController">
+    <ul>
+        <li ng-repeat="mail in emails">
+            <div ng-show="!mail.showActions" ng-swipe-left="mail.showActions=true">
+                <div class="from">
+                    From:<span>{{mail.from}}</span>
+                </div>
+                <div class="body">
+                    {{mail.body}}
+                </div>
+            </div>
+            <div ng-show="mail.showActions" ng-swipe-right="mail.showActions=false">
+                <ul class="actions">
+                    <li><button>Archive</button></li>
+                    <li><button>Trash</button></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>

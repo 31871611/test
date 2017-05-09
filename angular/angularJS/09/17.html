@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="MyModule">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>$Http</title>
+    <script src="../js/angular-1.0.1.min.js"></script>
+</head>
+<body>
+    <div ng-controller="LoadDataCtrl">
+        <ul>
+            <li ng-repeat="user in users">
+                {{user.name}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    var myModule=angular.module("MyModule",[]);
+        myModule.controller("LoadDataCtrl",["$scope","$http",function($scope,$http){
+            $http({
+                method:"GET",
+                url:"http://localhost/test/test.php"
+            }).success(function(data,status,headers,config){
+                console.log("success...");
+                console.log(data);
+                $scope.users=data;
+            }).error(function(data,status,headers,config){
+                console.log("error...");
+            });
+        }]);
+
+
+    /**
+     *
+         $arr=array(
+             array("name"=>"小明"),
+             array("name"=>"小张"),
+             array("name"=>"小王")
+         );
+
+         echo json_encode($arr);
+     */
+</script>
+</html>

@@ -1,0 +1,25 @@
+<div ng-controller="CartController">
+    <h1>购物车示例</h1>
+    <div ng-repeat="item in items">
+        <span>{{item.title}}</span>
+        <input type="text" ng-model="item.quantity"/>
+        <span>{{item.price | currency}}</span>
+        <span>{{item.price * item.quantity | currency}}</span>
+        <button ng-click="remove($index)">remove</button>
+    </div>
+</div>
+
+<div ng-controller="CartController2">
+    <h1>购物车示例第二版</h1>
+    <p>满100-10</p>
+    <div ng-repeat="item in items">
+        <span>{{item.title}}</span>
+        <input type="text" ng-model="item.quantity"/>
+        <span>{{item.price | currency}}</span>
+        <span>{{item.price * item.quantity | currency}}</span>
+        <button ng-click="remove($index)">remove</button>
+    </div>
+    <div>Total:{{bill.totalCart | currency}}</div>
+    <div>discount:{{bill.discount | currency}}</div>
+    <div>subtotal:{{bill.subtotal | currency}}</div>
+</div>

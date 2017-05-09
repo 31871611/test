@@ -1,0 +1,85 @@
+<div ng-controller="filtersController">
+    <h1>内置过滤器</h1>
+    <p>转成大写：{{"name" | uppercase}}</p>
+    <p>保留俩位数：{{123.456789 | number:2}}</p>
+    <p>货币格式：{{123 | currency}}</p>
+    <p>货币格式：{{123 | currency:"¥"}}</p>
+    <p>日期格式：{{ today | date:"y-M-d hh:mm:ss.sss"}}</p>
+    <p>过滤带e的：{{["ari","lerner","likes","to","eat","pizza"] | filter:"e"}}</p>
+    <p>对象过滤器：{{[{
+        "name":"ari",
+        "city":"san francisco",
+        "favorite food":"pizza"
+        },{
+        "name":"nate",
+        "city":"san francisco",
+        "favorite food":"indian food"
+        }] | filter:{"favorite food":"pizza"} }}</p>
+    <p>自定义函数过滤，首字母是否为大写返回true或false：{{ ["Ari","Likes","to","travel"] | filter:isCapitalized }}</p>
+    <p>json或js对象转成字符串：{{ {
+        "name":"ari",
+        "city":"san francisco",
+        "favorite food":"pizza"
+        } | json }}</p>
+    <p>截取字符串前三个字符：{{ "San Francisco is very cloudy" | limitTo:3 }} </p>
+    <p>返回数组第一个元素：{{ ['a','b','c','d','e','f'] | limitTo:1 }}</p>
+    <p>数组进行排序：{{ [{
+        "name":"Ari",
+        "status":"awake"
+        },{
+        "name":"Q",
+        "status":"sleeping"
+        },{
+        "name":"Nate",
+        "status":"awake"
+        }] | orderBy:"name":true }}</p>
+    <p>自定义：{{ "ginger loves dog treats" | lowercase | capitalize }}</p>
+</div>
+<form name="signup_form" novalidateng-submit="signupForm()" action="">
+    <fieldset>
+        <legend>signup</legend>
+        <div class="row">
+            <div class="large-12 columns">
+                <label for="">your name</label>
+                <input type="text" placeholder="Name" name="name" ng-model="signup.name" ng-minlength="3" ng-maxlength="20" required="required"/>
+            </div>
+            <div class="error" ng-show="signup_form.name.$dirty && signup_form.name.$invalid">
+                <small class="error" ng-show="signup_form.name.$error.required">
+                    your name is required
+                </small>
+                <small class="error" ng-show="signup_form.name.$error.minlength">
+                    长度不能小于3
+                </small>
+                <small class="error" ng-show="signup_form.name.$error.maxlength">
+                    长度不能大于20
+                </small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label for="">your email</label>
+                <input type="email" placeholder="Email" name="email" ng-model="signup.email" ng-minlength="3" ng-maxlength="20" required="required"/>
+            </div>
+            <div class="error" ng-show="signup_form.email.$dirty && signup_form.email.$invalid">
+                <small class="error" ng-show="signup_form.email.$error.required">
+                    your email is required
+                </small>
+                <small class="error" ng-show="signup_form.email.$error.minlength">
+                    长度不能小于3
+                </small>
+                <small class="error" ng-show="signup_form.email.$error.email">
+                    email不合法
+                </small>
+                <small class="error" ng-show="signup_form.email.$error.maxlength">
+                    长度不能大于20
+                </small>
+            </div>
+        </div>
+        <button type="submit" class="button radius">submit</button>
+    </fieldset>
+</form>
+
+<div ng-controller="HomeController">
+    <p>过滤首字母小写转大写</p>
+    {{"behold the majesty of your page title" | titleCase}}
+</div>

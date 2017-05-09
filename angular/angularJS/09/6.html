@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="UserInfoModel">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>双向数据绑定</title>
+    <script src="../js/angular-1.0.1.min.js"></script>
+</head>
+<body>
+    <h1>双向数据绑定</h1>
+    <form ng-controller="UserInfoController" action="">
+        <div>
+            <label for="">邮箱：</label>
+            <input type="email" ng-model="userInfo.email" placeholder="请输入邮箱地址"  name="" id=""/>
+        </div>
+        <div>
+            <label for="">密码：</label>
+            <input type="password" name="" ng-model="userInfo.password" id="" placeholder="只能是字母、数字" />
+        </div>
+        <div>
+            <label for=""><input ng-model="userInfo.autoLogin" type="checkbox" name="" id=""/>自动登录</label>
+        </div>
+        <div>
+            <button ng-click="getFormData()">获取Form值</button>
+            <button ng-click="setFormData()">设置Form值</button>
+            <button ng-click="restForm()">重置Form值</button>
+        </div>
+    </form>
+</body>
+<script>
+    var UserInfoModel=angular.module("UserInfoModel",[]);
+    UserInfoModel.controller("UserInfoController",["$scope",function($scope){
+        $scope.userInfo={
+            email:"123456@qq.com",
+            password:"123456",
+            autoLogin:true
+        };
+        $scope.getFormData=function(){
+            console.log($scope.userInfo);
+        };
+        $scope.setFormData=function(){
+            $scope.userInfo={
+                email:"654321@qq.com",
+                password:"654321",
+                autoLogin:false
+            };
+        };
+        $scope.restForm=function(){
+            $scope.userInfo={
+                email:"",
+                password:"",
+                autoLogin:true
+            };
+        }
+    }])
+</script>
+</html>
