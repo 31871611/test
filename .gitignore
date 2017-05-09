@@ -3,6 +3,7 @@ node/crawler/node_modules/*
 mock/node_modules/*
 
 vue/vue1/node_modules
+angular/framework
 
 node/express/node_modules/
 node/express/public/images/
