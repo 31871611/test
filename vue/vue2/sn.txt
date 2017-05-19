@@ -47,4 +47,18 @@ change(change) {
 
 
 
+#######################################################################################
 
+调试
+
+使用 SourceMap 断点调试
+1.修改 /build/webpack.dev.conf.js 文件中的 devtool 为 #eval-source-map 否则会导致调试时行号不对，devtool:'#cheap-module-eval-source-map'改成 devtool: '#source-map'就可以
+2.在可能出错的代码块部分写上 debugger 打开调试器后执行到这段代码时会自动进入断点调试
+
+export default {
+  created() {
+    const href = window.location.href
+    debugger // 代码运行到此处会中断
+    console.log(href)
+  },
+}
