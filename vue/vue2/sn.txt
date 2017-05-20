@@ -62,3 +62,6 @@ export default {
     console.log(href)
   },
 }
+
+
+npm rum build 后不生成map文件：config/index.js修改productionSourceMap: false
