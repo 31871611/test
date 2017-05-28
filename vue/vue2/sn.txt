@@ -48,3 +48,9 @@ change(change) {
 
 
 
+######################################################################################
+
+autoprefixer 设置
+修改package.json中browserslist项
+"last 10 Chrome versions", "last 5 Firefox versions", "Safari >= 6", "ie > 8"
+
