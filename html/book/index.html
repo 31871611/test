@@ -301,6 +301,10 @@
 							return getCurChapterContentPromise();
 						}).then(function(data){
 							callback && callback(data);
+							// 上面相当于下面
+							//if(callback){
+							//	callback();
+							//}
 						})
 					};
 					// 章节列表目录
