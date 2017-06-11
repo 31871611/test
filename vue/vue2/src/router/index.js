@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import login from '@/components/login/login'
 import user from '@/components/user/user'
+import vuex from '@/components/vuex/vuex'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ const router = new Router({
     {
       path: '/indicator',
       component: resolve => require(['@/components/comm/indicator'], resolve)
+    },
+    {
+      path: '/vuex',
+      name: 'vuex',
+      component: vuex
     }
   ]
 })

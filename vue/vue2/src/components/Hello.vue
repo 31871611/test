@@ -3,6 +3,7 @@
     <ul>
       <li><router-link to="/user">跳转到user</router-link></li>
       <li><router-link to="/login">跳转到login</router-link></li>
+      <li><router-link to="/vuex">跳转到vuex</router-link></li>
     </ul>
     <!-- 加载中... -->
     <indicator v-show="false" :is-text="false"></indicator>
