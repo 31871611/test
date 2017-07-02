@@ -1,0 +1,81 @@
+核心概念：jvm、jdk、jre
+
+基础核心：java se
+java ee
+java me
+
+_______________________________________________________________________________________
+
+java开发环境搭建
+第一步：安装JDK。下载地址：http://www.oracle.com/technetwork/java/javase/downloads
+第二步：配置环境变量
+JAVA_HOME       配置JDK安装路径
+PATH            配置JDK命令文件的位置C:\Program Files\Java\jdk1.7.0_75\bin
+CLASSPATH       配置类库文件的位置
+
+在"系统变量"下进行如下配置：
+(1)新建->变量名：JAVA_HOME变量值：D:\Java\jdk1.7.0_75(这只是我的JDK安装路径)
+(2)编辑->变量名：Path在变量值的最前面加上：%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin（使用下面的）
+(3)新建->变量名：CLASSPATH变量值：.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar（使用下面的）
+
+JAVA_HOME: JDK所在路径
+PATH:  JDK中bin文件夹所在路径（命令）
+CLASS_PATH: JDK中lib文件夹所在路径（类库）
+
+如果JAVA可使用
+JAVAC不可使用的请在classpath 变量下添加
+jdk的bin(C:\Program Files\Java\jdk1.7.0_75\bin)目录以及
+jdk-jre-bin（C:\Program Files\Java\jdk1.7.0_75\jre\bin）的目录，然后关闭cmd 重新尝试应该就可以了哦 。
+
+验证是否安装成功
+cmd->java
+cmd->javac
+
+_______________________________________________________________________________________
+
+tomcat7.0
+
+系统变量
+新建->变量名：CATALINA_HOME，变量值：C:\apache-tomcat-7.0.57
+
+测试启动
+C:\apache-tomcat-7.0.57\bin\startup.bat 运行本文件
+推荐关闭方法
+C:\apache-tomcat-7.0.57\bin\shutdown.bat 运行本文件
+
+// 创建网站
+C:\apache-tomcat-7.0.57\webapps目录下创建站点目录。如：myhome
+在myhome里创建
+index.jsp
+WEB-INF
+    web.xml
+    classes
+    lib（存放包文件）
+
+
+// 修改默认端口号
+C:\apache-tomcat-7.0.57\conf\server.xml
+<Connector port="8080" protocol="HTTP/1.1"
+           connectionTimeout="20000"
+           redirectPort="8443" />
+
+_______________________________________________________________________________________
+
+myeclipse
+配置jre：window->preference->java->installed jres->add->standard VM->directory->C:\Program Files\Java\jdk1.7.0_75->打勾
+
+myeclipse集成Tomcat服务器
+window->preference->Myeclipse->Server->Tomcat->Tomcat 7.x
+enable
+tomcat home directory:->C:\apache-tomcat-7.0.57
+
+window->preference->Myeclipse->Server->Tomcat->JDK->下拉准备自己定义的jdk
+
+测试
+点击栏目上的服务器图标（run/stop）->下拉->准备Tomcat 7.x
+
+MyEclipse中创建web项目
+NEW->web project->project name:项目名
+
+发布到Tomcat
+点击栏目上的服务器图标旁边的交换图标（Deploy MyEclipse）->add->server下拉选择Tomcat 7.x
