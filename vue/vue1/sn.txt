@@ -20,6 +20,10 @@ npm cache clean
 node 安装失败
 SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install --save-dev node-sass@4.5.2（windows下在 git bash 窗口里）
 
+
+在根目录添加.npmrc文件
+
+
 set SASS_BINARY_PATH=c:/v4.5.2-win32-x64-51_binding.node
 npm rebuild node-sass --save-dev
 https://github.com/lmk123/blog/issues/28
