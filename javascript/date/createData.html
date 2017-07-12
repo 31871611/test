@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算时间</title>
+</head>
+<body>
+    <p>计算出，现在日期加上几个月，生成这中间的日期</p>
+</body>
+<script>
+
+setDate(new Date().getTime(),60 * 60 *  24 * 30 * 33 * 1000,2);
+function setDate(now,end,type){
+
+    var saveDate = {};
+
+    // 类型 0:无, 1:自然月, 2:自然季, 3:自然半年, 4:自然年,5:固定X月
+    //var type = 1;
+    // 现在时间.开始时间
+    //var now = new Date().getTime();
+    // 加上几个月后时间毫秒值
+    //var end = 60 * 60 *  24 * 30 * 33 * 1000;
+
+    // 计算后时间
+    var countDate
+    if(type == 5){
+        countDate = new Date(now + end);
+    }else {
+        countDate = new Date(end);
+    }
+    // 年
+    var year = countDate.getFullYear();
+    // 月
+    var month = countDate.getMonth() + 1;
+
+    for(var i = new Date().getFullYear();i <= year;i++){
+
+        // 等于最大日期年份
+        if(i == year){
+            var j;
+            if(i == new Date().getFullYear()){
+                // 当前年使用当月
+                j = (new Date().getMonth()+1)
+            }else{
+                // 非当前年从1月开始
+                j = 0;
+            }
+            var key = i + '年';
+            saveDate[key] = [];
+            // 已到期月输出
+            for(j;j < month;j++){
+                ifType();
+            }
+        }else{
+            if(i == new Date().getFullYear()){
+                // 当前年
+                var key = i + '年';
+                saveDate[key] = [];
+                for(var j = (new Date().getMonth()+1);j < 12;j++){
+                    ifType();
+                }
+            }else{
+                // 非当前年
+                var key = i + '年';
+                saveDate[key] = [];
+                for(var j = 0;j < 12;j++){
+                    ifType();
+                }
+            }
+        }
+    }
+
+    function ifType(){
+        if(type == 1 || type == 5){
+            saveDate[key].push((j+1) + '月');
+        }else if(type == 2){
+            var n = (j+1);
+            if((n % 3) == 0){
+                saveDate[key].push(n + '月');
+            }
+        }else if(type == 3){
+            var n = (j+1);
+            if((n % 6) == 0 || (n % 12) == 0){
+                saveDate[key].push(n + '月');
+            }
+        }else if(type == 4){
+            var n = (j+1);
+            if((n % 12) == 0){
+                saveDate[key].push(n + '月');
+            }
+        }
+    }
+
+
+
+    console.log(saveDate)
+
+
+    console.log(year)
+    console.log(month)
+
+    return saveDate;
+
+}
+
+var yearSaveArr = [];
+var monthSaveArr;
+var a = {
+    "2017年":['1月','2月','3月','4月','5月'],
+    "2018年":['1月','2月','3月','4月','5月','6月','7月'],
+    "2019年":['1月','2月','3月','4月','5月','6月','7月','8月']
+}
+
+// 保存全部的年
+for(p in a){
+    yearSaveArr.push(p);
+}
+console.log(yearSaveArr)
+
+// 保存第[0]年的月
+for(p in a){
+    monthSaveArr = a[p];
+    break;
+}
+console.log(monthSaveArr)
+
+
+
+</script>
+</html>
