@@ -11,8 +11,10 @@
 
     var time1 = new Date(2017,07,30);
 //    var time2 = new Date(1512057600000);
-    var time2 = new Date(2017,11,30);
+    var time2 = new Date(2018,11,30);
+    // 相差多少年
     var diffyear = time2.getFullYear() - time1.getFullYear() ;
+    // 1年 * 12个月 + 相差的月份
     var diffmonth = diffyear * 12 + time2.getMonth() - time1.getMonth();
     console.log(diffmonth);
 
