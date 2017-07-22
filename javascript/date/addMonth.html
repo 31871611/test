@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>增加多少个月后的时间</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    function addMoth(d,m){
+        var ds=d.split('-');
+        d=new Date( ds[0],ds[1]-1+m,ds[2])
+        return d.toLocaleDateString().match(/\d+/g).join('-')
+    }
+    
+    alert(addMoth('2013-07-31 ',3))
+
+</script>
+</html>
