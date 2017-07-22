@@ -12,9 +12,10 @@
     function addMoth(d,m){
         var ds=d.split('-');
         d=new Date( ds[0],ds[1]-1+m,ds[2])
-        return d.toLocaleDateString().match(/\d+/g).join('-')
+        return d;
+        //return d.toLocaleDateString().match(/\d+/g).join('-')
     }
-    
+
     alert(addMoth('2013-07-31 ',3))
 
 </script>
