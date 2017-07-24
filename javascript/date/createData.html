@@ -17,18 +17,8 @@ function setDate(now,end,type) {
 
     // 开始时间
     var startDate = new Date(now);
-    // 计算后时间
-    var countDate
-    if(type == 5){
-        //countDate = new Date(now + end);
-        var time = new Date();
-        var timeStr = time.getFullYear() + '-' + time.getMonth() + '-' + time.getDate();
-        // 加上n个月
-        countDate = addMoth(timeStr,7);
-
-    }else {
-        countDate = new Date(end);
-    }
+    // 结束时间
+    var countDate  = new Date(end);
     // 年
     var year = countDate.getFullYear();
     // 月
@@ -36,6 +26,38 @@ function setDate(now,end,type) {
 
     // 小于等于本月不显示缴费选择
     //$("#payment-isShowSelect").hide();
+    if(type == 5){
+        var addDate;
+
+        // 都是2018 会有2月、7月
+        // 先组一个数组进行保存
+        // 开始至结束差多少次7月
+
+        var timeStr = startDate.getFullYear() + '-' + (startDate.getMonth() + 1) + '-' + startDate.getDate();
+        // 加上n个月.7个月
+        addDate = addMoth(timeStr,7);
+
+         // 相差多少年
+         var diffyear = countDate.getFullYear() - startDate.getFullYear() ;
+         // 1年 * 12个月 + 相差的月份
+         var diffmonth = diffyear * 12 + countDate.getMonth() - startDate.getMonth();
+         console.log('相差：' + diffmonth + '月');
+
+        for(var i = 0;i < (diffmonth / 5);i++){
+            // 加出来的时间不能大于结束时间
+            if(countDate.getTime() < addDate.getTime()){
+                console.log(i + '次')
+            }
+        }
+
+
+        console.log(addDate.getFullYear() + '年' + addDate.getMonth() + 1 + '月')
+
+        return false
+
+    }
+
+
 
     for(var i = startDate.getFullYear();i <= year;i++){
         var obj = {}
