@@ -11,7 +11,7 @@
 
 // 类型 0:无, 1:自然月, 2:自然季, 3:自然半年, 4:自然年,5:固定X月
 
-setDate(new Date().getTime(),new Date(2017,11).getTime(),5)
+setDate(new Date().getTime(),new Date(2018,11).getTime(),5)
 function setDate(now,end,type) {
     var save = [];
 
@@ -29,14 +29,6 @@ function setDate(now,end,type) {
     if(type == 5){
         var addDate;
 
-        // 都是2018 会有2月、7月
-        // 先组一个数组进行保存
-        // 开始至结束差多少次7月
-
-        var timeStr = startDate.getFullYear() + '-' + (startDate.getMonth() + 1) + '-' + startDate.getDate();
-        // 加上n个月.7个月
-        addDate = addMoth(timeStr,7);
-
          // 相差多少年
          var diffyear = countDate.getFullYear() - startDate.getFullYear() ;
          // 1年 * 12个月 + 相差的月份
@@ -45,13 +37,21 @@ function setDate(now,end,type) {
 
         for(var i = 0;i < (diffmonth / 5);i++){
             // 加出来的时间不能大于结束时间
-            if(countDate.getTime() < addDate.getTime()){
-                console.log(i + '次')
-            }
+            //if(countDate.getTime() < addDate.getTime()){
+                console.log(i + 1 + '次')
+
+                var timeStr = startDate.getFullYear() + '-' + (startDate.getMonth() + 1) + '-' + startDate.getDate();
+                // 加上n个月.7个月
+                addDate = addMoth(timeStr,7 * (i + 1));
+
+                console.log(addDate.getFullYear() + '年' + (addDate.getMonth() + 1) + '月')
+            //}
         }
 
 
-        console.log(addDate.getFullYear() + '年' + addDate.getMonth() + 1 + '月')
+        // 都是2018 会有2月、7月
+        // 先组一个数组进行保存
+        // 开始至结束差多少次7月
 
         return false
 
