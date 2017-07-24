@@ -9,23 +9,23 @@
 </body>
 <script>
 
-setDate(new Date().getTime(),60 * 60 *  24 * 30 * 33 * 1000,2);
-function setDate(now,end,type){
+// 类型 0:无, 1:自然月, 2:自然季, 3:自然半年, 4:自然年,5:固定X月
 
-    var saveDate = {};
+setDate(new Date().getTime(),new Date(2017,11).getTime(),5)
+function setDate(now,end,type) {
+    var save = [];
 
-    // 类型 0:无, 1:自然月, 2:自然季, 3:自然半年, 4:自然年,5:固定X月
-    //var type = 1;
-    // 现在时间.开始时间
-    //var now = new Date().getTime();
-    // 加上几个月后时间毫秒值
-    var a = 33;
-    //var end = 60 * 60 *  24 * 30 * a * 1000;
-
+    // 开始时间
+    var startDate = new Date(now);
     // 计算后时间
     var countDate
     if(type == 5){
-        countDate = new Date(now + end);
+        //countDate = new Date(now + end);
+        var time = new Date();
+        var timeStr = time.getFullYear() + '-' + time.getMonth() + '-' + time.getDate();
+        // 加上n个月
+        countDate = addMoth(timeStr,7);
+
     }else {
         countDate = new Date(end);
     }
@@ -34,96 +34,103 @@ function setDate(now,end,type){
     // 月
     var month = countDate.getMonth() + 1;
 
-    for(var i = new Date().getFullYear();i <= year;i++){
+    // 小于等于本月不显示缴费选择
+    //$("#payment-isShowSelect").hide();
 
+    for(var i = startDate.getFullYear();i <= year;i++){
+        var obj = {}
         // 等于最大日期年份
         if(i == year){
             var j;
-            if(i == new Date().getFullYear()){
+            if(i == startDate.getFullYear()){
                 // 当前年使用当月
-                j = (new Date().getMonth()+1)
+                j = startDate.getMonth()
             }else{
                 // 非当前年从1月开始
                 j = 0;
             }
-            var key = i + '年';
-            saveDate[key] = [];
+            // 不显示没有月份的年
+            if(type == 2 && month < 3){
+                break;
+            }else if(type == 3 && month < 6){
+                break;
+            }else if(type == 4 && month < 11){
+                break;
+            }
+            obj.id = i + 1;
+            obj.value = i + '年';
+            obj.childs = [];
             // 已到期月输出
             for(j;j < month;j++){
-                ifType();
+                ifType(obj);
             }
         }else{
-            if(i == new Date().getFullYear()){
+            if(i == startDate.getFullYear()){
                 // 当前年
-                var key = i + '年';
-                saveDate[key] = [];
-                for(var j = (new Date().getMonth()+1);j < 12;j++){
-                    ifType();
+                obj.id = i + 1;
+                obj.value = i + '年';
+                obj.childs = [];
+                for(var j = startDate.getMonth();j < 12;j++){
+                    ifType(obj);
                 }
             }else{
                 // 非当前年
-                var key = i + '年';
-                saveDate[key] = [];
+                obj.id = i + 1;
+                obj.value = i + '年';
+                obj.childs = [];
                 for(var j = 0;j < 12;j++){
-                    ifType();
+                    ifType(obj);
                 }
             }
         }
+
+        save.push(obj);
     }
 
-    function ifType(){
+    function ifType(o){
+        var obj = {}
+        var n;
         if(type == 1 || type == 5){
-            saveDate[key].push((j+1) + '月');
+            n = (j+1);
+            obj.id = j + 1;
+            obj.value = n + '月';
+            o.childs.push(obj);
         }else if(type == 2){
-            var n = (j+1);
+            n = (j+1);
             if((n % 3) == 0){
-                saveDate[key].push(n + '月');
+                obj.id = j + 1;
+                obj.value = n + '月';
+                o.childs.push(obj);
             }
         }else if(type == 3){
-            var n = (j+1);
+            n = (j+1);
             if((n % 6) == 0 || (n % 12) == 0){
-                saveDate[key].push(n + '月');
+                obj.id = j + 1;
+                obj.value = n + '月';
+                o.childs.push(obj);
             }
         }else if(type == 4){
-            var n = (j+1);
+            n = (j+1);
             if((n % 12) == 0){
-                saveDate[key].push(n + '月');
+                obj.id = j + 1;
+                obj.value = n + '月';
+                o.childs.push(obj);
             }
         }
     }
 
-
-
-    console.log(saveDate)
-
-
-    console.log(year)
-    console.log(month)
-
-    return saveDate;
-
+    console.log(save)
+    return save;
 }
 
-var yearSaveArr = [];
-var monthSaveArr;
-var a = {
-    "2017年":['1月','2月','3月','4月','5月'],
-    "2018年":['1月','2月','3月','4月','5月','6月','7月'],
-    "2019年":['1月','2月','3月','4月','5月','6月','7月','8月']
+
+// 返回加月份后的时间，addMoth('2017-07-22',230)
+function addMoth(d,m){
+    var ds=d.split('-');
+    d = new Date( ds[0],ds[1]-1+m,ds[2])
+    return d;
 }
 
-// 保存全部的年
-for(p in a){
-    yearSaveArr.push(p);
-}
-console.log(yearSaveArr)
-
-// 保存第[0]年的月
-for(p in a){
-    monthSaveArr = a[p];
-    break;
-}
-console.log(monthSaveArr)
 
 
 
