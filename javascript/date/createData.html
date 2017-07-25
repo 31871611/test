@@ -9,7 +9,7 @@
 </body>
 <script>
 
-// 类型 0:无, 1:自然月, 2:自然季, 3:自然半年, 4:自然年,5:固定X月
+// 类型 0:无, 1:自然月, 2:自然季, 3:自然半年, 4:自然年,5:固定X月(每格x月)
 
 setDate(new Date().getTime(),new Date(2018,11).getTime(),5)
 function setDate(now,end,type) {
@@ -26,41 +26,48 @@ function setDate(now,end,type) {
 
     // 小于等于本月不显示缴费选择
     //$("#payment-isShowSelect").hide();
+    var prepayCycleValue = 5;
     if(type == 5){
-        var addDate;
-
+        // 保存年
+        var saveFullYear;
          // 相差多少年
          var diffyear = countDate.getFullYear() - startDate.getFullYear() ;
          // 1年 * 12个月 + 相差的月份
          var diffmonth = diffyear * 12 + countDate.getMonth() - startDate.getMonth();
-         console.log('相差：' + diffmonth + '月');
+         //console.log('相差：' + diffmonth + '月');
 
-        for(var i = 0;i < (diffmonth / 5);i++){
-            // 加出来的时间不能大于结束时间
-            //if(countDate.getTime() < addDate.getTime()){
-                console.log(i + 1 + '次')
+        for(var i = 0;i < Math.floor(diffmonth / prepayCycleValue);i++){
+            var obj = {};
+            var timeStr = startDate.getFullYear() + '-' + (startDate.getMonth() + 1) + '-' + startDate.getDate();
+            // 加上n个月.7个月
+            var time = addMoth(timeStr,prepayCycleValue * (i + 1));
 
-                var timeStr = startDate.getFullYear() + '-' + (startDate.getMonth() + 1) + '-' + startDate.getDate();
-                // 加上n个月.7个月
-                addDate = addMoth(timeStr,7 * (i + 1));
-
-                console.log(addDate.getFullYear() + '年' + (addDate.getMonth() + 1) + '月')
-            //}
+            // 如果相等说明不用保存年，只要月.月完了才保存。。。
+            if(time.getFullYear() == saveFullYear){
+                var obj2 = {};
+                obj2.id = (time.getMonth() + 1);
+                obj2.value = (time.getMonth() + 1) + '月';
+                save[save.length - 1].childs.push(obj2);
+            }else{
+                saveFullYear = time.getFullYear();
+                obj.id = i;
+                obj.value = time.getFullYear() + '年';
+                obj.childs = [{
+                    id : (time.getMonth() + 1),
+                    value : (time.getMonth() + 1) + '月'
+                }];
+                save.push(obj);
+            }
         }
 
-
         // 都是2018 会有2月、7月
-        // 先组一个数组进行保存
-        // 开始至结束差多少次7月
-
-        return false
-
+        console.log(save)
+        return save
     }
-
-
 
     for(var i = startDate.getFullYear();i <= year;i++){
         var obj = {}
+        console.log(i)
         // 等于最大日期年份
         if(i == year){
             var j;
@@ -91,6 +98,7 @@ function setDate(now,end,type) {
                 // 当前年
                 obj.id = i + 1;
                 obj.value = i + '年';
+                console.log(i + '年')
                 obj.childs = [];
                 for(var j = startDate.getMonth();j < 12;j++){
                     ifType(obj);
@@ -99,6 +107,8 @@ function setDate(now,end,type) {
                 // 非当前年
                 obj.id = i + 1;
                 obj.value = i + '年';
+                // 只显示年，不显示12月
+                if(type == 4) continue;
                 obj.childs = [];
                 for(var j = 0;j < 12;j++){
                     ifType(obj);
@@ -112,7 +122,7 @@ function setDate(now,end,type) {
     function ifType(o){
         var obj = {}
         var n;
-        if(type == 1 || type == 5){
+        if(type == 1){
             n = (j+1);
             obj.id = j + 1;
             obj.value = n + '月';
