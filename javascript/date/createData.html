@@ -9,9 +9,10 @@
 </body>
 <script>
 
-// 类型 0:无, 1:自然月, 2:自然季, 3:自然半年, 4:自然年,5:固定X月(每格x月)
+// 类型 0:无, 1:自然月, 2:自然季(3,6,9), 3:自然半年(6,12), 4:自然年(12),5:固定X月(每格x月)
 
-setDate(new Date().getTime(),new Date(2018,11).getTime(),5)
+//setDate(new Date().getTime(),new Date(2019,5).getTime(),5)
+setDate(new Date(2017,9).getTime(),new Date(2018,11).getTime(),5)
 function setDate(now,end,type) {
     var save = [];
 
@@ -33,12 +34,12 @@ function setDate(now,end,type) {
          // 相差多少年
          var diffyear = countDate.getFullYear() - startDate.getFullYear() ;
          // 1年 * 12个月 + 相差的月份
-         var diffmonth = diffyear * 12 + countDate.getMonth() - startDate.getMonth();
+         var diffmonth = diffyear * 12 + countDate.getMonth() - startDate.getMonth() + 1;
          //console.log('相差：' + diffmonth + '月');
 
         for(var i = 0;i < Math.floor(diffmonth / prepayCycleValue);i++){
             var obj = {};
-            var timeStr = startDate.getFullYear() + '-' + (startDate.getMonth() + 1) + '-' + startDate.getDate();
+            var timeStr = startDate.getFullYear() + '-' + startDate.getMonth() + '-' + startDate.getDate();
             // 加上n个月.7个月
             var time = addMoth(timeStr,prepayCycleValue * (i + 1));
 
@@ -48,6 +49,7 @@ function setDate(now,end,type) {
                 obj2.id = (time.getMonth() + 1);
                 obj2.value = (time.getMonth() + 1) + '月';
                 save[save.length - 1].childs.push(obj2);
+                console.log((time.getMonth() + 1) + '月')
             }else{
                 saveFullYear = time.getFullYear();
                 obj.id = i;
@@ -57,6 +59,7 @@ function setDate(now,end,type) {
                     value : (time.getMonth() + 1) + '月'
                 }];
                 save.push(obj);
+                console.log(time.getFullYear() + '年' + (time.getMonth() + 1) + '月')
             }
         }
 
@@ -83,7 +86,7 @@ function setDate(now,end,type) {
                 break;
             }else if(type == 3 && month < 6){
                 break;
-            }else if(type == 4 && month < 11){
+            }else if(type == 4 && month <= 11){
                 break;
             }
             obj.id = i + 1;
