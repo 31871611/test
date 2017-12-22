@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>禁止蒙层底部页面跟随滚动</title>
+    <style>
+        .bg{
+            position: fixed;
+            left:0;
+            top:0;
+            right: 0;
+            bottom:0;
+            background: #000;
+            opacity: .5;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+    <li>555</li>
+    <li>666</li>
+    <li>777</li>
+    <li>888</li>
+    <li>999</li>
+    <li>000</li>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+    <li>555</li>
+    <li>666</li>
+    <li>777</li>
+    <li>888</li>
+    <li>999</li>
+    <li>000</li>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+    <li>555</li>
+    <li>666</li>
+    <li>777</li>
+    <li>888</li>
+    <li>999</li>
+    <li>000</li>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+    <li>555</li>
+    <li>666</li>
+    <li>777</li>
+    <li>888</li>
+    <li>999</li>
+    <li>000</li>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+    <li>555</li>
+    <li>666</li>
+    <li>777</li>
+    <li>888</li>
+    <li>999</li>
+    <li>000</li>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+    <li>555</li>
+    <li>666</li>
+    <li>777</li>
+    <li>888</li>
+    <li>999</li>
+    <li>000</li>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+    <li>555</li>
+    <li>666</li>
+    <li>777</li>
+    <li>888</li>
+    <li>999</li>
+    <li>000</li>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+    <li>555</li>
+    <li>666</li>
+    <li>777</li>
+    <li>888</li>
+    <li>999</li>
+    <li>000</li>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+    <li>555</li>
+    <li>666</li>
+    <li>777</li>
+    <li>888</li>
+    <li>999</li>
+    <li>000</li>
+</ul>
+
+<div class="bg"></div>
+</body>
+<script>
+/*
+ 禁止蒙层底部页面跟随滚动
+ https://juejin.im/post/5a27cad56fb9a045186a9d94
+*/
+
+    var bodyEl = document.body
+    var top = 0
+
+    function stopBodyScroll(isFixed) {
+        if (isFixed) {
+            top = window.scrollY
+
+            bodyEl.style.position = 'fixed'
+            bodyEl.style.top = -top + 'px'
+        } else {
+            bodyEl.style.position = ''
+            bodyEl.style.top = ''
+
+            window.scrollTo(0, top) // 回到原先的top
+        }
+    }
+
+    //stopBodyScroll(true);
+
+</script>
+</html>
