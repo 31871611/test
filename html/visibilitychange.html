@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>手机 锁屏 息屏 切换APP 后停止页面中音频播放</title>
+</head>
+<body>
+
+<audio controls autoplay src="//xz.voicecloud.cn/activity/ai_niu/res/Five-Hundred-Miles.mp3"></audio>
+
+</body>
+<script type="text/javascript">
+    document.addEventListener('visibilitychange', function() {
+        var audio = document.querySelector('audio');
+        if(document.hidden) {
+            audio.pause();
+            console.log("页面非激活,暂定播放");
+        } else {
+            audio.play();
+            console.log("页面激活， 继续播放")
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>纯CSS实现瀑布流布局</title>
+    <style>
+    *{margin: 0;padding: 0;}
+    img{vertical-align: middle;max-width: 100%}
+    .masonry {
+        column-count: 5;        /* 设置列数 */
+        column-gap: 0;          /* 设置列间距 */
+    }
+    .item {
+        break-inside: avoid;        /* 控制文本块分解成单独的列，以免项目列表的内容跨列，破坏整体的布局 */
+        box-sizing: border-box;
+        padding: 10px;
+    }
+    
+    /* 在不同的条件下使用column-count设置不同的列 */
+    .masonry {
+        column-count: 1;
+    }
+    @media (min-width: 400px) {
+        .masonry {
+            column-count: 2;
+        }
+    }
+    @media (min-width: 1200px) {
+        .masonry {
+            column-count: 3;
+        }
+    }
+
+    </style>
+</head>
+<body>
+
+<div class="masonry">
+    <div class="item">
+        <div class="item__content"><img src="http://img.hb.aicdn.com/82a0e3d3497146af54998c7b52a2108fe77cdeafa8897-uEC2Ev_fw658" alt=""></div>
+    </div>
+    <div class="item">
+        <div class="item__content"><img src="http://img.hb.aicdn.com/4f17d7142085dd9125e19e73e8f61c5754d7d7c8ff5a-r5KS1T_fw658" alt=""></div>
+    </div>
+    <div class="item">
+        <div class="item__content"><img src="http://img.hb.aicdn.com/672ec789f617da2ad3f1ac3dd54b2e23f809c9c4e3b56-bIrc99_fw658" alt=""></div>
+    </div>
+    <div class="item">
+        <div class="item__content"><img src="http://img.hb.aicdn.com/1a5364f751b0a7e1959131f21962a068f0d585f3ccb10-i0buzU_fw658" alt=""></div>
+    </div>
+    <div class="item">
+        <div class="item__content"><img src="http://img.hb.aicdn.com/646c4262238845c259f6b168c559304b908d2a5a35ee4-WjUi7M_fw658" alt=""></div>
+    </div>
+    <div class="item">
+        <div class="item__content"><img src="http://img.hb.aicdn.com/a8f8f1d702d9a6652b3298f01b4dececad1b566229f31-5Rzwtq_fw658" alt=""></div>
+    </div>
+    <div class="item">
+        <div class="item__content"><img src="http://img.hb.aicdn.com/bb66b90098759250af5af9a187238957cd0f093b11655-m58M5k_fw658" alt=""></div>
+    </div>
+    <div class="item">
+        <div class="item__content"><img src="http://img.hb.aicdn.com/6dbd249b58b47de20faa760a01a8126435bfafb8e50b-Drs7NN_fw658" alt=""></div>
+    </div>
+    <div class="item">
+        <div class="item__content"><img src="http://img.hb.aicdn.com/78421f3605575dab0526917527908703297ad7361cfac-AGHRWf_fw658" alt=""></div>
+    </div>
+    <div class="item">
+        <div class="item__content"><img src="http://img.hb.aicdn.com/5081a12c56799d806b6e63e094c58cfe85d4526721db8-OiIGG9_fw658" alt=""></div>
+    </div>
+    <div class="item">
+        <div class="item__content"><img src="" alt=""></div>
+    </div>
+    <!-- more items -->
+</div>
+
+</body>
+</html>
