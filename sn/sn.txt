@@ -8,3 +8,16 @@ http://cssicon.space/#/icon/sun
 
 “短视频”为啥这么火？
 https://zhidao.baidu.com/daily/view?id=33169
+
+
+
+
+width/height/padding/margin都使用`rem`，border-width和font-size使用px
+
+<div style="width:600px; position:relative; padding-bottom:600px; height:0;">
+    <img src="http://ubmcmm.baidustatic.com/media/v1/0f000nYQae6t2iCMjPksts.png" style="width:100%; height:100%; position:absolute;" />
+</div>
+
+
+前端涉及的所有知识体系
+https://segmentfault.com/a/1190000004070468

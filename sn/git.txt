@@ -101,6 +101,46 @@ $ git push origin :dev                  在github远程端删除一个分支：(
 $ git branch --set-upstream-to origin/dev dev
 
 
+拉取远程分支并创建本地分支
+git fetch origin 远程分支名x:本地分支名x
+使用该方式会在本地新建分支x，但是不会自动切换到该本地分支x，需要手动checkout。
+
+
+/********************************************************/
+
+假设一开始你的本地和远程都是：
+
+a -> b -> c
+
+你想把HEAD回退到b，那么在本地就变成了：
+
+a -> b
+
+这个时候，如果没有远程库，你就接着怎么操作都行，比如：
+
+a -> b -> d
+
+但是在有远程库的情况下，你push会失败，因为远程库是 a->b->c，你的是 a->b->d
+
+
+两种方案：
+
+1.push的时候用--force，强制把远程库变成a -> b -> d，大部分公司严禁这么干，会被别人揍一顿。
+git push origin dev --force
+
+2.做一个反向操作，把自己本地变成a -> b -> c -> d，注意b和d文件快照内容一莫一样，但是commit id肯定不同，再push上去远程也会变成 a -> b -> c -> d。
+使用 git revert <commit_id>操作实现以退为进，
+git revert 不同于 git reset  它不会擦除"回退"之后的 commit_id ,而是正常的当做一次"commit"，产生一次新的操作记录，所以可以push，不会让你再pull
+a -> b -> c
+git revert c#id，消除c的提交回到b状态
+git revert b#id，消除b的提交回到a状态，会冲突
+一步一步从c到b才不会冲突
+
+/********************************************************/
+
+
+
+
 不知道什么意思
 git branch --set-upstream-to=origin/master master 
 git branch --set-upstream-to=origin/ThirdParty ThirdParty
