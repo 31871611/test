@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>冒泡排序</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    var arr=[1,4,6,8,9,90,800];
+    var flag=false;
+
+    //大的排序次数（arr.length - 1）
+    for(var i = 0;i < arr.length;i++){
+        document.write('大循环...<br />');
+        //小排序
+        for(var j = 0;j < arr.length - 1 - i;j++){
+            if(arr[i] > arr[j + 1]){
+                //交换
+                var temp=arr[i];
+                arr[i] = arr[j + 1];
+                arr[j + 1] = temp;
+                flag=true;
+            }
+        }
+        if(flag){
+            flag=false;
+        }else{
+            break;
+        }
+    }
+
+
+</script>
+</html>
