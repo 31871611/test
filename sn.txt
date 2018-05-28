@@ -1,0 +1,15 @@
+robots.txt
+humans.txt
+.editorconfig
+.gitignore
+
+
+
+
+
+
+
+
+
+
+
