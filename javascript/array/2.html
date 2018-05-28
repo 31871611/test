@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单数 双数 大小</title>
+    <style>
+        .select{
+            background: blue;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="(item,index) in list" :class="{'select':item.is}">{{item.value}}</li>
+    </ul>
+    <input type="button" value="单数" @click="ck('small')">
+    <input type="button" value="双数" @click="ck('large')">
+    <input type="button" value="大" @click="ck('even')">
+    <input type="button" value="小" @click="ck('odd')">
+    <input type="button" value="清空" @click="clear">
+</div>
+</body>
+<!--<script src="https://unpkg.com/vue/dist/vue.js"></script>-->
+<script src="vue.min.js"></script>
+<script>
+var app = new Vue({
+    el: '#app',
+    data: {
+        list:[
+            {value:1,is:false},
+            {value:2,is:false},
+            {value:3,is:false},
+            {value:4,is:false},
+            {value:5,is:false},
+            {value:6,is:false},
+            {value:7,is:false},
+            {value:8,is:false}
+        ],
+        arr:[1,2,3,4,5,6,7,8],
+        small:[],
+        large:[],
+        odd:[],
+        even:[]
+    },
+    mounted: function () {
+
+        for(let i = 0;i < this.arr.length;i++){
+            if(this.arr[i] % 2 == 1){
+                this.small.push(this.arr[i])
+            }else{
+                this.large.push(this.arr[i])
+            }
+        }
+
+        let len = this.arr.length;
+        let len2 = len / 2;
+        for(let i = 0;i < len2;i++){
+            this.odd.push(this.arr[i])
+        }
+
+        for(let i = (len-1);i >= len2;i--){
+            this.even.push(this.arr[i])
+        }
+
+        console.log('单数：' + this.small)
+        console.log('双数：' + this.large)
+        console.log('小：' + this.odd)
+        console.log('大：' + this.even)
+
+    },
+    methods: {
+        ck(val){
+            this.clear();
+            this[val].forEach((v,i)=>{
+                for(let j = 0;j < this.list.length;j++){
+                    if(v == this.list[j].value){
+                        this.list[j].is = true;
+                        break;
+                    }
+                }
+            })
+        },
+        clear(){
+            for(let j = 0;j < this.list.length;j++){
+                this.list[j].is = false;
+            }
+        }
+    }
+})
+
+</script>
+</html>
