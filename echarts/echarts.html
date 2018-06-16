@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>echarts</title>
+    <script src="http://echarts.baidu.com/examples/vendors/echarts/echarts.min.js"></script>
+    <script src="china.js"></script>
+</head>
+<body>
+<div id="echarts1" style="width: 100%;height: 300px;"></div>
+<div id="echarts2" style="width: 100%;height: 300px;"></div>
+<div id="echarts3" style="width: 100%;height: 300px;"></div>
+<div id="echarts4" style="width: 100%;height: 300px;"></div>
+<div id="echarts5" style="width: 100%;height: 300px;"></div>
+</body>
+<script type="text/javascript">
+
+    var echarts1 = echarts.init(document.getElementById('echarts1'));
+    echarts1.setOption({
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            bottom: 20,
+            left: 'center',
+            data: ['绑定父亲','绑定母亲','未绑定']
+        },
+        series: [{
+            name: '人数',
+            type: 'pie',
+            radius: '55%',              // 圆的大小
+            //radius: ['40%', '70%'],   // 中空
+            center: ['50%', '40%'],     // 展示位置.像定位
+            //roseType : 'radius',      // 不是圆
+            color: ['#20A0FF', '#59cb26' , '#ffb036'],
+            label: {
+                normal: {
+                    position: 'outside',
+                    formatter: "{b}\n{c}人"
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: true
+                }
+            },
+            data: [{"name":"绑定父亲","value":70},{"name":"绑定母亲","value":20},{"name":"未绑定","value":41}]
+        }]
+    });
+
+    var echarts2 = echarts.init(document.getElementById('echarts2'));
+    echarts2.setOption({
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            itemWidth:16,
+            itemHeight:16,
+            //borderRadius: 20,
+            align:'left',
+            orient:'vertical',
+            top:'center',
+            left: 'right',
+            data: ['自主招生',211,'研究生院','国防生',985,'一流大学','一流学科',111]
+        },
+        series: [{
+            name: '人数',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '40%'],
+            color: [
+                '#4CC900',
+                '#0692FF' ,
+                '#F46869' ,
+                '#FFDC4D' ,
+                '#BD8BF6' ,
+                '#FF9F4D',	//
+                "#20A0FF",
+                "#65D4BD",
+                "#BD8BF6",
+                "#FDA6CA",
+                "#FF6F6F",
+                "#FFC74D",
+                "#36C560",
+                "#4370C1"
+            ],
+            label: {
+                normal: {
+                    position: 'outside',
+                    formatter: "{b} {c}人"
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: true
+                }
+            },
+            data: [{
+                "name": "自主招生",
+                "value": 1179
+            }, {
+                "name": 211,
+                "value": 1156
+            }, {
+                "name": "研究生院",
+                "value": 1153
+            }, {
+                "name": "国防生",
+                "value": 1153
+            }, {
+                "name": 985,
+                "value": 1132
+            }, {
+                "name": "一流大学",
+                "value": 1064
+            }, {
+                "name": "一流学科",
+                "value": 1064
+            }, {
+                "name": 111,
+                "value": 1
+            }]
+        }]
+    });
+
+    var echarts3 = echarts.init(document.getElementById('echarts3'));
+    echarts3.setOption({
+        color: ['#0692FF', '#b0ddff'],
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        //legend: {
+        //	data: ['2011年', '2012年']
+        //},
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            show : true,
+            type: 'category',
+            data:["政府公务员","工程管理","政府公务员","计算机硬件工程师",'哲学研究员','风景园林工程技术员\/园林工程师','网站开发员\/网站开发师','大学校长','医疗临床辅助服务员\/护工\/护理工\/生活护理员','总经理\/CEO\/主管'],
+            axisLabel : {
+                interval : 0,
+                formatter : function(params){
+                    var strs = params.split(''); //字符串数组
+                    var str = ''
+                    for (var i = 0, s; s = strs[i++];) { //遍历字符串数组
+                        str += s;
+                        if (!(i % 4)) str += '\n';
+                    }
+                    return str
+                }
+            }
+        },
+        yAxis: {
+            name:'人数',
+            type: 'value',
+            minInterval:1
+        },
+        series: [
+            {
+                name: '人数',
+                type: 'bar',
+                barMaxWidth: 55,
+                data:[23,19,13,4,3,3,2,2,2,1],
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'outside',
+                        formatter: "{c}人",
+                        color: '#777777'
+                    }
+                }
+            }
+        ]
+    });
+
+    var echarts4 = echarts.init(document.getElementById('echarts4'));
+    echarts4.setOption({
+        color: ['#1ea9ff', '#b0ddff'],
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        //legend: {
+        //	data: ['2011年', '2012年']
+        //},
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value',
+            minInterval:1
+            //data: res.data.percent
+        },
+        yAxis: {
+            type: 'category',
+            data: ["15岁及以下","16岁","17岁","18岁","19岁","20岁","21岁及以上"]
+        },
+        series: [
+            {
+                name: '人数',
+                type: 'bar',
+                data: [7,1,5,10,8,1,2]
+            }
+        ]
+    });
+
+
+    var data =  [{
+        "title": "北京",
+        "total": 1205,
+        "percent": "97.73%"
+    }, {
+        "title": "湖南",
+        "total": 4,
+        "percent": "0.32%"
+    }, {
+        "title": "浙江",
+        "total": 4,
+        "percent": "0.32%"
+    }, {
+        "title": "天津",
+        "total": 3,
+        "percent": "0.24%"
+    }, {
+        "title": "福建",
+        "total": 3,
+        "percent": "0.24%"
+    }, {
+        "title": "河北",
+        "total": 3,
+        "percent": "0.24%"
+    }, {
+        "title": "山西",
+        "total": 2,
+        "percent": "0.16%"
+    }, {
+        "title": "河南",
+        "total": 2,
+        "percent": "0.16%"
+    }, {
+        "title": "上海",
+        "total": 1,
+        "percent": "0.08%"
+    }, {
+        "title": "重庆",
+        "total": 1,
+        "percent": "0.08%"
+    }, {
+        "title": "四川",
+        "total": 1,
+        "percent": "0.08%"
+    }, {
+        "title": "广东",
+        "total": 1,
+        "percent": "0.08%"
+    }, {
+        "title": "黑龙江",
+        "total": 1,
+        "percent": "0.08%"
+    }, {
+        "title": "吉林",
+        "total": 1,
+        "percent": "0.08%"
+    }, {
+        "title": "江苏",
+        "total": 1,
+        "percent": "0.08%"
+    }]
+    var arr = []
+    var min;
+    var max;
+    data.forEach((value,index)=>{
+        if(index == 0){
+            min = value.total
+            max = value.total
+        }
+        arr.push({
+            name:value.title,
+            value:value.total,
+            percent:value.percent
+        })
+        if(value.total < min){
+            min = value.total
+        }
+        if(value.total > min){
+            max = value.total
+        }
+    })
+
+    var echarts5 = echarts.init(document.getElementById('echarts5'));
+    echarts5.setOption({
+        tooltip : {
+            trigger: 'item',
+            //formatter: "{b} <br/>{a} : {c} 人{d}"
+            formatter:function(data){
+                //console.log(data)
+                let value = 0;
+                let percent = 0;
+                if(data.data.value){
+                    value = data.data.value
+                }
+                if(data.data.percent){
+                    percent = data.data.percent
+                }
+                return data.data.name + " <br/>浏览量：" + value + "人<br/>占比：" + percent;
+            }
+        },
+        // 左边颜色条
+        dataRange: {
+            orient: 'horizontal',
+            color:['#3385e3','#5b9ce9','#90bcef','#c6ddf7','#eaf3fc'],
+            min: 0,
+            max: max,
+            x: 'center',
+            y: 'bottom',
+            text:['高','低'],           // 文本，默认为数值文本
+            //calculable : true         // 拖动功能
+        },
+        roamController: {
+            show: true,
+            x: 'right',
+            mapTypeControl: {
+                'china': true
+            }
+        },
+        series : [
+            {
+                name: '浏览量',
+                type: 'map',
+                mapType: 'china',
+                roam: false,
+                itemStyle:{
+                    normal:{label:{show:true}},
+                    emphasis:{label:{show:true}}
+                },
+                data:arr
+            }
+        ]
+    });
+
+
+</script>
+</html>
