@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2018 年 08 月 03 日 01:36
+-- 生成日期: 2018 �?08 �?03 �?09:06
 -- 服务器版本: 5.5.53
--- PHP 版本: 5.4.45
+-- PHP 版本: 5.6.27
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- 数据库: `bick`
 --
+CREATE DATABASE `bick` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `bick`;
 
 -- --------------------------------------------------------
 
