@@ -1,0 +1,67 @@
+官方脚手架
+https://github.com/vuejs/vue-cli
+
+npm install -g vue-cli
+vue init webpack my-project
+
+选择时不要安装
+Use ESLint to lint your code? No
+
+npm install --save axios
+npm install --save-dev sass-loader
+npm install --save-dev node-sass
+
+https://github.com/imcvampire/vue-axios
+
+#########################################################################################
+
+config\index.js
+host: '0.0.0.0'
+
+修改package.json中browserslist项，"last 10 Chrome versions"
+
+npm rum build 后不生成map文件：config/index.js修改productionSourceMap: false
+
+
+调试
+使用 SourceMap 断点调试
+1.修改 /build/webpack.dev.conf.js 文件中的 devtool 为 #eval-source-map 否则会导致调试时行号不对，devtool:'#cheap-module-eval-source-map'改成 devtool: '#source-map'就可以
+2.在可能出错的代码块部分写上 debugger 打开调试器后执行到这段代码时会自动进入断点调试
+export default {
+  created() {
+    const href = window.location.href
+    debugger // 代码运行到此处会中断
+    console.log(href)
+  },
+}
+
+#########################################################################################
+
+v-el 和 v-ref 合并为一个 ref 属性了，可以在组件实例中通过 $refs 来调用
+<div ref="item">ref</div>
+this.$refs.item
+-----------------------------------------------------------------------------------------
+调用子组件方法
+父组件：<abc ref="abc"></abc>
+        this.$refs.abc.test();
+        this.$refs.abc.data;
+子组件：test() {}
+-----------------------------------------------------------------------------------------
+
+父子通信
+
+子组件：
+<div @click="up"></div>
+up() {
+    this.$emit('upup','hehe'); //主动触发upup方法，'hehe'为向父组件传递的数据
+}
+
+父组件
+<child @upup="change" :msg="msg"></child> //监听子组件触发的upup事件,然后调用change方法
+change(change) {
+    this.msg = change;
+}
+
+######################################################################################
+
+通过组件或路由传递
