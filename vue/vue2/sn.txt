@@ -7,9 +7,12 @@ vue init webpack my-project
 选择时不要安装
 Use ESLint to lint your code? No
 
+#########################################################################################
+
 npm install --save axios
 npm install --save-dev sass-loader
 npm install --save-dev node-sass
+npm install --save vuex
 
 https://github.com/imcvampire/vue-axios
 
