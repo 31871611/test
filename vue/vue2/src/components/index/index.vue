@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="index">
     <ul>
       <li><router-link to="/tpl">跳转到tpl</router-link></li>
       <li><router-link to="/vuex">跳转到vuex</router-link></li>
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'index',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

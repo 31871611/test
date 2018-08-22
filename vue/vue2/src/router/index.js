@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store/index'
-import HelloWorld from '@/components/HelloWorld'
+import index from '@/components/index/index'
 
 Vue.use(Router)
 
@@ -10,8 +10,8 @@ const router = new Router({
   routes:[
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'index',
+      component: index
     },
     {
       path: '/tpl',
