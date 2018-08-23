@@ -13,6 +13,7 @@ npm install --save axios
 npm install --save-dev sass-loader
 npm install --save-dev node-sass
 npm install --save vuex
+npm install --save-dev mockjs
 
 https://github.com/imcvampire/vue-axios
 

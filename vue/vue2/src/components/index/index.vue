@@ -8,12 +8,26 @@
 </template>
 
 <script>
+import axios from 'axios';
+//import '@/mock'
 export default {
   name: 'index',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  mounted: function () {
+
+    axios.post('/api/user', {
+        firstName: 'Fred',
+        lastName: 'Flintstone'
+    }).then(function (response) {
+        console.log(response);
+    }).catch(function (error) {
+        console.log(error);
+    });
+
   }
 }
 </script>
