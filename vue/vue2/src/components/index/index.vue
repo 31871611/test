@@ -4,11 +4,13 @@
       <li><router-link to="/tpl">跳转到tpl</router-link></li>
       <li><router-link to="/vuex">跳转到vuex</router-link></li>
     </ul>
+    <div @click="getPhpIndex">点击getPhpIndex</div>
+    <div @click="getUser">点击getUser</div>
   </div>
 </template>
 
-<script>
-import axios from 'axios';
+<script type="text/ecmascript-6">
+import {user, phpIndex} from '../../api/api';
 //import '@/mock'
 export default {
   name: 'index',
@@ -19,15 +21,36 @@ export default {
   },
   mounted: function () {
 
-    axios.post('/api/user', {
+    //this.getUser();
+
+  },
+  methods: {
+    getPhpIndex(){
+      let para = {
+        class_id:123,
         firstName: 'Fred',
         lastName: 'Flintstone'
-    }).then(function (response) {
-        console.log(response);
-    }).catch(function (error) {
-        console.log(error);
-    });
+      }
+      phpIndex(para).then((res) => {
+        console.log(res);
+        if (res.code === -1) {
 
+        }else{
+
+        }
+      })
+    },
+    getUser(){
+      let para = {class_id:123}
+      user(para).then((res) => {
+        console.log(res);
+        if (res.code === -1) {
+
+        }else{
+
+        }
+      })
+    }
   }
 }
 </script>

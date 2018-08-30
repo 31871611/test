@@ -1,4 +1,5 @@
 import Mock from 'mockjs'
+import qs from 'qs';
 // 设置响应时间
 Mock.setup({ timeout: '200-2000' })
 // var obj = {aa: '11', bb: '22', cc: '33', dd: '44'}
@@ -116,7 +117,7 @@ Mock.mock('/api/user', 'get', {
 
 Mock.mock('/api/user', 'delete', function(options) {
   console.log(options)
-  let query = JSON.parse(options.body)
+  let query = qs.parse(options.body)
   var ids = query.ids
   let data = user.filter(item => {
     return ids.indexOf(item.id) === -1
@@ -127,7 +128,7 @@ Mock.mock('/api/user', 'delete', function(options) {
 // 新增
 Mock.mock('/api/user', 'post', function(options) {
   console.log(options)
-  let query = JSON.parse(options.body)
+  let query = qs.parse(options.body)
   query.id = user[user.length - 1].id++
   user.unshift(query)
   return {code: 0, data: user}
@@ -136,7 +137,7 @@ Mock.mock('/api/user', 'post', function(options) {
 // 修改
 Mock.mock('/api/user', 'put', function(options) {
   console.log(options)
-  let query = JSON.parse(options.body)
+  let query = qs.parse(options.body)
   let id = query.id
   let data = user.map((item) => {
     if (item.id === id) {
