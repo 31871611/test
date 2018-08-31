@@ -1,0 +1,66 @@
+@charset "UTF-8";
+@import "common/reset";
+@import "common/common";
+
+
+//html,body,#app,.view{
+//  height: 100%;
+//  width: 100%;
+//}
+
+html{
+  font-size:$browser-default-font-size;
+}
+
+//
+//
+////基础布局，版面
+//.wrap{
+//  @include display-flex();
+//  @include flex-direction(column);
+//  width:100%;
+//  height:100%;
+//}
+//article.main{
+//  @include flex(1);
+//  //overflow: hidden;
+//  height: 100%;
+//  overflow:scroll;
+//  -webkit-overflow-scrolling: touch;
+//  background: $bg-base;
+//}
+//.mainScroll{
+//  //width:100%;
+//  //height:100%;
+//}
+////.mainScroll::-webkit-scrollbar,
+////.mainScroll::-webkit-scrollbar{
+////  -webkit-opacity: 0;
+////  opacity: 0;
+////}
+//article.scrollHide{
+//  overflow:hidden;
+//}
+//header{
+//
+//}
+//footer{
+//
+//}
+
+//vue
+[v-cloak]{
+  visibility: hidden;
+}
+.v-cloak--block,.v-cloak--inline,.v-cloak--inlineBlock{
+  display: none;
+}
+
+
+
+/*
+  透明      88
+  提示弹窗  100
+  浮动弹窗  90
+  浮动购物车
+*/
