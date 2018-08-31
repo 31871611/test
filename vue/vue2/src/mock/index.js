@@ -125,13 +125,14 @@ Mock.mock('/api/user', 'delete', function(options) {
   return {code: 0, data: data}
 // 返回这个数组,也就是返回处理后的假数据
 })
+
 // 新增
 Mock.mock('/api/user', 'post', function(options) {
   console.log(options)
   let query = qs.parse(options.body)
   query.id = user[user.length - 1].id++
   user.unshift(query)
-  return {code: 0, data: user}
+  return {code: 1, data: user}
 })
 
 // 修改
@@ -149,25 +150,37 @@ Mock.mock('/api/user', 'put', function(options) {
     }
     return item
   })
-  return {code: 0, data: data}
+  return {code: 1, data: data}
 })
 
-/* Mock.mock('/api/login', function(options) {
-  console.log(options)
+
+// 登录
+Mock.mock('/api/login', function(options) {
+  //console.log(options)
   let data = null
   try {
-    data = JSON.parse(options.body)
+    data = qs.parse(options.body)
   } catch (error) {
     console.log(error)
   }
-  console.log(data)
   if (data.username === 'admin' && data.password === '123') {
-    return Mock.mock({code: 0, role: 'admin'})
+    return Mock.mock({
+      code: 1,
+      role: 'admin',
+      msg: '登录成功'
+    })
   } else if (data.username === 'guest' && data.password === '123') {
-    return Mock.mock({code: 0, role: 'guest'})
+    return Mock.mock({
+      code: 1,
+      role: 'guest',
+      msg: '登录成功'
+    })
   } else {
-    return Mock.mock({code: -1, mes: '用户名或密码错误'})
+    return Mock.mock({
+      code: -1,
+      msg: '帐号或密码错误'
+    })
   }
-}) */
+})
 
 export default Mock

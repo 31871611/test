@@ -86,6 +86,7 @@ if(process.env.NODE_ENV == "development"){
 }
 //export const sendReward = params => { return service.post(`${baseUrl}/admin/sendReward`, qs.stringify(params)).then(res => res.data); };
 export const user = params => { return service.post(`${baseUrl}/api/user`, params).then(res => res.data); };
+export const login = params => { return service.post(`${baseUrl}/api/login`, params).then(res => res.data); };
 export const phpIndex = params => { return service.post(`http://localhost/thinkphp/public/index.php/index/index/index`, params).then(res => res.data); };
 
 

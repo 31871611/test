@@ -2,7 +2,7 @@
   <div class="login">
     <div class="item">
       <label for="">帐号：</label>
-      <input type="text" placeholder="请输入帐号" v-model="form.name">
+      <input type="text" placeholder="请输入帐号" v-model="form.username">
     </div>
     <div class="item">
       <label for="">密码：</label>
@@ -10,32 +10,50 @@
     </div>
 
     <div class="btn">
-      <a href="javascript:;" :class="{'select':form.name != '' && form.password != ''}" @click="login()">登录</a>
+      <a href="javascript:;" :class="{'select':form.username != '' && form.password != ''}" @click="login()">登录</a>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+import {login} from '../../api/api';
 export default {
   name: 'login',
   data () {
     return {
       form: {
-        name:'',
+        username:'',
         password:''
       }
     }
   },
   mounted: function () {
 
+
+
   },
   methods: {
     login(){
-      if(this.form.name == '' && this.form.password == ''){
+      if(this.form.username == '' && this.form.password == ''){
         return false
       }
 
-      alert('登录');
+      let para = this.form;
+      login(para).then((res) => {
+        //console.log(res);
+        if (res.code === -1) {
+          this.$toast({
+            message: res.msg,
+            duration: 2000
+          });
+        }else{
+          this.$toast({
+            message: res.msg,
+            duration: 2000
+          });
+          // 跳转
+        }
+      })
     }
   }
 }
