@@ -1,0 +1,48 @@
+@charset "UTF-8";
+@import "common/common";
+
+
+.login{
+  padding-top: pxTorem(160px);
+  .item{
+    $h:88px;
+    margin: 0 pxTorem(20px);
+    border-bottom: 1px solid #cccccc;
+    display: flex;
+    @include font-dpr(32px);
+    label{
+      display: block;
+      height: pxTorem($h);
+      line-height: pxTorem($h);
+      margin-right: pxTorem(10px);
+    }
+    input{
+      display: block;
+      flex: 1;
+      height: pxTorem($h);
+      line-height: pxTorem($h);
+      border:none;
+    }
+  }
+
+  .btn{
+    $h:82px;
+    margin-top: pxTorem(100px);
+    a{
+      height: pxTorem($h);
+      line-height: pxTorem($h);
+      text-align: center;
+      margin: 0 pxTorem(20px);
+      display: block;
+      @include font-dpr(30px);
+      background: #eeeeee;
+      color: #cecece;
+      border-radius: pxTorem(6px);
+      &.select{
+        background: #df443b;
+        color: #ffffff;
+      }
+    }
+  }
+
+}

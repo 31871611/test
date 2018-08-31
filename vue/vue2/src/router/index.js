@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store/index'
 import index from '@/components/index/index'
+const login = () => import('@/views/login/login')       // 登录
 
 Vue.use(Router)
 
@@ -25,6 +26,11 @@ const router = new Router({
       path: '/vuex',
       name: 'vuex',
       component: resolve => require(['@/components/vuex/vuex'], resolve),
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: login
     }
   ]
 })
