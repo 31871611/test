@@ -182,30 +182,6 @@ function photoText($postObj,$arr){
 	return sprintf($template, $toUser, $fromUser, $time, $msgtype);
 }
 
-/*
-// 获取access_token
-function getWxAccessToken($url){
-	//$appid = "";
-	//$appsecret = "";
-	//$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$appsecret;
-	// 1. 初始化curl句柄
-	$ch = curl_init();
-	// 2. 设置curl的参数，包括URL
-	curl_setopt($ch,CURLOPT_URL,$url);
-	// 设置为false会直接输出内容到页面（如echo）;true需要一个$res变量接收
-	curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-	// 跳过ssl检查项
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	// 3. 执行并获取HTML文档内容
-	$output = curl_exec($ch);
-	if($output === FALSE ){
-		echo "CURL Error:".curl_error($ch);
-	}
-	curl_close($ch);
-	return json_decode($output,true);
-}
-*/
-
 
 // 获取微信服务器IP地址
 function getWxServerIp(){
@@ -239,14 +215,13 @@ function getWxAccessToken(){
 		return $_SESSION['accessToken'];
 	}else{
 		// 如果accessToken不存在或者已经过期，重新取accessToken
-		$appid = "wx95bac0e57d09ec49";
+		$appid = "";
 		$appsecret = "54c9bcca2c27b3c78c50dde1261c04fc";
 		$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$appsecret;
 		$res = httpCurl($url,'get','json');
 		$accessToken = $res['access_token'];
 		$_SESSION['accessToken'] = $accessToken;
 		$_SESSION['exprire_time'] = time()+7000;
-		//var_dump($res);
 		return $accessToken;
 	}
 }
