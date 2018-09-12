@@ -61,6 +61,7 @@ function reponseMsg(){
 			</xml>";
 			$info = sprintf($template, $toUser, $fromUser, $time, $msgtype, $content);
 			echo $info;
+			exit;
 
 			// $myfile = fopen("err.txt", "w") or die("Unable to open file!");
 			// fwrite($myfile, $info);
@@ -73,12 +74,52 @@ function reponseMsg(){
 		}
 	}else if(strtolower($postObj->MsgType) == 'text'){
 		// 收到用户信息
-		if($postObj->Content == 'ok'){
+		switch (trim($postObj->Content)) {
+			case '1':
+				$content = '您输入的数字是1';
+				echo text($postObj,$content);
+				break;
+			case '2':
+				$content = '您输入的数字是2';
+				echo text($postObj,$content);
+				break;
+			case '3':
+				$content = '您输入的数字是3'."\n".'双引号换行';
+				echo text($postObj,$content);
+				break;
+			case '4':
+				$content = '<a href="http://www.baidu.com">百度</a>';
+				echo text($postObj,$content);
+				break;
+			case '图文':
+				$arr = array(
+					array(
+						'title' => 'QQ',
+						'description' => '描述',
+						'picUrl' => 'http://mat1.gtimg.com/www/qq2018/imgs/qq_logo_2018x2.png',
+						'url' => 'http://www.qq.com'
+					),
+					array(
+						'title' => '百度',
+						'description' => '描述2',
+						'picUrl' => 'https://www.baidu.com/img/bd_logo1.png',
+						'url' => 'http://www.baidu.com'
+					)
+				);
+				echo photoText($postObj,$arr);
+				break;
+			default:
+				$content = '没有您需要的信息，请换个关键字';
+				echo text($postObj,$content);
+				break;
+		}
+		/*
+		//if($postObj->Content == 'ok'){
 			$toUser = $postObj->FromUserName;
 			$fromUser = $postObj->ToUserName;
 			$time = time();
 			$msgtype = 'text';
-			$content = '回复';
+			//$content = '回复';
 			$template = "<xml>
 			<ToUserName><![CDATA[%s]]></ToUserName>
 			<FromUserName><![CDATA[%s]]></FromUserName>
@@ -88,7 +129,206 @@ function reponseMsg(){
 			</xml>";
 			$info = sprintf($template, $toUser, $fromUser, $time, $msgtype, $content);
 			echo $info;
-		}
+			exit;
+		//}
+		*/
 	}
 
 }
+
+
+// 回复文本消息
+function text($postObj,$content){
+	$toUser = $postObj->FromUserName;
+	$fromUser = $postObj->ToUserName;
+	$time = time();
+	$msgtype = 'text';
+	//$content = '回复';
+	$template = "<xml>
+	<ToUserName><![CDATA[%s]]></ToUserName>
+	<FromUserName><![CDATA[%s]]></FromUserName>
+	<CreateTime>%s</CreateTime>
+	<MsgType><![CDATA[%s]]></MsgType>
+	<Content><![CDATA[%s]]></Content>
+	</xml>";
+	return sprintf($template, $toUser, $fromUser, $time, $msgtype, $content);
+}
+
+
+// 回复图文消息
+function photoText($postObj,$arr){
+	$toUser = $postObj->FromUserName;
+	$fromUser = $postObj->ToUserName;
+	$time = time();
+	$msgtype = 'news';
+	$template = "<xml>
+	<ToUserName><![CDATA[%s]]></ToUserName>
+	<FromUserName><![CDATA[%s]]></FromUserName>
+	<CreateTime>%s</CreateTime>
+	<MsgType><![CDATA[%s]]></MsgType>
+	<ArticleCount>".count($arr)."</ArticleCount>
+	<Articles>";
+	// 一条或多条图文
+	foreach ($arr as $key => $value) {
+		$template .= "<item>
+		<Title><![CDATA[".$value['title']."]]></Title>
+		<Description><![CDATA[".$value['description']."]]></Description>
+		<PicUrl><![CDATA[".$value['picUrl']."]]></PicUrl>
+		<Url><![CDATA[".$value['url']."]]></Url>
+		</item>";
+	}
+	$template .="</Articles>
+	</xml>";
+	return sprintf($template, $toUser, $fromUser, $time, $msgtype);
+}
+
+/*
+// 获取access_token
+function getWxAccessToken($url){
+	//$appid = "";
+	//$appsecret = "";
+	//$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$appsecret;
+	// 1. 初始化curl句柄
+	$ch = curl_init();
+	// 2. 设置curl的参数，包括URL
+	curl_setopt($ch,CURLOPT_URL,$url);
+	// 设置为false会直接输出内容到页面（如echo）;true需要一个$res变量接收
+	curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+	// 跳过ssl检查项
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	// 3. 执行并获取HTML文档内容
+	$output = curl_exec($ch);
+	if($output === FALSE ){
+		echo "CURL Error:".curl_error($ch);
+	}
+	curl_close($ch);
+	return json_decode($output,true);
+}
+*/
+
+
+// 获取微信服务器IP地址
+function getWxServerIp(){
+	$accessToken = "";
+	$url = "https://api.weixin.qq.com/cgi-bin/getcallbackip?access_token=".$accessToken;
+	// 1. 初始化curl句柄
+	 $ch = curl_init();
+	// 2. 设置curl的参数，包括URL
+	curl_setopt($ch,CURLOPT_URL,$url);
+	// 设置为false会直接输出内容到页面（如echo）;true需要一个$res变量接收
+	curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+	// 跳过ssl检查项
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	// 3. 执行并获取HTML文档内容
+	$output = curl_exec($ch);
+	if($output === FALSE ){
+		echo "CURL Error:".curl_error($ch);
+	}
+	curl_close($ch);
+	// $arr = json_decode($output,true);
+	var_dump($output);
+}
+
+
+// 获取或保存accessToken
+function getWxAccessToken(){
+	session_start();
+	// 将accessToken存在session|cookie中
+	if($_SESSION['accessToken'] && $_SESSION['exprire_time'] > time()){
+		// 如果accessToken在session并没有过期
+		return $_SESSION['accessToken'];
+	}else{
+		// 如果accessToken不存在或者已经过期，重新取accessToken
+		$appid = "wx95bac0e57d09ec49";
+		$appsecret = "54c9bcca2c27b3c78c50dde1261c04fc";
+		$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$appsecret;
+		$res = httpCurl($url,'get','json');
+		$accessToken = $res['access_token'];
+		$_SESSION['accessToken'] = $accessToken;
+		$_SESSION['exprire_time'] = time()+7000;
+		//var_dump($res);
+		return $accessToken;
+	}
+}
+
+
+// 创建微信菜单
+function definedItem(){
+	$accessToken = getWxAccessToken();
+	// 目前微信接口的调用方式都是通过curl的post|get
+	$url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$accessToken;
+	$postArr = array(
+		'button' => array(
+			// 第一个一级菜单
+			array(
+				"name"=>urlencode("菜单一"),
+		        "type"=>"click",
+          		"key"=>"item1",
+			),
+			// 第二个一级菜单
+			array(
+				"name"=>urlencode("菜单二"),
+				"sub_button"=>array(
+					array(
+						"name"=>urlencode("歌曲"),
+		               "type"=>"click",
+               			"key"=>"songs",
+					),
+					array(
+						"name"=>urlencode("电影"),
+                        "type"=>"view",
+               			"url"=>"http://www.baidu.com",
+					)
+				)
+			),
+			array(
+				"name"=>urlencode("菜单三"),
+                "type"=>"view",
+       			"url"=>"http://www.qq.com",
+			)	
+		)
+	);
+	$postJson = json_encode($postArr,true);
+	$res = httpCurl($url,'post','json',urldecode($postJson));
+	var_dump($res);
+}
+
+
+function httpCurl($url,$type='get',$res='json',$arr=''){
+	//$appid = "";
+	//$appsecret = "";
+	//$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$appsecret;
+	// 1. 初始化curl句柄
+	$ch = curl_init();
+	// 2. 设置curl的参数，包括URL
+	curl_setopt($ch,CURLOPT_URL,$url);
+	// 设置为false会直接输出内容到页面（如echo）;true需要一个$res变量接收
+	curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+	// 跳过ssl检查项
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	if($type == 'post'){
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $arr);
+	}
+	// 3. 执行并获取HTML文档内容
+	$output = curl_exec($ch);
+	if($output === FALSE ){
+		echo "CURL Error:".curl_error($ch);
+	}
+	curl_close($ch);
+	if($res == 'json'){
+		return json_decode($output,true);
+	}
+	//return json_decode($output,true);
+}
+
+
+
+/*
+
+require_once('pinYin.php');
+
+$py = new PinYin();
+echo $py->getpy("福州",true); 
+
+*/
