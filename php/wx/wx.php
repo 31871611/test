@@ -1,6 +1,5 @@
 <?php
 
-
 	if(isset($_GET['echostr'])){
 		//1.将timestamp，nonce，token按字典排序
 			$timestamp = $_GET['timestamp'];	// 时间
@@ -43,6 +42,11 @@ function reponseMsg(){
 	$postObj->MsgType = '';				// 消息类型，event
 	$postObj->Event = '';				// 事件类型，subscribe(订阅)、unsubscribe(取消订阅)
 	*/
+
+	//$myfile = fopen("err.txt", "w") or die("Unable to open file!");
+	//fwrite($myfile, '111111');
+	//fclose($myfile);
+
 	// 判断该数据包是否订阅的事件推送
 	if(strtolower($postObj->MsgType) == 'event'){
 		// 如果是关注subscribe事件，回复用户消息
@@ -72,6 +76,17 @@ function reponseMsg(){
 				<xml> <ToUserName>< ![CDATA[toUser] ]></ToUserName> <FromUserName>< ![CDATA[fromUser] ]></FromUserName> <CreateTime>12345678</CreateTime> <MsgType>< ![CDATA[text] ]></MsgType> <Content>< ![CDATA[你好] ]></Content> </xml>
 			 */
 		}
+
+		// 自定义菜单事件---点击菜单拉取消息时的事件推送
+		if(strtolower($postObj->EventKey) == "item1"){
+			$content = '这是item1菜单的事件推送';
+			echo text($postObj,$content);
+		}
+		if(strtolower($postObj->EventKey) == "songs"){
+			$content = '这是歌曲菜单的事件推送';
+			echo text($postObj,$content);
+		}
+
 	}else if(strtolower($postObj->MsgType) == 'text'){
 		// 收到用户信息
 		switch (trim($postObj->Content)) {
@@ -113,27 +128,7 @@ function reponseMsg(){
 				echo text($postObj,$content);
 				break;
 		}
-		/*
-		//if($postObj->Content == 'ok'){
-			$toUser = $postObj->FromUserName;
-			$fromUser = $postObj->ToUserName;
-			$time = time();
-			$msgtype = 'text';
-			//$content = '回复';
-			$template = "<xml>
-			<ToUserName><![CDATA[%s]]></ToUserName>
-			<FromUserName><![CDATA[%s]]></FromUserName>
-			<CreateTime>%s</CreateTime>
-			<MsgType><![CDATA[%s]]></MsgType>
-			<Content><![CDATA[%s]]></Content>
-			</xml>";
-			$info = sprintf($template, $toUser, $fromUser, $time, $msgtype, $content);
-			echo $info;
-			exit;
-		//}
-		*/
 	}
-
 }
 
 
@@ -299,11 +294,52 @@ function httpCurl($url,$type='get',$res='json',$arr=''){
 
 
 
-/*
+// 获取用户的openid
+function getBaseInfo(){
+	// 1.获取到code
+	$appid = "wx95bac0e57d09ec49";
+	$redirect_uri = urlencode("http://t3.hxhysc.cn/getUserOpenId.php");					// 授权后重定向的回调链接地址，需要添加到网页授权
+	$scope = "snsapi_base";
+	$url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$appid."&redirect_uri=".$redirect_uri."&response_type=code&scope=".$scope."&state=123#wechat_redirect";
+	header('location:'.$url);
+}
 
-require_once('pinYin.php');
+function getUserOpenId(){
+	// 2.获取到网页授权的access_token
+	$appid = "wx95bac0e57d09ec49";
+	$appsecret = "54c9bcca2c27b3c78c50dde1261c04fc";
+	$code = $_GET['code'];
+	$url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$appsecret."&code=".$code."&grant_type=authorization_code";
+	// 3.拉取用户的openid
+	$res = httpCurl($url,'get');
+	var_dump($res);
+}
 
-$py = new PinYin();
-echo $py->getpy("福州",true); 
 
-*/
+
+// snsapi_userinfo模式
+function getUserDetail(){
+	// 1.获取到code
+	$appie = "wx95bac0e57d09ec49";
+	$redirect_uri = urlencode("http://t3.hxhysc.cn/getUserInfo.html");
+	$scope = "snsapi_userinfo";
+	$url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$appie."&redirect_uri=".$redirect_uri."&response_type=code&scope=".$scope."&state=STATE#wechat_redirect";
+	header('location:'.$url);
+}
+
+function getUserInfo(){
+	// 2.获取到网页授权的access_token
+	$appie = "wx95bac0e57d09ec49";
+	$appsecret = "54c9bcca2c27b3c78c50dde1261c04fc";
+	$code = $_GET['code'];
+	$url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appie."&secret=".$appsecret."&code=".$code."&grant_type=authorization_code";
+	$res = httpCurl($url,'get');
+	$access_token = $res['access_token'];
+	$openid = $res['openid'];
+	// 3.拉取用户详细信息
+	$userinfoUrl = "https://api.weixin.qq.com/sns/userinfo?access_token=".$access_token."&openid=".$openid."&lang=zh_CN";
+	$res2 = httpCurl($url,'get');
+	var_dump($res2);
+}
+
+
