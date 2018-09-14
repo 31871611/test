@@ -343,3 +343,35 @@ function getUserInfo(){
 }
 
 
+
+// 获取jsapi_ticket用于生成JS-SDK权限验证的签名
+function getJsApiTicket(){
+	if($_SESSION['jsapi_ticket_expire_time'] > time() && $_SESSION['jsapi_ticket']){
+		$jsapi_ticket = $_SESSION['jsapi_ticket'];
+	}else{
+		$access_token = getWxAccessToken();
+		$url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=".$access_token."&type=jsapi";
+		$res = httpCurl($url,'get');
+		$jsapi_ticket = $res['ticket'];
+		$_SESSION['jsapi_ticket'] = $jsapi_ticket;
+		$_SESSION['jsapi_ticket_expire_time'] = time()+7000;
+	}
+	return $jsapi_ticket;
+}
+
+
+
+
+// 随机字符串
+function getRandCode($length = 8) { 
+	$array = array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l","m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y","z", 
+					"A", "B", "C", "D","E", "F", "G", "H", "I", "J", "K", "L","M", "N", "O","P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y","Z",
+					"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"); 
+	$tmpstr = "";
+	$max = count($array);
+	for($i = 0; $i < $length; $i++) {
+		$key = rand(0,$max-1);
+		$tmpstr .= $array[$key];
+	}
+	return $tmpstr;
+}
