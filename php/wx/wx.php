@@ -44,7 +44,7 @@ function reponseMsg(){
 	*/
 
 	//$myfile = fopen("err.txt", "w") or die("Unable to open file!");
-	//fwrite($myfile, '111111');
+	//fwrite($myfile, $postArr);
 	//fclose($myfile);
 
 	// 判断该数据包是否订阅的事件推送
@@ -65,7 +65,7 @@ function reponseMsg(){
 			</xml>";
 			$info = sprintf($template, $toUser, $fromUser, $time, $msgtype, $content);
 			echo $info;
-			exit;
+			//exit;
 
 			// $myfile = fopen("err.txt", "w") or die("Unable to open file!");
 			// fwrite($myfile, $info);
@@ -84,6 +84,19 @@ function reponseMsg(){
 		}
 		if(strtolower($postObj->EventKey) == "songs"){
 			$content = '这是歌曲菜单的事件推送';
+			echo text($postObj,$content);
+		}
+
+
+		// 扫描带参数二维码事件
+		// 1. 用户未关注时，进行关注后的事件推送
+		if(strtolower($postObj->EventKey) == "123"){
+			$content = '这是扫描二维码未';
+			echo text($postObj,$content);
+		}
+		// 2. 用户已关注时的事件推送
+		if(strtolower($postObj->Event) == "SCAN"){
+			$content = '这是扫描二维码已';
 			echo text($postObj,$content);
 		}
 
@@ -201,7 +214,7 @@ function getWxServerIp(){
 }
 
 
-// 获取或保存accessToken
+// 获取或保存accessToken（全局票据）
 function getWxAccessToken(){
 	session_start();
 	// 将accessToken存在session|cookie中
@@ -210,7 +223,7 @@ function getWxAccessToken(){
 		return $_SESSION['accessToken'];
 	}else{
 		// 如果accessToken不存在或者已经过期，重新取accessToken
-		$appid = "";
+		$appid = "wx95bac0e57d09ec49";
 		$appsecret = "54c9bcca2c27b3c78c50dde1261c04fc";
 		$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$appsecret;
 		$res = httpCurl($url,'get','json');
@@ -374,4 +387,51 @@ function getRandCode($length = 8) {
 		$tmpstr .= $array[$key];
 	}
 	return $tmpstr;
+}
+
+
+
+// 获取二维码
+function getQrCode(){
+	$access_token = getWxAccessToken();
+
+	// 临时二维码请求说明
+	$url = 'https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token='.$access_token;
+	$postArr = array(
+		"expire_seconds" => 604800,
+		"action_name" => "QR_SCENE",
+		"action_info" => array(
+			"scene" => array(
+				"scene_id" => 123
+			)
+		)
+	);
+	$postJson = json_encode($postArr,true);
+	$res = httpCurl($url,'post','json',urldecode($postJson));
+	//var_dump($res);
+	$ticket = $res['ticket'];
+	$url2 = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket='.$ticket;
+	echo '<img src="'.$url2.'" />';
+
+
+
+/*
+	// 永久二维码请求说明
+	$url = 'https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token='.$access_token;
+	$postArr = array(
+		"action_name" => "QR_LIMIT_SCENE",
+		"action_info" => array(
+			"scene" => array(
+				"scene_id" => 123
+			)
+		)
+	);
+	$postJson = json_encode($postArr,true);
+	$res = httpCurl($url,'post','json',urldecode($postJson));
+	//var_dump($res);
+	$ticket = $res['ticket'];
+	$url2 = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket='.$ticket;
+	echo '<img src="'.$url2.'" />';
+*/
+
 }
