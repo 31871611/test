@@ -22,6 +22,10 @@ service.interceptors.request.use(function (config) {
     config.headers.token = token;
   }
  */
+
+  //todo:加载动画
+
+
   config.data = qs.stringify(config.data);
   return config;
 }, function (error) {
@@ -39,6 +43,8 @@ service.interceptors.response.use(
    * 如想通过xmlhttprequest来状态码标识 逻辑可写在下面error中
    * 以下代码均为样例，请结合自生需求加以修改，若不需要，则可删除
    */
+  // todo: 暂停加载动画
+
   // response => {
   //   const res = response.data
   //   if (res.code !== 20000) {
