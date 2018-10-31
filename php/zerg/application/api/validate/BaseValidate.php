@@ -1,6 +1,7 @@
 <?php
 namespace app\api\validate;
 
+use app\lib\exception\ParameterException;
 use think\image\Exception;
 use think\Request;
 use think\Validate;
@@ -13,10 +14,19 @@ class BaseValidate extends Validate{
         $request = Request::instance();
         $param = $request->param();
 
-        $result = $this->check($param);
+        $result = $this->batch()->check($param);
         if(!$result){
+            $e = new ParameterException([
+                'msg' => $this->error,
+                //'code' => 400,
+                //'errorCode' => 10002
+            ]);
+            throw $e;
+            /*
             $error = $this->getError();
+            // 非自定义异常
             throw new Exception($error);
+            */
         }else{
             return true;
         }

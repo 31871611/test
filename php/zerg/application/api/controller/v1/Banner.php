@@ -24,8 +24,9 @@ class Banner {
         (new IDMustBePostivelnt())->goCheck();
         $banner = BannerModel::getBannerByID(input('id'));
         if(!$banner){
+            // 自定义异常
             throw new BannerMissException();
         }
-        return $banner;
+        return json($banner);
     }
 }
