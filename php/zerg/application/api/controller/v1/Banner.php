@@ -22,7 +22,8 @@ class Banner {
     public function getBanner(){
         //return input('id');
         (new IDMustBePostivelnt())->goCheck();
-        $banner = BannerModel::getBannerByID(input('id'));
+        //$banner = BannerModel::getBannerByID(input('id'));
+        $banner = BannerModel::with(['items','items.img'])->find(input('id'));
         if(!$banner){
             // 自定义异常
             throw new BannerMissException();
