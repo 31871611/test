@@ -4,9 +4,11 @@ namespace app\api\model;
 use think\Exception;
 use think\Model;
 
-class Banner extends Model {
+class Banner extends BaseModel {
 
     //protected $table = '表名';
+
+    protected $hidden = ['delete_time','update_time'];
 
     public function items(){
         // 关联表
@@ -15,8 +17,12 @@ class Banner extends Model {
 
 
     public static function getBannerByID($id){
+        $banner = self::with(['items','items.img'])->find(input('id'));
+        return $banner;
+
+
         // TODD:根据Banner ID号 获取Banner信息
-        return $id;
+        //return $id;
     }
 
 }

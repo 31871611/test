@@ -24,6 +24,6 @@ return [
 
 use think\Route;
 
-Route::get('api/v1/banner/:id','api/v1.banner/getBanner');
+Route::get('api/:version/banner/:id','api/:version.banner/getBanner');
 
 

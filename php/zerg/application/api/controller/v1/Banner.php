@@ -19,15 +19,15 @@ class Banner {
      * @http GET
      * @id banner的id号
      */
-    public function getBanner(){
+    public function getBanner($id){
         //return input('id');
         (new IDMustBePostivelnt())->goCheck();
-        //$banner = BannerModel::getBannerByID(input('id'));
-        $banner = BannerModel::with(['items','items.img'])->find(input('id'));
+        //$banner = BannerModel::with(['items','items.img'])->find(input('id'));
+        $banner = BannerModel::getBannerByID($id);
         if(!$banner){
             // 自定义异常
             throw new BannerMissException();
         }
-        return json($banner);
+        return $banner;
     }
 }
