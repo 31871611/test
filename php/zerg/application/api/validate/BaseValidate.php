@@ -32,4 +32,17 @@ class BaseValidate extends Validate{
         }
     }
 
+    // 验证数字是否是正整数
+    public function isPositiveInteger($value,$rule = '',$data = '',$field= ''){
+
+        if(is_numeric($value) && is_int($value + 0) && ($value + 0) > 0){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+
+
 }
