@@ -19,10 +19,6 @@ class Banner extends BaseModel {
     public static function getBannerByID($id){
         $banner = self::with(['items','items.img'])->find(input('id'));
         return $banner;
-
-
-        // TODD:根据Banner ID号 获取Banner信息
-        //return $id;
     }
 
 }

@@ -43,6 +43,13 @@ class BaseValidate extends Validate{
 
     }
 
+    // 不能为空
+    protected function isNotEmpty($value,$rule = '',$data = '',$field= ''){
+        if(empty($value)){
+            return false;
+        }
+        return true;
+    }
 
 
 }

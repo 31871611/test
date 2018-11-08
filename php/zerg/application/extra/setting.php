@@ -1,10 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2018/11/2
- * Time: 15:25
+ * 非保密信息
  */
 return [
-    'img_prefix' => 'http://localhost/zerg/images'
+    'img_prefix' => 'http://localhost/zerg/images',
+    'token_expire_in' => 7200
 ];
