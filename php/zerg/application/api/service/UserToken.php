@@ -60,7 +60,7 @@ class UserToken extends Token{
 
     private function saveToCache($cachedValue){
         $key = self::generateToken();
-        $value = json_decode($cachedValue);
+        $value = json_encode($cachedValue);
         $expire_in = config('setting.token_expire_in');
         // 缓存
         $request = cache($key,$value,$expire_in);

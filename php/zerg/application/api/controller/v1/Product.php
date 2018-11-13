@@ -40,4 +40,17 @@ class Product {
         return $res;
     }
 
+
+    /**
+     * 一条商品信息
+     */
+    public function getOne($id){
+        (new IDMustBePostivelnt())->goCheck();
+        $product =  ProductModel::getProductDetail($id);
+        if(!$product){
+            throw new ProductException();
+        }
+        return $product;
+    }
+
 }
