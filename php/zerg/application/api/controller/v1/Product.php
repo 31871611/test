@@ -53,4 +53,12 @@ class Product {
         return $product;
     }
 
+
+    /*
+     * 删除一条商品
+     * */
+    public function delOne($id){
+
+    }
+
 }
