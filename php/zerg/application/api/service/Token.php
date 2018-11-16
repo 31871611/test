@@ -78,4 +78,16 @@ class Token {
         }
     }
 
+    // 提供给pay查询uid状态
+    public static function isValidOperate($checkUID){
+        if(!$checkUID){
+            throw new Exception('检查UID时必须传入一个被检查的UID');
+        }
+        $currentOperateUid = self::getCurrentUid();
+        if($currentOperateUid == $checkUID){
+            return true;
+        }
+        return false;
+    }
+
 }

@@ -8,6 +8,7 @@ use app\api\model\UserAddress;
 use app\lib\exception\OrderException;
 use app\lib\exception\UserException;
 use think\Cache;
+use think\Db;
 use think\Exception;
 use app\api\model\Order as OrderModel;
 
@@ -42,6 +43,8 @@ class Order {
 
     // 写入订单信息
     private function createOrder($snap){
+        // 事务
+        Db::startTrans();
         try {
             $orderNo = $this->makeOrderNo();
             $order = new OrderModel();
@@ -63,12 +66,16 @@ class Order {
             }
             $orderProduct = new OrderProduct();
             $orderProduct->saveAll($this->oProducts);
+            // 提交事务
+            Db::commit();
             return [
                 'order_no' => $orderNo,
                 'order_id' => $orderID,
                 'create_time' => $create_time
             ];
         }catch(Exception $ex){
+            // 事务回滚
+            Db::rollback();
             throw $ex;
         }
     }
@@ -118,6 +125,15 @@ class Order {
             ]);
         }
         return $userAddress->toArray();
+    }
+
+    // 提供给pay查询库存量状态
+    public function checkOrderStock($orderID){
+        $oProducts = OrderProduct::where('order_id','=',$orderID)->select();
+        $this->oProducts = $oProducts;
+        $this->products = $this->getProductByOrder($oProducts);
+        $status = $this->getOrderStatus();
+        return $status;
     }
 
     // 获取订单的真实状态
