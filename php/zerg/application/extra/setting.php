@@ -3,6 +3,6 @@
  * 非保密信息
  */
 return [
-    'img_prefix' => 'http://localhost/zerg/images',
+    'img_prefix' => 'http://localhost/zerg/public/index.php/images',
     'token_expire_in' => 7200                           //缓存过期时间
 ];
