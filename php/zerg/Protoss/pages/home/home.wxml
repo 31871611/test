@@ -1,7 +1,8 @@
-<view>
+<import src="../tpls/products/products-tpl.wxml"/>
+<view class="" hidden="{{!loadingHidden}}">
   <swiper indicator-dots='true' autoplay='true' class="swiper">
     <block wx:for="{{bannerArr}}">
-      <swiper-item class="banner-item">
+      <swiper-item class="banner-item" bindtap="onProductsItemTap" data-id="{{item.key_word}}">
         <image mode="aspectFill" class="image" src="{{item.img.url}}"></image>
       </swiper-item>
     </block>
@@ -30,4 +31,6 @@
     </view>
 
 </view>
-
+<loading hidden="{{loadingHidden}}">
+    加载中...
+</loading>

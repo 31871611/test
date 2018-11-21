@@ -18,10 +18,10 @@ Page({
   onLoad: function (options) {
     this._loadData();
   },
-  _loadData:function(){
+  _loadData: function (callback){
     var id = 1;
     home.getBannerData(id, res=>{
-      console.log(res)
+      //console.log(res)
       this.setData({
         'bannerArr': res
       });
@@ -29,7 +29,7 @@ Page({
 
     /*获取主题信息*/
     home.getThemeData((data) => {
-      that.setData({
+      this.setData({
         'themeArr': data,
         'loadingHidden': true
       });
@@ -37,7 +37,8 @@ Page({
 
     /*获取单品信息*/
     home.getProductorData((data) => {
-      that.setData({
+      //console.log(data)
+      this.setData({
         'productsArr': data
       });
       callback && callback();
