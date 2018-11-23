@@ -1,6 +1,7 @@
 <!--index.wxml-->
 <view>
   <navigator url="../home/home">跳转到home</navigator>
+  <button type="primary" bindtap='login'>申请Token令牌</button>
 </view>
 
 <view class="container">
