@@ -2,92 +2,12 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
-    <style type="text/css">
-        *{margin:0;padding:0;}
-        div.d1{margin:200px auto 0;background:url(images/9f0.jpg) no-repeat;width:200px;height:80px;
-            -webkit-transform-style:preserve-3d;	/*定义3d空间*/
-            /*设计沿x轴旋转、20秒线性过度动画、无限次播放*/
-            -webkit-animation-name:x-spin;		            /*定义动画名称为x-spin*/
-            -webkit-animation-duration:20s;		            /*定义动画时间为20秒*/
-            -webkit-animation-iteration-count:infinite;		/*定义动画播放次数为无穷次*/
-            -webkit-animation-timing-function:linear;		/*定义动画过渡为线性转换*/
-        }
-        /*调用动画*/
-        @-webkit-keyframes x-spin{		/*引用x-spin动画*/
-            0%{			/*设置第1个关键帧为开始位置*/
-                -webkit-transform:rotateX(0deg);		/*沿x轴开始旋转*/
-            }
-            50%{		/*设置第2个关键帧为中间位置*/
-                -webkit-transform:rotateX(180deg);		/*沿x轴旋转180度*/
-            }
-            100%{		/*设置第3个关键帧为结束位置*/
-                -webkit-transform:rotateX(360deg);		/*沿x轴旋转360度*/
-            }
-        }
-
-        div.d1:hover{
-            -webkit-transform:rotate(180deg);/*-webkit-transform-origin:center center;*/
-        }
-
-
-        div.d2{width:21px;height:18px;background:url(_r2_c2.png) no-repeat;}
-
-        .over{width:21px;height:18px;background:url(_r2_c2.png) no-repeat;
-            -webkit-animation:over 1s 1 ease-in;
-            -webkit-transform:rotate(180deg);
-        }
-        .out{width:21px;height:18px;background:url(_r2_c2.png) no-repeat;
-            -webkit-animation:out 1s 1 ease-in;
-            -webkit-transform:rotate(0deg);
-        }
-
-        @-webkit-keyframes over{
-            0%{
-                -webkit-transform:rotate(0deg);
-            }
-            100%{
-                -webkit-transform:rotate(180deg);
-            }
-        }
-
-        @-webkit-keyframes out{
-            0%{
-                -webkit-transform:rotate(180deg);
-            }
-            100%{
-                -webkit-transform:rotate(0deg);
-            }
-        }
-
-
-        .d3{
-            width:100px;
-            height:100px;
-            background:#f0ad4e;
-
-            transform:translate(100px,0);
-        }
-    </style>
+    <title>css3</title>
 </head>
 <body>
-<div class="d1"></div>
-<div class="d2" id="d2"></div>
 
-<div class="d3"></div>
 </body>
-<script type="text/javascript">
-    window.onload=function(){
-        var d2=document.getElementById("d2");
-        d2.onmouseover=function(){
-            this.className="over";
-        }
-        d2.onmouseout=function(){
-            this.className="out";
-        }
 
-    }
-</script>
 <script>
 
 /**
@@ -220,8 +140,10 @@
  *
  * 渐变
  *
- *
- *
+ */
+
+
+/*
  * transform需要事件触发
  * animate不需要事件触发
  *
@@ -233,18 +155,21 @@
  * translateY(y)    定义转换，只是用 Y 轴的值
  * translate3d(x,y,z)定义 3D 转换
  * translateZ(z)    定义 3D 转换，只是用 Z 轴的值
+ *
  * 缩放
  * scale(x,y)   定义 2D 缩放转换，在水平方向、垂直方向或两个方向上缩放元素，使用数值scale(1.5,1.5)
  * scaleX(x)    通过设置 X 轴的值来定义缩放转换
  * scaleY(y)    通过设置 Y 轴的值来定义缩放转换
  * scale3d(x,y,z)定义 3D 缩放转换
  * scaleZ(z)    通过设置 Z 轴的值来定义 3D 缩放转换
+ *
  * 旋转
  * rotate(angle)        定义 2D 旋转，在参数中规定角度，使用0~360度之间，rotate(-45deg)
  * rotate3d(x,y,z,angle)定义 3D 旋转
  * rotateX(angle)       定义沿着 X 轴的 3D 旋转
  * rotateY(angle)       定义沿着 Y 轴的 3D 旋转
  * rotateZ(angle)       定义沿着 Z 轴的 3D 旋转
+ *
  * 倾斜
  * skew(x-angle,y-angle)	定义沿着 X 和 Y 轴的 2D 倾斜转换，使用0~360度之间，rotate(45deg，-45deg)
  * skewX(angle)	            定义沿着 X 轴的 2D 倾斜转换
@@ -253,78 +178,96 @@
  * matrix(n,n,n,n,n,n)  定义 2D 转换，使用六个值的矩阵
  * matrix3d(n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n)定义 3D 转换，使用 16 个值的 4x4 矩阵
  *
- *
- * 
  * 变形原点transform-origin:x y;|指定变换的起点，使用
  * transform-origin: center center;
  * transform-origin: 50% 50%;
  * transform-origin: left top;
  * transform-origin: 0px 0px;
  *
- *
- *
- * transition过渡属性
- * transition主要包含四个属性值 | transition: transform 1s ease-out 0s;
- * transition: background 0.5s ease-in,color 0.3s ease-out;想改变两个或者多个css属性的transition效果用逗号,隔开
- *
- * 执行变换的属性：transition-property | none(没有属性改变,当其值为none时，transition马上停止执行)，all（所有属性改变,当指定为all时，则元素产生任何属性值变化时都将执行transition效果），indent（元素属性名,ident是可以指定元素的某一个属性值）
- * 变换延续的时间：transition-duration | 用来指定元素转换过程的持续时间，取值：<time>为数值，单位为s（秒）或者ms(毫秒),可以作用于所有元素，包括:before和:after伪元素。其默认值是0，也就是变换时是即时的。
- * 在延续时间段，变换的速率变化transition-timing-function | 1、ease：（逐渐变慢）默认值，2、linear：（匀速），3、ease-in：(加速)，4、ease-out：（减速），5、ease-in-out：（加速然后减速），6、cubic-bezier：（该值允许你去自定义一个时间曲线）
- * 变换延迟时间transition-delay | 用来指定一个动画开始执行的时间，也就是说当改变元素属性值后多长时间开始执行transition效果
- * div{width:150px;height:150px;background:#00a0e9;}
- * div:hover{background: #009944;transition: background 1s ease-out 0s;}
- *
- *
- *
- *
- *
- *
- *
- *
- * 动画animate
- * animation-name:name;     用于定义css动画的名称，如果动画的名称是none，那么就不会有动画。这可以用于覆盖任何动画
- * animation-duration:20s;  用于定义动画的播放时间
- * animation-timing-function:linear;用于定义css动画的播放方式，规定动画的速度曲线
- * ease：默认值，动画以低速开始，然后加快，在结束前变慢
- * linear：动画从头到底的速度是相同的
- * ease-in：动画以低速开始
- * ease-out：动画以低速结束
- * ease-in-out：动画以低速开始和结束
- * cubic-bezier(n,n,n,n)：在cubic-bezier函数中自己的值。可能的值是从0到1的值
- *
- * animation-delay:;定义动画开始的时间
- * animation-iteration-count:infinite;定义css动画的播放次数
- * animation-direction:;定义动画播放的方向，取值包括两个值。
- *  默认：normal，动画每次循环都向前播放
- *  alternate，表示第偶次向前播放，奇次向反方向播放
- * animation-play-state:running | paused;用于控制动画的播放和暂停。
- *
- *
- *
- *
- *
- *
+*/
 
- *
- *
- **媒体查询 @media Query
- * Respond.js IE6-8 支持 CSS3 Media Query
- *
- * @media mediatype and|not|only (media feature) {}
- * mediatype:screen|all|print|...
- *
- * @media screen and (max-width: 660px) {}
- * 当页面小于或者等于max-width时
- *
- * @media screen and (min-width: 330px) {}
- * 当页面大于或者等于min-width时
- *
- * @media screen and (min-width:600px) and (max-width:900px){}
- * 在 600 和 900 像素之间的屏幕里
- *
- *
- *
- **/
+
+/*
+
+transition过渡属性
+语法：transition: transform 1s ease-out 0s;
+transition: background 0.5s ease-in,color 0.3s ease-out;想改变两个或者多个css属性的transition效果用逗号,隔开
+transition-property:cssName;   规定应用过渡的 CSS 属性的名称。
+                    none        没有属性会获得过渡效果。
+                    all         所有属性都将获得过渡效果。
+                    property    定义应用过渡效果的 CSS 属性名称列表，列表以逗号分隔。
+transition-duration:;   定义过渡效果花费的时间。默认值是 0，意味着不会有效果。
+transition-timing-function:;   规定过渡效果的时间曲线。
+                        1、ease：（逐渐变慢）默认值
+                        2、linear：（匀速）
+                        3、ease-in：(加速)
+                        4、ease-out：（减速）
+                        5、ease-in-out：（加速然后减速）
+                        6、cubic-bezier：（该值允许你去自定义一个时间曲线）
+transition-delay:0;   规定过渡效果开始之前需要等待的时间
+
+div{width:150px;height:150px;background:#00a0e9;}
+div:hover{background: #009944;transition: background 1s ease-out 0s;}
+
+*/
+
+
+/*
+
+  动画animate；
+  语法：animation: name duration timing-function delay iteration-count direction;
+  animation-name:name;     用于定义css动画的名称，如果动画的名称是none，那么就不会有动画。这可以用于覆盖任何动画
+  animation-duration:20s;  用于定义动画完成一个周期所需要的时间。默认值是 0，意味着没有动画效果。
+  animation-timing-function:linear;     用于定义css动画的播放方式，规定动画的速度曲线
+                            ease：默认值，动画以低速开始，然后加快，在结束前变慢
+                            linear：动画从头到底的速度是相同的
+                            ease-in：动画以低速开始
+                            ease-out：动画以低速结束
+                            ease-in-out：动画以低速开始和结束
+                            cubic-bezier(n,n,n,n)：在cubic-bezier函数中自己的值。可能的值是从0到1的值
+  animation-delay:0;      规定在动画开始之前的延迟。默认值是 0。
+  animation-iteration-count:infinite;   规定动画应该播放的次数。值：n|infinite;
+  animation-direction:;定义动画播放的方向，取值包括两个值。
+               默认：normal，动画每次循环都向前播放
+               alternate，表示第偶次向前播放，奇次向反方向播放
+  animation-play-state:running | paused;用于控制动画的播放和暂停。
+
+*/
+
+
+/*
+
+animation: name 1s infinite linear
+
+@keyframes name{
+    0%   {top:0px;}
+    25%  {top:200px;}
+    50%  {top:100px;}
+    75%  {top:200px;}
+    100% {top:0px;}
+}
+
+*/
+
+
+/**
+
+    媒体查询 @media Query
+    Respond.js IE6-8 支持 CSS3 Media Query
+
+    @media mediatype and|not|only (media feature) {}
+    mediatype:screen|all|print|...
+
+    @media screen and (max-width: 660px) {}
+    当页面小于或者等于max-width时
+
+    @media screen and (min-width: 330px) {}
+    当页面大于或者等于min-width时
+
+    @media screen and (min-width:600px) and (max-width:900px){}
+    在 600 和 900 像素之间的屏幕里
+
+*/
 
 
 /*
@@ -339,9 +282,6 @@
     user-scalable - 用户是否可以手动缩放
 
 */
-
-
-
 
 
 </script>
