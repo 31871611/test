@@ -24,6 +24,8 @@ return [
 
 use think\Route;
 
+//Route::get('api/:version/index','api/index/index');
+
 Route::get('api/:version/banner/:id','api/:version.banner/getBanner');
 
 Route::get('api/:version/theme','api/:version.theme/getSimpleList');
@@ -48,6 +50,11 @@ Route::post('api/:version/address','api/:version.address/createOrUpdateAddress')
 
 
 Route::post('api/:version/order','api/:version.order/placeOrder');
+Route::get('api/:version/order/:id','api/:version.order/getDetail',[],['id'=>'\d+']);
+Route::get('api/:version/by_user','api/:version.order/getSummaryByUser');
+
 
 Route::post('api/:version/pay/pre_order','api/:version.pay/getPreOrder');
 Route::post('api/:version/pay/notify','api/:version.pay/receiveNotify');
+
+

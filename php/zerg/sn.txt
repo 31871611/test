@@ -8,3 +8,11 @@ xdebug安装
 在phpinfo.php中搜索xdebug，如果存在说明已安装
 去https://xdebug.org/下载，进入download页面，在Releases下点击custom installation instructions，
 进入页面将phpinfo.php右键源代码全部复制后粘贴入
+
+zend_extension="C:\phpStudy\PHPTutorial\php\php-7.0.12-nts\ext\php_xdebug-2.6.1-7.0-vc14-nts.dll"
+xdebug.remote_enable =1
+xdebug.remote_handler = "dbgp"
+xdebug.remote_host = "localhost"
+xdebug.remote_mode = "req"
+xdebug.remote_port = 9000
+xdebug.idekey="PHPSTORM"
