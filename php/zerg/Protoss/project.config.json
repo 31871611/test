@@ -41,8 +41,8 @@
 				{
 					"id": 0,
 					"name": "测试",
-					"pathName": "pages/cart/cart",
-					"query": "id=11"
+					"pathName": "pages/order/order",
+					"query": "account=0.02&from=cart"
 				}
 			]
 		}
