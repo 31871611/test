@@ -45,6 +45,7 @@ Route::group('api/:version/product',function(){
 Route::get('api/:version/category/all','api/:version.category/getAllCategories');       // 分类列表
 
 Route::post('api/:version/token/user','api/:version.token/getToken');
+Route::post('api/:version/token/verify','api/:version.token/verifyToken');
 
 Route::post('api/:version/address','api/:version.address/createOrUpdateAddress');
 
