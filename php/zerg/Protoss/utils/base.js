@@ -1,11 +1,14 @@
 import { Config } from '../utils/config.js';
+import { Token} from '../utils/token.js';
 
 class Base{
   constructor(){
     this.baseRequestUrl = Config.restUrl;
   }
 
-  request(params,callBack){
+  // 当noRefetch为true时，不做未授权重试机制
+  request(params,noRefetch){
+    var that = this;
     var url = this.baseRequestUrl + params.url
     if (!params.type){
       params.type = 'GET'
@@ -21,13 +24,34 @@ class Base{
       dataType: 'json',
       responseType: 'text',
       success: function (res) {
-        params.sCallback && params.sCallback(res.data);
+        var code = res.statusCode.toString();
+        var startChar = code.charAt(0);
+
+        if (startChar == '2'){
+          params.sCallback && params.sCallback(res.data);
+        }else{
+          if(code == '401'){
+            if (!noRefetch){
+              that._refetch(params);
+            }
+          }
+          if (noRefetch){
+            params.eCallback && params.eCallback(res.data);
+          }
+        }
       },
       fail: function (res) {
         params.error && params.error(res);
       },
       complete: function (res) { },
     })
+  }
+
+  _refetch(params){
+    var token = new Token();
+    token.getTokenFromServer(token=>{
+      this.request(params,true);
+    });
   }
 
   /*获得元素上的绑定的值*/
