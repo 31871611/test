@@ -16,3 +16,12 @@ xdebug.remote_host = "localhost"
 xdebug.remote_mode = "req"
 xdebug.remote_port = 9000
 xdebug.idekey="PHPSTORM"
+
+选择PHP Web Appkication
+
+配置Server
++
+名称：apache
+host:localhost
+
+StartUrl：/zerg/public/index.php
