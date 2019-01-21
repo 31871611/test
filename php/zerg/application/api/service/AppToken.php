@@ -5,19 +5,17 @@ use app\api\model\ThirdApp;
 use app\lib\exception\TokenException;
 use think\Exception;
 
-class AppToken extends Token
-{
-    public function get($ac, $se)
-    {
+class AppToken extends Token{
+
+    // 帐号、密码
+    public function get($ac, $se){
         $app = ThirdApp::check($ac, $se);
-        if(!$app)
-        {
+        if(!$app) {
             throw new TokenException([
                 'msg' => '授权失败',
                 'errorCode' => 10004
             ]);
-        }
-        else{
+        }else{
             $scope = $app->scope;
             $uid = $app->id;
             $values = [
