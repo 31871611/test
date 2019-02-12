@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>js命名空间</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <meta name="format-detection" content="telephone=no">
+</head>
+<body>
+
+<button id="tiaokuan">点击</button>
+
+<div contenteditable="true">
+    可编辑区域
+</div>
+
+</body>
+<script>
+/**
+ *
+ * 百度统计
+ * http://tongji.baidu.com/open/api/more?p=guide_trackOrder&qq-pf-to=pcqq.group
+ *
+ * 弹出层
+ * http://www.juheweb.com/js/tc/
+ * 微信里面防止下拉"露底"组件
+ * http://segmentfault.com/a/1190000003810312
+ * Javascript模块化编程（一）：模块的写法
+ * http://www.ruanyifeng.com/blog/2012/10/javascript_module.html
+ * 游戏站
+ * http://shouyou.kuyoo.com/
+ * 项目分享一：在项目中使用 IScroll 所碰到的那些坑
+ * http://www.cnblogs.com/ansiboy/p/5049230.html
+ * 摩客
+ * https://www.mockplus.cn/blog
+ *
+ *
+ * 我是如何获取到你真实上网地址的
+ * https://zhuanlan.zhihu.com/p/25118463
+ *
+ *
+ * 统计ip,pv
+ * seo点击
+ * http://www.jb51.net/article/39546.htm
+ * 获取浏览器语言
+ * 获取操作系统
+ * 获取当前时间戳
+ *
+* /
+
+/**
+ * 注册页面|js命名空间
+ */
+var register={
+    init:function(){
+
+        this.isFirst=true;
+        this.bFnScroll=true;
+        this.dataFlg=false;
+
+        this.agreement();   //登录协议
+    },
+    dom:{
+        mask:"1"
+    },
+    getPhoneCode:function(){
+
+    },
+    agreement:function(){
+        var _this=this;
+        $("#tiaokuan").on("click",function(){
+            alert(_this.dom.mask);
+            var box=$("#agreementHide");
+            box.slideDown("fast");
+            this.mask.show();
+            box.find($("#agreementClose")).on("click",function(){
+                box.hide();
+                mask.hide();
+            });
+            mask.on("click",function(){
+                box.hide();
+                $(this).hide();
+            });
+        });
+    }
+};
+
+$(function(){
+
+    register.init();
+
+});
+
+/*
+
+
+ http://www.cnblogs.com/ziyunfei/
+
+ 学习ES6新特性
+ https://leanpub.com/exploring-es6/read
+ exploring-es6
+ https://github.com/es6-org/exploring-es6
+ exploring-es6翻译
+ https://github.com/lenville/understandinges6
+ https://leanpub.com/understandinges6
+ 读懂 es6
+ http://es6.ruanyifeng.com/
+ 阮一峰 es6入门
+ http://javascript.ruanyifeng.com/
+ 阮一峰 Javascript
+ http://efe.baidu.com/blog/es6-develop-overview/?qq-pf-to=pcqq.group
+ 使用ES6进行开发的思考
+ http://www.cnblogs.com/Wayou/p/es6_new_features.html
+
+ ES6新特性概览
+ http://www.infoq.com/cn/es6-in-depth/
+ 深入浅出ES6
+ http://www.csdn.net/article/2015-04-30/2824595-Modules-in-ES6
+
+ 【ES6专栏】全面解析ECMAScript 6模块系统
+ http://www.infoq.com/cn/author/%E5%88%98%E6%8C%AF%E6%B6%9B
+ 深入浅出ES6
+ http://segmentfault.com/a/1190000002920859
+ http://segmentfault.com/a/1190000003021261
+ http://segmentfault.com/a/1190000003097911
+ http://segmentfault.com/a/1190000003781467
+ http://segmentfault.com/a/1190000004100661
+ ES6指南系列
+
+
+
+
+
+
+*/
+</script>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>call</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    function foo(){
+        console.log(this.a)         // obj.a
+    }
+
+    var obj = {
+        a : 2
+    }
+
+    foo.call(obj);  // 强制把foo的this绑定到obj
+
+
+</script>
+</html>
