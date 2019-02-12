@@ -1,0 +1,8 @@
+
+应用配置：直接更改application文件夹下的config.php文件；
+
+扩展配置：直接在extra文件夹下增加配置文件；
+
+场景配置：直接再application文件夹下增加场景配置文件；
+
+模块配置：直接再Index文件夹下增加config.php文件。

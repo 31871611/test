@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>打印表格</title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
+        form, fieldset, input, textarea, p, blockquote, th, td {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            font-family: "Microsoft YaHei", Arial, "\5B8B\4F53", Helvetica, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        html {
+            color: #333;
+            background: #fff;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        fieldset, img, abbr, acronym {
+            border: 0;
+        }
+        address, caption, cite, code, dfn, em, strong, th, var {
+            font-style: normal;
+            font-weight: normal;
+        }
+        ol, ul {
+            list-style: none;
+        }
+        caption, th {
+            text-align: left;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal;
+        }
+        a {
+            text-decoration: none;
+            -webkit-touch-callout: none;
+        }
+        img {
+            pointer-events: none;
+        }
+        .printTitle{
+            margin-bottom: 20px;
+        }
+        .printTitle h3{
+            padding:10px 0;
+            font-size:14px;
+        }
+        .printTitle table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            text-align: center;
+            font-size: 12px;
+        }
+        .printTitle table tr, .printTitle table td {
+            border: 1px solid #ccc;
+        }
+        .printTitle table thead td {
+            padding: 4px 0;
+        }
+        .printTitle table tbody td {
+            padding: 4px 0;
+        }
+    </style>
+</head>
+<body onload="window.print();">
+
+<div class="printTitle">
+    <h3>物料凭证号：5000012636（物资上架）&nbsp;&nbsp;&nbsp;条形码</h3>
+    <table>
+        <thead>
+            <tr>
+                <!-- 百分不能超过100% -->
+                <td style="width:7%;">行项目</td>
+                <td style="width:6%;">工厂</td>
+                <td style="width:8%;">库存地点</td>
+                <td style="width:10%;">物料号</td>
+                <td style="width:20%;">物料描述</td>
+                <td style="width:10%;">批次号</td>
+                <td style="width:18%;">特殊库存</td>
+                <td style="width:6%;">数量</td>
+                <td style="width:10%;">借、贷标识</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>4010</td>
+                <td>KDB1</td>
+                <td>500021194</td>
+                <td>1kV电缆终端，5X50，户外终端，热缩，铜</td>
+                <td>43100022920</td>
+                <td>Q-5000012636WBS5000012636</td>
+                <td>2(台)</td>
+                <td>S-借</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>4010</td>
+                <td>KDB1</td>
+                <td>500021194</td>
+                <td>1kV电缆终端，5X50，户外终端，热缩，铜</td>
+                <td>43100022920</td>
+                <td>Q-5000012636WBS5000012636</td>
+                <td>2(台)</td>
+                <td>S-借</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="printTitle">
+    <h3>物料凭证号：5000012636（物资上架）&nbsp;&nbsp;&nbsp;条形码</h3>
+    <table>
+        <thead>
+        <tr>
+            <!-- 百分不能超过100% -->
+            <td style="width:7%;">行项目</td>
+            <td style="width:6%;">工厂</td>
+            <td style="width:8%;">库存地点</td>
+            <td style="width:10%;">物料号</td>
+            <td style="width:20%;">物料描述</td>
+            <td style="width:10%;">批次号</td>
+            <td style="width:18%;">特殊库存</td>
+            <td style="width:6%;">数量</td>
+            <td style="width:10%;">借、贷标识</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>4010</td>
+            <td>KDB1</td>
+            <td>500021194</td>
+            <td>1kV电缆终端，5X50，户外终端，热缩，铜</td>
+            <td>43100022920</td>
+            <td>Q-5000012636WBS5000012636</td>
+            <td>2(台)</td>
+            <td>S-借</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>4010</td>
+            <td>KDB1</td>
+            <td>500021194</td>
+            <td>1kV电缆终端，5X50，户外终端，热缩，铜</td>
+            <td>43100022920</td>
+            <td>Q-5000012636WBS5000012636</td>
+            <td>2(台)</td>
+            <td>S-借</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

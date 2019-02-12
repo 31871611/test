@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击复制</title>
+</head>
+<body>
+<input type="text" id="orderid" value="2018032220004004378" readonly>
+订单号:2018032220004004378 &nbsp;&nbsp;<a href="javascript:copyText()">复制</a>
+</body>
+<script>
+    function copyText() {
+        if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) { //ios
+            var copyDOM = document.querySelector('#orderid');  //要复制文字的节点
+            var range = document.createRange();
+            // 选中需要复制的节点
+            range.selectNode(copyDOM);
+            // 执行选中元素
+            window.getSelection().addRange(range);
+            // 执行 copy 操作
+            var successful = document.execCommand('copy');
+            try {
+                var msg = successful ? 'successful' : 'unsuccessful';
+
+                console.log('copy is' + msg);
+            } catch(err) {
+                console.log('Oops, unable to copy');
+            }
+            // 移除选中的元素
+            window.getSelection().removeAllRanges();
+        }else{
+            var Url2=document.getElementById("orderid");
+            Url2.select(); // 选择对象
+            document.execCommand("Copy"); // 执行浏览器复制命令
+        }
+        alert("已复制好，可贴粘。");
+    }
+</script>
+</html>

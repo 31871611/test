@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="__CSS__/base.css"/>
+</head>
+<body>
+<h1>首页</h1>
+{include file="common/header"}
+<ul>
+    <li>{$data}</li>
+    <li>{$user} : {$user|md5}</li>
+    <li>{$user} : {$user|substr=0,6}</li><!-- 一个汉字算3个数 -->
+    <li>{$user}</li>
+    <li>{$name}</li>
+    <li>{$time} : {$time|date="Y-m-d",###}</li>
+    <li>__URL__</li>
+    <li>__STATIC__</li>
+    <li>__JS__</li>
+    <li>__CSS__</li>
+    <li>__ROOT__</li>
+    <li>{$Think.server.HTTP_HOST}</li>
+    <li>{$Think.server.PHO_STATUS}</li>
+    <li>{$Think.session.name}</li>
+    <li>{$Think.cookie.name}</li>
+    <li>{$Think.get.id}</li>
+    <li>{$Think.request.id}</li>
+    <li>{$Think.post.id}</li>
+    {/* 这是注释 */}
+    {volist name="list" id="value" offset="2" length="3" mod="2"}
+    <li>{$value}</li>
+    {/volist}
+
+    {foreach $list as $value}
+    <li>{$value}</li>
+    {/foreach}
+</ul>
+
+<div>
+
+</div>
+
+</body>
+</html>
