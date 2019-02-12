@@ -129,7 +129,33 @@ $(function(){
 
 
 
+ http://forums.fami2u.com/t/javascript-44/77/1
 
+ 6、小心使用typeof、instanceof和contructor
+
+ typeof：JavaScript一元操作符，用于以字符串的形式返回变量的原始类型，注意，typeof null也会返回object，大多数的对象类型（数组Array、时间Date等）也会返回object
+
+ contructor：内部原型属性，可以通过代码重写
+
+ instanceof：JavaScript操作符，会在原型链中的构造器中搜索，找到则返回true，否则返回false
+ var arr = ["a", "b", "c"];
+ typeof arr;   // 返回 "object"
+ arr instanceof Array // true
+ arr.constructor();  //[]
+
+
+ 8、从数组中随机获取成员
+ var items = [12, 548 , 'a' , 2 , 5478 , 'foo' , 8852, , 'Doe' , 2145 , 119];
+ var  randomItem = items[Math.floor(Math.random() * items.length)];
+
+
+ 9、获取指定范围内的随机数
+ 这个功能在生成测试用的假数据时特别有数，比如介与指定范围内的工资数。
+ var x = Math.floor(Math.random() * (max - min + 1)) + min;
+
+ 10、生成从0到指定值的数字数组
+ var numbersArray = [] , max = 100;
+ for( var i=1; numbersArray.push(i++) < max;);  // numbers = [1,2,3 ... 100]
 
 
 */
