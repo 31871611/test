@@ -116,7 +116,23 @@ SQL语句不区分大小写
         MIN()       返回某列的最小值
         SUM()       返回某列值之和
 
-+分组数据
++分组数据，GROUP BY子句和HAVING子句，GROUP BY必须出现在WHERE之后，ORDER BY之前
+    SELECT vend_id,COUNT(*) as num_prods FROM products GROUP BY vend_id;
+    按vend_id排序分组数据，导致对每个vend_id计算一次
+    WHERE过滤行，HAVING过滤分组
+    SELECT cust_id,COUNT(*) as orders FROM orders GROUP BY cust_id HAVING COUNT(*) >=2;
+    SELECT vend_id,COUNT(*) as num_prods FROM products WHERE prod_price >= 10 GROUP BY vend_id;
+    SELECT order_num,SUM(quantity*item_price) as ordertotal FROM orderitems GROUP BY order_num HAVING SUM(quantity*item_price) >= 50 ORDER BY ordertotal;
+
++SELECT子句顺序
+    子句          说明                  是否必须使用
+    SELECT        要返回的列或表达式     是
+    FROM          从中检索数据的表      仅在从表选择数据时使用
+    WHERE         行级过滤              否
+    GROUP BY      分组说明              仅在按组计算聚集时使用
+    HAVING        组级过滤              否
+    ORDER BY      输出排序顺序           否
+    LIMIT         要检索的行数           否
 
 +使用子查询
     1、SELECT order_num FROM orderitems WHERE prod_id='tnt2';返回20005、20007
@@ -140,6 +156,113 @@ SQL语句不区分大小写
 
 +高级联结
     3种其它联结：自联结、自然联结、外部联结
+    外部联结：
+    没有订单的不显示:SELECT customers.cust_id,orders.order_num FROM customers INNER JOIN orders ON customers.cust_id = orders.cust_id
+    包括那些没有订单的客户:SELECT customers.cust_id,orders.order_num FROM customers LEFT OUTER JOIN orders ON customers.cust_id = orders.cust_id
+    在使用OUTER JOIN语法时，必须使用RIGHT和LEFT关键字
+    上面的例子使用LEFT OUTER JOIN从FROM子句的左边表(customers表)中选择所有行。
+
++组合查询
+
++全文搜索
+
++插入数据
+     插入单条数据：
+     INSERT INTO customers(
+        cust_name,
+        cust_address,
+        cust_city,
+        cust_state,
+        cust_zip,
+        cust_country,
+        cust_contact,
+        cust_email
+     )VALUES(
+        'pep e. lapew',
+        '100 main street',
+        'los angeles',
+        'ca',
+        '90046',
+        'usa',
+        NULL,
+        NULL
+     )
+     插入多条数据：
+    INSERT INTO customers(
+        cust_name,
+        cust_address,
+        cust_city,
+        cust_state,
+        cust_zip,
+        cust_country,
+        cust_contact,
+        cust_email
+    )VALUES(
+        'pep e. lapew',
+        '100 main street',
+        'los angeles',
+        'ca',
+        '90046',
+        'usa',
+        NULL,
+        NULL
+    ),(
+        '2pep e. lapew',
+        '100 main street',
+        'los angeles',
+        'ca',
+        '90046',
+        'usa',
+        NULL,
+        NULL
+    )
+    插入检索出的数据：这个例子使用INSERT SELECT从custnew中将所有数据导入customers，如果这个custnew表为空，则没有行被插入（也不会产生错误，因为操作仍然合法）
+    INSERT INTO customers(
+        cust_id,
+        cust_contact,
+        cust_email,
+        cust_name,
+        cust_address,
+        cust_city,
+        cust_state,
+        cust_zip,
+        cust_country
+    )SELECT
+        cust_id,
+        cust_contact,
+        cust_email,
+        cust_name,
+        cust_address,
+        cust_city,
+        cust_state,
+        cust_zip,
+        cust_country
+    FROM custnew;
+
++更新和删除数据，不要省略where子句
+    UPDATE customers SET cust_email='aaa@a.com' WHERE cust_id=10005
+    更新多个列：UPDATE customers SET cust_name='the fff',cust_email='aaa@b.com' WHERE cust_id=10005
+    NULL用来去除cust_email列中的值：UPDATE customers SET cust_email=NULL WHERE cust_id=10005
+    删除
+    DELETE FROM customers WHERE cust_id=10006
+
++使用视图
+    一般，应该将视图用于检索（SELECT语句）而不用于更新（INSERT,UPDATE和DELETE）
+    用CREATE VIEW语句来创建
+    使用SHOW CREATE VIEW viewname；来查看创建视图
+    用DROP删除视图，其语法为DROP VIEW viewname
+    更新视图时，可以先用DROP再用CREATE，也可以直接用CREATE OR REPLACE VIEW。视图不存在则创建一个视图，如果存在会替换原来视图
+    CREATE VIEW productcustomers AS SELECT cust_name,cust_contact,prod_id FROM customers,orders,orderitems WHERE customers.cust_id=orders.cust_id AND orderitems.order_num=orders.order_num
+
++使用存储过程
+
++使用游标
+
++使用触发器
+    CREATE TRIGGER newproduct AFTER INSERT ON products FOR EACH ROW SELECT 'Product added';
+
++事务，InnoDB支持
+
 -----------------------------------------------------------------------------------
 
  bit 布尔类型 0 或 1

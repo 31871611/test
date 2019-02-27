@@ -3,6 +3,29 @@
     postMan
 
 
+验证层
+全局异常处理
+    修改异常处理配置路径、日志系统
+    实时要求一：记录日志
+    实时要求二：统一返回错误状态说明
+数据库
+    修改log配置为test(关闭)，在index.php修改配置
+微信token
+微信支付
+权限
+    前置方法
+    scope=16(app)
+    scope=32(cms)
+
+日志系统：日志记录级别('level')，在config里修改关闭默认配置在需要使用的地方开启日志
+
+上线优化
+    缓存数据库字段：php think optimize:schema
+    路由缓存：php think optimize:route
+
+
+
+
 
 xdebug安装
 在phpinfo.php中搜索xdebug，如果存在说明已安装
