@@ -17,100 +17,98 @@
 <script>
 
 /**
+
+
  * 选择器
- *
- * [href]|[foo]：属性选择器，支持ie7以上
- * <a href="">1</a>|<h1 foo>h1</h1>
- *
- * input[type="password"]|h1[foo="bar"]：匹配属性值选择器，支持ie7以上
- * <input type="password"/>|<h1 foo="bar">h1</h1>
- *
- * a[href^="http"]：属性值开头匹配，css3
- * a[href$=".com"]：属性值结尾匹配，css3
- * a[href*="baidu"]：属性值包含指定字符，css3
- *
- * h1[foo~="bar"]：多个属性值时匹配其中一个，以空格符分隔，支持ie7以上
- * <h1 foo="bar bar2">h1</h1>
- *
- *
+   [href]|[foo]：属性选择器，支持ie7以上
+   <a href="">1</a>|<h1 foo>h1</h1>
+
+   input[type="password"]|h1[foo="bar"]：匹配属性值选择器，支持ie7以上
+   <input type="password"/>|<h1 foo="bar">h1</h1>
+
+   a[href^="http"]：属性值开头匹配，css3
+   a[href$=".com"]：属性值结尾匹配，css3
+   a[href*="baidu"]：属性值包含指定字符，css3
+
+   h1[foo~="bar"]：多个属性值时匹配其中一个，以空格符分隔，支持ie7以上
+   <h1 foo="bar bar2">h1</h1>
+
+
  * 复合选择器
- * ul > li  子选择器，父元素向下一级的元素，不可以再往下选择
- * p + b    相邻兄弟选择器，第一个元素相邻(后面)的第二个元素（单个）
- * p ~ b    普通兄弟选择器，第一个元素后面所有元素
- *
- *
+   ul > li  子选择器，父元素向下一级的元素，不可以再往下选择
+   p + b    相邻兄弟选择器，第一个元素相邻(后面)的第二个元素（单个）
+   p ~ b    普通兄弟选择器，第一个元素后面所有元素
+
+
  * 结构性伪类选择器
- * :first-child         |第一
- * :last-child          |最后
- * :nth-child(n)        |第n项
- * :nth-last-child(n)   |选择子元素倒数第n个元素
- * :nth-child(even)     |双项
- * :nth-child(odd)      |单项
- * :nth-child(2n)       |每2个元素选择一个与even双项显示一样
- * :nth-child(3n+1)     |从第三项开始，然后每三个元素选中一个
- * :nth-child(n+3)      |第三项（包括）后的所用
- * :nth-of-type(2)      |选择特定子元素的第二个元素
- * :nth-last-of-type(2) |选择特定子元素的倒数第二个元素
- *
- * :only-child选择只有一个子元素的那个子元素
- * :only-of-type选择只有一个指定类型的子元素的那个子元素
- *
- *
+   :first-child         |第一
+   :last-child          |最后
+   :nth-child(n)        |第n项
+   :nth-last-child(n)   |选择子元素倒数第n个元素
+   :nth-child(even)     |双项
+   :nth-child(odd)      |单项
+   :nth-child(2n)       |每2个元素选择一个与even双项显示一样
+   :nth-child(3n+1)     |从第三项开始，然后每三个元素选中一个
+   :nth-child(n+3)      |第三项（包括）后的所用
+   :nth-of-type(2)      |选择特定子元素的第二个元素
+   :nth-last-of-type(2) |选择特定子元素的倒数第二个元素
+
+   :only-child选择只有一个子元素的那个子元素
+   :only-of-type选择只有一个指定类型的子元素的那个子元素
+
+
  * 伪类选择器
- * :enabled             选择启用状态的元素
- * :disabled            选择禁用状态的元素
- * :checked             选择勾选的 input 元素
- * :default             从一组类似的元素中选择默认元素。比如 input 被勾选的即默认的。
- * :valid和:invalid      输入验证合法与不合法显示时选择的元素。
- * required 和:optional  根据是否具有 required 属性选择元素
- * :focus               表示获得焦点时
- * :not(.className)     选择不满足某些条件的元素
- * :empty               匹配没有任何内容的元素
- * :target              定位到锚点时，选择此元素
- *
- *
+   :enabled             选择启用状态的元素
+   :disabled            选择禁用状态的元素
+   :checked             选择勾选的 input 元素
+   :default             从一组类似的元素中选择默认元素。比如 input 被勾选的即默认的。
+   :valid和:invalid      输入验证合法与不合法显示时选择的元素。
+   required 和:optional  根据是否具有 required 属性选择元素
+   :focus               表示获得焦点时
+   :not(.className)     选择不满足某些条件的元素
+   :empty               匹配没有任何内容的元素
+   :target              定位到锚点时，选择此元素
+
+
  * 边框
- *
+
  * 背景
- *
+
  * 文本
- * 文字阴影text-shadow: 1px 1px 1px rgba(100,100,100,.5);
- * 阴影速记规则是先向右再向下
- * 第一个值指的是右侧阴影的大小
- * 第二个值指的是下方阴影的大小
- * 第三个值指的是模糊距离（即阴影从开始变淡到完全消失的距离）
- * 最后一个是阴影颜色
- *
- * 左上角阴影（使用负值可以制作出左上方阴影效果）
- * text-shadow: -4px -4px 0px rgba(100,100,100,.5)；
- *
- * 多重阴影（只需将两组值使用逗号分隔开）
- * text-shadow: -4px -4px 0px rgba(100,100,100,.5),4px -4px 0px rgba(100,100,100,.5);
- *
- *
- *
- *
+   文字阴影text-shadow: 1px 1px 1px rgba(100,100,100,.5);
+   阴影速记规则是先向右再向下
+   第一个值指的是右侧阴影的大小
+   第二个值指的是下方阴影的大小
+   第三个值指的是模糊距离（即阴影从开始变淡到完全消失的距离）
+   最后一个是阴影颜色
+
+   左上角阴影（使用负值可以制作出左上方阴影效果）
+   text-shadow: -4px -4px 0px rgba(100,100,100,.5)；
+
+   多重阴影（只需将两组值使用逗号分隔开）
+   text-shadow: -4px -4px 0px rgba(100,100,100,.5),4px -4px 0px rgba(100,100,100,.5);
+
+
+
+
  * 颜色
- * rbga()语法即在颜色值后追加一个透明值
- * rgba(255,255,255,.5);
- *
- * opacity:0-100;设置元素的透明度
- * 这种方式会对整个元素产生影响（元素的内容都会透明）
- *
- *
- *
+   rbga()语法即在颜色值后追加一个透明值
+   rgba(255,255,255,.5);
+
+   opacity:0-100;设置元素的透明度
+   这种方式会对整个元素产生影响（元素的内容都会透明）
+
+
+
  * 盒模型
- *
- * 盒阴影box-shadow: 1px 1px 2px rgba(100,100,100,.5);阴影规则与文字阴影一样
- * 内阴影box-shadow: inset 1px 1px 2px rgba(100,100,100,.5);
- * 多重阴影box-shadow: 1px 1px 2px rgba(100,100,100,.5),inset 1px 1px 2px rgba(100,100,100,.5);
- *
- *
- *
- *
+   盒阴影box-shadow: 1px 1px 2px rgba(100,100,100,.5);阴影规则与文字阴影一样
+   内阴影box-shadow: inset 1px 1px 2px rgba(100,100,100,.5);
+   多重阴影box-shadow: 1px 1px 2px rgba(100,100,100,.5),inset 1px 1px 2px rgba(100,100,100,.5);
+
+
+
  * 伸缩布局
- * display: flex;
- *
+   display: flex;
  *
     justify-content: flex-start | flex-end | center | space-between | space-around;    水平方向
     flex-start：子元素从开始位置对齐（大部分情况等同于左对齐）
@@ -119,14 +117,12 @@
     space-between：子元素两端对齐（分散平均）
     space-around：子元素居中（平均分）
  *
- *
     align-items: flex-start | flex-end | center | baseline | stretch;    垂直方向
     flex-start：上对齐，子元素不会换行
     flex-end：下对齐
     center：居中对齐
     baseline：如弹性盒子元素的行内轴与侧轴为同一条，则该值与'flex-start'等效。其它情况下，该值将参与基线对齐。
     stretch：子元素height:100%
- *
  *
     align-content：flex-start | flex-end | center | space-between | space-around | stretch;    垂直方向
     flex-start：上对齐，子元素多了会换行
@@ -135,65 +131,65 @@
     space-between：平均分布，子元素多了会换行
     space-around：各行在弹性盒容器中平均分布，两端保留子元素与子元素之间间距大小的一半。如果剩余的空间是负数或弹性盒容器中只有一行，该值等效于'center'。在其它情况下，各行会按一定方式在弹性盒容器中排列，以保持两两之间的空间相等，同时第一行前面及最后一行后面的空间是其他空间的一半。
     stretch：各行将会伸展以占用剩余的空间。如果剩余的空间是负数，该值等效于'flex-start'。在其它情况下，剩余空间被所有行平分，以扩大它们的侧轴尺寸。
- *
- *
 
 
 
 
- *
+
+
  * 多列布局
- *
+
  * 渐变
- *
- */
+
+ * 边框渐变
+   border-top:2px solid #fff2ba;
+   border-image: radial-gradient(#fffddf,#ca864f) 10 30;
 
 
-/*
+
+
+
  * transform需要事件触发
  * animate不需要事件触发
  *
- *
  * 变形transform | 变形效果，可以平移、缩放、旋转、倾斜元素
  * 平移
- * translate(x,y)   定义 2D 转换，在水平方向、垂直方向或两个方向上平移元素，使用长度或%百分比数值
- * translateX(x)    定义转换，只是用 X 轴的值
- * translateY(y)    定义转换，只是用 Y 轴的值
- * translate3d(x,y,z)定义 3D 转换
- * translateZ(z)    定义 3D 转换，只是用 Z 轴的值
+   translate(x,y)   定义 2D 转换，在水平方向、垂直方向或两个方向上平移元素，使用长度或%百分比数值
+   translateX(x)    定义转换，只是用 X 轴的值
+   translateY(y)    定义转换，只是用 Y 轴的值
+   translate3d(x,y,z)定义 3D 转换
+   translateZ(z)    定义 3D 转换，只是用 Z 轴的值
  *
  * 缩放
- * scale(x,y)   定义 2D 缩放转换，在水平方向、垂直方向或两个方向上缩放元素，使用数值scale(1.5,1.5)
- * scaleX(x)    通过设置 X 轴的值来定义缩放转换
- * scaleY(y)    通过设置 Y 轴的值来定义缩放转换
- * scale3d(x,y,z)定义 3D 缩放转换
- * scaleZ(z)    通过设置 Z 轴的值来定义 3D 缩放转换
+   scale(x,y)   定义 2D 缩放转换，在水平方向、垂直方向或两个方向上缩放元素，使用数值scale(1.5,1.5)
+   scaleX(x)    通过设置 X 轴的值来定义缩放转换
+   scaleY(y)    通过设置 Y 轴的值来定义缩放转换
+   scale3d(x,y,z)定义 3D 缩放转换
+   scaleZ(z)    通过设置 Z 轴的值来定义 3D 缩放转换
  *
  * 旋转
- * rotate(angle)        定义 2D 旋转，在参数中规定角度，使用0~360度之间，rotate(-45deg)
- * rotate3d(x,y,z,angle)定义 3D 旋转
- * rotateX(angle)       定义沿着 X 轴的 3D 旋转
- * rotateY(angle)       定义沿着 Y 轴的 3D 旋转
- * rotateZ(angle)       定义沿着 Z 轴的 3D 旋转
+   rotate(angle)        定义 2D 旋转，在参数中规定角度，使用0~360度之间，rotate(-45deg)
+   rotate3d(x,y,z,angle)定义 3D 旋转
+   rotateX(angle)       定义沿着 X 轴的 3D 旋转
+   rotateY(angle)       定义沿着 Y 轴的 3D 旋转
+   rotateZ(angle)       定义沿着 Z 轴的 3D 旋转
  *
  * 倾斜
- * skew(x-angle,y-angle)	定义沿着 X 和 Y 轴的 2D 倾斜转换，使用0~360度之间，rotate(45deg，-45deg)
- * skewX(angle)	            定义沿着 X 轴的 2D 倾斜转换
- * skewY(angle)	            定义沿着 Y 轴的 2D 倾斜转换
- * 自定义变换
- * matrix(n,n,n,n,n,n)  定义 2D 转换，使用六个值的矩阵
- * matrix3d(n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n)定义 3D 转换，使用 16 个值的 4x4 矩阵
+   skew(x-angle,y-angle)	定义沿着 X 和 Y 轴的 2D 倾斜转换，使用0~360度之间，rotate(45deg，-45deg)
+   skewX(angle)	            定义沿着 X 轴的 2D 倾斜转换
+   skewY(angle)	            定义沿着 Y 轴的 2D 倾斜转换
+   自定义变换
+   matrix(n,n,n,n,n,n)  定义 2D 转换，使用六个值的矩阵
+   matrix3d(n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n)定义 3D 转换，使用 16 个值的 4x4 矩阵
  *
  * 变形原点transform-origin:x y;|指定变换的起点，使用
- * transform-origin: center center;
- * transform-origin: 50% 50%;
- * transform-origin: left top;
- * transform-origin: 0px 0px;
- *
-*/
+   transform-origin: center center;
+   transform-origin: 50% 50%;
+   transform-origin: left top;
+   transform-origin: 0px 0px;
 
 
-/*
+
 
 transition过渡属性
 语法：transition: transform 1s ease-out 0s;
