@@ -255,6 +255,13 @@ SQL语句不区分大小写
     CREATE VIEW productcustomers AS SELECT cust_name,cust_contact,prod_id FROM customers,orders,orderitems WHERE customers.cust_id=orders.cust_id AND orderitems.order_num=orders.order_num
 
 +使用存储过程
+    存储过程：是sql语句和控制语句的预编译集合，以一个名称存储并作为一个单元处理。
+    参数：输入类型  输出类型  输入&&输出
+    创建：CREAT......PROCEDURE......
+    注意事项：
+    1、创建存储过程或者自定义函数时需要通过delimiter语句修改定界符。
+    2、如果函数体或过程体有多个语句，需要包含在BEGIN......END语句块中。
+    3、存储过程通过CALL来调用。
 
 +使用游标
 

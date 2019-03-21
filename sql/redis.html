@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+/**
+
+ Redis安装
+
+
+ Redis数据类型
+ 数据类型       存储的值                                                    读写能力
+ String        可以是字符串、整数或浮点，统称为元素                           对字符串操作对整数类型加减
+ List          一个序列集合且每个节点都包好了一个元素                          序列两端推入、或弹出元素修剪、查找或移除元素
+ Set           各不相同的元素                                               从集合中插入或者删除元素
+ Hash          有key-value的散列组，其中key是字符串，value是元素              按照key进行增加删除
+ Sort Set      带分数的score-value有序集合，其中score为浮点，value为元素       集合插入，按照分数范围查找
+
+ string类型操作
+     设置：set string1 yejianfeng
+     获取：get string1
+     自增：incr string2
+     自减：decrby string2
+
+ list类型操作
+     从左边进：lpush list1 12
+            lpush list1 13
+     从右边出：rpop list 1   // 12
+     长度：llen list2      // list2的长度
+
+ set类型操作
+     添加：sadd set1 12
+     查看有几个元素：scard set1      // 1
+     sadd set1 13           // 1
+     sadd set1 13           // 0
+     scard set1             // 2个元素
+     查看：sismember set1 13   // 查看13是否在set1中
+     删除：srem set1 13
+
+ hash类型操作
+     设置：hset hash1 key1 12
+     获取：hget hash1 key1
+     长度：hlen hash1
+     一次性返回key1 key2的值：hmget hash1 key key2
+
+ sort set 类型操作
+     zadd zset1 10.1 val1
+     zadd zset1 11.1 val2
+     zadd zset1 9.2 val3
+     zcard zset1        // 3
+     zrange zset1 0 2 withscores
+
+
+ PHP redis扩展安装环境
+
+
+ redis的链接操作
+ 文档：https://github.com/phpredis/phpredis
+ redis类的命名空间是根
+ phpredis人命令和参数基本和redis.io中的实际命令对应
+
+ <\?php
+
+ $redis = new \Redis();
+ $redis->connect("127.0.0.1",7200);
+
+ // string 操作
+ $redis->delete("string1");
+
+ $redis->set("string1","val1");
+ $val = $redis->get("string1");
+ var_dump($val);
+
+ $redis->set("string1",4);
+ $redis->incr("string1",2);
+ $val = $redis->get("string1");
+ var_dump($val);    // 6
+
+
+ // list类型操作
+ $redis->delete("list1");
+
+ $redis->lPush("list1","A");
+ $redis->lPush("list1","B");
+ $redis->lPush("list1","C");
+
+ $val = $redis->rPop("list1");
+ var_dump("$val");      // A
+
+
+ // set类型操作
+ $redis->delete("set1");
+
+ $redis->sAdd("set1","A");
+ $redis->sAdd("set1","B");
+ $redis->sAdd("set1","C");
+ $redis->sAdd("set1","C");      // 元素需要是唯一的，所以不被添加
+
+ $val = $redis->sCard("set1");
+ var_dump($val);    // 3
+
+ $val = $redis->sMembers("set1");
+ var_dump($val);        //array()
+
+
+ // hash类型操作
+ $redis->delete("driver1");
+
+ $redis->hSet("driver1","name","mingming");
+ $redis->hSet("driver1","age",25);
+ $redis->hSet("driver1","gender",1);
+
+ $val = $redis->sGet("driver1","name");
+ var_dump($val);
+
+ $val = $redis->hMGet("driver1",array("name","age"));
+ var_dump($val);    //array()
+
+
+ // sort set类型操作
+ $redis->delete("zset1");
+
+ $redis->zAdd("zset1",100,"xiaoming");      // rank:2
+ $redis->zAdd("zset1",90,"xiaohong");       // rank:0
+ $redis->zAdd("zset1",93,"xiaowang");       // rank:1
+
+ $val = $redis->zRange("zset1",0,-1);   // 从低到高
+ var_dump($val);
+
+ $val = $redis->zRevRange("zset1",0,-1);    // 从高到低
+ var_dump($val);
+
+**/
+</script>
+</html>
