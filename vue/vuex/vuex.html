@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex@3.1.1/dist/vuex.js"></script>
+</head>
+<body>
+<div id="app">
+
+</div>
+</body>
+<script>
+
+/*
+
+ store：仓库
+ state：组件状态用于保存数据
+ getters：用来获取数据，（可以认为是 store 的计算属性）
+ mutations：唯一可以改变vuex里state的状态.同步
+ actions：用来获取异步数据，context.commit 提交一个 mutation，通过store.dispatch方法触发，this.$store.dispatch("increment")
+ commit：用于保存提交数据
+
+
+设置
+ ↓
+.vue文件―→引入store/xxx/type文件
+ ↓ created()
+this.$store.dispatch(type)
+ ↓
+actions
+ ↓
+commit
+ ↓
+mutations
+ ↓
+state
+
+
+获取
+ ↓
+.vue文件―→引入store/xxx/index
+ ↓
+computed:{
+    xxx(){
+        return xxx.state
+
+
+
+设置与获取
+import{ mapState,mapGetters,mapActions } from 'vuex'
+https://segmentfault.com/a/1190000015782272?utm_source=tag-newest
+
+*/
+
+</script>
+</html>
