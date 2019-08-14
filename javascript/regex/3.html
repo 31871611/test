@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="" method="post">
+    <ul>
+        <li>title：<input type="text" name="title"></li>
+        <li>name：<input type="text" name="name"></li>
+        <li>url：<input type="text" name="url"></li>
+        <li>email：<input type="text" name="email"></li>
+        <li>tel：<input type="text" name="tel"></li>
+    </ul>
+    <input type="submit" value="确定"/>
+</form>
+
+</body>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>
+<script>
+    var infoTxt = {
+        "title" : '请输入title',
+        "name" : '请输入name',
+        "url" : '请输入url',
+        "email" : '请输入email',
+        "tel" : '请输入tel'
+    }
+    var nameTxt = ["title","name","url","tel"]
+    $('form').on("submit",function(){
+        var data = $(this).serializeArray();
+        //console.log(data);
+        for(var p in data){
+            if(data[p].value == "" && nameTxt.indexOf(data[p].name) > -1){
+                alert(infoTxt[data[p].name])
+                return false;
+            }
+        }
+        if(!/^(13|14|15|16|17|18)\d{9}$/g.test($("input[name='tel']").val())){
+            alert('联系方式有误，请重新输入！')
+            return false;
+        }
+    })
+</script>
+</html>
