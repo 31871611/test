@@ -17,4 +17,4 @@ require __DIR__ . '/thinkphp/start.php';
 .htaccess也移动到根目录下
 
 静态文件目录修改
-添加public<script src="public__STATIC__/js/jquery-1.10.2.min.js" charset="utf-8"></script>
+添加public<script src="/public__STATIC__/js/jquery-1.10.2.min.js" charset="utf-8"></script>
