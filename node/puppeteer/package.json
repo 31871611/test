@@ -1,0 +1,17 @@
+{
+  "name": "puppeteer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "1.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mime-types": "^2.1.24",
+    "puppeteer": "^1.19.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
