@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+/*
+
+ map() 方法返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。
+ map() 方法按照原始数组元素顺序依次处理元素。
+
+ 语法：array.map(function(currentValue,index,arr), thisValue)
+                         currentValue：必须。当前元素的值
+                         index：可选。当前元素的索引值
+                         arr：可选。当前元素属于的数组对象
+ thisValue
+ 返回值：返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。
+
+
+*/
+    var nums=[10,20,30];
+    nums.map(function(value,index,arr){
+        console.log('value值为：'+value); //10 20 30
+        console.log('index值为：'+index); //0 1 2
+        console.log('arr值为：'+arr); //[10,20,30]
+    })
+
+
+
+    var oldArray = [
+        {
+            "name" : "小明",
+            "num" : 10
+        },
+        {
+            "name" : "小张",
+            "num" : 20
+        },
+        {
+            "name" : "小王",
+            "num" : 30
+        }
+    ]
+    let newArrayName = oldArray.map((item)=>{
+        return item.name;
+    })
+    console.log(newArrayName)
+
+
+
+
+</script>
+</html>

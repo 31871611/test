@@ -6,3 +6,15 @@
 场景配置：直接再application文件夹下增加场景配置文件；
 
 模块配置：直接再Index文件夹下增加config.php文件。
+
+虚拟主机
+index.php移动到根目录下，修改为
+// 定义应用目录
+define('APP_PATH', __DIR__ . '/application/');
+// 加载框架引导文件
+require __DIR__ . '/thinkphp/start.php';
+
+.htaccess也移动到根目录下
+
+静态文件目录修改
+添加public<script src="/public__STATIC__/js/jquery-1.10.2.min.js" charset="utf-8"></script>
