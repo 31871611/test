@@ -1,0 +1,13 @@
+cmd输入Python或者开始菜单选择Python (command line)菜单项进入交互模式
+exit()退出交互模式
+
+python hello.py运行一个.py文件
+
+Python程序是大小写敏感
+
+Python使用缩进来组织代码块，请务必遵守约定俗成的习惯，坚持使用4个空格的缩进。
+
+Python中单行注释以 # 开头
+多行注释用三个单引号 ''' 或者三个双引号 """ 将注释括起来
+
+
