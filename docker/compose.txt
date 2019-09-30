@@ -1,0 +1,13 @@
+https://www.cnblogs.com/neptunemoon/p/6512121.html
+
+
+window、mac自带不需要安装
+
+安装 Docker Compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose
+
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+查看安装是否成功
+docker-compose -v
