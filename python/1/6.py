@@ -21,7 +21,8 @@ del alien_0['points']
 user_0 = {
     'username':'efermi',
     'first':'enrico',
-    'last':'fermi'
+    'last':'fermi',
+    'username2':'efermi'
 }
 # 遍历字典
 # items()返回一个键值对列表
@@ -32,4 +33,5 @@ for key,value in user_0.items():
 print(user_0.keys())
 print(user_0.values())
 # for key in user_0.keys():
-
+# set()可以过滤重复的内容，返回独一无二的值
+print(set(user_0.values()))
