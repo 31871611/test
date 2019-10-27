@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, user-scalable=no">
+    <link rel="stylesheet" href="css/css.css">
+    <script src="js/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+<div class="item">
+    <div class="title">
+        <h3>城市</h3>
+    </div>
+    <div class="box">
+        <label><input type="checkbox" class="checkbox" id="provinceAll">全选</label>
+        <label><input type="checkbox" class="checkbox" name="province">北京市</label>
+        <label><input type="checkbox" class="checkbox" name="province">天津市</label>
+        <label><input type="checkbox" class="checkbox" name="province">上海市</label>
+        <label><input type="checkbox" class="checkbox" name="province">重庆市</label>
+        <label><input type="checkbox" class="checkbox" name="province">河北省</label>
+        <label><input type="checkbox" class="checkbox" name="province">山西省</label>
+        <label><input type="checkbox" class="checkbox" name="province">辽宁省</label>
+        <label><input type="checkbox" class="checkbox" name="province">吉林省</label>
+        <label><input type="checkbox" class="checkbox" name="province">黑龙江省</label>
+        <label><input type="checkbox" class="checkbox" name="province">江苏省</label>
+        <label><input type="checkbox" class="checkbox" name="province">浙江省</label>
+        <label><input type="checkbox" class="checkbox" name="province">安徽省</label>
+        <label><input type="checkbox" class="checkbox" name="province">福建省</label>
+        <label><input type="checkbox" class="checkbox" name="province">江西省</label>
+        <label><input type="checkbox" class="checkbox" name="province">山东省</label>
+        <label><input type="checkbox" class="checkbox" name="province">河南省</label>
+        <label><input type="checkbox" class="checkbox" name="province">湖北省</label>
+        <label><input type="checkbox" class="checkbox" name="province">湖南省</label>
+        <label><input type="checkbox" class="checkbox" name="province">广东省</label>
+        <label><input type="checkbox" class="checkbox" name="province">海南省</label>
+        <label><input type="checkbox" class="checkbox" name="province">四川省</label>
+        <label><input type="checkbox" class="checkbox" name="province">贵州省</label>
+        <label><input type="checkbox" class="checkbox" name="province">云南省</label>
+        <label><input type="checkbox" class="checkbox" name="province">陕西省</label>
+        <label><input type="checkbox" class="checkbox" name="province">甘肃省</label>
+        <label><input type="checkbox" class="checkbox" name="province">青海省</label>
+        <label><input type="checkbox" class="checkbox" name="province">台湾省</label>
+        <label><input type="checkbox" class="checkbox" name="province">内蒙古自治区</label>
+        <label><input type="checkbox" class="checkbox" name="province">广西壮族自治区</label>
+        <label><input type="checkbox" class="checkbox" name="province">西藏自治区</label>
+        <label><input type="checkbox" class="checkbox" name="province">宁夏回族自治区</label>
+        <label><input type="checkbox" class="checkbox" name="province">新疆维吾尔自治区</label>
+        <label><input type="checkbox" class="checkbox" name="province">香港特别行政区</label>
+        <label><input type="checkbox" class="checkbox" name="province">澳门特别行政区</label>
+    </div>
+</div>
+<div class="item">
+    <div class="title">
+        <h3>性别</h3>
+    </div>
+    <div class="box">
+        <label><input type="radio" class="radio" name="sex">全部</label>
+        <label><input type="radio" class="radio" name="sex">男</label>
+        <label><input type="radio" class="radio" name="sex">女</label>
+    </div>
+</div>
+<div class="item">
+    <div class="title">
+        <h3>年龄</h3>
+        <span>（可选）</span>
+    </div>
+    <div class="box">
+        <label><input type="checkbox" class="checkbox" name="age">18岁及以下</label>
+        <label><input type="checkbox" class="checkbox" name="age">19-25岁</label>
+        <label><input type="checkbox" class="checkbox" name="age">26-35岁</label>
+        <label><input type="checkbox" class="checkbox" name="age">36-50岁</label>
+        <label><input type="checkbox" class="checkbox" name="age">50岁以上</label>
+    </div>
+</div>
+<div class="item">
+    <div class="title">
+        <h3>生活偏好</h3>
+        <span>（可选）</span>
+    </div>
+    <div class="box">
+        <label><input type="checkbox" class="checkbox" name="life" value="1">汽车服务</label>
+        <label><input type="checkbox" class="checkbox" name="life" value="2">影视宣传</label>
+        <label><input type="checkbox" class="checkbox" name="life" value="3" id="game">手机游戏</label>
+        <label><input type="checkbox" class="checkbox" name="life" value="4">文化旅游</label>
+        <label><input type="checkbox" class="checkbox" name="life" value="5">电子商务</label>
+    </div>
+    <div class="more moreGame">
+        <label><input type="checkbox" class="checkbox">仙侠类</label>
+        <label><input type="checkbox" class="checkbox">传奇类</label>
+        <label><input type="checkbox" class="checkbox">卡牌类</label>
+        <label><input type="checkbox" class="checkbox">国战类</label>
+        <label><input type="checkbox" class="checkbox">武侠类</label>
+        <label><input type="checkbox" class="checkbox">回合类</label>
+    </div>
+</div>
+
+
+<div class="item">
+    <div class="title">
+        <h3>手机偏好</h3>
+        <span>（可选）</span>
+    </div>
+    <div class="box">
+        <label><input type="checkbox" class="checkbox" name="phone">2000以下</label>
+        <label><input type="checkbox" class="checkbox" name="phone">2000-3000</label>
+        <label><input type="checkbox" class="checkbox" name="phone">3000元以上</label>
+    </div>
+</div>
+<div class="item">
+    <div class="title">
+        <h3>消费水平</h3>
+        <span>（可选）</span>
+    </div>
+    <div class="box">
+        <label><input type="checkbox" class="checkbox">全部</label>
+        <label><input type="checkbox" class="checkbox">低</label>
+        <label><input type="checkbox" class="checkbox">中</label>
+        <label><input type="checkbox" class="checkbox">高</label>
+    </div>
+</div>
+<div class="item">
+    <div class="title">
+        <h3>房产状况</h3>
+    </div>
+    <div class="box">
+        <label><input type="radio" class="radio" name="house">全部</label>
+        <label><input type="radio" class="radio" name="house">有</label>
+        <label><input type="radio" class="radio" name="house">无</label>
+    </div>
+</div>
+<div class="item">
+    <div class="title">
+        <h3>用户滤重</h3>
+        <span>（可选）</span>
+    </div>
+    <div class="box">
+        <label><input type="checkbox" class="checkbox">自动排除已发送用户</label>
+    </div>
+</div>
+
+<div class="submit">提交</div>
+
+</body>
+<script>
+$(function(){
+
+    // 城市全选
+    $("#provinceAll").on("click",function(){
+        $("[name=province]:checkbox").prop("checked",this.checked);
+    })
+    $("[name=province]:checkbox").click(function(){
+        var flag=true;
+        $("[name=province]:checkbox").each(function(){     //这里不能使用$(this)f
+            if(!this.checked){
+                flag=false;
+            }
+        });
+        $("#provinceAll").prop("checked",flag);
+    });
+
+
+    // 更多手机游戏选项
+    $('input[name="life"]').on("click",function(){
+        if($('#game').is(":checked")){
+            $(this).parent().parent().next(".moreGame").show();
+        }else{
+            $(this).parent().parent().next(".moreGame").hide();
+        }
+    })
+
+})
+</script>
+</html>
