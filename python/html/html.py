@@ -2,7 +2,7 @@ import re
 import requests
 import os
 
-urlPath = "https://www.cmdy5.com/"
+urlPath = "https://www.jisuysw.com/"
 getPwd = os.getcwd()#查看当前所在路径
 
 
@@ -83,7 +83,7 @@ def getObjPath(path):
 
 # 下载html文件文件
 # 结束是index.html？
-#downFile(urlPath,getPwd + '/' + 'index.html')
+downFile(urlPath,getPwd + '/' + 'index.html')
 
 
 # 打开文件
@@ -120,24 +120,36 @@ for link_value in link_result:
     background_url = re.compile(r'url\([\"\']?([^\'|\"|\)]*)[\"\']?\)')
     background_url_path = background_url.findall(str(link_url_res.content,'utf-8'))
     for background_url_item in background_url_path:
+        # 第一个是什么格式：.（./img）、..（../img）、''（/img）、（http）、（base64）
+        a4 = background_url_item[0:4]
+        if a4 == "data":
+            continue
         background_url_arr = getObjPath(background_url_item)
-        background_url_join = joinObjPath(link_url_path[1],background_url_arr[0])
-        # 创建文件夹
-        mkdir(getPwd + background_url_join + '/' + background_url_arr[3])
-        # 下载文件并保存
-        downFile(urlPath + background_url_join + '/' + background_url_arr[3] + "/" + background_url_arr[2], getPwd + background_url_join + '/' + background_url_arr[3] + '/' + background_url_arr[2])
+        if background_url_arr[1] != '':
+            background_url_join = joinObjPath(link_url_path[1],background_url_arr[0])
+            # 创建文件夹
+            mkdir(getPwd + background_url_join + '/' + background_url_arr[3])
+            # 下载文件并保存
+            downFile(urlPath + background_url_join + '/' + background_url_arr[3] + "/" + background_url_arr[2], getPwd + background_url_join + '/' + background_url_arr[3] + '/' + background_url_arr[2])
+        else:
+            # 如：url('iconfont.eot?t=1513950066096')
+            # 下载到，就在当前目录。
+            downFile(urlPath + link_url_path[1] + "/" + background_url_arr[2] , getPwd + link_url_path[1] + "/" + background_url_arr[2])
 
 
 # js文件
 for js_value in js_result:
+    if js_value == '':
+        continue
     # 判断是不是使用cdn文件
     if re.match(r'^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$',js_value) != None:  
         continue
     # 判断结尾文件格式
-    if re.match(r'(.*)?(.js)\'',js_value) == None:  
+    if re.search(r'\.js',js_value) == None:  
         continue
     # 获取路径
     js_url_path = getObjPath(js_value)
+    print(js_url_path)
     # 创建文件夹
     mkdir(getPwd + js_url_path[1])
     # 下载文件并保存文件
