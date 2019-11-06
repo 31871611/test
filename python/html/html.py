@@ -2,7 +2,7 @@ import re
 import requests
 import os
 
-urlPath = "https://www.jisuysw.com/"
+urlPath = "https://www.50s.wang/"
 getPwd = os.getcwd()#查看当前所在路径
 
 
@@ -83,7 +83,7 @@ def getObjPath(path):
 
 # 下载html文件文件
 # 结束是index.html？
-downFile(urlPath,getPwd + '/' + 'index.html')
+#downFile(urlPath,getPwd + '/' + 'index.html')
 
 
 # 打开文件
@@ -100,7 +100,8 @@ with open('index.html','r', encoding='UTF-8') as file_object:
     img_result = img_pattern.findall(contents)
     # 页面样式
 
-#print(link_result)
+#print(img_result)
+
 
 # 样式文件
 for link_value in link_result:
@@ -119,10 +120,15 @@ for link_value in link_result:
     # 样式中的背景图片、字体
     background_url = re.compile(r'url\([\"\']?([^\'|\"|\)]*)[\"\']?\)')
     background_url_path = background_url.findall(str(link_url_res.content,'utf-8'))
+
     for background_url_item in background_url_path:
         # 第一个是什么格式：.（./img）、..（../img）、''（/img）、（http）、（base64）
         a4 = background_url_item[0:4]
         if a4 == "data":
+            continue
+        if a4 == "http":
+            continue
+        if background_url_item[0:2] == "//":
             continue
         background_url_arr = getObjPath(background_url_item)
         if background_url_arr[1] != '':
@@ -141,6 +147,8 @@ for link_value in link_result:
 for js_value in js_result:
     if js_value == '':
         continue
+    if js_value[0:2] == "//":
+        continue
     # 判断是不是使用cdn文件
     if re.match(r'^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$',js_value) != None:  
         continue
@@ -149,7 +157,7 @@ for js_value in js_result:
         continue
     # 获取路径
     js_url_path = getObjPath(js_value)
-    print(js_url_path)
+    #print(js_url_path)
     # 创建文件夹
     mkdir(getPwd + js_url_path[1])
     # 下载文件并保存文件
@@ -158,11 +166,12 @@ for js_value in js_result:
 
 # img文件
 for img_value in img_result:
-    # 判断是不是使用cdn文件
-    if re.match(r'^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$',img_value) != None:  
+    if img_value == '':
         continue
-    # 判断结尾文件格式
-
+    if img_value[0:2] == "//":
+        continue
+    if img_value[0:4] == "http":
+        continue
     # 获取路径
     img_url_path = getObjPath(img_value)
     # 创建文件夹
