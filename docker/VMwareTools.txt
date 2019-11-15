@@ -35,14 +35,15 @@ cd vmware-tools-distrib/
 
 
 如果报错Enter the path to the kernel header files for the 3.10.0-693.el7.x86_64 kernel?然后
-重启在安装
-或者
+执行sudo yum install kernel-devel
 #yum升级kernel-devel
 yum -y install kernel-devel
-或者
+重启在安装
+如果再出现问题，那么可以执行sudo yum upgrade kernel kernel-devel
+
+建议在安装之前还是执行一下安装GCC和PERL，执行发下命令：yum install perl gcc kernel-devel。
+
+
 设置-共享文件（启用）
-
-
-
 
 共享目录/mnt/hgfs
