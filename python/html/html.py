@@ -2,7 +2,8 @@ import re
 import requests
 import os
 
-urlPath = "https://www.50s.wang/"
+urlPath = "https://m.365gj.com/"
+urlDown = "https://m.365gj.com/index.php/vod/type/id/1.html"
 getPwd = os.getcwd()#查看当前所在路径
 
 
@@ -83,7 +84,7 @@ def getObjPath(path):
 
 # 下载html文件文件
 # 结束是index.html？
-#downFile(urlPath,getPwd + '/' + 'index.html')
+downFile(urlDown,getPwd + '/' + 'index.html')
 
 
 # 打开文件
