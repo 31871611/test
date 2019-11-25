@@ -1,5 +1,18 @@
+安装依赖环境
+yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel expat-devel libffi-devel
+yum install gcc* glien* -y
+
+
+安装python3.7.1之后无法使用pip
+https://blog.csdn.net/zsx0728/article/details/83822645
+
+
 到python官网
-https://www.python.org/downloads/release/python-371/](https://www.python.org/downloads/release/python-371/
+https://www.python.org/downloads/release/python-371/
+
+
+找不到wget命令
+yum -y install wget
 
 
 找到Linux版本安装包的下载路径，进行下载
@@ -10,7 +23,6 @@ tar -xzvf Python-3.7.1.tgz
 
 安装编译工具及库
 cd Python-3.7.1
-yum install gcc* glien* -y
 
 
 运行脚本configure
@@ -45,4 +57,7 @@ pip3 -V
 
 如果没有pip3就创建一下pip3的软链接
 ln -s /usr/local/python3.7/bin/pip3 /usr/bin/pip3
+
+升级pip3
+pip3 install --upgrade pip
 
