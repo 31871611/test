@@ -1,0 +1,48 @@
+到python官网
+https://www.python.org/downloads/release/python-371/](https://www.python.org/downloads/release/python-371/
+
+
+找到Linux版本安装包的下载路径，进行下载
+wget https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tgz
+解压
+tar -xzvf Python-3.7.1.tgz
+
+
+安装编译工具及库
+cd Python-3.7.1
+yum install gcc* glien* -y
+
+
+运行脚本configure
+./configure --prefix=/usr/local/python3.7
+
+
+编译
+make
+编译成功后，编译安装
+make install
+
+
+python3的路径
+/usr/local/python3.7/bin
+
+创建临时python3的软链接
+ln -s /usr/local/python3.7/bin/python3.7 /usr/bin/python3
+
+
+将/usr/local/python3/bin加入PATH
+vi ~/.bash_profile
+PATH=$PATH:$HOME/bin:/usr/local/python3/bin
+用:号分隔进行添加
+按ESC，输入:wq回车退出。
+
+修改完记得执行行下面的命令，让上一步的修改生效：
+source ~/.bash_profile
+
+
+python3 -V
+pip3 -V
+
+如果没有pip3就创建一下pip3的软链接
+ln -s /usr/local/python3.7/bin/pip3 /usr/bin/pip3
+
