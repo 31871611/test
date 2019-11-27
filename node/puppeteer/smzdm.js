@@ -13,27 +13,27 @@ puppeteer.launch({
 
     await page.goto('https://www.smzdm.com/fenlei/nantongzhuang/');
 
-    var pageIndex = 1;
-    var pageNum = 20;
+    var pageNum = 2;
     var saveArr = [];
 
-/*
-    var list = await page.$$("#feed-main-list li");
-    for(let i = 0;i<list.length;i++){
-        let num = await list[i].$eval('div > div.z-feed-content > div.z-feed-foot > div.z-feed-foot-l > a:nth-child(3) > span', node => node.innerText)
-        if(num > 2){
-            saveArr.push({
-                title:await list[i].$eval('div > div.z-feed-content > h5 > a', node => node.innerText),
-                photo:await list[i].$eval('div > div.z-feed-img > a > img', node => node.getAttribute("src")),
-                url:await list[i].$eval('div > div.z-feed-content > h5 > a', node => node.getAttribute("href")),
-                price:await list[i].$eval('div > div.z-feed-content > div.z-highlight > a', node => node.innerText),
-                time:''
-            })
+    for(let j = 0;j < pageNum;j++){
+        await page.waitForSelector('#feed-main-list');
+        var list = await page.$$("#feed-main-list li");
+        for(let i = 0;i<list.length;i++){
+            let num = await list[i].$eval('div > div.z-feed-content > div.z-feed-foot > div.z-feed-foot-l > a:nth-child(3) > span', node => node.innerText)
+            if(num > 2){
+                saveArr.push({
+                    title:await list[i].$eval('div > div.z-feed-content > h5 > a', node => node.innerText),
+                    photo:await list[i].$eval('div > div.z-feed-img > a > img', node => node.getAttribute("src")),
+                    url:await list[i].$eval('div > div.z-feed-content > h5 > a', node => node.getAttribute("href")),
+                    price:await list[i].$eval('div > div.z-feed-content > div.z-highlight > a', node => node.innerText),
+                    time:''
+                })
+            }
         }
+        // 点击下一页
+        await page.click('#J_feed_pagenation > li.page-turn.next-page > a');
     }
-    // 点击下一页
-    await page.click('#J_feed_pagenation > li.page-turn.next-page > a');
-*/
 
     console.log(saveArr)
     await browser.close();
