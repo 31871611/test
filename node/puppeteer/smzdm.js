@@ -8,7 +8,8 @@ const puppeteer = require('puppeteer');
 var fs = require("fs");
 
 
-const TOTAL_PAGE = 5
+const TOTAL_PAGE = 2
+const saveArr = [];
 
 
 // 精选
@@ -32,6 +33,9 @@ async function home() {
         await page.goto('https://www.smzdm.com/jingxuan/')
 
         for(let j = 0;j < TOTAL_PAGE;j++){
+            // 等待标签
+            await page.waitForSelector('#feed-main-list');
+
             // 滚动加载
             let preScrollHeight = 0;
             let scrollHeight = -1;
@@ -51,9 +55,6 @@ async function home() {
                 scrollHeight = scrollResult[1];
             }
 
-            var saveArr = [];
-            // 等待标签
-            await page.waitForSelector('#feed-main-list');
             // 抓取数据
             var list = await page.$$("#feed-main-list li");
             for(let i = 0;i<list.length;i++){
@@ -98,7 +99,7 @@ async function home() {
         // 出现任何错误，打印错误消息并且关闭浏览器
         console.log(error)
         console.log('-----服务意外终止-----')
-        await browser.close()
+        //await browser.close()
     }
 }
 home();
