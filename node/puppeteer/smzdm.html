@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/1.10.0/jquery.js"></script>
+    <style>
+        table{
+            border-collapse:collapse;
+            width: 100%;
+        }
+        table th,table td {
+            border:1px #aaa solid;
+            padding:10px 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="html"></div>
+</body>
+<script>
+
+var html = '';
+$.ajax({
+    url: "smzdm.json",
+    success: function(res){
+        console.log(res)
+        html += '<table>'
+        html += '<tr><th>图片</th><th>标题</th><th>价格</th><th>评论数</th></tr>'
+        for(var i = 0;i < res.length;i++){
+            html += '<tr>'
+            html += '<td><img src="'+ res[i].photo +'" /></td>'
+            html += '<td><a href="'+ res[i].url +'" target="_blank">'+ res[i].title +'</a></td>'
+            html += '<td>'+ res[i].price +'</td>'
+            html += '<td>'+ res[i].num +'</td>'
+            html += '</tr>'
+        }
+        html += '</table>'
+        $("#html").html(html);
+    }
+});
+
+</script>
+</html>
