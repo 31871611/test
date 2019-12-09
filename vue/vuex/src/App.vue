@@ -13,19 +13,35 @@
 </template>
 
 <script>
-  import {mapGetters, mapActions} from 'vuex'
+  import {mapState, mapGetters, mapActions} from 'vuex'
 
   export default{
+    /*
     computed:mapGetters([
       'count',
       'getOdd'
     ]),
     methods:mapActions([
-      'increment',
-      'decrement',
-      'clickOdd',
-      'clickAsync'
+     'increment',
+     'decrement',
+     'clickOdd',
+     'clickAsync'
     ])
+    */
+    computed:{
+      ...mapGetters([
+        'count',
+        'getOdd'
+      ])
+    },
+    methods:{
+      ...mapActions([
+        'increment',
+        'decrement',
+        'clickOdd',
+        'clickAsync'
+      ])
+    }
   }
 </script>
 
