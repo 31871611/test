@@ -1,0 +1,45 @@
+<?php
+    if($_GET['id']==1){
+        reslog(date("Y/m/d h:i:s")." 点击了头部");
+    }
+
+    if($_GET['id']==2){
+        reslog(date("Y/m/d h:i:s")." 点击了中部");
+    }
+
+    function reslog($data){
+        $log_file = 'res.log';
+        $content = var_export($data,TRUE);
+        $content .= "\r\n\n";
+        file_put_contents($log_file,$content, FILE_APPEND);
+    }
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css实现追踪用户访问单页的停留数据</title>
+    <style>
+        #header{
+            height: 200px;
+            background: #00a0e9;
+        }
+        #header:hover::after{
+            content: url('index.php?id=1');
+        }
+        #content{
+            height: 200px;
+            background: #f0ad4e;
+        }
+        #content:hover{
+            background-image: url("index.php?id=2");
+        }
+    </style>
+</head>
+<body>
+
+<div id="header"></div>
+<div id="content"></div>
+
+</body>
+</html>
