@@ -19,6 +19,7 @@
 <head>
     <meta charset="UTF-8">
     <title>css实现追踪用户访问单页的停留数据</title>
+    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
     <style>
         #header{
             height: 200px;
@@ -34,12 +35,25 @@
         #content:hover{
             background-image: url("index.php?id=2");
         }
+        #footer:after{
+            content: attr(data-content);
+        }
     </style>
 </head>
 <body>
 
 <div id="header"></div>
 <div id="content"></div>
+<div id="footer"></div>
 
+
+<script>
+
+$("#footer").attr('data-content', '这里是你想要添加的内容，可以是个变量')
+
+/*
+    根据某些情况把#header:hover::after给display:block出来
+*/
+</script>
 </body>
 </html>
