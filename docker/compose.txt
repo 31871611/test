@@ -1,5 +1,24 @@
-https://www.cnblogs.com/neptunemoon/p/6512121.html
+https://www.cnblogs.com/neptunemoon/p/6512121.html#toc_29
 
+--------------------------------------------------------------------------------
+
+docker-compose 需要注意的
+    1、不要把 docker 当做数据容器来使用，数据一定要用 volumes 放在容器外面
+    2、不要把 docker-compose 文件暴露给别人， 因为上面有你的服务器信息
+    3、多用 docker-compose 的命令去操作， 不要用 docker 手动命令&docker-compose 去同时操作
+    4、写一个脚本类的东西，自动备份docker 映射出来的数据。
+    5、不要把所有服务都放在一个 docker 容器里面
+
+--------------------------------------------------------------------------------
+
+启动所有服务
+docker-compose up
+关闭所有服务
+docker-compose stop
+删除所有容器
+docker-compose rm
+
+--------------------------------------------------------------------------------
 
 window、mac自带不需要安装
 
@@ -15,7 +34,6 @@ chmod +x /usr/local/bin/docker-compose
 
 查看安装是否成功
 docker-compose -v
-
 
 --------------------------------------------------------------------------------
 
@@ -38,16 +56,52 @@ ps        列出服务相关的容器
 docker-compose.yaml
 
 ghost-app:
- build:ghost
- depends_on:
-  -db
- ports:
-  -"2368:2368"
- nginx:
-  build:nginx
-  ports:
-   -"80:80"
-  depends_on:
-   -ghost-app
-  db:
-   image:"mysql:5.7.15"
+    build:ghost
+    depends_on:
+        -db
+    ports:
+        -"2368:2368"
+nginx:
+    build:nginx
+    ports:
+        -"80:80"
+    depends_on:
+        -ghost-app
+db:
+    image:"mysql:5.7.15"
+
+----------
+
+version: '2'
+services:
+    nginx:
+            image: bitnami/nginx:latest         #如果没有images，而是一个build，那个说明这个不是用镜像的，而是使用dockerfile去构建容器
+            ports:
+                - '80:80'
+                - '1443:443'
+            volumes:
+                - /root/wp_yunlan/nginx/:/bitnami/nginx/
+    mariadb:
+            image: bitnami/mariadb:latest
+            volumes:
+                - /root/wp_yunlan/mariadb:/bitnami/mariadb
+    wordpress:
+            image: bitnami/wordpress:latest
+            depends_on:
+                - mariadb
+                - nginx
+            environment:
+                - WORDPRESS_USERNAME=neptunemoon    #这个账户你是自己设定的
+                - WORDPRESS_PASSWORD=123123         #这个密码是你自己设定的
+            ports:
+                - '8080:80'
+                - '8081:443'
+            volumes:
+                - /root/wp_yunlan/wordpress:/bitnami/wordpress
+                - /root/wp_yunlan/apache:/bitnami/apache
+                - /root/wp_yunlan/php:/bitnami/php
+
+
+nginx 和 mariadb，wordpress 是要启动的三个服务
+depends_on: 的属性代表wordpress 依赖于- mariadb、- nginx，两个服务， 所以他们两个会先启动
+
