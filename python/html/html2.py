@@ -2,10 +2,10 @@ import re
 import requests
 import os
 
-urlPath = "http://qxnfu.com/"
-urlDown = "http://qxnfu.com/index.html?code=1000003"    #内页.实际要下载的页面
+urlPath = "http://www.jindiyx.com/"
+urlDown = "http://www.jindiyx.com/"    #内页.实际要下载的页面
 getPwd = os.getcwd() #查看当前所在路径
-
+saveDir = os.getcwd() + '/' + "www.jindiyx.com"
 
 
 # 创建目录
@@ -101,13 +101,15 @@ def joinObjPath(cssPath,num):
 
 ##############################################################################################################################
 
+#创建文件件
+mkdir(saveDir)
 
 # 下载html文件文件
 # 结束是index.html？
-downFile(urlDown,getPwd + '/' + 'index.html')
+downFile(urlDown,saveDir + '/' + 'index.html')
 
 # 打开文件
-with open('index.html','r', encoding='UTF-8') as file_object:
+with open(saveDir + '/' + 'index.html','r', encoding='UTF-8') as file_object:
     contents = file_object.read()
     # link、样式等
     link_pattern = re.compile(r'<link.*?href=[\'\"]?([^\'\"]*)[\'\"]?.*?>')
@@ -121,18 +123,18 @@ with open('index.html','r', encoding='UTF-8') as file_object:
     # 页面样式
 
 
-
+exit
 # 样式文件与背景图片
 for link_value in link_result:
     if verifyPathFormat(link_value):
         continue
     # 文件路径
-    filePath = getFilePath(link_value)
+    filePath = getFilePath(link_value)   
     # 创建文件夹
-    mkdir(getPwd + '/' + filePath[1])
+    css_dir = saveDir + '/' + filePath[1]
+    mkdir(css_dir)
     # 下载文件并保存文件
-    # print(urlPath + filePath[1] + filePath[2],getPwd + '/' + filePath[1])
-    link_url_res = downFile(urlPath + filePath[1] + filePath[2],getPwd + '/' + filePath[1] + filePath[2])
+    link_url_res = downFile(urlPath + filePath[1] + filePath[2],css_dir + filePath[2])
     # 准备下载样式中的背景图片，只需要样式文件
     if filePath[3] != 'css':
         continue
@@ -145,18 +147,18 @@ for link_value in link_result:
             continue
         background_url_arr = getFilePath(background_url_item)
         if background_url_arr[4] != '':
-            background_url_join = joinObjPath(getPwd + '/' + filePath[1],background_url_arr[5])
+            background_url_join = joinObjPath(css_dir,background_url_arr[5])
             # 创建文件夹
-            mkdir(background_url_join + '/' + filePath[1])
+            mkdir(background_url_join + '/' + background_url_arr[1])
             # 下载文件并保存
             #print(urlPath + background_url_arr[1] + background_url_arr[2], background_url_join + '/' + background_url_arr[1] + background_url_arr[2])
             downFile(urlPath + background_url_arr[1] + background_url_arr[2], background_url_join + '/' + background_url_arr[1] + background_url_arr[2])
-        '''
         else:
             # 如：url('iconfont.eot?t=1513950066096')
             # 下载到，就在当前目录。
-            downFile(urlPath + background_url_arr[1] + background_url_arr[2] , getPwd + link_url_path[1] + "/" + background_url_arr[2])
-        '''
+            # print(urlPath + filePath[1] + background_url_arr[2] , css_dir + background_url_arr[2])
+            downFile(urlPath + filePath[1] + background_url_arr[2] , css_dir + background_url_arr[2])
+        
 
 
 # js文件
@@ -168,11 +170,13 @@ for js_value in js_result:
         continue
     # 获取路径
     js_url_path = getFilePath(js_value)
+    js_dir = saveDir + '/' + js_url_path[1]
     # 创建文件夹
-    mkdir(getPwd + '/' + js_url_path[1])
+    mkdir(js_dir)
     # 下载文件并保存文件
-    # print(urlPath + js_url_path[1] + js_url_path[2],getPwd + '/' + js_url_path[1] + js_url_path[2])
-    js_url_res = downFile(urlPath + js_url_path[1] + js_url_path[2],getPwd + '/' + js_url_path[1] + js_url_path[2])
+    #print(urlPath + js_url_path[1] + js_url_path[2],js_dir + js_url_path[2])
+    js_url_res = downFile(urlPath + js_url_path[1] + js_url_path[2],js_dir + js_url_path[2])
+
 
 
 # img文件
@@ -181,11 +185,12 @@ for img_value in img_result:
         continue
     # 获取路径
     img_url_path = getFilePath(img_value)
+    img_dir = saveDir + '/' + img_url_path[1]
     # 创建文件夹
-    mkdir(getPwd + '/' + img_url_path[1])
+    mkdir(img_dir)
     # 下载文件并保存文件
-    # print(urlPath + img_url_path[1] + img_url_path[2],getPwd + '/' + img_url_path[1] + img_url_path[2])
-    img_url_res = downFile(urlPath + img_url_path[1] + img_url_path[2],getPwd + '/' + img_url_path[1] + img_url_path[2])
+    # print(urlPath + img_url_path[1] + img_url_path[2],img_dir + img_url_path[2])
+    img_url_res = downFile(urlPath + img_url_path[1] + img_url_path[2],img_dir + img_url_path[2])
 
 
 
