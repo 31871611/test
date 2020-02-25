@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            width: 100%;
+            border-collapse:collapse;
+            text-align:center;
+        }
+        table th,table td{border:1px #aaa solid;}
+    </style>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.bootcss.com/snap.svg/0.5.1/snap.svg-min.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+    <div>
+        <h3>ssr</h3>
+        <table>
+            <tr>
+                <th>IP</th>
+                <th>端口</th>
+                <th>密码</th>
+                <th>加密方法</th>
+                <th>协议/协议参数</th>
+                <th>混淆/混淆参数</th>
+                <th>连通率/速度</th>
+                <th>验证时间</th>
+            </tr>
+            <tr v-for="item in ssr_list">
+                <td>{{item.ip}}</td>
+                <td>{{item.port}}</td>
+                <td>{{item.password}}</td>
+                <td>{{item.method}}</td>
+                <td>{{item.protocol}}</td>
+                <td>{{item.obfs}}</td>
+                <td>{{item.percent}}/{{item.speed}}</td>
+                <td>{{item.time}}</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h3>ss</h3>
+        <table>
+            <tr>
+                <th>IP</th>
+                <th>端口</th>
+                <th>密码</th>
+                <th>加密方法</th>
+                <th>连通率</th>
+                <th>速度</th>
+                <th>验证时间</th>
+            </tr>
+            <tr v-for="item in ss_list">
+                <td>{{item.ip}}</td>
+                <td>{{item.port}}</td>
+                <td>{{item.password}}</td>
+                <td>{{item.method}}</td>
+                <td>{{item.percent}}</td>
+                <td>{{item.speed}}</td>
+                <td>{{item.time}}</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h3>http</h3>
+        <table>
+            <tr>
+                <th>IP</th>
+                <th>端口</th>
+                <th>HTTPS</th>
+                <th>类型</th>
+                <th>连通耗时</th>
+                <th>连通率</th>
+                <th>验证时间</th>
+            </tr>
+            <tr v-for="item in http_list">
+                <td>{{item.ip}}</td>
+                <td>{{item.port}}</td>
+                <td>{{item.https}}</td>
+                <td>{{item.type}}</td>
+                <td>{{item.duration}}</td>
+                <td>{{item.percent}}</td>
+                <td>{{item.time}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <hr />
+    <div v-html="ssr_html"></div>
+    <div v-html="ss_html"></div>
+</div>
+
+
+
+
+<script>
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            ssr_list : [],
+            ss_list:[],
+            http_list:[],
+            ssr_html:"",
+            ss_html:""
+        },
+        mounted: function () {
+            var _this = this;
+            axios.post('https://api.newday.me/share/proxy/lists', this.getTimeData()).then(function (response) {
+                //console.log(response.data.data);
+                var data = response.data.data;
+                _this.ssr_list = data.ssr_list
+                _this.ss_list = data.ss_list
+                _this.http_list = data.http_list
+                _this.ssr_html = data.ssr_html
+                _this.ss_html = data.ss_html
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        methods: {
+            getTimeData:function () {
+                data = {};
+                var timestamp = Math.round(new Date().getTime() / 1000);
+                data["timestamp"] = timestamp;
+                data["time_point"] = this.getStrPoint("timestamp:" + timestamp);
+                return data;
+            },
+            getStrPoint:function (str) {
+                if (str.length < 2) {
+                    return "0:0";
+                }
+
+                var path = "";
+                var current, last = str[0].charCodeAt();
+                var sum = last;
+                for (var i = 1; i < str.length; i++) {
+                    current = str[i].charCodeAt();
+                    if (i == 1) {
+                        path = path + "M";
+                    } else {
+                        path = path + " L";
+                    }
+                    path = path + current + " " + last;
+                    last = current;
+                    sum = sum + current;
+                }
+                path = path + " Z";
+                var index = sum % str.length;
+                var data = Snap.path.getPointAtLength(path, str[index].charCodeAt());
+                return data.m.x + ":" + data.n.y;
+            }
+        }
+    })
+
+
+
+
+
+</script>
+</body>
+</html>
