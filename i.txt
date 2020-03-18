@@ -1,0 +1,63 @@
+# 需要安装的软件
+Google Chrome
+node-v10.16.0-x64
+	nrm
+	gulp
+python-3.8.0-amd64
+VSCode
+火绒
+BANDIZIP 6.26
+skype
+微信
+git、设置帐号
+宝塔
+qq
+Photoshop
+Fireworks
+iTunes
+VM
+激活工具microkms
+
+
+
+
+# 推荐软件
+搜索工具：Everything
+录屏软件：Bandicam
+播放器：potplayer
+卸载工具：geek
+电脑垃圾清理：ccleaner、dism++
+截图软件：snipaste
+ocr：天若
+
+同步：resilio sync
+隐私保护：signal
+
+
+
+
+
+# VSCode插件
+Chinese：中文语言包。
+vscode-icons ： 一套vs code的图标插件。
+Live Server ：一键开启本地服务。
+Local History ：个人感觉很有用 本地代码的一个保存日志，在没有git,svn，或者很长时间没有提交过代码的情况下，感觉挺实用，再也不怕代码回滚。
+Bracket Pair Colorizer ：很多括号的情况下，这个插件可以做一个颜色的区分，代码一目了然。
+Auto Rename Tag：改变标签的时候同时改动开闭合标签；对于HTML/XML很实用。
+
+Material Icon Theme：文件图标插件。
+Prettier：格式化插件。
+Minify：压缩 HTML、CSS、JS 代码。
+settings sync：在不同电脑间同步你的插件。
+
+
+
+
+
+# win10优化设置
+ - 设置--隐私--左边列表一项一项关闭
+ - 服务--Program Compatibility Assistant Service(禁用)++家庭组(禁用)
+ - 关闭自动更新：组策略(gpedit.msc)--计算机配置--管理模版--win组件--右侧win更新--禁用
+ - 关闭win索引服务：服务--Windows Search(禁用)
+ - 设置--游戏--关闭
+
