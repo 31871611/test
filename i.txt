@@ -45,10 +45,11 @@ Local History ：个人感觉很有用 本地代码的一个保存日志，在�
 Bracket Pair Colorizer ：很多括号的情况下，这个插件可以做一个颜色的区分，代码一目了然。
 Auto Rename Tag：改变标签的时候同时改动开闭合标签；对于HTML/XML很实用。
 
-Material Icon Theme：文件图标插件。
+Markdown Preview Enhanced：
 Prettier：格式化插件。
 Minify：压缩 HTML、CSS、JS 代码。
 settings sync：在不同电脑间同步你的插件。
+
 
 
 
