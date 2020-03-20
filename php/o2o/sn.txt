@@ -1,0 +1,35 @@
+
+# composer安装
+https://www.runoob.com/w3cnote/composer-install-and-usage.html
+
+
+
+# composer安装TP5
+composer create-project topthink/think TP5(文件夹名)
+
+
+
+# 虚拟域名配置
+1、配置hosts文件-分配域名o2o.singwa.com
+    hosts文件里添加：127.0.0.1 o2o.singwa.com
+2、配置httpd.conf文件
+    在文件中搜索virtual hosts去除下一行的注释
+3、配置httpd-vhosts.conf文件
+    在conf\extra\httpd-vhosts.conf修改
+    <VirtualHost *:80>
+        ServerAdmin o2o.singwa.com(需要访问的域名)
+        DocumentRoot "D:/WWW/o2o/public"(文件目录)
+        ServerName o2o.singwa.com(需要访问的域名)
+        ErrorLog "logs/o2o.singwa.com-error.log"
+        CustomLog "logs/o2o.singwa.com-access.log" common
+    </VirtualHost>
+4、重启apache服务器
+
+
+
+# Tp5自动化模块搭建
+修改build.php文件
+进入文件目录在cmd下运行php think build
+
+
+

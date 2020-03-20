@@ -410,6 +410,7 @@ class Index extends controller
         dump($request->url());              // /index/index/req/type/5.html?id=10
         dump($request->baseUrl());          // /index/index/req/type/5.html
 
+        // 方法二
         // 助手函数input 可以获取 post、get、param、session、put，更多去helper.php中查看
         //$res = input('id');
         $res = input('get.id',100,'intval');         // get类型的id值，设置默认值100, 过滤转换成整形
@@ -437,6 +438,7 @@ class Index extends controller
         // __construct()会报错
         /**/
         // 需要use think\Controller;
+        // 需要继承 use think\Controller; class Index extends Controller
         return $this->fetch('index', [
             'data' => "这是注入数据",
             'user' => '用户名',

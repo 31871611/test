@@ -1,0 +1,13 @@
+.tp5-o2o .pagination{
+    text-align: center;
+}
+.tp5-o2o .pagination li{
+    display: inline;
+    padding-left:10px;
+}
+.tp5-o2o .pagination .active{
+    color: red;
+}
+.tp5-o2o .pagination .disabled{
+    color: #888;
+}
