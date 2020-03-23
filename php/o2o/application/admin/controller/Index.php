@@ -27,4 +27,10 @@ class Index extends Controller
         // return 'admin/index/weblcome';
         return '欢迎来到o2o主后台首页！';
     }
+
+    public function email(){
+        $res = \phpmailer\Email::send('111@163.com',"标题","内容");
+
+    }
+
 }
