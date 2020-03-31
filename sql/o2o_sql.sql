@@ -54,7 +54,7 @@ CREATE TABLE `o2o_bis`(
 	`description` text NOT NULL,
 	`city_id` INT(11) UNSIGNED NOT NULL DEFAULT 0,
 	`city_path` VARCHAR(50) NOT NULL DEFAULT '',
-	`back_info` VARCHAR(50) NOT NULL DEFAULT '',
+	`bank_info` VARCHAR(50) NOT NULL DEFAULT '',
 	`money` DECIMAL(20,2) NOT NULL DEFAULT '0.00',
 	`back_name` VARCHAR(50) NOT NULL DEFAULT '',
 	`back_user` VARCHAR(50) NOT NULL DEFAULT '',
