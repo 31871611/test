@@ -4,23 +4,18 @@ namespace app\common\model;
 use think\Model;
 
 
-class Category extends Model
+class City extends Model
 {
 
     protected $autoWriteTimestamp = true;
     // 定义创建时间字段
     //protected $createTime = 'create_timestamp';
 
-    public function add($data){
-        $data['status'] = 1;
-        //$data['create_time'] = time();
-        return $this->save($data);
-    }
 
-    public function getNormalFirstCategory(){
+    public function getNormalCitysByParentId($parentId = 0){
         $data = [
             'status' => 1,
-            'parent_id' => 0
+            'parent_id' => $parentId
         ];
 
         $order = [
@@ -28,6 +23,14 @@ class Category extends Model
         ];
 
         return $this->where($data)->order($order)->select();
+    }
+
+
+
+    public function add($data){
+        $data['status'] = 1;
+        //$data['create_time'] = time();
+        return $this->save($data);
     }
 
     public function getFirstCategory($parentId = 0){
@@ -49,19 +52,6 @@ class Category extends Model
     }
 
 
-    public function getNormalCategoryByParentId($parentId = 0){
-        $data = [
-            'status' => 1,
-            'parent_id' => $parentId
-        ];
-
-        $order = [
-            'id' => 'desc'
-        ];
-
-        $res = $this->where($data)->order($order)->select();
-        return $res;
-    }
 
 
 }

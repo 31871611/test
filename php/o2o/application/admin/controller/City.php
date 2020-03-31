@@ -3,20 +3,20 @@ namespace app\admin\controller;
 
 use think\Controller;
 use app\admin\validatate\Category as categoryValidatate;
-use app\common\model\Category as categoryModel;
+use app\common\model\City as cityModel;
 
-class Category extends Controller
+class City extends Controller
 {
 
-    private $categoryModel;
+    private $cityModel;
 
     public function _initialize(){
-        $this->categoryModel = new categoryModel();
+        $this->cityModel = new cityModel();
     }
 
     public function index(){
         $parentId = input('get.parent_id',0,'intval');
-        $categorys = $this->categoryModel->getFirstCategory($parentId);
+        $categorys = $this->cityModel->getFirstCategory($parentId);
         return $this->fetch('',[
             'categorys' => $categorys
         ]);
@@ -24,12 +24,20 @@ class Category extends Controller
 
     // 添加页面
     public function add(){
-        //$categoryModel = new categoryModel();
-        //$categorys = $categoryModel->getNormalFirstCategory();
-        $categorys = $this->categoryModel->getNormalFirstCategory();
+        $citys = $this->cityModel->getNormalCitysByParentId();
         return $this->fetch('',[
-            'categorys' => $categorys
+            'citys' => $citys
         ]);
+    }
+
+    // 下级城市
+    public function getCitysByParentId($id){
+        $citys = $this->cityModel->getNormalCitysByParentId($id);
+        if($citys){
+            $this->result($citys,1,'success');
+        }else{
+            $this->result($citys,0,'error');
+        }
     }
 
     // 添加提交
@@ -39,6 +47,7 @@ class Category extends Controller
         }
 
         $data = input('post.');
+        /*
         $categoryValidatate = new categoryValidatate();
         if(!$categoryValidatate->scene('add')->check($data)){
             $this->error($categoryValidatate->getError());
@@ -46,11 +55,9 @@ class Category extends Controller
         if(!empty($data['id'])){
             return $this->update($data);
         }
+        */
 
-        // 提交到model层
-        //$categoryModel = new categoryModel();
-        //$res = $categoryModel->add($data);
-        $res = $this->categoryModel->add($data);
+        $res = $this->cityModel->add($data);
         if($res){
             $this->success('新增成功！');
         }else{
@@ -58,14 +65,12 @@ class Category extends Controller
         }
     }
 
-    // 编辑页面
+
     public function edit($id=0){
         if(intval($id) < 1){
             $this->error('参数不合法');
         }
         $category = $this->categoryModel->get($id);
-        // 转成json查看，比较直观
-        // var_dump(json_encode($category,0));exit();
         $categorys = $this->categoryModel->getNormalFirstCategory();
         return $this->fetch('',[
             'category' => $category,
@@ -73,7 +78,7 @@ class Category extends Controller
         ]);
     }
 
-    // 编辑提交
+
     public function update($data){
         $res = $this->categoryModel->save($data,[
             "id" => intval($data['id'])
