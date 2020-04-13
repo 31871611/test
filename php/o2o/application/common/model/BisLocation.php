@@ -18,4 +18,15 @@ class BisLocation extends BaseModel
     }
     */
 
+    public function getNormalLocationByBisId($bisId){
+        $data = [
+            "bis_id" => $bisId,
+            "status" => 1
+        ];
+        $order = [
+            "id" => "desc"
+        ];
+        return $this->where($data)->order($order)->select();
+    }
+
 }

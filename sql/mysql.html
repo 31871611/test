@@ -272,6 +272,11 @@ SQL语句不区分大小写
     11
 
 
++备份数据
+ 格式：mysqldump -h 主机名         -P 端口 -u 用户名 -p 密码     --database 数据库名 > 文件名.sql
+ 例如：mysqldump -h 192.168.1.100 -p 3306 -u root  -p password --database cmdb > /data/backup/cmdb.sql
+
+
 +使用视图
     临时表
     一般，应该将视图用于检索（SELECT语句）而不用于更新（INSERT,UPDATE和DELETE）

@@ -52,6 +52,19 @@ class City extends Model
     }
 
 
+    public function getNormalCitys() {
+        $data = [
+            'status' => 1,
+            'parent_id' => ['gt', 0],
+        ];
+
+        $order = ['id'=>'desc'];
+
+        return $this->where($data)
+            ->order($order)
+            ->select();
+
+    }
 
 
 }
