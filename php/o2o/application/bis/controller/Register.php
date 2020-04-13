@@ -42,7 +42,9 @@ class Register extends Controller
         if(!request()->isPost()){
             $this->error("请求错误！");
         }
-        $data = input('post.');
+        // 防止xss
+        //$data = input('post.','','htmlentities');
+        $data = input('post.'); // 在config.php中default_filter中添加
         // 检验数据
         $bisValidatate = new bisValidatate();
         if(!$bisValidatate->scene('add')->check($data)){

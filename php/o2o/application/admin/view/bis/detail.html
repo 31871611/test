@@ -47,7 +47,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">商户介绍：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                {$bisData.description}
+                {$bisData.description|html_entity_decode}
             </div>
         </div>
         <div class="row cl">
