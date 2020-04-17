@@ -5,7 +5,7 @@ use think\Controller;
 use app\admin\validatate\Category as categoryValidatate;
 use app\common\model\Category as categoryModel;
 
-class Category extends Controller
+class Category extends Base
 {
 
     private $categoryModel;
