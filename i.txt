@@ -44,17 +44,17 @@ Live Server ：一键开启本地服务。
 Local History ：个人感觉很有用 本地代码的一个保存日志，在没有git,svn，或者很长时间没有提交过代码的情况下，感觉挺实用，再也不怕代码回滚。
 Bracket Pair Colorizer ：很多括号的情况下，这个插件可以做一个颜色的区分，代码一目了然。
 Auto Rename Tag：改变标签的时候同时改动开闭合标签；对于HTML/XML很实用。
-
 Vetur：Vue 工具插件
-Indent-Rainbow：带颜色的缩进
+
 
 Markdown Preview Enhanced：
 Prettier：格式化插件。
 Minify：压缩 HTML、CSS、JS 代码。
 settings sync：在不同电脑间同步你的插件。
 
-
-
+vscode设置显示缩进线：首选项 → 设置 → 搜索RenderIndentGuides → 将此选项改为true(打勾)
+字体大小：首选项 → 设置 → 文本编辑器 → 字体 → 16
+Monokai风格：首选项 → 颜色主题 → 然后在主题列表下选择`Monookai`风格即可`
 
 
 
