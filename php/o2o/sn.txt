@@ -7,9 +7,9 @@ https://www.runoob.com/w3cnote/composer-install-and-usage.html
 # composer安装TP5
 composer create-project topthink/think TP5(文件夹名)
 
-------------------------------------------------------------------------------------------------
 
-# apache中虚拟域名配置
+
+# 虚拟域名配置
 1、配置hosts文件-分配域名o2o.singwa.com
     hosts文件里添加：127.0.0.1 o2o.singwa.com
 2、配置httpd.conf文件
@@ -25,13 +25,12 @@ composer create-project topthink/think TP5(文件夹名)
     </VirtualHost>
 4、重启apache服务器
 
-------------------------------------------------------------------------------------------------
+
 
 # Tp5自动化模块搭建
 修改build.php文件
 进入文件目录在cmd下运行php think build
 
-------------------------------------------------------------------------------------------------
 
 # 获取验证码类库
 composer require topthink/think-captcha=2.*
@@ -40,19 +39,6 @@ composer require topthink/think-captcha=2.*
 使用国内镜像：composer config -g repo.packagist composer https://packagist.phpcomposer.com
 镜像还原到packagist 官方源：composer config -g --unset repos.packagist
 
-------------------------------------------------------------------------------------------------
 
-#TP5防止sql注入xss攻击
-
-tp5框架默认没有设置任何过滤规则，你可以是配置文件中设置全局的过滤规则：
-
-// 默认全局过滤方法 用逗号分隔多个
-'default_filter' => 'htmlspecialchars,addslashes,strip_tags',
-
-htmlspecialchars：防XSS攻击，尖括号等转义过滤
-addslashes：防SQL注入，在每个双引号（"）前添加反斜杠
-strip_tags：剥去字符串中的 HTML 标签
-
-把这些参数加上后，每次请求后端的接口中，框架就会对请求的变量进行自动过滤了。
-
-------------------------------------------------------------------------------------------------
+# 定时脚本
+linux crontab

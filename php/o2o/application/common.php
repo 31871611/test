@@ -73,7 +73,7 @@ function pagination($obj) {
     if(!$obj) {
         return '';
     }
-    // 优化的方案
+    // 优化的方案.带上参数
     $params = request()->param();
     return '<div class="cl pd-5 bg-1 bk-gray mt-20 tp5-o2o">'.$obj->appends($params)->render().'</div>';
 }
