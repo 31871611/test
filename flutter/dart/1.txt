@@ -1,0 +1,15 @@
+https://www.cnblogs.com/mu-zhang/p/10545388.html
+https://blog.csdn.net/davidPan1234/article/details/92839452
+
+
+配置系统的powershell .
+使用管理员权限打开 powershell.
+powershell  运行命令："Set-ExecutionPolicy RemoteSigned"
+使用命令 "iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex"
+
+
+cmd运行: dart --version
+vscode 安装Dart插件
+vscode安装Code Runner
+
+
