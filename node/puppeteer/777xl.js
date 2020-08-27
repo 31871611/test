@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 var fs = require("fs");
 
-const TOTAL_PAGE = 30
+const TOTAL_PAGE = 9
 const saveArr = [];
 
 
@@ -21,7 +21,7 @@ const saveArr = [];
 
         for (let i = 1;i<=TOTAL_PAGE;i++){
             // 打开页面
-            await page.goto('http://777xl.cn/forum.php?mod=forumdisplay&fid=45&page=' + i)
+            await page.goto('http://777xl.cn/forum.php?mod=forumdisplay&fid=44&page=' + i)
 
             // 等待标签
             await page.waitForSelector('#threadlist');
