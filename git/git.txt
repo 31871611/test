@@ -74,6 +74,8 @@ $ git clone git@github.com:username/xxxx.git			（这个需要添加id_rsa.pub�
 	    https://github.com/michaelliao/gitskills.git	（也可以使用https）
 $ git remote 		（查看远程库列出已经存在的远程分支）
 
+添加远程仓库 git remote add url
+
 
 创建与合并分支
 $ git checkout -b dev			（创建dev分支，然后切换到dev分支）

@@ -87,15 +87,21 @@ SQL语句不区分大小写
 +函数
     文本处理函数
         UPPER():SELECT vend_name,UPPER(vend_name) as vend_name_upper FROM vendors ORDER BY vend_name
-        Left()      返回串左边的字符
+        Left()      返回串左边的字符，left（name,4）截取左边的4个字符
         Length()    返回串的长度
         Locate()    找出串的一个子串
         Lower()     将串转换为小写
         LTrim()     去掉串左边的空格
-        Right()     返回串右边的字符
+        Right()     返回串右边的字符，right（name,2）截取右边的2个字符
         RTrim()     去掉串右边的空格
         Soundex()   返回串的soundex值
-        SubString() 返回子串的字符
+        SubString() 返回子串的字符，SUBSTRING(name,5,3) 截取name这个字段 从第五个字符开始 只截取之后的3个字符
+                                   SUBSTRING(name,3) 截取name这个字段 从第三个字符开始，之后的所有个字符
+                                   SUBSTRING(name, -4) 截取name这个字段的第 4 个字符位置（倒数）开始取，直到结束
+                                   SUBSTRING(name, -4，2) 截取name这个字段的第 4 个字符位置（倒数）开始取，只截取之后的2个字符
+        substring_index('www.baidu.com', '.', 2) 截取第二个 '.' 之前的所有字符
+        substring_index('www.baidu.com', '.', -2) 截取第二个 '.' （倒数）之后的所有字符
+        SUBSTR(name, 1, CHAR_LENGTH(name)-3) 截取name字段，取除name字段后三位的所有字符
         Upper()     将串转换为大写
     日期和时间处理函数，不管是插入或更新表值还是用WHERE子句进行过滤，日期必须为格式yyy--mm--dd
         AddDate()
