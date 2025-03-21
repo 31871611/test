@@ -1,3 +1,11 @@
+
+
+centos7安装python3 
+https://www.cnblogs.com/somenothing/p/14355971.html
+
+
+-------------------
+
 安装依赖环境
 yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel expat-devel libffi-devel
 yum install gcc* glien* -y
